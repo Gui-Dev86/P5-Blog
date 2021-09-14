@@ -10,7 +10,7 @@
     <div class="container py-3">
         <div class="row">
             <!----- foreach article in articles--->
-                <div class="col-12">
+                <div class="col-12 col-md-4">
                     <div class="card text-center">
                         <div class="card-block">
                             <h5 class="card-header">article.title</h5>
@@ -22,7 +22,7 @@
                                         <!----- elseif --->
                                         <td>article.dateCreation  par <b>article.username</b></td>
                                     </small></p>
-                            <a class="btn btn-primary mb-3" href="<?= local ?>articles/lire/1">Plus...</a>
+                            <a class="btn btn-primary mb-3" href="<?= local ?>articles/readArticle/1">Plus...</a>
                         </div>
                     </div>
                 </div>

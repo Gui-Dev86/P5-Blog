@@ -1,6 +1,6 @@
 <div class="row">
         <div class="col text-center">
-            <h3>Modifier un article</h3>
+            <h3>Modifier l'article</h3>
         </div>
 </div>
 

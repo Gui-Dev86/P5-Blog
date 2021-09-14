@@ -35,7 +35,8 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Pseudo</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="#">Gérer votre compte</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="<?= local ?>userCompte">Gérer votre compte</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="<?= local ?>adminManagement">Administration</a></li>
                                     <li class="li-item"><a class="dropdown-item font-weight-bold" href="#">Déconnexion</a></li>
                                 </ul>
                             </li>
@@ -45,7 +46,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="#">Identifiez-vous</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold text-center" href="#">Identifiez-vous</a></li>
                                     <li class="li-item"><a class="dropdown-item font-weight-bold" href="#">Pas encore membre?</a></li>
                                 </ul>
                             </li>
@@ -77,7 +78,7 @@
                 </div>
                 <div class="row">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
-                            <p>Copyright © 2021 Guillaume Vignères - Projet n°5 - PHP/Symfony - <a class="link-footer" href="mentions-legales.html" target="_blank">Mentions Légales</a></p>
+                            <p>Copyright © 2021 Guillaume Vignères - Projet n°5 - PHP/Symfony - <a class="link-footer" href="<?= local ?>mentionsLegales" target="_blank">Mentions Légales</a></p>
                         </ul>
                     </div>
                 </div>

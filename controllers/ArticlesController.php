@@ -23,11 +23,11 @@ class Articles extends Controller{
     }
 
     /**
-     * This method dsplays an article
+     * This method displays an article
      *
      * @return void
      */
-    public function lire(){
+    public function readArticle(){
         
         $this->render('article');
     }
