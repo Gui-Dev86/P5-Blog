@@ -26,8 +26,11 @@
     <!----- if role is admin--->
     <div class="container py-3">
         <div class="row">
-            <div class=" col-12 text-center">
+            <div class=" col-2 offset-8 text-center">
                 <a class="btn btn-primary mb-3" href="<?= local ?>articles/modifyArticle">Modifier l'article</a>
+            </div>
+            <div class=" col-2 text-center">
+                <a class="btn btn-danger mb-3" href="<?= local ?>">Supprimer l'article</a>
             </div>
         </div>
     </div>
@@ -53,6 +56,29 @@
                 <!----- else --->
                     <p>A été modifié le comments.dateUpdate|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong></p>
                 <!----- endif --->
+            </div>
+            
+            <div class="container py-3">
+                <div class="row">
+                    <!----- if session.pseudo is auteur--->
+                    <div class=" col-2 offset-8 text-center">
+                        <a class="btn btn-primary mb-3" href="<?= local ?>articles/modifyArticle">Modifier le commentairee</a>
+                    </div>
+                    <!----- else if role is admin--->
+                        <!----- if statut is enCours--->
+                            <div class=" col-2-8 text-center">
+                                <a class="btn btn-primary mb-3" href="<?= local ?>">Valider le commentaire</a>
+                            </div>
+                        <!----- else--->
+                            <div class=" col-2-8 text-center">
+                                <a class="btn btn-primary mb-3" href="<?= local ?>">Refuser le commentaire</a>
+                            </div>
+                            <div class=" col-2 text-center">
+                                <a class="btn btn-danger mb-3" href="<?= local ?>">Supprimer le commentaire</a>
+                            </div>
+                        <!----- endif --->
+                    <!----- endif --->
+                </div>
             </div>
         <!----- endfor --->
     </div>

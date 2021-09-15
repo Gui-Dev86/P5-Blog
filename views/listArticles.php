@@ -29,11 +29,5 @@
             <!----- endfor --->
         </div>
     </div>
-    <div class="container py-3">
-        <div class="row">
-            <div class=" col-12 text-center">
-                <a class="btn btn-primary mb-3" href="<?= local ?>articles/createArticle">Ajouter un article</a>
-            </div>
-        </div>
-    </div>
+    
 </section>

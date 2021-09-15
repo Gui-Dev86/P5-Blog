@@ -18,7 +18,11 @@ abstract class Controller{
         ob_start();
 
         // On génère la vue
-        require_once(ROOT.'views/'.$fichier.'.php');
+        if( file_exists( 'views/'.$fichier.'.php' ) ) {
+            require_once(ROOT.'views/'.$fichier.'.php');
+        } else {
+            require_once(ROOT.'views/back/'.$fichier.'.php');
+        }
 
         // On stocke le contenu dans $content
         $content = ob_get_clean();

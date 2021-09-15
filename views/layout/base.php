@@ -6,6 +6,7 @@
         <title>Blog - Guillaume Vignères</title>
         <link rel="stylesheet" href="<?= local ?>public/css/nav-footer.css" />
         <link rel="stylesheet" href="<?= local ?>public/css/index.css" />
+        <link rel="stylesheet" href="<?= local ?>public/css/tabAdmin.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
     </head>
@@ -46,8 +47,8 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold text-center" href="#">Identifiez-vous</a></li>
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="#">Pas encore membre?</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold text-center" href="<?= local ?>login">Identifiez-vous</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="<?= local ?>">Pas encore membre?</a></li>
                                 </ul>
                             </li>
                         </ul>

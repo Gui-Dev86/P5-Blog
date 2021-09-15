@@ -17,6 +17,17 @@ class userCompte extends Controller{
         $this->render('userCompte');
     }
 
+/**
+     * This method displays the user modify compte
+     *
+     * @return void
+     */
+    public function userFormModifCompte(){
+
+        // On envoie les données à la vue index
+        $this->render('userFormModifCompte');
+    }
+
     /**
      * This method displays the user comments list
      *

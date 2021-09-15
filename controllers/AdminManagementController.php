@@ -22,10 +22,10 @@ class adminManagement extends Controller{
      *
      * @return void
      */
-    public function listAllArticles(){
+    public function adminListAllArticles(){
 
         // On envoie les données à la vue index
-        $this->render('listAllArticles');
+        $this->render('adminListAllArticles');
     }
 
     /**
@@ -33,10 +33,10 @@ class adminManagement extends Controller{
      *
      * @return void
      */
-    public function listAllComments(){
+    public function adminListAllComments(){
 
         // On envoie les données à la vue index
-        $this->render('listAllComments');
+        $this->render('adminListAllComments');
     }
 
     /**
@@ -44,9 +44,9 @@ class adminManagement extends Controller{
      *
      * @return void
      */
-    public function listAllMembers(){
+    public function adminListAllMembers(){
 
         // On envoie les données à la vue index
-        $this->render('listAllMembers');
+        $this->render('adminListAllMembers');
     }
 }

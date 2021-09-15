@@ -1,16 +1,11 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8 offset-md-2 pb-5">
+        <div class="col-12 col-md-8 offset-md-2">
+        <h4 class="pb-3">Informations du compte</h4>
             <table class="panel">
-                <tr>
-                    <td>
-                        <h4 class="pb-3">Informations du compte</h4>
-                    </td>
-                </tr>
                 <tr>
                     <td>Pseudo :</td>
                     <td>session.pseudo</td>
-
                 </tr>
                 <tr>
                     <td>Adresse email :</td>
@@ -21,10 +16,14 @@
                     <td>date('d/m/Y \\à H:i:s')</td>
                 </tr>
                 <tr>
-                    <td>Statut : </td>
+                    <td>Rôle : </td>
                     <td>session.role</td>
                 </tr>
             </table>
+            
+        </div>
+        <div class="col-12 col-md-8 offset-md-2 pt-3 pb-5">
+                <a class="btn btn-default btn-primary" href="<?= local ?>userCompte/userFormModifCompte">Modifier vos informations</a>
         </div>
     </div>
 </div>
@@ -32,7 +31,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 offset-md-2 pb-5">
             <h4 class="pb-3">Commentaires</h4>
-            <a class="btn btn-default btn-secondary" href="<?= local ?>userCompte/userListComment">Afficher vos commentaires</a>
+            <a class="btn btn-default btn-primary" href="<?= local ?>userCompte/userListComment">Afficher vos commentaires</a>
         </div>  
     </div>
 </div>
