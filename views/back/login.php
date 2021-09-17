@@ -1,3 +1,5 @@
+<div class="container heightNav col-12"></div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 offset-md-2 pb-3">
@@ -9,7 +11,7 @@
             <form method="post" action="">
                 <div class="form-group">
                     <label for="passwrd">Login</label>
-                    <input type="password" name="oldpassword" class="form-control" id="passwrd" placeholder="Saisissez votre login">
+                    <input type="password" name="oldpassword" class="form-control" id="password" placeholder="Saisissez votre login">
                 </div>
                 <div class="form-group">
                     <label for="passwrd">Mot de passe</label>

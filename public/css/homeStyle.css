@@ -1,0 +1,33 @@
+.heightNav {
+	height: 65px;
+}
+
+.homeBackground {
+	background: no-repeat top center url("../img/keyboard.jpg");
+	background-size: cover;
+	height: 46rem;
+}
+
+.logo-dev {
+    width: 80% !important;
+}
+
+.logoAdmin {
+    margin: auto;
+    width: 50% !important;
+}
+
+h1 {
+	font-size: 3rem !important;
+	margin-top: 15rem !important;
+	color: #fff;
+	animation: reveal 7s linear forwards;
+}
+
+@keyframes reveal {
+	0% {opacity:0;}
+	25% {opacity:0.25;}
+	50% {opacity:0.5;}
+	75% {opacity:0.75;}
+	100% {opacity:1;}
+}

@@ -49,4 +49,15 @@ class adminManagement extends Controller{
         // On envoie les données à la vue index
         $this->render('adminListAllMembers');
     }
+
+    /**
+     * This method displays the modify user page
+     *
+     * @return void
+     */
+    public function adminModifyUser(){
+
+        // On envoie les données à la vue index
+        $this->render('adminModifyUser');
+    }
 }

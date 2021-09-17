@@ -1,3 +1,12 @@
+<div class="container heightNav col-12"></div>
+    <div class="jumbotron jumbotron-fluid homeBackground">
+        <div class="container col-12">
+            <h1 class="text-center font-weight-bold">DEVELOPPEUR INFORMATIQUE<br />FREELANCE</h1>
+        </div>
+    </div>
+    <div class="container cont-separator col-12"></div>
+</div>
+
 <div class="container px-3 pb-5">
     <div class="container col-12">
         <div class="row">

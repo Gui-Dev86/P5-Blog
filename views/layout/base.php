@@ -4,17 +4,16 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Blog - Guillaume Vignères</title>
-        <link rel="stylesheet" href="<?= local ?>public/css/nav-footer.css" />
-        <link rel="stylesheet" href="<?= local ?>public/css/index.css" />
+        <link rel="stylesheet" href="<?= local ?>public/css/base.css" />
         <link rel="stylesheet" href="<?= local ?>public/css/tabAdmin.css" />
+        <link rel="stylesheet" href="<?= local ?>public/css/<?= $fichier ?>Style.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         
     </head>
     
     <body>
         <header>
-            <div class="container">
-
+            <div class="container col-12">
                 <nav class="navbar navbar-expand-md col-12 ">
                     <a class="nav-link font-weight-bold logo-nom" href="<?= local ?>">Guillaume Vignères</a>
                     <button class="navbar-toggler align-center" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,32 +22,32 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link font-weight-bold" href="<?= local ?>">Accueil</a>
+                                <a class="nav-link font-weight-bold text-center" href="<?= local ?>">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link font-weight-bold" href="<?= local ?>articles">Articles</a>
+                                <a class="nav-link font-weight-bold text-center" href="<?= local ?>articles">Articles</a>
                             </li>
 
 
                         <!----- if session is defined--->
 
 
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown text-center">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Pseudo</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="<?= local ?>userCompte">Gérer votre compte</a></li>
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="<?= local ?>adminManagement">Administration</a></li>
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="#">Déconnexion</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>userCompte">Gérer votre compte</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>adminManagement">Administration</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="#">Déconnexion</a></li>
                                 </ul>
                             </li>
 
                             <!-----else--->
 
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown text-center">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold text-center" href="<?= local ?>login">Identifiez-vous</a></li>
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold" href="<?= local ?>">Pas encore membre?</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold login-btn text-center" href="<?= local ?>login">Identifiez-vous</a></li>
+                                    <li class="li-item text-center no-member">Nouveau membre? <a class="link-connect" href="<?= local ?>login/logUser">Cliquez ici</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -56,17 +55,10 @@
                 </nav>
 
             </div>
-            <div class="container cont-menu col-12"></div>
-            <div class="jumbotron jumbotron-fluid change">
-                <div class="container col-12">
-                    <div class="fond"></div>
-                </div>
-            </div>
-            <div class="container cont-separator col-12"></div>
-        </header>   
+        </header> 
         <main>
-        
-        <?= $content ?>
+    
+            <?= $content ?>
 
         </main>
         <footer>           
