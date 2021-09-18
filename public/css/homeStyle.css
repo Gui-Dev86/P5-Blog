@@ -1,20 +1,11 @@
-.heightNav {
-	height: 65px;
-}
-
 .homeBackground {
 	background: no-repeat top center url("../img/keyboard.jpg");
 	background-size: cover;
 	height: 46rem;
 }
 
-.logo-dev {
-    width: 80% !important;
-}
-
-.logoAdmin {
-    margin: auto;
-    width: 50% !important;
+.logoDevContenu {
+    width: 16rem !important;
 }
 
 h1 {
@@ -30,4 +21,47 @@ h1 {
 	50% {opacity:0.5;}
 	75% {opacity:0.75;}
 	100% {opacity:1;}
+}
+
+.aPropos {
+	font-size: 2.5rem;
+}
+
+.btnHome {
+	color: #212529 !important;
+	padding: 0.5rem 2.5rem !important;
+	border-radius: 3px;
+    background: #007bff !important;
+    background: -webkit-linear-gradient(top, #1893FF, #007bff) !important;
+    background: -o-linear-gradient(top, #1893FF, #007bff) !important;
+    background: -moz-linear-gradient(top, #1893FF, #007bff) !important;
+    background: linear-gradient(to bottom, #1893FF, #007bff) !important;
+    border: 1px SOLID #0084AF !important;
+	margin-top: 10px;
+}
+
+.btnHome:hover{
+    opacity: 0.75 !important;
+}
+
+.containerDashed {
+	border-bottom: 5px dashed #292929;
+}
+
+.contactTitre {
+	margin-top: 2rem;
+	font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+
+	.homeBackground {
+		height: 35rem !important;
+	}
+
+	h1 {
+		font-size: 2.5rem !important;
+		margin-top: 9rem !important;
+	}
+
 }

@@ -1,5 +1,3 @@
-<div class="container heightNav col-12"></div>
-
 <div class="container px-3">
     <div class="row">
         <div class="col-12 col-md-4 mt-5">

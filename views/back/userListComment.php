@@ -1,5 +1,3 @@
-<div class="container heightNav col-12"></div>
-
 <div class="container">
     <div class="row">
         <h4>Commentaires</h4>

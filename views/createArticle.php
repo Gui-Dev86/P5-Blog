@@ -1,5 +1,3 @@
-<div class="container heightNav col-12"></div>
-
 <div class="row">
         <div class="col text-center">
             <h3>Créer un nouvel article</h3>

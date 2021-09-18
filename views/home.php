@@ -1,42 +1,41 @@
-<div class="container heightNav col-12"></div>
-    <div class="jumbotron jumbotron-fluid homeBackground">
-        <div class="container col-12">
-            <h1 class="text-center font-weight-bold">DEVELOPPEUR INFORMATIQUE<br />FREELANCE</h1>
-        </div>
+<div class="jumbotron jumbotron-fluid homeBackground">
+    <div class="container col-12">
+        <h1 class="text-center font-weight-bold">BLOG<br />DEVELOPPEUR INFORMATIQUE</h1>
     </div>
-    <div class="container cont-separator col-12"></div>
 </div>
 
-<div class="container px-3 pb-5">
+<div class="container col-10 containerDashed px-3 pb-5">
     <div class="container col-12">
         <div class="row">
-            <div class="col-8 offset-2 col-md-4 offset-md-4 font-weight-bold text-center">
-                <p>Qui suis-je?</p>
+            <div class="col-12 col-md-6 font-weight-bold text-center">
+                <p class= "text-center"><img class="card-img-top logoDevContenu" src="<?= local ?>public/img/logoContenu.png" alt="logo développeur"></p>
             </div>
-        </div>
-    </div>
-    <div class="container col-12 pt-3">
-        <div class="row" >   
-            <div class="col-8 offset-2 col-md-8 offset-md-2">
-                <h3 class="font-weight-bold text-center">Vignères Guillaume</h3>
-            </div>
-        </div>
-        <div class="row" >   
-            <div class="col-8 offset-2 col-md-4 offset-md-4">
-                <p class= "text-center"><img class="card-img-top logo-dev" src="public/img/logo.png" alt="logo développeur"></p>
-            </div>
-        </div>
-        <div class="row" >   
-            <div class="col-8 offset-2 col-md-8 offset-md-2">
-                <h2 class="font-weight-bold text-center">Développeur php/symfony</h2>
+            <div class="container col-12 col-md-6 pt-3">
+                <div class="row">
+                    <p class="font-weight-bold aPropos">A PROPOS</p>
+                </div>
+                <div class="row">
+                    <h4 class="font-weight-bold text-center">Vignères Guillaume,</h4>
+                </div>
+                <div class="row">
+                    <p class="font-weight-bold text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt semper augue, et tristique urna mattis eu. 
+                Quisque nunc odio, mattis eget urna sit amet, rutrum porttitor urna. Curabitur vestibulum finibus leo, 
+                sagittis maximus odio egestas quis. Praesent sagittis eros augue, sed blandit metus pharetra in. </p>
+                </div>
+                <div class="text-center">
+                    <a href="<?= local ?>public/cv/cv_guillaume_vigneres.pdf" target="_blank" download><button type="submit" class="btn btn-primary font-weight-bold btnHome">Consulter mon CV</button></a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="col-12 pb-5 text-center">
-    <a href="cv/cv_guillaume_vigneres.pdf" target="_blank" download><button type="submit" class="btn btn-primary font-weight-bold btn-telecharger">Consulter mon CV</button></a>
-</div>
-<div class="container col-12">
+
+<div class="container col-10 containerDashed mb-3 mb-md-5">
+    <div class="row">
+        <div class="col-12 font-weight-bold text-center">
+        <h4 class="font-weight-bold text-center contactTitre">CONTACTEZ MOI</h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 col-md-8 offset-md-2 my-3 pt-2 pb-1 font-weight-bold">
             <form>
@@ -58,7 +57,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-primary font-weight-bold btn-envoyer">Envoyer</button>
+                        <button type="submit" class="btn btn-primary font-weight-bold btnHome">Envoyer</button>
                     </div>
                 </div>
             </form>

@@ -1,5 +1,3 @@
-<div class="container heightNav col-12"></div>
-
 <section id="blog">
     <div class="row">
         <div class="col-lg-12 col-lg-offset-3 text-center">
