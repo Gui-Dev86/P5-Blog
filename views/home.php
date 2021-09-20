@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid homeBackground">
-    <div class="container col-12">
-        <h1 class="text-center font-weight-bold">BLOG<br />DEVELOPPEUR INFORMATIQUE</h1>
+    <div class="container col-10">
+        <h1 class="text-center font-weight-bold">BLOG D'UN<br />DEVELOPPEUR INFORMATIQUE</h1>
     </div>
 </div>
 
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="container col-10 containerDashed mb-3 mb-md-5">
+<div class="container col-10">
     <div class="row">
         <div class="col-12 font-weight-bold text-center">
         <h4 class="font-weight-bold text-center contactTitre">CONTACTEZ MOI</h4>

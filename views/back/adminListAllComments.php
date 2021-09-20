@@ -11,6 +11,7 @@
                             <th class="column5">Mise à jour</th>
                             <th class="column6">Statut</th>
                             <th class="column7">Visualiser</th>
+                            <th class="column8">Modifier statut</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,7 @@
                             <td class="column5">---</td>
                             <td class="column6">Validé</td>
                             <td class="column7"><a href="<?= local ?>articles/readArticle/1">Afficher</a></td>
+                            <td class="column8"><a href="<?= local ?>">Réinitialiser</a></td>
                         </tr>
                     </tbody>
                 </table>

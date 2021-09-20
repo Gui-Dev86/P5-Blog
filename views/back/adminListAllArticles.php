@@ -18,6 +18,8 @@
                             <th class="column5">Mise à jour</th>
                             <th class="column6">Visible</th>
                             <th class="column7">Visualiser</th>
+                            <th class="column8">Modifier</th>
+                            <th class="column9 columnEndArticle">Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +30,9 @@
                             <td class="column5">---</td>
                             <td class="column6">Oui</td>
                             <td class="column7"><a href="<?= local ?>articles/readArticle/1">Afficher</a></td>
+                            <td class="column8"><a href="<?= local ?>articles/modifyArticle">Modifier</a></td>
+                            <td class="column9 columnEndArticle"><a href="<?= local ?>">Supprimer</a></td>
+                            
                         </tr>
                     </tbody>
                 </table>

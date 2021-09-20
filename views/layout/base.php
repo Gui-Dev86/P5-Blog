@@ -15,7 +15,7 @@
         <header>
             <div class="container col-12">
                 <nav class="navbar navbar-expand-md col-12 ">
-                <img src="<?= local ?>public/img/logoMenu.png" class="logoDevNav" alt="Logo Guillaume Vignères">
+                <a href="<?= local ?>"><img src="<?= local ?>public/img/logoMenu.png" class="logoDevNav" alt="Logo Guillaume Vignères"></a>
                     <a class="nav-link font-weight-bold logo-nom" href="<?= local ?>">Guillaume Vignères</a>
                     <button class="navbar-toggler align-center" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
                             </li>
 
                             <!-----else--->
-
+<!--
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -52,7 +52,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div>
+                    </div>--->
                 </nav>
 
             </div>
@@ -63,8 +63,8 @@
 
         </main>
         <footer>           
-            <div class="container col-12">
-                <div class="row">   
+            <div class="container dashedFooter mt-3 mt-md-5 col-10">
+                <div class="row mt-2 mt-md-3">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
                         <a href="#"><img src="<?= local ?>public/img/linked-in.png" class="logo-rs" alt="Logo Linked-in"></a>
                         <a href="#"><img src="<?= local ?>public/img/github.jpg" class="logo-rs" alt="Logo Github"></a>
