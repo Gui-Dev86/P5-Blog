@@ -1,0 +1,22 @@
+.retour-compteUser {
+    color: #212529 !important;
+}
+
+.retour-compteUser:hover {
+    color: #007bff !important;
+}
+
+h4 {
+    font-size: 2rem !important;
+}
+
+.containerDashed {
+    border-bottom: 5px dashed #292929;
+}
+
+@media (max-width: 768px) {
+
+    h4 {
+        font-size: 1rem !important;
+    }
+}

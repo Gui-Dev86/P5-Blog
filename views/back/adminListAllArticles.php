@@ -1,6 +1,13 @@
 <div class="limiter">
     <div class="container-table100">
-    <div class="container py-3">
+        <div class="container col-10">
+            <div class="row">
+                <div class="col-12 my-4">
+                    <a class="font-weight-bold retour-listArticles" href="<?= local ?>adminManagement">< Retour au panneau d'administration</a>
+                </div>
+            </div>
+        </div>
+    <div class="container pb-3">
         <div class="row">
             <div class=" col-12 text-center">
                 <a class="btn btn-primary mb-3" href="<?= local ?>articles/createArticle">Ajouter un article</a>

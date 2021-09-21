@@ -1,27 +1,44 @@
-<div class="row">
-        <div class="col text-center">
-            <h3>Créer un nouvel article</h3>
+<div class="container col-10">
+    <div class="row">
+        <div class="col-10 my-4">
+            <a class="font-weight-bold retour-listArticle" href="<?= local ?>adminManagement/adminListAllArticles">Page précédente</a>
         </div>
+    </div>
 </div>
-
-<div class="container">
-    <form action="index.php?page=article&method=createArticle" method="post">
-
-        <div class="form-group">
-            <label for="title">Titre</label>
-            <input type="text" class="form-control"  id="title" name="title">
+<section class="container col-10" id="createArticle">
+    <div class="container col-12">
+        <div class="row">
+            <div class="col-12 col-10 mb-5 containerDashed text-center">
+                <h3 class="font-weight-bold">
+                    <span class="ion-minus"></span>CREER UN NOUVEL ARTICLE<span class="ion-minus"></span>
+                </h3>
+            </div>
         </div>
+    </div>
+    <div class="container">
+        <form action="index.php?page=article&method=createArticle" method="post">
 
-        <div class="form-group">
-            <label for="chapo">Extrait</label>
-            <input type="text" class="form-control" id="chapo" name="chapo">
-        </div>
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" class="form-control"  id="title" name="title">
+            </div>
 
-        <div class="form-group">
-            <label for="content">Contenu</label>
-            <textarea type="text" class="form-control" rows="10" id="content" name="content"></textarea>
-        </div>
+            <div class="form-group">
+                <label for="chapo">Extrait</label>
+                <input type="text" class="form-control" id="chapo" name="chapo">
+            </div>
 
-        <button type="submit" class="btn btn-primary">Créer</button>
-    </form>
-</div>
+            <div class="form-group">
+                <label for="content">Contenu</label>
+                <textarea type="text" class="form-control" rows="10" id="content" name="content"></textarea>
+            </div>
+            <label for="imgArt">Image</label>
+            <input type="file"
+                id="imgFileArt" name="imgFileArt"
+                accept="image/png, image/jpeg">
+            <div class = "btnCenterNewArticle">
+                <button type="submit" class="btn btn-primary font-weight-bold btn-createArt mt-4">Créer</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -43,7 +43,7 @@
                             </li>
 
                             <!-----else--->
-<!--
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -52,7 +52,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div>--->
+                    </div>
                 </nav>
 
             </div>

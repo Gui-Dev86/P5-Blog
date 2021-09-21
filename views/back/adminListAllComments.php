@@ -1,5 +1,12 @@
 <div class="limiter">
     <div class="container-table100">
+        <div class="container col-10">
+            <div class="row">
+                <div class="col-12 my-4">
+                    <a class="font-weight-bold retour-listComments" href="<?= local ?>adminManagement">< Retour au panneau d'administration</a>
+                </div>
+            </div>
+        </div>
         <div class="wrap-table100">
             <div class="table100">
                 <table>

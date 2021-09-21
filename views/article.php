@@ -1,22 +1,36 @@
-<section class="container sectionArticle col-10 mt-3 mb-5" id="article">
+<div class="container col-10">
+    <div class="row">
+        <div class="col-10 my-4">
+            <a class="font-weight-bold retour-listArticle" href="<?= local ?>articles">< Retour à la liste d'articles</a>
+        </div>
+    </div>
+</div>
+<section class="container sectionArticle col-10 mb-5" id="article">
     <div class="container contArticle col-12">
         <div class="row">
-            <div class="col-12 col-10 mt-3 mb-5 containerDashed text-center">
-                <h2 class="font-weight-bold">
+            <div class="col-12 mt-3 mb-4 containerDashed text-center">
+                <h4 class="font-weight-bold">
                     <span class="ion-minus"></span>Lorem ipsum dolor sit amet. (article.title)<span class="ion-minus"></span>
-                </h2>
+                </h4>
             </div>
         </div>
     </div>
     <div class="col-12">
-        <div class="container">
+        <div class="container contImgMobile">
             <div class="row">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. (article.chapo)</p>
+                <div class="col-12 mb-3 text-center">
+                    <img class="img-art" src="<?= local ?>public/img/upload/desktop.jpg" alt="(nom fichier)">
+                </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt semper augue, et tristique urna mattis eu. 
+                <p class="text-justify font-weight-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. (article.chapo)</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt semper augue, et tristique urna mattis eu. 
                 Quisque nunc odio, mattis eget urna sit amet, rutrum porttitor urna. Curabitur vestibulum finibus leo, 
                 sagittis maximus odio egestas quis. Praesent sagittis eros augue, sed blandit metus pharetra in. (article.contenu)</p>
             </div>
@@ -24,7 +38,7 @@
             <!----- if dateuptade is not null--->
                 <!--<p>Créé le article.date|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong></p>-->
             <!----- else --->
-                <p class="textInfo">Modifié le article.dateUpdate|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong></p>
+                <p class="text-justify textInfo">Modifié le article.dateUpdate|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong></p>
             <!----- endif --->
             </div>
         </div>
@@ -36,19 +50,19 @@
             <h4>Commentaires</h4>
         </div>
     </div>
-    <div class="container mb-5 contComment">
+    <div class="container mb-4 contComment">
         <div class="col-12 pt-3">
             <div class="container">
                 <!----- foreach comments in article--->
                     <div class="row">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt semper augue, et tristique urna mattis eu. 
+                        <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt semper augue, et tristique urna mattis eu. 
                         Quisque nunc odio, mattis eget urna sit amet, rutrum porttitor urna. (comments.content)</p>
                     </div>
                     <div class="row">
                     <!----- if dateuptade is not null--->
                             <!---<p>Créé le comments.date|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong><br />--->
                         <!----- else --->
-                            <p class="textInfo">Modifié le (comments.dateUpdate|date('d/m/Y \\à H:i:s')) par <strong>(comments.pseudo)</strong><br />
+                            <p class="text-justify textInfo">Modifié le (comments.dateUpdate|date('d/m/Y \\à H:i:s')) par <strong>(comments.pseudo)</strong><br />
                         <!----- endif --->
                         <!----- if statut = 1--->
                             <!---Le commentaire a été validé.</p>--->
@@ -83,10 +97,17 @@
             </div>
         </div>
     <!---endfor--->
+    <div class="container col-12 my-2">
+        <div class="row">   
+            <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
+                <a href="<?= local ?>" class="font-weight-bold link-page">1</a>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="container col-10" id="newComment">
     <!----- if session.sessionId is defined--->
-    <div class="container contCommentMobile">
+    <div class="container contNewComment">
         <div class="row">
             <form class="col-12" action="index.php?page=comment&method=createComment&id_art=article.id_art" method="post">
                 <div class="form-group">
