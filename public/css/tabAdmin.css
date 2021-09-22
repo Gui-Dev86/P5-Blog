@@ -125,11 +125,6 @@ tbody tr {
   font-weight: unset;
 }
 
-tbody tr:hover {
-  color: #212529;
-  background-color: #E7E7E7;
-}
-
 th, td {
   width: 150px;
   text-align: center !important;

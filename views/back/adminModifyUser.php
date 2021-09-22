@@ -18,28 +18,28 @@
     <div class="container adminInfosUser py-5 col-12">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 offset-md-2 pb-3">
-                <h4>Rôle: <span class="font-italic">(user.role)</span></h4>
+                <h5>Rôle: <span class="font-italic">(user.role)</span></h5>
             </div>
         </div>
         <div class="row justify-content-center pb-5">
             <!---If compte==0--->
-            <button type="submit" class="btn btn-primary btn-modifyUser">Passer en utilisateur</button>
+            <button type="submit" class="btn btn-primary font-weight-bold btn-modifyUser">Passer en utilisateur</button>
             <!---else--->
     <!---    <button type="submit" class="btn btn-primary btn-modifyUserWarning">Passer en administrateur</button> --->
             <!---endif--->   
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 offset-md-2 pb-3">
-                <h4>Etat du compte:
+                <h5>Etat du compte:
                     <!---If compte==1--->
-                        <span class="font-weight-bold font-italic">Actif</span></h4>
+                        <span class="font-weight-bold font-italic">Actif</span></h5>
                      <!---else--->
-        <!---       <span> class="font-weight-bold font-italic mt-2">Inactif</span>--->
+        <!---       <span> class="font-weight-bold font-italic mt-2">Inactif</span></h5>--->
             </div>
         </div>
         <div class="row justify-content-center">
             <!---If compte==1--->
-            <button type="submit" class="btn btn-primary btn-modifyUserWarning">Désactiver</button>
+            <button type="submit" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Désactiver</button>
             <!---else--->
 <!---       <button type="submit" class="btn btn-primary btn-modifyUser">Activer</button>--->
             <!---endif--->   

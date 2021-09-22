@@ -14,7 +14,7 @@ h4 {
 
 .btn-modifyUser {
     color: #212529 !important;
-    width: 125px !important;
+    width: 235px !important;
     border-radius: 3px;
     background: #007bff !important;
     background: -webkit-linear-gradient(top, #40BBFF, #007bff) !important;
@@ -26,7 +26,7 @@ h4 {
 
 .btn-modifyUserWarning {
     color: #212529 !important;
-    width: 125px !important;
+    width: 235px !important;
     border-radius: 3px;
     background: #FFCC66 !important;
     background: -webkit-linear-gradient(top, #F7E47E, #FFCC66) !important;

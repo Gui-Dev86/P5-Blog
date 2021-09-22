@@ -21,9 +21,9 @@ class Login extends Controller{
      *
      * @return void
      */
-    public function logUser(){
+    public function registerUser(){
     
-        $this->render('logUser');
+        $this->render('registerUser');
     }
     
     /**

@@ -1,14 +1,14 @@
-h4 {
-    font-size: 2rem !important;
-}
-
 .containerDashed {
     border-bottom: 5px dashed #292929;
 }
 
-.btn-userInfos {
+h4 {
+    font-size: 2rem !important;
+}
+
+.btnRegister {
     color: #212529 !important;
-    width: 235px !important;
+    width: 200px !important;
     border-radius: 3px;
     background: #007bff !important;
     background: -webkit-linear-gradient(top, #40BBFF, #007bff) !important;
@@ -18,19 +18,7 @@ h4 {
     border: 1px SOLID #0084AF !important;
 }
 
-.btn-inactiveUserWarning {
-    color: #212529 !important;
-    width: 235px !important;
-    border-radius: 3px;
-    background: #FFCC66 !important;
-    background: -webkit-linear-gradient(top, #F7E47E, #FFCC66) !important;
-    background: -o-linear-gradient(top, #F7E47E, #FFCC66) !important;
-    background: -moz-linear-gradient(top, #F7E47E, #FFCC66) !important;
-    background: linear-gradient(to bottom, #F7E47E, #FFCC66) !important;
-    border: 1px SOLID #DFAC46 !important;
-}
-
-.btn-userInfos:hover , .btn-inactiveUserWarning:hover {
+.btnRegister:hover {
     opacity: 0.75 !important;
 }
 

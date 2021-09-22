@@ -1,4 +1,4 @@
-<section class="container col-12 mb-5" id="compteUser">
+<section class="container col-10 mb-5" id="compteUser">
     <div class="container col-12">
         <div class="row">
             <div class="col-12 mt-3 mb-4 containerDashed text-center">
@@ -11,7 +11,7 @@
     <div class="container col-12 col-md-10">
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2">
-                <h4 class="pb-3">Informations du compte</h4>
+                <h5 class="pb-3">Informations du compte</h5>
                 <table class="panel">
                     <tr class="trCompte">
                         <td>Pseudo :</td>
@@ -40,7 +40,7 @@
     <div class="container col-12 col-md-10">
         <div class="row justify-content-center">
             <div class="container  col-12 col-md-8 offset-md-2 pb-5">
-                <h4 class="pb-3">Commentaires</h4>
+                <h5 class="pb-3">Commentaires</h5>
                 <div class="btnCenterMobile">
                     <a class="btn btn-default btn-primary font-weight-bold btn-userInfos" href="<?= local ?>userCompte/userListComment">Afficher vos commentaires</a>
                 </div>
@@ -50,7 +50,7 @@
     <div class="container col-12 col-md-10">
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2 pb-3">
-                <h4>Changement de mot de passe</h4>
+                <h5>Changement de mot de passe</h5>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -78,16 +78,18 @@
     <div class="container col-12 col-md-10">
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2 pb-3">
-                <h4>Etat du compte</h4>
+                <h5>Etat du compte:
+                    <!---If compte==1--->
+                        <span class="font-weight-bold font-italic">Actif</span></h4>
+                     <!---else--->
+        <!---           <span> class="font-weight-bold font-italic mt-2">Inactif</span></h4>--->
             </div>
         </div>
         <div class="row justify-content-center pb-5">
             <!---If compte==1--->
-            <p class="font-weight-bold font-italic mt-2">Actif</p>
-            <button type="submit" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-5">Désactiver</button>
+            <button type="submit" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
             <!---else--->
-    <!---        <p class="font-weight-bold font-italic mt-2">Inactif</p>
-            <button type="submit" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>--->
+        <!---<button type="submit" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>--->
             <!---endif--->   
         </div>
     </div>
