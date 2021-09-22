@@ -57,13 +57,12 @@
 
             </div>
         </header> 
-        <main>
+        <main class="fondAdmin">
             <div class="container heightNav col-12"></div>
             <?= $content ?>
-
         </main>
         <footer>           
-            <div class="container dashedFooter mt-5 col-10">
+            <div class="container dashedFooter col-10">
                 <div class="row mt-2 mt-md-3">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
                         <a href="#"><img src="<?= local ?>public/img/linked-in.png" class="logo-rs" alt="Logo Linked-in"></a>
@@ -72,7 +71,7 @@
                 </div>
                 <div class="row">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
-                            <p>Copyright © 2021 Guillaume Vignères - Projet n°5 - PHP/Symfony - <a class="link-footer" href="<?= local ?>mentionsLegales" target="_blank">Mentions Légales</a></p>
+                            <p  class="font-weight-bold">Copyright © 2021 Guillaume Vignères - Projet 5 - PHP/Symfony - <a class="font-weight-bold link-footer" href="<?= local ?>mentionsLegales" target="_blank">Mentions Légales</a></p>
                         </ul>
                     </div>
                 </div>

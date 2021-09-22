@@ -2,12 +2,17 @@ h4 {
     font-size: 2rem !important;
 }
 
+.card-img-top {
+    border-top-right-radius: 10px !important;
+    border-top-left-radius: 10px !important;
+}
+
 .card-body {  
     background-color: #E7E7E7 !important;
     padding: 0.25rem 0.5rem 0 0.5rem !important;
     border: 1px #6c757d solid !important;
-    border-bottom-right-radius: 5px !important;
-    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
 }
 
 .btn-art {
@@ -31,12 +36,28 @@ h4 {
     border-bottom: 5px dashed #292929;
 }
 
-.cardTitre, .paginationLink {
+.cardTitre {
     color: #212529 !important;
+}
+
+.paginationLink {
+    font-size: 25px;
+    color: #000 !important;
 }
 
 .cardTitre:hover, .paginationLink:hover {
     color: #007bff !important;
+}
+
+.fondArticles {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    min-width: 100%;
+    min-height: 100%;
+    background: no-repeat top center url("../img/sackcloth.jpg");
+    background-size: cover;
+    opacity: 0.70;
 }
 
 @media (max-width: 768px) {

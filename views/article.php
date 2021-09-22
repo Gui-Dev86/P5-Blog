@@ -119,7 +119,7 @@
                     <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
                 </div>
                 <div class = "btnCenterMobile">
-                    <button type="submit" class="col-12 btn btnComment btn-primary ">Envoyer</button>
+                    <button type="submit" class="col-12 btn btnComment btn-primary mb-5">Envoyer</button>
                 </div>
             </form>
         </div>
