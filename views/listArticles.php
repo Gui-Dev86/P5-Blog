@@ -1,10 +1,10 @@
-<section class="container contArticle col-10" id="listArticle">
-    <div class="container contArticle col-12">
+<section class="container col-10" id="listArticle">
+    <div class="container col-12">
         <div class="row">
             <div class="col-12 col-10 mt-3 mb-5 containerDashed text-center">
-                <h3 class="font-weight-bold">
+                <h4 class="font-weight-bold">
                     <span class="ion-minus"></span>ARTICLES<span class="ion-minus"></span>
-                </h3>
+                </h4>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
     <div class="container col-12 my-2">
         <div class="row">   
             <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
-                <a href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
+                <a class="font-weight-bold paginationLink" href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
             </div>
         </div>
     </div>  

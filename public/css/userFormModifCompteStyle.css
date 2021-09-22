@@ -35,4 +35,8 @@ h4 {
     h4 {
         font-size: 1rem !important;
     }
+
+    .btnCenterMobile {
+        text-align: center;
+    }
 }

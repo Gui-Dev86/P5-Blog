@@ -1,7 +1,26 @@
-.retour-listComments {
+.tabLargeScreen {
+    display: block;
+}
+
+.tabMobile {
+    display: none;
+}
+
+.paginationLink, .linkManagement, .retour-listComments {
     color: #212529 !important;
 }
 
-.retour-listComments:hover {
-    color: #292929 !important;
+.paginationLink:hover, .linkManagement:hover, .retour-listComments:hover {
+    color: #007bff !important;
+}
+
+@media (max-width: 768px) {
+
+    .tabLargeScreen {
+        display: none;
+    }
+    
+    .tabMobile {
+        display: block;
+    }
 }

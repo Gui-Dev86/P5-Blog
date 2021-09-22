@@ -9,9 +9,9 @@
     <div class="container col-12">
         <div class="row">
             <div class="col-12 col-10 mb-5 containerDashed text-center">
-                <h3 class="font-weight-bold">
+                <h4 class="font-weight-bold">
                     <span class="ion-minus"></span>MODIFIER LES INFORMATIONS<span class="ion-minus"></span>
-                </h3>
+                </h4>
             </div>
         </div>
     </div>

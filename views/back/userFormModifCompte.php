@@ -26,7 +26,9 @@
                     <label for="passwrd">Adresse email</label>
                     <input type="password" name="password1" class="form-control" id="passwrd" placeholder="session.email">
                 </div>
-                <button type="submit" class="btn btn-primary font-weight-bold btnModifInfos">Modifier</button>
+                <div class="btnCenterMobile">
+                    <button type="submit" class="btn btn-primary font-weight-bold btnModifInfos">Modifier</button>
+                </div>
             </form>
         </div>
     </div>

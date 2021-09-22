@@ -36,10 +36,14 @@
             </div>
             <div class="row">
             <!----- if dateuptade is not null--->
-                <!--<p>Créé le article.date|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong></p>-->
+                <!--<p>Créé le article.date|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong><br />-->
             <!----- else --->
-                <p class="text-justify textInfo">Modifié le article.dateUpdate|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong></p>
+                <p class="text-justify textInfo">Modifié le article.dateUpdate|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong><br />
             <!----- endif --->
+            <!----- ifvisible=1--->
+                <a class="font-weight-bold articleActive" href="<?= local ?>articles/readArticle/1">Dissimuler l'article</a></p>
+            <!----- else --->
+            <!-----<a class="font-weight-bold articleActive" href="<?= local ?>articles/readArticle/1">aAfficher l'article</a></p>--->
             </div>
         </div>
     </div>
@@ -100,7 +104,7 @@
     <div class="container col-12 my-2">
         <div class="row">   
             <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
-                <a href="<?= local ?>" class="font-weight-bold link-page">1</a>
+                <a class="font-weight-bold paginationLink" href="<?= local ?>" class="font-weight-bold link-page">1</a>
             </div>
         </div>
     </div>

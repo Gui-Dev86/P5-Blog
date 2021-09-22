@@ -1,4 +1,4 @@
-h3 {
+h4 {
     font-size: 2rem !important;
 }
 
@@ -46,4 +46,11 @@ h3 {
 
 .retour-listMember:hover {
     color: #007bff !important;
+}
+
+@media (max-width: 768px) {
+
+    h4 {
+        font-size: 1.5rem !important;
+    }
 }

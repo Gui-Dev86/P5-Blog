@@ -63,7 +63,7 @@
 
         </main>
         <footer>           
-            <div class="container dashedFooter mt-3 mt-md-5 col-10">
+            <div class="container dashedFooter col-10">
                 <div class="row mt-2 mt-md-3">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
                         <a href="#"><img src="<?= local ?>public/img/linked-in.png" class="logo-rs" alt="Logo Linked-in"></a>

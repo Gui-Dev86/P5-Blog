@@ -1,0 +1,14 @@
+.containerDashed {
+    border-bottom: 5px dashed #292929;
+}
+
+h4 {
+    font-size: 2rem !important;
+}
+
+@media (max-width: 768px) {
+
+    h4 {
+        font-size: 1.5rem !important;
+    }
+}

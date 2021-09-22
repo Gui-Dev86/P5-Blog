@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="col-12">
-        <div class="container">
+        <div class="container contListComment mb-3">
 
             <!----- foreach comments in comment--->
                 <div class="row">
@@ -24,14 +24,21 @@
                 </div>
                 <div class="row">
                 <!----- if dateuptade is not null--->
-                        <p>A été créé le comments.date|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong></p>
+                <!---    <p class="commentInfos">A été créé le comments.date|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong>--->
                     <!----- else --->
-                        <p>A été modifié le comments.dateUpdate|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong></p>
+                    <p class="commentInfos">A été modifié le comments.dateUpdate|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong>
                     <!----- endif --->
-                    <a class="ml-3" href="<?= local ?>articles/readArticle/1">Afficher le commentaire</a>
+                    <a class="font-weight-bold displayComment" href="<?= local ?>articles/readArticle/1">Afficher le commentaire</a></p>
                 </div>
             <!----- endfor --->
 
         </div>
     </div>
+    <div class="container col-12 my-2">
+        <div class="row">   
+            <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
+                <a class="font-weight-bold paginationLink" href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
+            </div>
+        </div>
+    </div> 
 </section>

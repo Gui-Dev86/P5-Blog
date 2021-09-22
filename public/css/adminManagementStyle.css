@@ -1,0 +1,22 @@
+ .card {
+     margin: auto;
+     width: 75%;
+     margin-top: 6rem;
+     border: none !important
+ }
+
+.linkManagement {
+    color: #212529 !important;
+}
+
+.linkManagement:hover {
+    color: #007bff !important;
+}
+
+@media (max-width: 768px) {
+    
+    .card {
+        margin: auto;
+        margin-top: 0;
+    }
+}
