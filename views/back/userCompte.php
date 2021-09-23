@@ -18,6 +18,14 @@
                         <td>session.pseudo</td>
                     </tr>
                     <tr class="trCompte">
+                        <td>Prénom :</td>
+                        <td>session.firstname</td>
+                    </tr>
+                    <tr class="trCompte">
+                        <td>Nom :</td>
+                        <td>session.lastname</td>
+                    </tr>
+                    <tr class="trCompte">
                         <td>Adresse email :</td>
                         <td>session.email</td>
                     </tr>
@@ -58,15 +66,15 @@
                 <form method="post" action="index.php?page=admin&method=changePassword">
                     <div class="form-group">
                         <label for="passwrd">Ancien mot de passe</label>
-                        <input type="password" name="oldpassword" class="form-control" id="passwrd" placeholder="Ancien mot de passe">
+                        <input type="password" name="oldpassword" class="form-control" id="passwrd" placeholder="Saisissez votre ancien mot de passe">
                     </div>
                     <div class="form-group">
                         <label for="passwrd">Nouveau mot de passe</label>
-                        <input type="password" name="password1" class="form-control" id="passwrd" placeholder="Nouveau mot de passe">
+                        <input type="password" name="password1" class="form-control" id="passwrd" placeholder="Saisissez votre nouveau mot de passe">
                     </div>
                     <div class="form-group">
                         <label for="passwrd">Confirmez le nouveau mot de passe</label>
-                        <input type="password" name="password2" class="form-control" id="passwrd" placeholder="Vérification nouveau mot de passe">
+                        <input type="password" name="password2" class="form-control" id="passwrd" placeholder="Confirmez votre nouveau mot de passe">
                     </div>
                     <div class="btnCenterMobile">
                         <button type="submit" class="btn btn-primary font-weight-bold btn-userInfos">Changer</button>

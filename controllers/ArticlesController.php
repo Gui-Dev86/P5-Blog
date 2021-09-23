@@ -4,7 +4,7 @@ namespace app\controllers;
 
 require(ROOT."controllers/AbstractController.php");
 
-class Articles extends Controller{
+class Articles extends Controller {
 
     /**
      * This method displays all articles

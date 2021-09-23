@@ -3,7 +3,7 @@
 namespace App\controllers;
 
 
-abstract class Controller{
+abstract class Controller {
     /**
      * Afficher une vue
      *

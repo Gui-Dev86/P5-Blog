@@ -10,22 +10,23 @@
     </div>
     <div class="row justify-content-center">
         <div class="container col-12 col-md-8 offset-md-2 pb-5">
-            <form method="post" action="">
+            <form method="post" action="POST">
                 <div class="form-group">
                     <label class="font-weight-bold" for="login">Login</label>
-                    <input type="password" name="login" class="form-control" id="login" placeholder="Saisissez votre login">
+                    <input type="password" name="login" class="form-control" id="login_user" placeholder="Saisissez votre login" required autofocus>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold" for="password">Mot de passe</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
+                    <input type="password" name="passwordConfirm" class="form-control" id="password_user" placeholder="Saisissez votre mot de passe" required autofocus>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold" for="password2">Confirmer le mot de passe</label>
-                    <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirmez votre mot de passe">
+                    <input type="password" name="password2" class="form-control" id="password_user" placeholder="Confirmez votre mot de passe" required
+                                       autofocus>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold" for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Saisissez votre email">
+                    <input type="email" name="email" class="form-control" id="email_user" placeholder="Saisissez votre email" required autofocus>
                 </div>
                 <div class="btnCenterMobile">
                     <button type="submit" class="btn btn-primary font-weight-bold btnRegister">S'enregistrer</button>

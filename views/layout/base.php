@@ -48,7 +48,7 @@
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li class="li-item text-center liLogin"><a class="dropdown-item font-weight-bold login-btn" href="<?= local ?>login">Identifiez-vous</a></li>
-                                    <li class="li-item text-center no-member">Nouveau membre? <a class="link-connect" href="<?= local ?>login/logUser">Cliquez ici</a></li>
+                                    <li class="li-item text-center no-member">Nouveau membre? <a class="link-connect" href="<?= local ?>login/registerUser">Cliquez ici</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -65,8 +65,8 @@
             <div class="container dashedFooter col-10">
                 <div class="row mt-2 mt-md-3">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
-                        <a href="#"><img src="<?= local ?>public/img/linked-in.png" class="logo-rs" alt="Logo Linked-in"></a>
-                        <a href="#"><img src="<?= local ?>public/img/github.jpg" class="logo-rs" alt="Logo Github"></a>
+                        <a href="#"><img src="<?= local ?>public/img/linked-in1.png" class="logo-rs" alt="Logo Linked-in"></a>
+                        <a href="#"><img src="<?= local ?>public/img/github1.png" class="logo-rs ml-4" alt="Logo Github"></a>
                     </div>
                 </div>
                 <div class="row">   

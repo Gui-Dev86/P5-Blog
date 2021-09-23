@@ -13,17 +13,21 @@
                     <thead>
                         <tr class="table100-head">
                             <th class="column1">Login</th>
-                            <th class="column2">Email</th>
-                            <th class="column3">Inscription</th>
-                            <th class="column4">Rôle</th>
-                            <th class="column5">Statut</th>
-                            <th class="column6 columnEnd">Modifier</th>
+                            <th class="column2">Prénom</th>
+                            <th class="column3">Nom</th>
+                            <th class="column4">Email</th>
+                            <th class="column5">Inscription</th>
+                            <th class="column6">Rôle</th>
+                            <th class="column7">Statut</th>
+                            <th class="column8 columnEnd">Modifier</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!----- foreach comment in comments--->
                         <tr>
                             <td class="column1">Toto</td>
+                            <td class="column2">Michel</td>
+                            <td class="column3">DUPONT</td>
                             <td class="column2">tata@ootlook.fr</td>
                             <td class="column3">15/09/2021</td>
                             <td class="column4">Admin</td>
@@ -42,6 +46,14 @@
                             <tr class="trCompte">
                                 <td>Login :</td>
                                 <td>Toto</td>
+                            </tr>
+                            <tr class="trCompte">
+                                <td>Prénom:</td>
+                                <td>Michel</td>
+                            </tr>
+                            <tr class="trCompte">
+                                <td>Nom:</td>
+                                <td>DUPONT</td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Email:</td>

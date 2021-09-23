@@ -4,7 +4,7 @@ namespace app\controllers;
 
 require(ROOT."controllers/AbstractController.php");
 
-class adminManagement extends Controller{
+class adminManagement extends Controller {
 
     /**
      * This method displays the admin dashboard
