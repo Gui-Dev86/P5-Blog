@@ -48,7 +48,7 @@
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li class="li-item text-center liLogin"><a class="dropdown-item font-weight-bold login-btn" href="<?= local ?>login">Identifiez-vous</a></li>
-                                    <li class="li-item text-center no-member">Nouveau membre? <a class="link-connect" href="<?= local ?>login/registerUser">Cliquez ici</a></li>
+                                    <li class="li-item text-center no-member">Nouveau membre? <a class="link-connect" href="<?= local ?>login/registerView">Cliquez ici</a></li>
                                 </ul>
                             </li>
                         </ul>

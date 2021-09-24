@@ -33,7 +33,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2 pb-3">
-                <a class="linkConnect" href="<?= local ?>login/registerUser">Enregistrez-vous</h4>
+                <a class="linkConnect" href="<?= local ?>login/registerView">Enregistrez-vous</h4>
             </div>
         </div>
     </div>
