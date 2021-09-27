@@ -2,9 +2,7 @@
 
 namespace app\controllers;
 
-require(ROOT."controllers/AbstractController.php");
-
-class Login extends Controller{
+class Login extends Controller {
 
     /**
      * This method displays the login page
@@ -45,24 +43,24 @@ class Login extends Controller{
 
         if(isset($_POST['formRegistration'])) 
         {
+            $firstname_user = htmlspecialchars($_POST['firstname_user']);
+            $lastname_user = htmlspecialchars($_POST['lastname_user']);
+            $login_user = htmlspecialchars($_POST['login_user']);
+            $email_user = htmlspecialchars($_POST['email_user']);
+
             if(!empty($_POST['firstname_user']) AND !empty($_POST['lastname_user']) AND !empty($_POST['login_user']) 
             AND !empty($_POST['password_user']) AND !empty($_POST['confirmPassword_user']) AND !empty($_POST['email_user']))
             {
-                $firstname_user = htmlspecialchars($_POST['firstnam_user']);
-                $lastname_user = htmlspecialchars($_POST['lastname_user']);
-                $login_user = htmlspecialchars($_POST['login_user']);
-                $password_user = password_hash($post['password_user']);
-                $confirmPassword_user = confirmPassword_hash($post['confirmPassword_user']);
-                $email_user = htmlspecialchars($_POST['email_user']);
-
                 $pseudoLength = strlen($login_user);
-                
                 if($pseudoLength<=25)
                 {
                     if(filter_var($email_user, FILTER_VALIDATE_EMAIL))
                     {
-                        if($password_user == $confirmPassword_user)
-                        {
+                        if($_POST['password_user'] == $_POST['confirmPassword_user'])
+                        {     
+                            $this->loadModel('LoginManager');
+                            
+                            $this->LoginManager->registerUser($firstname_user, $lastname_user, $email_user, $login_user, $_POST['password_user']); 
                             return $this->render('registrationConfirm');
                         }
                         else
@@ -93,6 +91,10 @@ class Login extends Controller{
             {
                 $error = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
                 return $this->render('registerView', [
+                    'firstname_user' => $firstname_user,
+                    'lastname_user' => $lastname_user,
+                    'login_user' => $login_user,
+                    'email_user' => $email_user,
                     'error' => $error,
                 ]);
             }

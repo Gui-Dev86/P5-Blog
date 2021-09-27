@@ -34,6 +34,7 @@ CREATE TABLE article(
         autor_art      Varchar (50) NOT NULL ,
         date_art       Datetime NOT NULL ,
         dateUpdate_art Datetime NOT NULL ,
+        image_art      Varchar (250) NOT NULL ,
         idActive_art   Bool NOT NULL ,
         id_user        Int NOT NULL
 	,CONSTRAINT article_PK PRIMARY KEY (id_art)

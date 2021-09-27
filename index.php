@@ -8,8 +8,8 @@ use App\controllers\MainController;
 define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
 define('local', 'http://localhost/P5_Blog/');
 // On appelle le modèle et le contrôleur principaux
-//require_once(ROOT.'controllers/Controller.php');
-
+require(ROOT."controllers/AbstractController.php");
+require(ROOT."models/databaseManager.php");
 // On sépare les paramètres et on les met dans le tableau $params
 $params = explode('/', $_GET['p']);
 

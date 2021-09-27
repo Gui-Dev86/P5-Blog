@@ -13,15 +13,15 @@
             <form method="POST" action="<?= local ?>login/registerUser">
                 <div class="form-group">
                     <label class="font-weight-bold" for="firstname_user">Prénom</label>
-                    <input type="texte" name="firstname_user" class="form-control" id="firstname_user" placeholder="Saisissez votre prénom">
+                    <input type="texte" name="firstname_user" class="form-control" id="firstname_user" placeholder="Saisissez votre prénom" value="<?php if(isset($firstname_user)) { echo $firstname_user; } ?>">
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold" for="lastname_user">Nom</label>
-                    <input type="texte" name="lastname_user" class="form-control" id="lastname_user" placeholder="Saisissez votre nom">
+                    <input type="texte" name="lastname_user" class="form-control" id="lastname_user" placeholder="Saisissez votre nom" value="<?php if(isset($lastname_user)) { echo $lastname_user; } ?>">
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold" for="login">Login</label>
-                    <input type="texte" name="login_user" class="form-control" id="login_user" placeholder="Saisissez votre login">
+                    <label class="font-weight-bold" for="login_user">Identifiant</label>
+                    <input type="texte" name="login_user" class="form-control" id="login_user" placeholder="Saisissez votre login" value="<?php if(isset($login_user)) { echo $login_user; } ?>">
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold" for="password_user">Mot de passe</label>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold" for="email_user">Email</label>
-                    <input type="email" name="email_user" class="form-control" id="email_user" placeholder="Saisissez votre email">
+                    <input type="email" name="email_user" class="form-control" id="email_user" placeholder="Saisissez votre email" value="<?php if(isset($email_user)) { echo $email_user; } ?>">
                 </div>
                 <div class="btnCenterMobile">
                     <button type="submit" name="formRegistration" class="btn btn-primary font-weight-bold btnRegister">S'enregistrer</button>

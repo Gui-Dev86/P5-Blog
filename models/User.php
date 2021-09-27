@@ -1,11 +1,11 @@
 <?php
 
-
 namespace App\Model;
 
+require(ROOT."models/databaseManager.php");
 
-class User
-{
+class User extends DatabaseManager {
+
     /**
      * @var int $user_id user ID
      */
@@ -58,6 +58,12 @@ class User
 
     public function __construct($datas = [])
     {
+        // Nous définissons la table par défaut de ce modèle
+        $this->table = "user";
+            
+        // Nous ouvrons la connexion à la base de données
+        $this->getConnection();
+
         if (!empty($datas)) {
             $this->hydrate($datas);
         }
