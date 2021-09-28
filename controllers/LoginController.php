@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use app\models\LoginManager;
 
 class Login extends Controller {
 
@@ -58,6 +59,7 @@ class Login extends Controller {
                     {
                         if($_POST['password_user'] == $_POST['confirmPassword_user'])
                         {     
+                            new LoginManager();
                             $this->loadModel('LoginManager');
                             
                             $this->LoginManager->registerUser($firstname_user, $lastname_user, $email_user, $login_user, $_POST['password_user']); 

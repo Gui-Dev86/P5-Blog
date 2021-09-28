@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use app\models;
 abstract class Controller {
     /**
      * Afficher une vue
@@ -39,8 +39,8 @@ abstract class Controller {
     public function loadModel(string $model){
         
         // On va chercher le fichier correspondant au modèle souhaité
-        require_once(ROOT.'models/'.$model.'.php');
-        
+        //require_once(ROOT.'models/'.$model.'.php');
+        var_dump($model);
         // On crée une instance de ce modèle.
         $this->$model = new $model();
     }

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-abstract class DatabaseManager {
+abstract class AbstractManager {
     // Informations de la base de données
     private $host = "localhost";
     private $db_name = "blogdev";

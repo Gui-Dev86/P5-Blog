@@ -7,9 +7,11 @@ use App\controllers\MainController;
 // On génère une constante contenant le chemin vers la racine publique du projet
 define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
 define('local', 'http://localhost/P5_Blog/');
+
 // On appelle le modèle et le contrôleur principaux
 require(ROOT."controllers/AbstractController.php");
-require(ROOT."models/databaseManager.php");
+require(ROOT."models/AbstractManager.php");
+
 // On sépare les paramètres et on les met dans le tableau $params
 $params = explode('/', $_GET['p']);
 

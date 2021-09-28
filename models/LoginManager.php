@@ -3,9 +3,9 @@
 namespace app\models;
 
 /**
- * LoginManager for Users
+ * LoginManager for Users 
  */
-class LoginManager extends DatabaseManager {
+class LoginManager extends AbstractManager {
 
     public function __construct()
     {
