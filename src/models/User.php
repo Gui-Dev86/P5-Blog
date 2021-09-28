@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Model;
+namespace App\src\models;
 
-require(ROOT."models/databaseManager.php");
+require(ROOT."src/models/AbstractManager.php");
 
-class User extends DatabaseManager {
+class User extends AbstractManager {
 
     /**
      * @var int $user_id user ID

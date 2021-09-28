@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace App\src\models;
 
 /**
  * LoginManager for Users 

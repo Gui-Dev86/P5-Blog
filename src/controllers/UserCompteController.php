@@ -1,8 +1,8 @@
 <?php
 
-namespace app\src\controllers;
+namespace App\src\controllers;
 
-class userCompte extends Controller{
+class userCompte extends AbstractController{
 
     /**
      * This method displays the user informations

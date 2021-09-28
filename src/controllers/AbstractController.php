@@ -1,8 +1,8 @@
 <?php
 
-namespace app\src\controllers;
+namespace App\src\controllers;
 
-abstract class Controller {
+abstract class AbstractController {
     /**
      * Afficher une vue
      *
@@ -36,8 +36,9 @@ abstract class Controller {
      * @param string $model
      * @return void
      */
-    public function spl_autoload_register($model){   
+    public function loadModel($model){   
         // On va chercher le fichier correspondant au modèle souhaité
         require_once(ROOT.'src/models/'.$model.'.php');
+        $this->$model = new $model();
     }
 }

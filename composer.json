@@ -1,9 +1,9 @@
 {
     "autoload": {
-        "psr-4" : {
-            "App\\": "src/"
-        }
-     },
+        "psr-4": { "Consistence\\": [ "src" ] },
+		"classmap": [ "src" ]
+        
+      },
     "config": {
         "platform": {
             "php": "7.3.21"

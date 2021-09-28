@@ -1,8 +1,8 @@
 <?php
 
-namespace app\src\controllers;
+namespace App\src\controllers;
 
-class Articles extends Controller {
+class Articles extends AbstractController {
 
     /**
      * This method displays all articles

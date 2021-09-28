@@ -1,9 +1,10 @@
 <?php
 
-namespace app\src\controllers;
-use app\src\models\LoginManager;
+namespace App\src\controllers;
 
-class Login extends Controller {
+use App\src\models\LoginManager;
+
+class Login extends AbstractController {
 
     /**
      * This method displays the login page
@@ -59,10 +60,9 @@ class Login extends Controller {
                     {
                         if($_POST['password_user'] == $_POST['confirmPassword_user'])
                         {     
-                            
-                            $this->spl_autoload_register('LoginManager');
-                            $this->loginManager = new LoginManager();
-                            $this->LoginManager->registerUser($firstname_user, $lastname_user, $email_user, $login_user, $_POST['password_user']); 
+                            $test = new LoginManager();
+                            var_dump($test);
+                            $this->loginManager=$test->registerUser($firstname_user, $lastname_user, $email_user, $login_user, $_POST['password_user']); 
                             return $this->render('registrationConfirm');
                         }
                         else

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\src\controllers;
+namespace App\src\controllers;
 
-class MainController extends Controller{
+class MainController extends AbstractController{
 
     public function home(){
         $this->render('home');

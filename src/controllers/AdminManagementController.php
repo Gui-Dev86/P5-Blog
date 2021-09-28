@@ -1,8 +1,8 @@
 <?php
 
-namespace app\src\controllers;
+namespace App\src\controllers;
 
-class adminManagement extends Controller {
+class adminManagement extends AbstractController {
 
     /**
      * This method displays the admin dashboard
