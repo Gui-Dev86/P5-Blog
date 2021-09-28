@@ -2,6 +2,7 @@
 
 namespace App\src\models;
 
+use PDO;
 /**
  * LoginManager for Users 
  */
@@ -17,22 +18,23 @@ class LoginManager extends AbstractManager {
     }
 
     /**
-     * Register user
+     * Create user
      *
      */
-    public function registerUser($lastname_user, $firstname_user, $email_user, $login_user, $password_user)
+    public function createUser($lastname_user, $firstname_user, $email_user, $login_user, $password_user)
     {
-        global $bdd;
         $hashedpassword = password_hash($password_user, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO users SET lastname_user = :lastname_user, firstname_user = :firstname_user, email_user = :email_user, 
-        login_user = :login_user, password_user = :password_user,  role_user = 1, statut_user = 1, isActiveUser_user = 1, isActiveAdmin_user = 1';
-        $parameters = [
-            ':lastname_user' =>$lastname_user,
-            ':firstname_user' =>$firstname_user,
-            ':email' => $email_user,
-            ':login_user' =>$login_user,
-            ':password_user' => $hashedpassword
-        ];
-        $this->sql($sql, $parameters);
+
+        $sql = "INSERT INTO users (lastname_user,firstname_user,email_user,login_user,password_user, role_user,statut_user,isActiveUser_user,isActiveAdmin_user)
+        VALUES (:lastname_user,:firstname_user,:email_user,:login_user,:password_user,1,1,1,1)";
+        
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('lastname_user',$lastname_user, PDO::PARAM_STR);
+        $query->bindValue('firstname_user',$firstname_user, PDO::PARAM_STR);
+        $query->bindValue('email_user',$email_user, PDO::PARAM_STR);
+        $query->bindValue('login_user',$login_user, PDO::PARAM_STR);
+        $query->bindValue('password_user',$hashedpassword, PDO::PARAM_STR);
+        $query->execute();
+        var_dump($query->execute());
     }
 }

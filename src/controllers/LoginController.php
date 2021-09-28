@@ -5,6 +5,13 @@ namespace App\src\controllers;
 use App\src\models\LoginManager;
 
 class Login extends AbstractController {
+    
+    private $loginManager;
+
+    public function __construct()
+    {
+        $this->loginManager = new LoginManager();
+    }
 
     /**
      * This method displays the login page
@@ -60,9 +67,8 @@ class Login extends AbstractController {
                     {
                         if($_POST['password_user'] == $_POST['confirmPassword_user'])
                         {     
-                            $test = new LoginManager();
-                            var_dump($test);
-                            $this->loginManager=$test->registerUser($firstname_user, $lastname_user, $email_user, $login_user, $_POST['password_user']); 
+                            $this->loginManager->createUser($firstname_user, $lastname_user, $email_user, $login_user, $_POST['password_user']); 
+                            
                             return $this->render('registrationConfirm');
                         }
                         else

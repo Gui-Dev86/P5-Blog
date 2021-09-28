@@ -8,7 +8,7 @@
 #------------------------------------------------------------
 
 CREATE TABLE utilisateur(
-        id_user            Int NOT NULL ,
+        id_user            Int  Auto_increment  NOT NULL ,
         lastname_user      Varchar (20) NOT NULL ,
         firstname_user     Varchar (20) NOT NULL ,
         mail_user          Varchar (50) NOT NULL ,
@@ -27,7 +27,7 @@ CREATE TABLE utilisateur(
 #------------------------------------------------------------
 
 CREATE TABLE article(
-        id_art         Int NOT NULL ,
+        id_art         Int  Auto_increment  NOT NULL ,
         title_art      Varchar (200) NOT NULL ,
         chapo_art      Varchar (1000) NOT NULL ,
         content_art    Varchar (5000) NOT NULL ,
@@ -48,7 +48,7 @@ CREATE TABLE article(
 #------------------------------------------------------------
 
 CREATE TABLE commentaire(
-        id_com         Int NOT NULL ,
+        id_com         Int  Auto_increment  NOT NULL ,
         content_com    Varchar (5000) NOT NULL ,
         autor_com      Varchar (100) NOT NULL ,
         date_com       Datetime NOT NULL ,

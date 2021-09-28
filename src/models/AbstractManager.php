@@ -1,14 +1,12 @@
 <?php
 
 namespace App\src\models;
-use \PDO;
+
+use PDO;
 
 abstract class AbstractManager {
-    // Informations de la base de données
-    private $host = "localhost";
-    private $db_name = "blogdev";
-    private $username = "root";
-    private $password = "";
+    
+    private static $pdo = null;
 
     // Propriété qui contiendra l'instance de la connexion
     protected $_connexion;
@@ -23,14 +21,25 @@ abstract class AbstractManager {
      * @return void
      */
     public function getConnection(){
+        require_once(ROOT."config/database.php");
+        /*try {
+            if (self::$pdo === null) {
+                self::$pdo = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+                self::$pdo->exec('SET NAMES UTF8');
+                return self::$pdo;
+            }
+        } catch (PDOException $exception){
+            echo "Erreur de connexion : " . $exception->getMessage();
+        }*/
+        
         // On supprime la connexion précédente
         $this->_connexion = null;
 
         // On essaie de se connecter à la base
-        try{
-            $this->_connexion = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->_connexion->exec("set names utf8");
-        }catch(PDOException $exception){
+        try {
+            $this->_connexion = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+            $this->_connexion->exec("SET NAMES UTF8");
+        } catch(PDOException $exception) {
             echo "Erreur de connexion : " . $exception->getMessage();
         }
     }   

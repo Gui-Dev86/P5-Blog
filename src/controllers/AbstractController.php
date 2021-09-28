@@ -30,15 +30,4 @@ abstract class AbstractController {
         require_once(ROOT.'src/views/layout/base.php');
     }
 
-    /**
-     * Permet de charger un modèle
-     *
-     * @param string $model
-     * @return void
-     */
-    public function loadModel($model){   
-        // On va chercher le fichier correspondant au modèle souhaité
-        require_once(ROOT.'src/models/'.$model.'.php');
-        $this->$model = new $model();
-    }
 }
