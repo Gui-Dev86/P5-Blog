@@ -1,8 +1,6 @@
 <?php
 
-namespace App\controllers;
-
-require(ROOT."controllers/AbstractController.php");
+namespace app\src\controllers;
 
 class MainController extends Controller{
 

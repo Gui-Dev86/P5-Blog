@@ -1,8 +1,6 @@
 <?php
 
-namespace app\controllers;
-
-require(ROOT."controllers/AbstractController.php");
+namespace app\src\controllers;
 
 class adminManagement extends Controller {
 

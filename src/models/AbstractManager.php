@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use \PDO;
 
 abstract class AbstractManager {
     // Informations de la base de données

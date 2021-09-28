@@ -1,17 +1,15 @@
 <?php
 
-namespace App;
+namespace app;
 
-use App\controllers\MainController;
+use app\src\controllers\MainController;
 
 // On génère une constante contenant le chemin vers la racine publique du projet
 define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
 define('local', 'http://localhost/P5_Blog/');
-
 // On appelle le modèle et le contrôleur principaux
-require(ROOT."controllers/AbstractController.php");
-require(ROOT."models/AbstractManager.php");
-
+require(ROOT."src/controllers/AbstractController.php");
+require(ROOT."src/models/abstractManager.php");
 // On sépare les paramètres et on les met dans le tableau $params
 $params = explode('/', $_GET['p']);
 
@@ -23,9 +21,10 @@ if($params[0] != ""){
 
     // On sauvegarde le 2ème paramètre dans $action si il existe, sinon index
     $action = isset($params[1]) ? $params[1] : 'index';
-    $class = 'App\controllers\\'.$controller;
+    
+    $class = 'app\src\controllers\\'.$controller;
     // On appelle le contrôleur
-    require_once(ROOT.'controllers/'.$controller.'Controller.php');
+    require_once(ROOT.'src/controllers/'.$controller.'Controller.php');
    
     // On instancie le contrôleur
     $controller = new $class();
@@ -45,11 +44,11 @@ if($params[0] != ""){
 }else{
     // Ici aucun paramètre n'est défini
     // On appelle le contrôleur par défaut
-    require_once(ROOT.'controllers/MainController.php');
-
+    require_once(ROOT.'src/controllers/MainController.php');
+    
     // On instancie le contrôleur
     $controller = new MainController();
-
+    
     // On appelle la méthode home
     $controller->home();
 }

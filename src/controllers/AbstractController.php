@@ -1,7 +1,7 @@
 <?php
 
-namespace app\controllers;
-use app\models;
+namespace app\src\controllers;
+
 abstract class Controller {
     /**
      * Afficher une vue
@@ -17,17 +17,17 @@ abstract class Controller {
         ob_start();
 
         // On génère la vue
-        if( file_exists( 'views/'.$fichier.'.php' ) ) {
-            require_once(ROOT.'views/'.$fichier.'.php');
+        if( file_exists( 'src/views/'.$fichier.'.php' ) ) {
+            require_once(ROOT.'src/views/'.$fichier.'.php');
         } else {
-            require_once(ROOT.'views/back/'.$fichier.'.php');
+            require_once(ROOT.'src/views/back/'.$fichier.'.php');
         }
 
         // On stocke le contenu dans $content
         $content = ob_get_clean();
 
         // On fabrique le "template"
-        require_once(ROOT.'views/layout/base.php');
+        require_once(ROOT.'src/views/layout/base.php');
     }
 
     /**
@@ -36,12 +36,8 @@ abstract class Controller {
      * @param string $model
      * @return void
      */
-    public function loadModel(string $model){
-        
+    public function spl_autoload_register($model){   
         // On va chercher le fichier correspondant au modèle souhaité
-        //require_once(ROOT.'models/'.$model.'.php');
-        var_dump($model);
-        // On crée une instance de ce modèle.
-        $this->$model = new $model();
+        require_once(ROOT.'src/models/'.$model.'.php');
     }
 }
