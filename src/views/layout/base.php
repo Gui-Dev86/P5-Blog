@@ -30,19 +30,21 @@
                             </li>
 
 
-                        <!----- if session is defined--->
+                        <!-----  if(session.isLogged === true) {--->
 
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Pseudo</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>userCompte">Gérer votre compte</a></li>
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>adminManagement">Administration</a></li>
+                                     <!-----  if(session.role === 1) {--->
+                                        <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>adminManagement">Administration</a></li>
+                                    <!--} -->
                                     <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="#">Déconnexion</a></li>
                                 </ul>
                             </li>
 
-                            <!-----else--->
+                            <!-----} else {--->
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
@@ -51,6 +53,7 @@
                                     <li class="li-item text-center no-member">Nouveau membre? <a class="link-connect" href="<?= local ?>login/registerView">Cliquez ici</a></li>
                                 </ul>
                             </li>
+                            <!--} -->
                         </ul>
                     </div>
                 </nav>
