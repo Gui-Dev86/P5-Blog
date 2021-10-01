@@ -11,19 +11,25 @@
     <div class="container col-12 col-md-10">
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2 pb-5">
-                <form method="post" action="">
+                <form method="post" action="<?= local ?>login/loginUser">
                     <div class="form-group">
                         <label class="font-weight-bold" for="login">Login</label>
-                        <input type="password" name="login" class="form-control" id="login" placeholder="Saisissez votre login">
+                        <input type="texte" name="login" class="form-control" id="login" placeholder="Saisissez votre login">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold" for="password">Mot de passe</label>
-                        <input type="password" name="password1" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
                     </div>
                     <div class="btnCenterMobile">
-                        <button type="submit" class="btn btn-primary font-weight-bold btnConnect mt-3">Se connecter</button>
+                        <button type="submit" name="formLogin" class="btn btn-primary font-weight-bold btnConnect mt-3">Se connecter</button>
                     </div>
                 </form>
+                <?php
+            if(isset($error))
+            {
+                echo $error;
+            }
+            ?>
             </div>
         </div>
         <div class="row justify-content-center">

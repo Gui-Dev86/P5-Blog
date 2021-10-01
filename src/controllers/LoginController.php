@@ -66,7 +66,7 @@ class Login extends AbstractController {
         {
             $date = new DateTime();
             
-            $hashedpassword = password_hash($_POST['password_user'], PASSWORD_DEFAULT);
+            $hashedpassword = password_hash($_POST['password_user'], PASSWORD_BCRYPT);
 
             $newUser = new User();
             $newUser->setFirstname_user(htmlspecialchars($_POST['firstname_user']));
@@ -79,7 +79,7 @@ class Login extends AbstractController {
 
            //Verify if the login and the email are available
             $loginAvailable = $this->loginManager->loginAvailable($newUser);
-        
+      
             if(!empty($_POST['firstname_user']) AND !empty($_POST['lastname_user']) AND !empty($_POST['login_user']) 
             AND !empty($_POST['password_user']) AND !empty($_POST['confirmPassword_user']) AND !empty($_POST['email_user']))
             {
@@ -138,6 +138,47 @@ class Login extends AbstractController {
                     'email_user' => $_POST['email_user'],
                     'error' => $error,
                 ]);
+            }
+        }
+    }
+
+    /**
+     * Login user
+     *
+     */
+    public function loginUser()
+    {   
+
+        if(isset($_POST["formLogin"]))
+        {
+            $newUser = new User();
+            $newUser->setLogin_user(htmlspecialchars($_POST['login']));
+            if(!empty($_POST['login']) AND !empty($_POST['password']))
+            {        
+                $login = $_POST["login"];
+                $password = $_POST["password"];
+
+                //recup the informations for the login in an array
+                $loginOk = $this->loginManager->verifyLog($newUser);
+                $_POST = [];
+                //verify if the login and the password correspond
+                if(password_verify($password, $loginOk['password_user']))
+                {
+
+
+
+
+
+                    
+                    return header('Location: ' . local);
+                }
+                else
+                {
+                $error = "<br /><p class = font-weight-bold>*Votre identifiant ou mot de passe est incorrect<p>";
+                return $this->render('login', [
+                    'error' => $error,
+                ]);
+                }
             }
         }
     }
