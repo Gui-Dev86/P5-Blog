@@ -17,9 +17,10 @@
                             <th class="column3">Nom</th>
                             <th class="column4">Email</th>
                             <th class="column5">Inscription</th>
-                            <th class="column6">Rôle</th>
-                            <th class="column7">Statut</th>
-                            <th class="column8 columnEnd">Modifier</th>
+                            <th class="column6">Mise à jour</th>
+                            <th class="column7">Rôle</th>
+                            <th class="column8">Statut</th>
+                            <th class="column9 columnEnd">Modifier</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,11 +29,12 @@
                             <td class="column1">Toto</td>
                             <td class="column2">Michel</td>
                             <td class="column3">DUPONT</td>
-                            <td class="column2">tata@ootlook.fr</td>
-                            <td class="column3">15/09/2021</td>
-                            <td class="column4">Admin</td>
-                            <td class="column5">Actif</td>
-                            <td class="column6 columnEnd"><a class="linkManagement" href="<?= local ?>adminManagement/adminModifyUser">Modifier</a></td>
+                            <td class="column4">tata@ootlook.fr</td>
+                            <td class="column5">15/09/2021</td>
+                            <td class="column6">15/09/2021</td>
+                            <td class="column7">Admin</td>
+                            <td class="column8">Actif</td>
+                            <td class="column9 columnEnd"><a class="linkManagement" href="<?= local ?>adminManagement/adminModifyUser">Modifier</a></td>
                         </tr>
                         <!---endforeach--->
                     </tbody>
@@ -61,6 +63,10 @@
                             </tr>
                             <tr class="trCompte">
                                 <td>Inscription</td>
+                                <td>15/09/2021</td>
+                            </tr>
+                            <tr class="trCompte">
+                                <td>Mise à jour</td>
                                 <td>15/09/2021</td>
                             </tr>
                             <tr class="trCompte">

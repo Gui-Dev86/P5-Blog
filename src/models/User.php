@@ -2,8 +2,6 @@
 
 namespace App\src\models;
 
-require(ROOT."src/models/AbstractManager.php");
-
 class User extends AbstractManager {
 
     /**
@@ -150,7 +148,7 @@ class User extends AbstractManager {
      */
     public function setEmail_user($email_user)
     {
-        $this->mail_user = $email_user;
+        $this->email_user = $email_user;
         return $this;
     }
 
@@ -211,21 +209,38 @@ class User extends AbstractManager {
     /**
      * @return bool
      */
-    public function getStatut_user()
+    public function getDateCreate_user()
     {
-        return $this->statut_user;
+        return $this->dateCreate_user;
     }
 
     /**
-     * @param bool $statut_user
+     * @param string $dateCreate_user
      * @return User
      */
-    public function setStatut_user(bool $statut_user)
+    public function setDateCreate_user(string $dateCreate_user)
     {
-        $this->statut_user = $statut_user;
+        $this->dateCreate_user = $dateCreate_user;
         return $this;
     }
 
+   /**
+     * @return bool
+     */
+    public function getDateUpdate_user()
+    {
+        return $this->dateUpdate_user;
+    }
+
+    /**
+     * @param string $dateUpdate_user
+     * @return User
+     */
+    public function setDateUpdate_user(string $dateUpdate_user)
+    {
+        $this->dateUpdate_user = $dateUpdate_user;
+        return $this;
+    }
     /**
      * @return bool
      */

@@ -106,6 +106,14 @@ footer {
     border-top: 5px dashed #292929;
 }
 
+.link-footer {
+    color: #212529 !important;
+}
+
+.link-footer:hover {
+    color: #007bff !important;
+}
+
 @media (max-width: 768px) {
 
     /*------menu navigation--------*/

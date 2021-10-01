@@ -34,6 +34,10 @@
                         <td>date('d/m/Y \\à H:i:s')</td>
                     </tr>
                     <tr class="trCompte">
+                        <td>Dernière mise à jour du compte : </td>
+                        <td>date('d/m/Y \\à H:i:s')</td>
+                    </tr>
+                    <tr class="trCompte">
                         <td>Rôle : </td>
                         <td>session.role</td>
                     </tr>
