@@ -1,6 +1,6 @@
 <?php
 
-namespace App\;
+namespace App;
 
 
 /**
@@ -40,8 +40,8 @@ class Session
      */
     public function createSession(array $data)
     {
-        if ($data['role'] == 0) $data['role'] = self::USER;
-        elseif ($data['role'] == 1) $data['role'] = self::ADMIN;
+        if ($data['role'] == 0) $data['role'] = 'USER';
+        elseif ($data['role'] == 1) $data['role'] = 'ADMIN';
 
         $this->session['user'] = [
             'sessionId' => session_id(),

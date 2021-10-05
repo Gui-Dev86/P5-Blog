@@ -40,7 +40,7 @@
                                      <!-----  if(session.role === 1) {--->
                                         <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>adminManagement">Administration</a></li>
                                     <!--} -->
-                                    <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="#">Déconnexion</a></li>
+                                    <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>login/logOutUser">Déconnexion</a></li>
                                 </ul>
                             </li>
 

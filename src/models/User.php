@@ -224,8 +224,8 @@ class User extends AbstractManager {
         return $this;
     }
 
-   /**
-     * @return bool
+    /**
+     * @return string
      */
     public function getDateUpdate_user()
     {
@@ -241,6 +241,7 @@ class User extends AbstractManager {
         $this->dateUpdate_user = $dateUpdate_user;
         return $this;
     }
+
     /**
      * @return bool
      */
@@ -274,6 +275,42 @@ class User extends AbstractManager {
     public function setIsActiveAdmin_user(bool $isActiveAdmin_user)
     {
         $this->isActiveAdmin_user = $isActiveAdmin_user;
+        return $this;
+    }
+
+     /**
+     * @return string
+     */
+    public function getTokenNewPass_user()
+    {
+        return $this->tokenNewPass_user;
+    }
+
+    /**
+     * @param string $tokenNewPass_user
+     * @return User
+     */
+    public function setTokenNewPass_user(string $tokenNewPass_user)
+    {
+        $this->tokenNewPass_user = $tokenNewPass_user;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateNewPass_user()
+    {
+        return $this->dateNewPass_user;
+    }
+
+    /**
+     * @param string $dateNewPass_user
+     * @return User
+     */
+    public function setDateNewPass_user(string $dateNewPass_user)
+    {
+        $this->dateNewPass_user = $dateNewPass_user;
         return $this;
     }
 }

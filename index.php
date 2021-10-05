@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use App\src\controllers\MainController;
 
 // On génère une constante contenant le chemin vers la racine publique du projet

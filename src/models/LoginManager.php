@@ -45,9 +45,22 @@ class LoginManager extends AbstractManager {
      */
     public function loginAvailable(User $user)
     {
-        $sql = 'SELECT COUNT(*) AS nbLogin FROM users WHERE login_user = :login_user OR email_user = :email_user';
+        $sql = 'SELECT COUNT(*) AS nbLogin FROM users WHERE login_user = :login_user';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
+        $query->execute();
+        $dataCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $dataCount;
+    }
+
+    /**
+     * Checks email available
+     *
+     */
+    public function emailAvailable(User $user)
+    {
+        $sql = 'SELECT COUNT(*) AS nbEmail FROM users WHERE email_user = :email_user';
+        $query = $this->_connexion->prepare($sql);
         $query->bindValue('email_user',$user->getEmail_user(), PDO::PARAM_STR);
         $query->execute();
         $dataCount = $query->fetch(PDO::FETCH_ASSOC);
@@ -67,4 +80,20 @@ class LoginManager extends AbstractManager {
         $data = $query->fetch(PDO::FETCH_ASSOC);
         return $data;
     }
+
+    /**
+     * Create token to recover mail
+     *
+     */
+    public function insertToken(User $user)
+    {
+        $sql = 'UPDATE users SET tokenNewPass_user = :tokenNewPass_user, dateNewPass_user = :dateNewPass_user WHERE email_user = :email_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('tokenNewPass_user',$user->getTokenNewPass_user(), PDO::PARAM_STR);
+        $query->bindValue('dateNewPass_user',$user->getDateNewPass_user(), PDO::PARAM_STR);
+        $query->bindValue('email_user',$user->getEmail_user(), PDO::PARAM_STR);
+        $data = $query->execute();    
+        return $data;
+    }
+    
 }
