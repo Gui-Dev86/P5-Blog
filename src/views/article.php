@@ -4,7 +4,7 @@
             <a class="font-weight-bold retour-listArticle" href="<?= local ?>articles">< Retour à la liste d'articles</a>
         </div>
     </div>
-</div>
+</div> 
 <section class="container sectionArticle col-10 mb-5" id="article">
     <div class="container contArticle col-12">
         <div class="row">

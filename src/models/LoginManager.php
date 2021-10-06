@@ -19,14 +19,28 @@ class LoginManager extends AbstractManager {
     }
 
     /**
+     * Read the informations for a user
+     *
+     */
+    public function readUser(User $user)
+    {
+
+        $sql = 'SELECT * FROM users WHERE login_user = :login_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
+        $query->execute();
+        $dataUser = $query->fetch(PDO::FETCH_ASSOC);
+        return $dataUser;
+    } 
+
+    /**
      * Create user
      *
      */
     public function createUser(User $user)
     {
 
-        $sql = 'INSERT INTO users (lastname_user,firstname_user,email_user,login_user,password_user,role_user,dateCreate_user,dateUpdate_user,isActiveUser_user,isActiveAdmin_user)
-        VALUES (:lastname_user,:firstname_user,:email_user,:login_user,:password_user,0,:dateCreate_user,:dateUpdate_user,1,1)';
+        $sql = 'SELECT * FROM users WHERE login_user = :login_user';
         
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('lastname_user',$user->getLastname_user(), PDO::PARAM_STR);
@@ -65,20 +79,6 @@ class LoginManager extends AbstractManager {
         $query->execute();
         $dataCount = $query->fetch(PDO::FETCH_ASSOC);
         return $dataCount;
-    }
-
-     /**
-     * Verify the login
-     *
-     */
-    public function verifyLog(User $user)
-    {
-        $sql = 'SELECT * FROM users WHERE login_user = :login_user';
-        $query = $this->_connexion->prepare($sql);
-        $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
-        $query->execute();
-        $data = $query->fetch(PDO::FETCH_ASSOC);
-        return $data;
     }
 
     /**

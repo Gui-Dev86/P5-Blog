@@ -1,8 +1,10 @@
 <?php
 
-session_start();
-
 use App\src\controllers\MainController;
+
+if(!isset($_SESSION)) {
+    session_start();
+}
 
 // On génère une constante contenant le chemin vers la racine publique du projet
 define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
@@ -11,8 +13,11 @@ define('local', 'http://localhost/P5_Blog/');
 require(ROOT."src/controllers/AbstractController.php");
 require(ROOT."src/models/abstractManager.php");
 require(ROOT."vendor/autoload.php");
+
 // On sépare les paramètres et on les met dans le tableau $params
+
 $params = explode('/', $_GET['p']);
+//$params = preg_split('/[\/?]/', $_GET['p']);
 
 // Si au moins 1 paramètre existe
 if($params[0] != ""){

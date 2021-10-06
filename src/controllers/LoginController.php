@@ -4,7 +4,13 @@ namespace App\src\controllers;
 
 use App\src\models\LoginManager;
 use App\src\models\User;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use DateTime;
+
+require (ROOT."vendor/PHPMailer/src/Exception.php");
+require (ROOT."vendor/PHPMailer/src/PHPMailer.php");
+require (ROOT."vendor/PHPMailer/src/SMTP.php");
 
 class Login extends AbstractController {
     
@@ -164,27 +170,20 @@ class Login extends AbstractController {
         {
             $newUser = new User();
             $newUser->setLogin_user(htmlspecialchars($_POST['login']));
-            if(!empty($_POST['login']) AND !empty($_POST['password']))
+            if(!empty($_POST['login']) AND !empty($_POST['password']) AND 
+            isset($_POST['login']) AND isset($_POST['password']))
             {        
                 $login = $_POST["login"];
                 $password = $_POST["password"];
 
-                //recup the informations for the login in an array
-                $loginOk = $this->loginManager->verifyLog($newUser);
+                //recup the informations for the user
+                $dataUser = $this->loginManager->readUser($newUser);
                 $_POST = [];
                 //verify if the login and the password correspond
-                if(password_verify($password, $loginOk['password_user']))
-                {
-                    //$this->session->createSession($loginOk);
-                    $_SESSION['login']=$login;
-                    $_SESSION['password']=$password;
-                    var_dump($_SESSION);
-                    echo "ok";
-                    
-
-                    return $this->render('home');
-
-                
+                if(password_verify($password, $dataUser['password_user']))
+                {   
+                    $this->createSession($dataUser);
+                    header('Location: ' . local);
                 }
                 else
                 {
@@ -194,6 +193,10 @@ class Login extends AbstractController {
                 ]);
                 }
             }
+            else
+            {
+                return $this->render('login');
+            }
         }
     }
 
@@ -202,8 +205,8 @@ class Login extends AbstractController {
      */
     public function logOutUser()
     {
-        $this->session->clear();
-        $this->home();
+        unset($_SESSION["user"]);
+        header('Location: ' . local);
     }
 
     /**
@@ -233,6 +236,31 @@ class Login extends AbstractController {
                     $insertToken = $this->loginManager->insertToken($newUser);
 
                     $linkResetMail = ''.local.'login/newPassword?token='.$token.'';
+                    
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->Host = 'smtp.gmail.com';               
+                    $mail->Port = 465;                          
+                    $mail->SMTPAuth = 1;
+                    $mail->CharSet = 'UTF-8';
+                    if($mail->SMTPAuth){
+                        $mail->Username   = 'guillaume.vigneres@greta-cfa-aquitaine.academy';
+                        $mail->Password   = 'Nougat!!2006';                                               
+                        $mail->SMTPSecure = 'ssl';    
+                    }
+                    $mail->From = trim($mailUser);
+                    $mail->AddAddress(trim($mailUser));     
+                    $mail->Subject =  'Réinitialisation de votre mot de passe';
+                    $mail->WordWrap = 50; 			    
+                    $mail->Body = '<h1>Réinitialisation de votre mot de passe</h1><p>Pour réinitialiser votre mot de passe, 
+                    veuillez suivre ce lien: <a href = "'.$linkResetMail.'">'.$linkResetMail.'</a></p>';
+                    $mail->IsHTML(false);                                  
+                    if (!$mail->send()) {
+                        echo $mail->ErrorInfo;
+                  } else{
+                        echo 'Message bien envoyé';
+                  }
+                    /*
                     $toMailUser = $mailUser;
                     $subject = 'Réinitialisation de votre mot de passe';
                     $message = '<h1>Réinitialisation de votre mot de passe</h1><p>Pour réinitialiser votre mot de passe, 
@@ -243,9 +271,11 @@ class Login extends AbstractController {
                     $headers[] = 'To: '.$toMailUser.' <'.$toMailUser.'>';
                     $headers[] = 'Blog d\'un développeur <g.vigneres65@orange.fr>';
                     mail($toMailUser,$subject,$message, implode("\r\n", $headers));
-                    echo $toMailUser,$subject,$message, implode("\r\n", $headers);
+                    echo $toMailUser,$subject,$message, implode("\r\n", $headers);*/
+
                     $message = '<br /><p style="color: blue;" class = font-weight-bold>Un mail a été acheminé. 
                     Veuillez regarder dans votre boîte mail et suivre les instructions à l\'intérieur du mail.<p>';
+                    
                     return $this->render('recupPassword', [
                         'message' => $message,
                     ]);
@@ -266,15 +296,18 @@ class Login extends AbstractController {
      *
      */
     public function newPassword()
-    {  
+    {   
+        
+        var_dump($_GET['token']);
         if(empty($_GET['token']))
         {  
             echo "Aucun token n'a été trouvé";
             exit;
         }
-
-
-
+        else
+        {
+            echo "Token trouvé";
+        }
 
         if(isset($_POST["formNewPassword"]))
         {   

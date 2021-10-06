@@ -26,7 +26,7 @@ class Articles extends AbstractController {
      * @return void
      */
     public function readArticle(){
-        
+       
         $this->render('article');
     }
 

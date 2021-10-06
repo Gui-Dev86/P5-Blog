@@ -29,22 +29,22 @@
                                 <a class="nav-link font-weight-bold" href="<?= local ?>articles">Articles</a>
                             </li>
 
-
-                        <!-----  if(session.isLogged === true) {--->
-
+                        <?php if(isset($_SESSION["user"])) {  ?>
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Pseudo</a>
+                                <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false"> <?= ucfirst($_SESSION['user']['login']); ?> </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>userCompte">Gérer votre compte</a></li>
-                                     <!-----  if(session.role === 1) {--->
+                                    
+                                    <?php if($_SESSION["user"]["role"] == 1) {  ?>
                                         <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>adminManagement">Administration</a></li>
-                                    <!--} -->
+                                        <?php } ?>
+
                                     <li class="li-item"><a class="dropdown-item font-weight-bold dropdown-nav" href="<?= local ?>login/logOutUser">Déconnexion</a></li>
                                 </ul>
                             </li>
 
-                            <!-----} else {--->
+                            <?php } else { ?>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link font-weight-bold dropdown-toggle" href="" role="button" data-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Compte</a>
@@ -53,7 +53,7 @@
                                     <li class="li-item text-center no-member">Nouveau membre? <a class="link-connect" href="<?= local ?>login/registerView">Cliquez ici</a></li>
                                 </ul>
                             </li>
-                            <!--} -->
+                            <?php } ?>
                         </ul>
                     </div>
                 </nav>

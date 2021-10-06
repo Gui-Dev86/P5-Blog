@@ -15,31 +15,31 @@
                 <table class="panel">
                     <tr class="trCompte">
                         <td>Pseudo :</td>
-                        <td>session.pseudo</td>
+                        <td><?= $_SESSION['user']['login']; ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Prénom :</td>
-                        <td>session.firstname</td>
+                        <td><?= ucfirst($_SESSION['user']['firstname']); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Nom :</td>
-                        <td>session.lastname</td>
+                        <td><?= ucfirst($_SESSION['user']['lastname']); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Adresse email :</td>
-                        <td>session.email</td>
+                        <td><?= $_SESSION['user']['email']; ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Date de création du compte : </td>
-                        <td>date('d/m/Y \\à H:i:s')</td>
+                        <td><?php $dateCreate = $_SESSION['user']['dateRegister']; echo date('d-m-Y', strtotime($dateCreate));?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Dernière mise à jour du compte : </td>
-                        <td>date('d/m/Y \\à H:i:s')</td>
+                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; echo date('d-m-Y', strtotime($dateUpdate));?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Rôle : </td>
-                        <td>session.role</td>
+                        <td><?= $_SESSION['user']['role']; ?></td>
                     </tr>
                 </table>
                 
@@ -91,18 +91,22 @@
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2 pb-3">
                 <h5>Etat du compte:
-                    <!---If compte==1--->
-                        <span class="font-weight-bold font-italic">Actif</span></h4>
-                     <!---else--->
-        <!---           <span> class="font-weight-bold font-italic mt-2">Inactif</span></h4>--->
+                <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) {  ?>
+                        <span class="font-weight-bold font-italic">Actif</span></h5>
+                    <?php } else { ?>
+                    <span class="font-weight-bold font-italic mt-2">Inactif</span></h5>
+                <?php } ?>
+
             </div>
         </div>
         <div class="row justify-content-center pb-5">
-            <!---If compte==1--->
-            <button type="submit" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
-            <!---else--->
-        <!---<button type="submit" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>--->
-            <!---endif--->   
+
+            <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) { ?>
+                <button type="submit" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
+                <?php } else { ?>
+            <button type="submit" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
+            <?php } ?>
+
         </div>
     </div>
 </section>

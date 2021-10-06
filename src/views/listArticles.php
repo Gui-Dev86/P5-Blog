@@ -40,5 +40,5 @@
                 <a class="font-weight-bold paginationLink" href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
             </div>
         </div>
-    </div>  
+    </div>
 </section>
