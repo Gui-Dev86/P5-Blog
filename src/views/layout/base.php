@@ -68,8 +68,8 @@
             <div class="container dashedFooter col-10">
                 <div class="row mt-2 mt-md-3">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
-                        <a href="#"><img src="<?= local ?>public/img/linked-in1.png" class="logo-rs" alt="Logo Linked-in"></a>
-                        <a href="#"><img src="<?= local ?>public/img/github1.png" class="logo-rs ml-4" alt="Logo Github"></a>
+                        <a href="https://www.linkedin.com/feed/" target="_blank"><img src="<?= local ?>public/img/linked-in1.png" class="logo-rs" alt="Logo Linked-in"></a>
+                        <a href="https://github.com/Gui-Dev86" target="_blank"><img src="<?= local ?>public/img/github1.png" class="logo-rs ml-4" alt="Logo Github"></a>
                     </div>
                 </div>
                 <div class="row">   

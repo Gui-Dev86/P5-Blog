@@ -19,14 +19,15 @@
                 </div>
             </form>
             <?php
-            if(isset($message))
-            {
-                echo $message;
-            }
-            if(isset($error))
-            {
-                echo $error;
-            }
+                if(isset($_SESSION['valide']))
+                {
+                    echo $_SESSION['valide'];
+                    unset($_SESSION["valide"]);
+                } 
+                if(isset($error))
+                {
+                    echo $error;
+                }
             ?>
         </div>
     </div>

@@ -20,19 +20,19 @@
             <form method="post" action="POST">
                 <div class="form-group">
                     <label for="newLogin">Login</label>
-                    <input type="texte" name="newLogin" class="form-control" id="newLogin" placeholder="<?= $_SESSION['user']['login']; ?>">
+                    <input type="texte" name="newLogin" class="form-control" id="newLogin" value="<?= $_SESSION['user']['login']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="newFistname">Prénom</label>
-                    <input type="texte" name="newFistname" class="form-control" id="newFistname" placeholder="<?= $_SESSION['user']['firstname']; ?>">
+                    <input type="texte" name="newFistname" class="form-control" id="newFistname" value="<?= $_SESSION['user']['firstname']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="newLasname">Nom</label>
-                    <input type="texte" name="newLasname" class="form-control" id="newLasname" placeholder="<?= $_SESSION['user']['lastname']; ?>">
+                    <input type="texte" name="newLasname" class="form-control" id="newLasname" value="<?= $_SESSION['user']['lastname']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="email">Adresse email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="<?= $_SESSION['user']['email']; ?>">
+                    <input type="email" name="email" class="form-control" id="email" value="<?= $_SESSION['user']['email']; ?>">
                 </div>
                 <div class="btnCenterMobile">
                     <button type="submit" class="btn btn-primary font-weight-bold btnModifInfos mt-3">Modifier</button>

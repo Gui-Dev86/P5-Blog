@@ -95,5 +95,21 @@ class LoginManager extends AbstractManager {
         $data = $query->execute();    
         return $data;
     }
+
+    /**
+     * Change the password
+     *
+     */
+    public function newPass($newHashedpassword, $token, $dateNewPass)
+    {
+        $sql = 'UPDATE users SET password_user = :password_user, dateNewPass_user = :dateNewPass_user WHERE tokenNewPass_user = :tokenNewPass';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('password_user_user',$newHashedpassword, PDO::PARAM_STR);
+        $query->bindValue('tokenNewPass_user',$token, PDO::PARAM_STR);
+        $query->bindValue('dateNewPass_user',$dateNewPass, PDO::PARAM_STR);
+        $query->bindValue('email_user',$user->getEmail_user(), PDO::PARAM_STR);
+        $data = $query->execute();    
+        return $data;
+    }
     
 }

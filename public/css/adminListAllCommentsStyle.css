@@ -14,8 +14,12 @@
     font-size: 25px;
 }
 
-.paginationLink:hover, .linkManagement:hover, .retour-listComments:hover {
+.paginationLink:hover, .retour-listComments:hover {
     color: #fff !important;
+}
+
+.linkManagement:hover {
+    color: #007bff !important;
 }
 
 .fondAdmin {

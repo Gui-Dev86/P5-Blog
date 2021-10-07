@@ -17,8 +17,13 @@ require(ROOT."vendor/autoload.php");
 // On sépare les paramètres et on les met dans le tableau $params
 
 $params = explode('/', $_GET['p']);
-//$params = preg_split('/[\/?]/', $_GET['p']);
-
+//$params1 = preg_split('/[\/?=]/', $_GET['p']);
+if(isset($params[2])) {
+    if($params[2] != ""){
+        $_SESSION['token'] = $params[2];
+        var_dump($_SESSION['token']);
+    }
+}
 // Si au moins 1 paramètre existe
 if($params[0] != ""){
 
