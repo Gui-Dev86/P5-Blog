@@ -9,7 +9,7 @@
         </div>
     </div>
         <div class="container col-12 col-md-8 offset-md-2 pb-5">
-            <form method="post" action="<?= local ?>login/newPassword">
+            <form method="post" action="<?= local ?>login/userNewPassword">
                 <div class="form-group">
                     <label class="font-weight-bold" for="newPassword_user">Nouveau mot de passe</label>
                     <input type="password" name="newPassword_user" class="form-control" id="newPassword_user" placeholder="Saisissez votre nouveau mot de passe">
@@ -23,9 +23,16 @@
                 </div>
             </form>
             <?php
-            if(isset($error))
+            if(isset($_SESSION['valide']))
             {
-                echo $error;
+                echo $_SESSION['valide'];
+                unset($_SESSION["valide"]);
+                unset($_SESSION["token"]);
+            } 
+            if(isset($_SESSION['error']))
+            {
+                echo $_SESSION['error'];
+                unset($_SESSION["error"]);
             }
             ?>
         </div>

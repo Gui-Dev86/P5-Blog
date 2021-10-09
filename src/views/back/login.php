@@ -14,7 +14,7 @@
                 <form method="post" action="<?= local ?>login/loginUser">
                     <div class="form-group">
                         <label class="font-weight-bold" for="login">Login</label>
-                        <input type="texte" name="login" class="form-control" id="login" placeholder="Saisissez votre login">
+                        <input type="text" name="login" class="form-control" id="login" placeholder="Saisissez votre login">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold" for="password">Mot de passe</label>

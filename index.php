@@ -1,6 +1,6 @@
 <?php
 
-use App\src\controllers\MainController;
+use App\src\controllers\Main;
 
 if(!isset($_SESSION)) {
     session_start();
@@ -15,13 +15,11 @@ require(ROOT."src/models/abstractManager.php");
 require(ROOT."vendor/autoload.php");
 
 // On sépare les paramètres et on les met dans le tableau $params
-
 $params = explode('/', $_GET['p']);
 //$params1 = preg_split('/[\/?=]/', $_GET['p']);
 if(isset($params[2])) {
     if($params[2] != ""){
         $_SESSION['token'] = $params[2];
-        var_dump($_SESSION['token']);
     }
 }
 // Si au moins 1 paramètre existe
@@ -58,7 +56,7 @@ if($params[0] != ""){
     require_once(ROOT.'src/controllers/MainController.php');
     
     // On instancie le contrôleur
-    $controller = new MainController();
+    $controller = new Main();
     
     // On appelle la méthode home
     $controller->home();

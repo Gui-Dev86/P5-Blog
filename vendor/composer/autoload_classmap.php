@@ -9,7 +9,7 @@ return array(
     'App\\src\\controllers\\AbstractController' => $baseDir . '/src/controllers/AbstractController.php',
     'App\\src\\controllers\\Articles' => $baseDir . '/src/controllers/ArticlesController.php',
     'App\\src\\controllers\\Login' => $baseDir . '/src/controllers/LoginController.php',
-    'App\\src\\controllers\\MainController' => $baseDir . '/src/controllers/MainController.php',
+    'App\\src\\controllers\\Main' => $baseDir . '/src/controllers/MainController.php',
     'App\\src\\controllers\\MentionsLegales' => $baseDir . '/src/controllers/MentionsLegalesController.php',
     'App\\src\\controllers\\adminManagement' => $baseDir . '/src/controllers/AdminManagementController.php',
     'App\\src\\controllers\\userCompte' => $baseDir . '/src/controllers/UserCompteController.php',
@@ -17,4 +17,9 @@ return array(
     'App\\src\\models\\LoginManager' => $baseDir . '/src/models/LoginManager.php',
     'App\\src\\models\\User' => $baseDir . '/src/models/User.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'PHPMailer\\PHPMailer\\Exception' => $vendorDir . '/phpmailer/phpmailer/src/Exception.php',
+    'PHPMailer\\PHPMailer\\OAuth' => $vendorDir . '/phpmailer/phpmailer/src/OAuth.php',
+    'PHPMailer\\PHPMailer\\PHPMailer' => $vendorDir . '/phpmailer/phpmailer/src/PHPMailer.php',
+    'PHPMailer\\PHPMailer\\POP3' => $vendorDir . '/phpmailer/phpmailer/src/POP3.php',
+    'PHPMailer\\PHPMailer\\SMTP' => $vendorDir . '/phpmailer/phpmailer/src/SMTP.php',
 );

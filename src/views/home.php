@@ -38,29 +38,41 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-8 offset-md-2 my-3 pt-2 pb-1 font-weight-bold">
-            <form>
+            <form method="POST" action="<?= local ?>main/sendMail">
                 <div class="form-group">
-                    <label for="formControlNom">Nom</label>
-                    <input type="email" class="form-control" id="formControlInput1" placeholder="Veuillez saisir votre nom">
+                    <label for="lastname">Nom</label>
+                    <input type="text" name="lastname" class="form-control" id="formControlInput1" placeholder="Veuillez saisir votre nom">
                 </div>
                 <div class="form-group">
-                    <label for="formControlPrenom">Prénom</label>
-                    <input type="text" class="form-control" placeholder="Veuillez saisir votre prénom">
+                    <label for="firstname">Prénom</label>
+                    <input type="text" name="firstname" class="form-control" placeholder="Veuillez saisir votre prénom">
                 </div>
                 <div class="form-group">
-                    <label for="formControlEmail">Email</label>
-                    <input type="email" class="form-control" placeholder="Veuillez saisir votre email">
+                    <label for="emailUser">Email</label>
+                    <input type="text" name="emailUser" class="form-control" placeholder="Veuillez saisir votre email">
                 </div>
                 <div class="form-group">
-                    <label for="formControlMessage">Message:</label>
-                    <textarea class="form-control" id="formControlMessage" rows="8" placeholder="Entrez votre message"></textarea>
+                    <label for="message">Message:</label>
+                    <textarea class="form-control" name="message" rows="8" placeholder="Entrez votre message"></textarea>
                 </div>
                 <div class="form-group row">
                     <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-primary font-weight-bold btnHome">Envoyer</button>
+                        <button type="submit" name="formSendMail" class="btn btn-primary font-weight-bold btnHome">Envoyer</button>
                     </div>
                 </div>
             </form>
+            <?php
+                if(isset($_SESSION['valide']))
+                {
+                    echo $_SESSION['valide'];
+                    unset($_SESSION["valide"]);
+                } 
+                if(isset($_SESSION['error']))
+                {
+                    echo $_SESSION['error'];
+                    unset($_SESSION["error"]);
+                }
+            ?>
         </div>
     </div>
 </div>

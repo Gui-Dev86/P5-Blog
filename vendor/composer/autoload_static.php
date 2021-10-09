@@ -32,7 +32,7 @@ class ComposerStaticInite5af0865626fff00809823f5acd03a80
         'App\\src\\controllers\\AbstractController' => __DIR__ . '/../..' . '/src/controllers/AbstractController.php',
         'App\\src\\controllers\\Articles' => __DIR__ . '/../..' . '/src/controllers/ArticlesController.php',
         'App\\src\\controllers\\Login' => __DIR__ . '/../..' . '/src/controllers/LoginController.php',
-        'App\\src\\controllers\\MainController' => __DIR__ . '/../..' . '/src/controllers/MainController.php',
+        'App\\src\\controllers\\Main' => __DIR__ . '/../..' . '/src/controllers/MainController.php',
         'App\\src\\controllers\\MentionsLegales' => __DIR__ . '/../..' . '/src/controllers/MentionsLegalesController.php',
         'App\\src\\controllers\\adminManagement' => __DIR__ . '/../..' . '/src/controllers/AdminManagementController.php',
         'App\\src\\controllers\\userCompte' => __DIR__ . '/../..' . '/src/controllers/UserCompteController.php',
@@ -40,6 +40,11 @@ class ComposerStaticInite5af0865626fff00809823f5acd03a80
         'App\\src\\models\\LoginManager' => __DIR__ . '/../..' . '/src/models/LoginManager.php',
         'App\\src\\models\\User' => __DIR__ . '/../..' . '/src/models/User.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

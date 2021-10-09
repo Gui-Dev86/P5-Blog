@@ -63,6 +63,16 @@ class Login extends AbstractController {
         $this->render('recupPassword');
     }
 
+    /**
+     * This method displays the page to recover the password
+     *
+     * @return void
+     */
+    public function newPassword(){
+    
+        $this->render('newPassword');
+    }
+
      /**
      * This method displays the register page
      *
@@ -225,24 +235,22 @@ class Login extends AbstractController {
             {
                 $mailUser = $_POST['email_user']; 
                 try {
-                //Configuration
-                //Je veux des infos de debug
+               
                 //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
                
                 $newUser = new User();
                 $newUser->setEmail_user(htmlspecialchars($_POST['email_user']));
+                //verify if the mail is in the database
                 $emailDatabase = $this->loginManager->emailAvailable($newUser);
                 $_POST = [];
-
+                
                     if($emailDatabase['nbEmail'] === '1') 
                     {
-                        $date = new DateTime();
                         //generate the token to verify the user
                         $stringToken = implode('',array_merge(range('A','Z'), range('a','z'), range('0','9')));
                         $token = substr(str_shuffle($stringToken), 0,20);
     
                         $newUser->setTokenNewPass_user(htmlspecialchars($token));
-                        $newUser->setDateNewPass_user($date->format('Y-m-d H:i:s'));
                         $insertToken = $this->loginManager->insertToken($newUser);
 
                         $linkResetMail = ''.local.'login/newPassword/'.$token.'';
@@ -255,7 +263,7 @@ class Login extends AbstractController {
                             )
                         );
                     
-                        //SMTP Configuration
+                        //SMTP Configuration and prepare the mail
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.gmail.com';
                         $mail->SMTPAuth   = true;
@@ -303,21 +311,39 @@ class Login extends AbstractController {
      * Choose a new password
      *
      */
-    public function newPassword()
+    public function userNewPassword()
     {   
+        //recover the token in the session
+        $token = $_SESSION["token"];
+
         if(!empty($_POST['newPassword_user']) AND !empty($_POST['confirmNewPassword_user']) AND 
             isset($_POST['newPassword_user']) AND isset($_POST['confirmNewPassword_user']))
         {
-            $token = $_SESSION["token"];
-            $newHashedpassword = password_hash($_POST['newPassword_user'], PASSWORD_BCRYPT);
+            if($_POST['newPassword_user'] == $_POST['confirmNewPassword_user'])
+            { 
+                $newHashedpassword = password_hash($_POST['newPassword_user'], PASSWORD_BCRYPT);
+                $date = new DateTime();
+                $newUser = new User();
+                $newUser->setPassword_user($newHashedpassword);
+                //save the date
+                $newUser->setDateNewPass_user($date->format('Y-m-d H:i:s'));
+                $newUser->setTokenNewPass_user(htmlspecialchars($token));
+                //change the password and pass to NULL the token
+                $this->loginManager->newPass($newUser);
 
-            $date = new DateTime();
-            $newUser = new User();
-            $dateNewPass = setDateNewPass_user($date->format('Y-m-d H:i:s'));
+                $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Votre mot de passe a été modifié avec succès.<p>';
 
-            $this->loginManager->newPass($newHashedpassword, $token, $dateNewPass);
-            unset($_SESSION["token"]);
-            header('Location: ' . local);
+                header('Location: ' . local.'login/newPassword');
+            }
+            else
+            {
+                $_SESSION['error'] = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
+                header('Location: ' . local.'login/newPassword/'.$token.'');
+            }
+        }
+        else
+        {var_dump($token);
+            header('Location: ' . local.'login/newPassword/'.$token.'');
         }
     }
 }

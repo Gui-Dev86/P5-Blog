@@ -20,15 +20,15 @@
             <form method="post" action="POST">
                 <div class="form-group">
                     <label for="newLogin">Login</label>
-                    <input type="texte" name="newLogin" class="form-control" id="newLogin" value="<?= $_SESSION['user']['login']; ?>">
+                    <input type="text" name="newLogin" class="form-control" id="newLogin" value="<?= $_SESSION['user']['login']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="newFistname">Prénom</label>
-                    <input type="texte" name="newFistname" class="form-control" id="newFistname" value="<?= $_SESSION['user']['firstname']; ?>">
+                    <input type="text" name="newFistname" class="form-control" id="newFistname" value="<?= $_SESSION['user']['firstname']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="newLasname">Nom</label>
-                    <input type="texte" name="newLasname" class="form-control" id="newLasname" value="<?= $_SESSION['user']['lastname']; ?>">
+                    <input type="text" name="newLasname" class="form-control" id="newLasname" value="<?= $_SESSION['user']['lastname']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="email">Adresse email</label>

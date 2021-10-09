@@ -40,6 +40,16 @@ class User extends AbstractManager {
     private $role_user;
 
     /**
+     * @var string $dateCreate_user;
+     */
+    private $dateCreate_user;
+
+    /**
+     * @var string $dateUpdate_user;
+     */
+    private $dateUpdate_user;
+
+    /**
      * @var bool $statut_user
      */
     private $statut_user;
@@ -53,6 +63,16 @@ class User extends AbstractManager {
      * @var bool $isActiveAdmin_user
      */
     private $isActiveAdmin_user;
+
+    /**
+     * @var string $tokeneNewPass_user;
+     */
+    private $tokenNewPass_user;
+
+    /**
+     * @var string $dateNewPass_user;
+     */
+    private $dateNewPass_user;
 
     public function __construct($datas = [])
     {

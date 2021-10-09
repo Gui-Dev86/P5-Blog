@@ -91,6 +91,7 @@
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2 pb-3">
                 <h5>Etat du compte:
+                    
                 <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) {  ?>
                         <span class="font-weight-bold font-italic">Actif</span></h5>
                     <?php } else { ?>
