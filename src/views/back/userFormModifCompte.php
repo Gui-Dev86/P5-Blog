@@ -17,7 +17,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="container col-12 col-md-8 offset-md-2 pb-5">
-            <form method="post" action="POST">
+            <form method="post" action="<?= local ?>userCompte/userModifyDatas">
                 <div class="form-group">
                     <label for="newLogin">Login</label>
                     <input type="text" name="newLogin" class="form-control" id="newLogin" value="<?= $_SESSION['user']['login']; ?>">
@@ -27,15 +27,15 @@
                     <input type="text" name="newFistname" class="form-control" id="newFistname" value="<?= $_SESSION['user']['firstname']; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="newLasname">Nom</label>
-                    <input type="text" name="newLasname" class="form-control" id="newLasname" value="<?= $_SESSION['user']['lastname']; ?>">
+                    <label for="newLastname">Nom</label>
+                    <input type="text" name="newLastname" class="form-control" id="newLastname" value="<?= $_SESSION['user']['lastname']; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="email">Adresse email</label>
-                    <input type="email" name="email" class="form-control" id="email" value="<?= $_SESSION['user']['email']; ?>">
+                    <label for="newEmail">Adresse email</label>
+                    <input type="texte" name="newEmail" class="form-control" id="newEmail" value="<?= $_SESSION['user']['email']; ?>">
                 </div>
                 <div class="btnCenterMobile">
-                    <button type="submit" class="btn btn-primary font-weight-bold btnModifInfos mt-3">Modifier</button>
+                    <button type="submit" name="modifyDatas" class="btn btn-primary font-weight-bold btnModifInfos mt-3">Modifier</button>
                 </div>
             </form>
         </div>

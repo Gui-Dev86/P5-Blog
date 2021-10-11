@@ -39,6 +39,7 @@ class ComposerStaticInite5af0865626fff00809823f5acd03a80
         'App\\src\\models\\AbstractManager' => __DIR__ . '/../..' . '/src/models/AbstractManager.php',
         'App\\src\\models\\LoginManager' => __DIR__ . '/../..' . '/src/models/LoginManager.php',
         'App\\src\\models\\User' => __DIR__ . '/../..' . '/src/models/User.php',
+        'App\\src\\models\\UserManager' => __DIR__ . '/../..' . '/src/models/UserManager.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
         'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',

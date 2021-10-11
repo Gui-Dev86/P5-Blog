@@ -63,10 +63,10 @@ abstract class AbstractController {
     {   
         $this->session['user'] = [
             'sessionId' => session_id(),
+            'idUser' => $data['id_user'],
             'lastname' => $data['lastname_user'],
             'firstname' => $data['firstname_user'],
             'login' => $data['login_user'],
-            'idUser' => $data['id_user'],
             'email' => $data['email_user'],
             'dateRegister' => $data['dateCreate_user'],
             'dateUpdate' => $data['dateUpdate_user'],

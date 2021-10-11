@@ -16,6 +16,7 @@ return array(
     'App\\src\\models\\AbstractManager' => $baseDir . '/src/models/AbstractManager.php',
     'App\\src\\models\\LoginManager' => $baseDir . '/src/models/LoginManager.php',
     'App\\src\\models\\User' => $baseDir . '/src/models/User.php',
+    'App\\src\\models\\UserManager' => $baseDir . '/src/models/UserManager.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'PHPMailer\\PHPMailer\\Exception' => $vendorDir . '/phpmailer/phpmailer/src/Exception.php',
     'PHPMailer\\PHPMailer\\OAuth' => $vendorDir . '/phpmailer/phpmailer/src/OAuth.php',
