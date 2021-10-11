@@ -23,8 +23,8 @@
                     <input type="text" name="newLogin" class="form-control" id="newLogin" value="<?= $_SESSION['user']['login']; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="newFistname">Prénom</label>
-                    <input type="text" name="newFistname" class="form-control" id="newFistname" value="<?= $_SESSION['user']['firstname']; ?>">
+                    <label for="newFirstname">Prénom</label>
+                    <input type="text" name="newFirstname" class="form-control" id="newFirstname" value="<?= $_SESSION['user']['firstname']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="newLastname">Nom</label>
@@ -38,6 +38,17 @@
                     <button type="submit" name="modifyDatas" class="btn btn-primary font-weight-bold btnModifInfos mt-3">Modifier</button>
                 </div>
             </form>
+            <?php
+            if(isset($_SESSION['valide']))
+            {
+                echo $_SESSION['valide'];
+                unset($_SESSION["valide"]);
+            } 
+            if(isset($error))
+            {
+                echo $error;
+            }
+            ?>
         </div>
     </div>
 </section>

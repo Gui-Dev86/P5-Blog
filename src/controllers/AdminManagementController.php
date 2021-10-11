@@ -10,9 +10,13 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function index(){
-
+        if($this->isLogged() == false OR $this->isAdmin() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
         // On envoie les données à la vue index
-        $this->render('adminManagement');
+            $this->render('adminManagement');
+        }
     }
 
     /**
@@ -21,9 +25,13 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminListAllArticles(){
-
+        if($this->isLogged() == false OR $this->isAdmin() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
         // On envoie les données à la vue index
-        $this->render('adminListAllArticles');
+            $this->render('adminListAllArticles');
+        }
     }
 
     /**
@@ -32,9 +40,13 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminListAllComments(){
-
+        if($this->isLogged() == false OR $this->isAdmin() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
         // On envoie les données à la vue index
-        $this->render('adminListAllComments');
+            $this->render('adminListAllComments');
+        }
     }
 
     /**
@@ -43,9 +55,13 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminListAllMembers(){
-
+        if($this->isLogged() == false OR $this->isAdmin() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
         // On envoie les données à la vue index
-        $this->render('adminListAllMembers');
+            $this->render('adminListAllMembers');
+        }
     }
 
     /**
@@ -54,8 +70,12 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminModifyUser(){
-
+        if($this->isLogged() == false OR $this->isAdmin() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
         // On envoie les données à la vue index
-        $this->render('adminModifyUser');
+            $this->render('adminModifyUser');
+        }
     }
 }

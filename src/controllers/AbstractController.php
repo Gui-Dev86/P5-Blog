@@ -98,7 +98,7 @@ abstract class AbstractController {
      */
     public function isAdmin()
     {
-        if(isLogged())
+        if($this->isLogged())
         {
             if (isset($_SESSION['user']['role']) AND $_SESSION['user']['role'] == 1) {
                 return true;

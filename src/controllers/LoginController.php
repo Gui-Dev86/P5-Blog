@@ -28,8 +28,8 @@ class Login extends AbstractController {
      *
      * @return void
      */
-    public function index(){
-    
+    public function index()
+    {
         $this->render('login');
     }
     
@@ -38,8 +38,8 @@ class Login extends AbstractController {
      *
      * @return void
      */
-    public function registerView(){
-    
+    public function registerView()
+    {
         $this->render('registerView');
     }
     
@@ -49,8 +49,12 @@ class Login extends AbstractController {
      * @return void
      */
     public function registrationConfirm(){
-    
-        $this->render('registrationConfirm');
+        if($this->isLogged() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
+            $this->render('registrationConfirm');
+        }
     }
 
     /**
@@ -59,7 +63,6 @@ class Login extends AbstractController {
      * @return void
      */
     public function recupPassword(){
-    
         $this->render('recupPassword');
     }
 
@@ -69,8 +72,12 @@ class Login extends AbstractController {
      * @return void
      */
     public function newPassword(){
-    
-        $this->render('newPassword');
+        if($this->isLogged() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
+            $this->render('newPassword');
+        }
     }
 
      /**
@@ -111,15 +118,26 @@ class Login extends AbstractController {
                         {
                             if(filter_var($_POST['email_user'], FILTER_VALIDATE_EMAIL))
                             {
-                                if($_POST['password_user'] == $_POST['confirmPassword_user'])
-                                {     
-                                    $this->loginManager->createUser($newUser); 
-                                    $_POST = [];
-                                    return header('Location: ' . local . 'login/registrationConfirm');
+                                $passwordLength = strlen($_POST['password_user']);
+                                if($passwordLength>=8)
+                                {
+                                    if($_POST['password_user'] == $_POST['confirmPassword_user'])
+                                    {     
+                                        $this->loginManager->createUser($newUser); 
+                                        $_POST = [];
+                                        return header('Location: ' . local . 'login/registrationConfirm');
+                                    }
+                                    else
+                                    {
+                                        $error = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
+                                        return $this->render('registerView', [
+                                        'error' => $error,
+                                        ]);
+                                    }
                                 }
                                 else
                                 {
-                                    $error = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
+                                    $error = "<br /><p class = font-weight-bold>*Votre mot de passe doit faire au moins 8 caractères<p>";
                                     return $this->render('registerView', [
                                     'error' => $error,
                                     ]);
@@ -143,7 +161,7 @@ class Login extends AbstractController {
                     }
                     else
                     {
-                        $error = "<br /><p class = font-weight-bold>*L'adresse email ou le pseudo saisi est déjà utilisée<p>";
+                        $error = "<br /><p class = font-weight-bold>*L'adresse email ou le pseudo saisi est déjà utilisé<p>";
                             return $this->render('registerView', [
                                 'error' => $error,
                             ]);
