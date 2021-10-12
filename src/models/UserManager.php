@@ -57,12 +57,54 @@ class UserManager extends AbstractManager {
      */
     public function loginMailAvailable(User $user)
     {
-        $sql = 'SELECT COUNT(*) AS nbLoginMail FROM users WHERE login_user = :login_user OR email_user = :email_user';
+        $sql = 'SELECT COUNT(*) AS nbLoginMail FROM users WHERE id_user != :id_user AND (login_user = :login_user OR email_user = :email_user)';
         $query = $this->_connexion->prepare($sql);
+        $query->bindValue('id_user',$user->getId_user(), PDO::PARAM_STR);
         $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
         $query->bindValue('email_user',$user->getEmail_user(), PDO::PARAM_STR);
         $query->execute();
         $dataCount = $query->fetch(PDO::FETCH_ASSOC);
         return $dataCount;
+    }
+
+    /**
+     * Update the user's password
+     *
+     */
+    public function updatePassword(User $user)
+    {
+        $sql = 'UPDATE users SET password_user = :password_user WHERE login_user = :login_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('password_user',$user->getPassword_user(), PDO::PARAM_STR);
+        $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
+        $data = $query->execute();
+        return $data;
+    }
+
+    /**
+     * Update the status to pass in active 
+     *
+     */
+    public function activeStatusUser(User $user)
+    {
+        $sql = 'UPDATE users SET isActiveUser_user = 1 WHERE login_user = :login_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
+        $data = $query->execute();
+        return $data;
+    }
+
+    /**
+     * Update the status to pass in disable
+     *
+     */
+    public function disableStatusUser(User $user)
+    {
+        $sql = 'UPDATE users SET isActiveUser_user = 0 WHERE login_user = :login_user';
+        $query = $this->_connexion->prepare($sql);
+        
+        $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
+        $data = $query->execute();
+        return $data;
     }
 }

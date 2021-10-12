@@ -2,8 +2,22 @@
 
 namespace App\src\controllers;
 
-class Articles extends AbstractController {
+use App\src\models\UserManager;
+use App\src\models\ArticleManager;
+use App\src\models\User;
+use App\src\models\Article;
+use App\src\models\Comment;
 
+class Articles extends AbstractController {
+    
+    private $userManager;
+    private $articleManager;
+
+    public function __construct()
+    {
+        $this->userManager = new UserManager();
+        $this->articleManager = new ArticleManager();
+    }
     /**
      * This method displays all articles
      *
@@ -14,7 +28,7 @@ class Articles extends AbstractController {
         //$this->loadModel('Article');
 
         // On stocke la liste des articles dans $articles
-       // $articles = $this->Article->getAll();
+       // $articles = $this->articleManager->getAll();
 
         // On envoie les données à la vue index
         $this->render('listArticles');

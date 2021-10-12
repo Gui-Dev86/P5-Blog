@@ -63,7 +63,7 @@ class Main extends AbstractController{
                         $mail->setFrom($emailUser);
                         $mail->Subject = 'Formulaire de contact';
                         $mail->isHTML(true);
-                        $mail->Body = $message;
+                        $mail->Body = $message.'<br /><p>Pour répondre veuillez utiliser cette adresse: <a href="mailto:'.$emailUser.'">'.$emailUser.'</a></p>';
                         $mail->send();
                         $_POST = [];
 

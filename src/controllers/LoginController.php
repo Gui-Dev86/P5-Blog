@@ -72,12 +72,7 @@ class Login extends AbstractController {
      * @return void
      */
     public function newPassword(){
-        if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
-        } else {
-            $this->render('newPassword');
-        }
+        $this->render('newPassword');
     }
 
      /**
@@ -324,7 +319,6 @@ class Login extends AbstractController {
         }
     }
 
-
     /**
      * Choose a new password
      *
@@ -337,30 +331,40 @@ class Login extends AbstractController {
         if(!empty($_POST['newPassword_user']) AND !empty($_POST['confirmNewPassword_user']) AND 
             isset($_POST['newPassword_user']) AND isset($_POST['confirmNewPassword_user']))
         {
-            if($_POST['newPassword_user'] == $_POST['confirmNewPassword_user'])
-            { 
-                $newHashedpassword = password_hash($_POST['newPassword_user'], PASSWORD_BCRYPT);
-                $date = new DateTime();
-                $newUser = new User();
-                $newUser->setPassword_user($newHashedpassword);
-                //save the date
-                $newUser->setDateNewPass_user($date->format('Y-m-d H:i:s'));
-                $newUser->setTokenNewPass_user(htmlspecialchars($token));
-                //change the password and pass to NULL the token
-                $this->loginManager->newPass($newUser);
+            $passwordLength = strlen($_POST['newPassword_user']);
+            if($passwordLength>=8)
+                                {
+                if($_POST['newPassword_user'] == $_POST['confirmNewPassword_user'])
+                { 
+                    $newHashedpassword = password_hash($_POST['newPassword_user'], PASSWORD_BCRYPT);
+                    $date = new DateTime();
+                    $newUser = new User();
+                    $newUser->setPassword_user($newHashedpassword);
+                    //save the date
+                    $newUser->setDateNewPass_user($date->format('Y-m-d H:i:s'));
+                    $newUser->setTokenNewPass_user(htmlspecialchars($token));
+                    //change the password and pass to NULL the token
+                    $this->loginManager->newPass($newUser);
 
-                $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Votre mot de passe a été modifié avec succès.<p>';
+                    $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Votre mot de passe a été modifié avec succès.<p>';
 
-                header('Location: ' . local.'login/newPassword');
+                    header('Location: ' . local.'login/newPassword');
+                }
+                else
+                {
+                    $_SESSION['error'] = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
+                    header('Location: ' . local.'login/newPassword/'.$token.'');
+                }
             }
             else
             {
-                $_SESSION['error'] = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
+                $_SESSION['error'] = "<br /><p class = font-weight-bold>*Votre mot de passe doit faire au moins 8 caractères<p>";
                 header('Location: ' . local.'login/newPassword/'.$token.'');
             }
         }
         else
-        {var_dump($token);
+        {
+            $_SESSION['error'] = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
             header('Location: ' . local.'login/newPassword/'.$token.'');
         }
     }

@@ -39,7 +39,7 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Rôle : </td>
-                        <td><?= $_SESSION['user']['role']; ?></td>
+                        <td><?php if($_SESSION["user"]["role"] == 1) { echo "Admin"; } else {echo "Member"; } ?></td>
                     </tr>
                 </table>
                 
@@ -67,23 +67,34 @@
         </div>
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2 pb-5">
-                <form method="post" action="index.php?page=admin&method=changePassword">
+                <form method="post" action="<?= local ?>userCompte/userModifyPassword">
                     <div class="form-group">
-                        <label for="passwrd">Ancien mot de passe</label>
-                        <input type="password" name="oldpassword" class="form-control" id="passwrd" placeholder="Saisissez votre ancien mot de passe">
+                        <label for="oldPassword">Ancien mot de passe</label>
+                        <input type="password" name="oldPassword" class="form-control" id="oldPassword" placeholder="Saisissez votre ancien mot de passe">
                     </div>
                     <div class="form-group">
-                        <label for="passwrd">Nouveau mot de passe</label>
-                        <input type="password" name="password1" class="form-control" id="passwrd" placeholder="Saisissez votre nouveau mot de passe">
+                        <label for="newPassword">Nouveau mot de passe</label>
+                        <input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="Saisissez votre nouveau mot de passe">
                     </div>
                     <div class="form-group">
-                        <label for="passwrd">Confirmez le nouveau mot de passe</label>
-                        <input type="password" name="password2" class="form-control" id="passwrd" placeholder="Confirmez votre nouveau mot de passe">
+                        <label for="newPasswordConfirm">Confirmez le nouveau mot de passe</label>
+                        <input type="password" name="newPasswordConfirm" class="form-control" id="newPasswordConfirm" placeholder="Confirmez votre nouveau mot de passe">
                     </div>
                     <div class="btnCenterMobile">
-                        <button type="submit" class="btn btn-primary font-weight-bold btn-userInfos">Changer</button>
+                        <button type="submit" name = "formModifyPassword" class="btn btn-primary font-weight-bold btn-userInfos">Changer</button>
                     </div>
                 </form>
+                <?php
+                    if(isset($_SESSION['valide']))
+                    {
+                        echo $_SESSION['valide'];
+                        unset($_SESSION["valide"]);
+                    } 
+                    if(isset($error))
+                    {
+                        echo $error;
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -103,11 +114,14 @@
         <div class="row justify-content-center pb-5">
 
             <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) { ?>
-                <button type="submit" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
+                <form method="post" action="<?= local ?>userCompte/disableCompteUser">
+                    <button type="submit" name="disableCompte" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
+                    </form>
                 <?php } else { ?>
-            <button type="submit" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
+                    <form method="post" action="<?= local ?>userCompte/activeCompteUser">
+                    <button type="submit" name="activeCompte" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
+                </form>
             <?php } ?>
-
         </div>
     </div>
 </section>
