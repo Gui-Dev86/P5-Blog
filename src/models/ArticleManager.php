@@ -17,4 +17,17 @@ class ArticleManager extends AbstractManager {
         // Nous ouvrons la connexion à la base de données
         $this->getConnection();
     }
+
+    /**
+     * Read all articles
+     *
+     * @return void
+     */
+    public function readAllArticles(){
+        $sql = 'SELECT * FROM articles ORDER BY dateUpdate_art DESC';
+        $query = $this->_connexion->prepare($sql);
+        $query->execute();
+        $dataArticles = $query->fetchAll();
+        return $dataArticles;
+    }
 }

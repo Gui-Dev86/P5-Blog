@@ -98,30 +98,42 @@
             </div>
         </div>
     </div>
-    <div class="container col-12 col-md-10">
-        <div class="row justify-content-center">
-            <div class="container col-12 col-md-8 offset-md-2 pb-3">
-                <h5>Etat du compte:
-                    
-                <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) {  ?>
-                        <span class="font-weight-bold font-italic">Actif</span></h5>
-                    <?php } else { ?>
-                    <span class="font-weight-bold font-italic mt-2">Inactif</span></h5>
-                <?php } ?>
 
+    <?php if($_SESSION["user"]["isActiveAdmin"] == 1) { ?>
+
+        <div class="container col-12 col-md-10">
+            <div class="row justify-content-center">
+                <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                    <h5>Etat du compte:
+                        
+                    <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) {  ?>
+                            <span class="font-weight-bold font-italic">Actif</span></h5>
+                        <?php } else { ?>
+                        <span class="font-weight-bold font-italic mt-2">Inactif</span></h5>
+                    <?php } ?>
+
+                </div>
+            </div>
+            <div class="row justify-content-center pb-5">
+
+                <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) { ?>
+                    <form method="post" action="<?= local ?>userCompte/disableCompteUser">
+                        <button type="submit" name="disableCompte" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
+                        </form>
+                    <?php } else { ?>
+                        <form method="post" action="<?= local ?>userCompte/activeCompteUser">
+                        <button type="submit" name="activeCompte" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
+                    </form>
+                <?php } ?>
             </div>
         </div>
-        <div class="row justify-content-center pb-5">
-
-            <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) { ?>
-                <form method="post" action="<?= local ?>userCompte/disableCompteUser">
-                    <button type="submit" name="disableCompte" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
-                    </form>
-                <?php } else { ?>
-                    <form method="post" action="<?= local ?>userCompte/activeCompteUser">
-                    <button type="submit" name="activeCompte" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
-                </form>
-            <?php } ?>
+    <?php } else { ?>
+        <div class="container col-12 col-md-10">
+            <div class="row justify-content-center">
+                <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                    <h5 class="text-justify">Votre compte a été désactivé par un administrateur, pour y remédier merci de nous contacter.</h5>
+                </div>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 </section>

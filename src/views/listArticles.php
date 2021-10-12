@@ -11,27 +11,29 @@
     </div>
     <div class="container contArticle col-12 py-3">
         <div class="row">
-            <!----- foreach article in articles--->
-                <div class="col-12 contArticle col-md-4 pr-5-md5">
+            <?php foreach($articles as $article) { ?>
+                <div class="col-12 contArticle col-md-4 pr-5-md5 mb-3">
                     <div class="card-block">
-                        <img class="card-img-top" src="<?= local ?>public/img/upload/desktop.jpg" alt="(nom fichier)">
+                        <img class="card-img-top" src="<?= $article['image_art'] ?>" alt="<?= $article['altImage_art'] ?>">
                         <div class="card-body">
                             <div class="cardTitre">
-                                <h5 class="card-title font-weight-bold">Lorem ipsum dolor sit amet. (article.title)</h5>
-                                <p class="card-text"><small class="text-muted">Mis à jour le
-                            <!----- if dateptade is not null--->
-                                    <!--<td>(article.dateUpdate) par <b>(article.username)</b></td>-->
-                            <!----- elseif --->
-                                        <td>(article.dateCreation)  par <b>(article.username)</b></td></small></p>
-                                <!---endif--->
+                                <h5 class="card-title font-weight-bold"><?= $article['title_art'] ?></h5>
+                                <p class="card-text"><small class="text-muted"><?php if($article['dateUpdate_art'] > $article['date_art']) { ?>
+                                    
+                                    <td>
+                                        <?= "Mis à jour le ". date('d-m-Y', strtotime($article['dateUpdate_art'])); } else { echo "Créé le ".date('d-m-Y', strtotime($article['date_art'])); } ?> 
+                                        par <b><?= $article['autor_art'] ?></b>
+                                    </td></small>
+                                </p>
+                    
                                 <div class="text-center">
-                                    <a class="btn btn-primary btn-art font-weight-bold stretched-link mb-2" href="<?= local ?>articles/readArticle/1">Lire la suite</a>
+                                    <a class="btn btn-primary btn-art font-weight-bold stretched-link mb-2" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>">Lire la suite</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!----- endfor --->
+            <?php } ?>
         </div>
     </div>
     <div class="container col-12 my-2">

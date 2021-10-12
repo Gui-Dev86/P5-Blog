@@ -74,7 +74,13 @@
                 </div>
                 <div class="row">   
                     <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
-                            <p  class="font-weight-bold">Copyright © 2021 Guillaume Vignères - Projet 5 - PHP/Symfony - <a class="font-weight-bold link-footer" href="<?= local ?>mentionsLegales" target="_blank">Mentions Légales</a></p>
+                            <p  class="font-weight-bold">Copyright © 2021 Guillaume Vignères - Projet 5 - PHP/Symfony - 
+                            
+                            <?php if(isset($_SESSION["user"]) AND $_SESSION["user"]["role"] == 1) {  ?>
+                                <a class="font-weight-bold link-footer" href="<?= local ?>adminManagement">Administration</a>
+                            <?php echo "-"; } ?>
+                            
+                            <a class="font-weight-bold link-footer" href="<?= local ?>mentionsLegales" target="_blank">Mentions Légales</a></p>
                         </ul>
                     </div>
                 </div>

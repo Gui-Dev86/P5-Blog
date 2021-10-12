@@ -28,10 +28,11 @@ class Articles extends AbstractController {
         //$this->loadModel('Article');
 
         // On stocke la liste des articles dans $articles
-       // $articles = $this->articleManager->getAll();
+        $articles = $this->articleManager->readAllArticles();
 
         // On envoie les données à la vue index
-        $this->render('listArticles');
+        $this->render('listArticles', compact('articles'));
+        
     }
 
     /**
@@ -63,5 +64,7 @@ class Articles extends AbstractController {
         
         $this->render('modifyArticle');
     }
+
+    
 
 }
