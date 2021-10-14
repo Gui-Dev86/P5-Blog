@@ -76,39 +76,53 @@ class Articles extends AbstractController {
      * @return void
      */
     public function createArticle(){
-        
-        if(isset($_POST['formCreateArticle'])) 
-        {
-            $date = new DateTime();
-
-            $newArticle = new Article();
-            $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
-            $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
-            $newArticle->setContent_art(htmlspecialchars($_POST['content']));
-            $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
-            $newArticle->setImage_art(htmlspecialchars($_POST['imgArt']));
-            $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
-            $newArticle->setDate_art($date->format('Y-m-d H:i:s'));
-            $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
-            $newArticle->setId_user(htmlspecialchars($_SESSION['user']['login']));
-
-            if(isset($_POST['title']) AND isset($_POST['chapo']) AND isset($_POST['content']) AND isset($_POST['image']) 
-            AND isset($_POST['altImage']) AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) 
-            AND !empty($_POST['image']) AND !empty($_POST['altImage']))
+        if($this->isLogged() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
+            if(isset($_POST['formCreateArticle'])) 
             {
-                $titleLength = strlen($_POST['title']);
-                if($titleLength<=255)
+                $date = new DateTime();
+                $filename = $_FILES["uploadfile"]["name"];
+                $tempname = $_FILES["uploadfile"]["tmp_name"];
+                $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
+                if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
+
+                $newArticle = new Article();
+                $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
+                $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
+                $newArticle->setContent_art(htmlspecialchars($_POST['content']));
+                $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
+                $newArticle->setImage_art(htmlspecialchars($filename));
+                $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
+                $newArticle->setDate_art($date->format('Y-m-d H:i:s'));
+                $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
+                $newArticle->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
+
+                if(isset($_POST['title']) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
+                AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
                 {
-                    $altImageLength = strlen($_POST['altImage']);
-                    if($altImageLength<=25)
+                    $titleLength = strlen($_POST['title']);
+                    if($titleLength<=255)
                     {
-                        $this->articleManager->newArticle($newArticle); 
-                        $_POST = [];
-                        return header('Location: ' . local . 'articles/createArticle');
+                        $altImageLength = strlen($_POST['altImage']);
+                        if($altImageLength<=25)
+                        {
+                            $this->articleManager->newArticle($newArticle); 
+                            $_POST = [];
+                            return header('Location: ' . local . 'articles/pageArticles/1');
+                        }
+                        else
+                        {
+                            $error = "<br /><p class = font-weight-bold>*Votre description d'image ne doit pas dépasser 25 caractères<p>";
+                            return $this->render('createArticle', [
+                                'error' => $error,
+                            ]);
+                        }
                     }
                     else
                     {
-                        $error = "<br /><p class = font-weight-bold>*Votre description d'image ne doit pas dépasser 25 caractères<p>";
+                        $error = "<br /><p class = font-weight-bold>*Votre titre ne doit pas dépasser 255 caractères<p>";
                         return $this->render('createArticle', [
                             'error' => $error,
                         ]);
@@ -116,27 +130,18 @@ class Articles extends AbstractController {
                 }
                 else
                 {
-                    $error = "<br /><p class = font-weight-bold>*Votre titre ne doit pas dépasser 255 caractères<p>";
+                    $error = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
                     return $this->render('createArticle', [
+                        'title' => $_POST['title'],
+                        'chapo' => $_POST['chapo'],
+                        'content' => $_POST['content'],
+                        'altImage' => $_POST['altImage'],
                         'error' => $error,
                     ]);
                 }
             }
-            else
-            {
-                $error = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
-                return $this->render('createArticle', [
-                    'title' => $_POST['title'],
-                    'chapo' => $_POST['chapo'],
-                    'content' => $_POST['content'],
-                    'altImage' => $_POST['altImage'],
-                    'error' => $error,
-                ]);
-            }
+            $this->render('createArticle');
         }
-
-
-        $this->render('createArticle');
     }
 
     /**
@@ -145,8 +150,12 @@ class Articles extends AbstractController {
      * @return void
      */
     public function modifyArticle(){
-
-        $this->render('modifyArticle');
+        if($this->isLogged() == false) {
+            header('Location: ' . local);
+            exit;
+        } else {
+            $this->render('modifyArticle');
+        }
     }
     
 }

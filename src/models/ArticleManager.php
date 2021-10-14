@@ -66,19 +66,19 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function newArticle(Article $article){
-    $sql = 'INSERT INTO articles (title_art,chapo_art,content_art,autor_art,date_art,dateUpdate_art,image_art,altImage_art,isActive_art,idUser_user)
-        VALUES (:title_art,:chapo_art,:content_art,:autor_art,:date_art,:dateUpdate_art,:image_art,:altImage_art,0,:idUser_user)';
+    $sql = 'INSERT INTO articles (title_art,chapo_art,content_art,autor_art,date_art,dateUpdate_art,image_art,altImage_art,isActive_art,id_user)
+        VALUES (:title_art,:chapo_art,:content_art,:autor_art,:date_art,:dateUpdate_art,:image_art,:altImage_art,1,:id_user)';
         
         $query = $this->_connexion->prepare($sql);
-        $query->bindValue('title_art',$user->getTitle_art(), PDO::PARAM_STR);
-        $query->bindValue('chapo_art',$user->getChapo_art(), PDO::PARAM_STR);
-        $query->bindValue('content_art',$user->getContent_art(), PDO::PARAM_STR);
-        $query->bindValue('autor_art',$user->getAutor_art(), PDO::PARAM_STR);
-        $query->bindValue('date_art',$user->getDate_art(), PDO::PARAM_STR);
-        $query->bindValue('dateUpdate_art',$user->getDateUpdate_art(), PDO::PARAM_STR);
-        $query->bindValue('image_art',$user->getImage_art(), PDO::PARAM_STR);
-        $query->bindValue('altImage_art',$user->getAltImage_art(), PDO::PARAM_STR);
-        $query->bindValue('idUser_user',$user->getIdUser_user(), PDO::PARAM_INT);
+        $query->bindValue('title_art',$article->getTitle_art(), PDO::PARAM_STR);
+        $query->bindValue('chapo_art',$article->getChapo_art(), PDO::PARAM_STR);
+        $query->bindValue('content_art',$article->getContent_art(), PDO::PARAM_STR);
+        $query->bindValue('autor_art',$article->getAutor_art(), PDO::PARAM_STR);
+        $query->bindValue('date_art',$article->getDate_art(), PDO::PARAM_STR);
+        $query->bindValue('dateUpdate_art',$article->getDateUpdate_art(), PDO::PARAM_STR);
+        $query->bindValue('image_art',$article->getImage_art(), PDO::PARAM_STR);
+        $query->bindValue('altImage_art',$article->getAltImage_art(), PDO::PARAM_STR);
+        $query->bindValue('id_user',$article->getId_user(), PDO::PARAM_INT);
         $query->execute();
     }
 }

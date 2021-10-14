@@ -19,7 +19,7 @@
         <div class="container contImgMobile">
             <div class="row">
                 <div class="col-12 mb-3 text-center">
-                    <img class="img-art" src="<?= $article[0]['image_art'] ?>" alt="<?= $article[0]['altImage_art'] ?>">
+                    <img class="img-art" src="<?= local."public/img/upload/".$article[0]['image_art'] ?>" alt="<?= $article[0]['altImage_art'] ?>">
                 </div>
             </div>
         </div>

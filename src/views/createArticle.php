@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="container">
-        <form action="createArticle" method="post">
+        <form action="createArticle" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="title">Titre</label>
@@ -32,10 +32,12 @@
                 <label for="content">Contenu</label>
                 <textarea type="text" class="form-control" rows="10" id="content" name="content"></textarea>
             </div>
-            <label for="imgArt">Image</label>
-            <input class="mb-3" type="file"
-                id="imgArt" name="imgArt"
-                accept="image/png, image/jpeg">
+            <div class="form-group">
+                <label for="uploadfile">Image</label>
+                <input class="mb-3" type="file"
+                    id="uploadfile" name="uploadfile"
+                    accept="image/png, image/jpeg">
+            </div>
             <div class="form-group">
                 <label for="altImage">Description de l'image</label>
                 <input type="text" class="form-control" id="altImage" name="altImage">
@@ -45,6 +47,11 @@
             </div>
         </form>
         <?php
+            if(isset($_SESSION['valide']))
+            {
+                echo $_SESSION['valide'];
+                unset($_SESSION["valide"]);
+            }
             if(isset($error))
             {
                 echo $error;

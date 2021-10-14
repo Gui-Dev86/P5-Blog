@@ -14,7 +14,7 @@
             <?php foreach($articles['articles'] as $article) { if($article['isActive_art'] == 1) { ?>
                 <div class="col-12 contArticle col-md-4 pr-5-md5 mb-3">
                     <div class="card-block">
-                        <img class="card-img-top" src="<?= $article['image_art'] ?>" alt="<?= $article['altImage_art'] ?>">
+                        <img class="card-img-top" src="<?= local."public/img/upload/".$article['image_art'] ?>" alt="<?= $article['altImage_art'] ?>">
                         <div class="card-body">
                             <div class="cardTitre">
                                 <h5 class="card-title font-weight-bold"><?= $article['title_art'] ?></h5>
