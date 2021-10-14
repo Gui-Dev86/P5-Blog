@@ -11,7 +11,7 @@
     </div>
     <div class="container contArticle col-12 py-3">
         <div class="row">
-            <?php foreach($articles as $article) { ?>
+            <?php foreach($articles['articles'] as $article) { if($article['isActive_art'] == 1) { ?>
                 <div class="col-12 contArticle col-md-4 pr-5-md5 mb-3">
                     <div class="card-block">
                         <img class="card-img-top" src="<?= $article['image_art'] ?>" alt="<?= $article['altImage_art'] ?>">
@@ -33,13 +33,37 @@
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php } } ?>
         </div>
     </div>
+    
     <div class="container col-12 my-2">
         <div class="row">   
             <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
-                <a class="font-weight-bold paginationLink" href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
+                <ul class="pagination">
+                <div class="col-md-3 offset-md-2">  
+                    <li class="page-item <?php if($numPage == 1){ echo "disabled"; } ?>">
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/pageArticles/<?= $numPage - 1 ?>" class="page-link"><<</a>
+                    </li>
+                    </div>
+                    <div class="col-md-2"> 
+                    <?php for($page = 1; $page <= $pages; $page++){ ?>
+                        <li class="page-item <?php if($numPage != $page){ echo "disabled"; } ?>">
+                            <a class="font-weight-bold paginationLink" href="<?= local ?>articles/pageArticles/<?= $page ?>" class="font-weight-bold link-page"><?= $page ?></a>
+                        </li>
+                    <?php
+                    } ?>
+                    </div>
+                    <div class="col-md-3"> 
+                    <li class="page-item <?php if($numPage == $pages) { echo "disabled"; } ?>">
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/pageArticles/<?= $numPage + 1 ?>" class="page-link">>></a>
+                    </li>
+                </div>
+                </ul>
+                <?php 
+                    unset($_SESSION['pages']);
+                    unset($_SESSION['numPage']);
+                ?>
             </div>
         </div>
     </div>

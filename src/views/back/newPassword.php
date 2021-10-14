@@ -27,7 +27,7 @@
             {
                 echo $_SESSION['valide'];
                 unset($_SESSION["valide"]);
-                unset($_SESSION["token"]);
+                unset($_SESSION["paramURL"]);
             } 
             if(isset($_SESSION['error']))
             {

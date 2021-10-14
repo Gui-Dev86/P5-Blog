@@ -28,7 +28,7 @@
                     <!----- else --->
                     <p class="commentInfos">A été modifié le comments.dateUpdate|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong>
                     <!----- endif --->
-                    <a class="font-weight-bold displayComment" href="<?= local ?>articles/readArticle/1">Afficher le commentaire</a></p>
+                    <a class="font-weight-bold displayComment" href="<?= local ?>articles/readArticle/2">Afficher le commentaire</a></p>
                 </div>
             <!----- endfor --->
 

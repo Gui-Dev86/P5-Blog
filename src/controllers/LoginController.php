@@ -90,13 +90,13 @@ class Login extends AbstractController {
 
             $newUser = new User();
             $newUser->setFirstname_user(htmlspecialchars($_POST['firstname_user']));
-            $newUser->setLastname_user(htmlspecialchars($_POST['lastname_user']));
+            $newUser->setLastname_user(strtoupper(htmlspecialchars($_POST['lastname_user'])));
             $newUser->setLogin_user(htmlspecialchars($_POST['login_user']));
             $newUser->setPassword_user($hashedpassword);
             $newUser->setEmail_user(htmlspecialchars($_POST['email_user']));
             $newUser->setDateCreate_user($date->format('Y-m-d H:i:s'));
             $newUser->setDateUpdate_user($date->format('Y-m-d H:i:s'));
-
+            
            //Verify if the login and the email are available
             $loginAvailable = $this->loginManager->loginAvailable($newUser);
             $emailAvailable = $this->loginManager->emailAvailable($newUser);
@@ -326,7 +326,7 @@ class Login extends AbstractController {
     public function userNewPassword()
     {   
         //recover the token in the session
-        $token = $_SESSION["token"];
+        $token = $_SESSION["paramURL"];
 
         if(!empty($_POST['newPassword_user']) AND !empty($_POST['confirmNewPassword_user']) AND 
             isset($_POST['newPassword_user']) AND isset($_POST['confirmNewPassword_user']))

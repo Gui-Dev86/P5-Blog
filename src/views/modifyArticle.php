@@ -37,8 +37,21 @@
                 id="imgFileArt" name="imgFileArt"
                 accept="image/png, image/jpeg">
             <div class = "btnCenterModifyArticle">
-                <button type="submit" class="btn btn-primary font-weight-bold btn-modifyArt mt-4">Créer</button>
+                <button type="submit" class="btn btn-primary font-weight-bold btn-modifyArt mt-4">Modifier</button>
             </div>
         </form>
+        <?php if($article[0]["isActive_art"] == 1) { ?>
+            <form method="post" action="<?= local ?>admin/desactiveArticle">
+                <div class = "mb-3 btnCenterDisplayArticle">
+                    <button type="submit" name="hideArticle" class="btn btn-primary font-weight-bold btn-modifyArt">Dissimuler l'article</button>
+                </div>
+            </form>
+        <?php } else { ?>
+            <form method="post" action="<?= local ?>admin/activeArticle">
+                <div class = "mb-3 btnCenterDisplayArticle">
+                    <button type="submit" name="viewArticle" class="btn btn-primary font-weight-bold btn-modifyArt">Afficher l'article</button>
+                </div>
+            </form>
+        <?php } ?>
     </div>
 </section>

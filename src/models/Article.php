@@ -205,7 +205,7 @@ class Article extends AbstractManager {
      * @param mixed $dateUpdate_art
      * @return Article
      */
-    public function setDateUpdate_art($dateUpdater_art)
+    public function setDateUpdate_art($dateUpdate_art)
     {
         $this->dateUpdate_art = $dateUpdate_art;
         return $this;

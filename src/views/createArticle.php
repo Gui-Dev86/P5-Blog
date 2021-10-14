@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="container">
-        <form action="index.php?page=article&method=createArticle" method="post">
+        <form action="createArticle" method="post">
 
             <div class="form-group">
                 <label for="title">Titre</label>
@@ -33,12 +33,22 @@
                 <textarea type="text" class="form-control" rows="10" id="content" name="content"></textarea>
             </div>
             <label for="imgArt">Image</label>
-            <input type="file"
-                id="imgFileArt" name="imgFileArt"
+            <input class="mb-3" type="file"
+                id="imgArt" name="imgArt"
                 accept="image/png, image/jpeg">
+            <div class="form-group">
+                <label for="altImage">Description de l'image</label>
+                <input type="text" class="form-control" id="altImage" name="altImage">
+            </div>
             <div class = "btnCenterNewArticle">
-                <button type="submit" class="btn btn-primary font-weight-bold btn-createArt mt-4">Créer</button>
+                <button type="submit" name="formCreateArticle" class="btn btn-primary font-weight-bold btn-createArt mt-4 mb-3">Créer</button>
             </div>
         </form>
+        <?php
+            if(isset($error))
+            {
+                echo $error;
+            }
+        ?>
     </div>
 </section>

@@ -119,11 +119,11 @@
                 <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) { ?>
                     <form method="post" action="<?= local ?>userCompte/disableCompteUser">
                         <button type="submit" name="disableCompte" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
-                        </form>
+                    </form>
                     <?php } else { ?>
                         <form method="post" action="<?= local ?>userCompte/activeCompteUser">
-                        <button type="submit" name="activeCompte" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
-                    </form>
+                            <button type="submit" name="activeCompte" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
+                        </form>
                 <?php } ?>
             </div>
         </div>

@@ -16,12 +16,19 @@ require(ROOT."vendor/autoload.php");
 
 // On sépare les paramètres et on les met dans le tableau $params
 $params = explode('/', $_GET['p']);
-//$params1 = preg_split('/[\/?=]/', $_GET['p']);
+
+//save the third parameter in the URL for the token and id Article
 if(isset($params[2])) {
-    if($params[2] != ""){
-        $_SESSION['token'] = $params[2];
+    if($params[2] != "") {
+        $_SESSION['paramURL'] = $params[2];
     }
 }
+//save the second parameter in the URL for the pagination
+/*if(isset($params[1])) {
+    if(is_numeric($params[1])) {
+        $_SESSION['paramPage'] = $params[1];
+    }
+}*/
 // Si au moins 1 paramètre existe
 if($params[0] != ""){
 

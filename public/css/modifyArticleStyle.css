@@ -30,6 +30,10 @@ h3 {
     color: #007bff !important;
 }
 
+.btnCenterDisplayArticle {
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     
     h3 {

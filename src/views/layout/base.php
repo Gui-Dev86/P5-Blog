@@ -26,7 +26,7 @@
                                 <a class="nav-link font-weight-bold" href="<?= local ?>">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link font-weight-bold" href="<?= local ?>articles">Articles</a>
+                                <a class="nav-link font-weight-bold" href="<?= local ?>articles/pageArticles/1">Articles</a>
                             </li>
 
                         <?php if(isset($_SESSION["user"])) {  ?>

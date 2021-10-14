@@ -64,9 +64,13 @@ h5 {
     left: 0; 
     min-width: 100%;
     min-height: 100%;
-    background: no-repeat top center url("../img/sackcloth.jpg");
+    /*background: no-repeat top center url("../img/sackcloth.jpg");*/
     background-size: cover;
     opacity: 0.70;
+}
+
+.disabled {
+    display: none !important;
 }
 
 @media (max-width: 768px) {

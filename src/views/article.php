@@ -1,16 +1,16 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-10 my-4">
-            <a class="font-weight-bold retour-listArticle" href="<?= local ?>articles">< Retour à la liste d'articles</a>
+            <a class="font-weight-bold retour-listArticle" href="<?= local ?>articles/pageArticles/1">< Retour à la liste d'articles</a>
         </div>
     </div>
-</div> 
-<section class="container sectionArticle col-10 mb-5" id="article">
+</div>
+<section class="container sectionArticle col-10 mb-5" id="<?= $article[0]['id_art'] ?>">
     <div class="container contArticle col-12">
         <div class="row">
             <div class="col-12 mt-3 mb-4 containerDashed text-center">
                 <h4 class="font-weight-bold">
-                    <span class="ion-minus"></span>Lorem ipsum dolor sit amet. (article.title)<span class="ion-minus"></span>
+                    <span class="ion-minus"></span><?= $article[0]['title_art'] ?><span class="ion-minus"></span>
                 </h4>
             </div>
         </div>
@@ -19,31 +19,24 @@
         <div class="container contImgMobile">
             <div class="row">
                 <div class="col-12 mb-3 text-center">
-                    <img class="img-art" src="<?= local ?>public/img/upload/desktop.jpg" alt="(nom fichier)">
+                    <img class="img-art" src="<?= $article[0]['image_art'] ?>" alt="<?= $article[0]['altImage_art'] ?>">
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <p class="text-justify font-weight-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. (article.chapo)</p>
+                <p class="text-justify font-weight-bold"><?= $article[0]['chapo_art'] ?></p>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt semper augue, et tristique urna mattis eu. 
-                Quisque nunc odio, mattis eget urna sit amet, rutrum porttitor urna. Curabitur vestibulum finibus leo, 
-                sagittis maximus odio egestas quis. Praesent sagittis eros augue, sed blandit metus pharetra in. (article.contenu)</p>
+                <p class="text-justify"><?= $article[0]['content_art'] ?></p>
             </div>
-            <div class="row">
-            <!----- if dateuptade is not null--->
-                <!--<p>Créé le article.date|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong><br />-->
-            <!----- else --->
-                <p class="text-justify textInfo">Modifié le article.dateUpdate|date('d/m/Y \\à H:i:s') par <strong>article.pseudo</strong><br />
-            <!----- endif --->
-            <!----- ifvisible=1--->
-                <a class="font-weight-bold articleActive" href="<?= local ?>articles/readArticle/1">Dissimuler l'article</a></p>
-            <!----- else --->
-            <!-----<a class="font-weight-bold articleActive" href="<?= local ?>articles/readArticle/1">aAfficher l'article</a></p>--->
+            <div class="row mb-3">
+                <?php if($article[0]['dateUpdate_art'] > $article[0]['date_art']) { ?>
+                    <p class="text-justify textInfo"><?= "Mis à jour le ". date('d-m-Y', strtotime($article[0]['dateUpdate_art'])); 
+                } else { 
+                    echo "Créé le ".date('d-m-Y', strtotime($article[0]['date_art'])); } ?> par <strong><?= $article[0]['autor_art'] ?></strong><br />
             </div>
         </div>
     </div>
