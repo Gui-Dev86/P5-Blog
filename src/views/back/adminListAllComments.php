@@ -29,7 +29,7 @@
                             <td class="column4">15/09/2021</td>
                             <td class="column5">---</td>
                             <td class="column6">Validé</td>
-                            <td class="column7"><a class="linkManagement" href="<?= local ?>articles/readArticle/1">Afficher</a></td>
+                            <td class="column7"><a class="linkManagement" href="<?= local ?>articles/validComment/1">Afficher</a></td>
                             <td class="column8 columnEnd"><a class="linkManagement" href="<?= local ?>">Réinitialiser</a></td>
                         </tr>
                         <!---endforeach--->

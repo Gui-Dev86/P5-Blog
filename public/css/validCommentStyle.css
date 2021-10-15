@@ -24,11 +24,6 @@ h4 {
     border-radius: 5px;
 }
 
-.contNewComment {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-}
-
 .img-art {
     width: 45rem !important;
 }
@@ -36,8 +31,6 @@ h4 {
 .linkModifSupp {
     font-size: 15px !important;
     color: #515151 !important;
-    background-color: #E7E7E7 !important;
-    border: none !important;
 }
 
 .linkModifSupp:hover {
@@ -105,10 +98,6 @@ h4 {
     .contImgMobile{
         padding-right: 0 !important;
         padding-left: 0 !important;
-    }
-
-    .btnCenterMobile {
-        text-align: center;
     }
 
     .textInfo {

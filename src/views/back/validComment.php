@@ -1,7 +1,7 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-10 my-4">
-            <a class="font-weight-bold retour-listArticle" href="<?= local ?>articles/pageArticles/1">< Retour à la liste d'articles</a>
+            <a class="font-weight-bold retour-listArticle" href="<?= local ?>adminManagement/adminListAllComments">< Page précédente</a>
         </div>
     </div>
 </div>
@@ -16,13 +16,6 @@
         </div>
     </div>
     <div class="col-12">
-        <div class="container contImgMobile">
-            <div class="row">
-                <div class="col-12 mb-3 text-center">
-                    <img class="img-art" src="<?= local."public/img/upload/".$article['article'][0]['image_art'] ?>" alt="<?= $article['article'][0]['altImage_art'] ?>">
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
                 <p class="text-justify font-weight-bold"><?= $article['article'][0]['chapo_art'] ?></p>
@@ -59,15 +52,14 @@
                         <?php if($comment['dateUpdate_com'] > $comment['date_com']) { ?>
                         <?= "Mis à jour le ". date('d-m-Y', strtotime($comment['dateUpdate_com'])); } else { echo "Créé le ".date('d-m-Y', strtotime($comment['date_com'])); } ?>
                         par&nbsp<b><?= $comment['autor_com'] ?></b>.</p>
-                    </div> 
+                    </div>
                     <div class="row">
-                        <?php if(isset($_SESSION['user']) && $comment['id_user'] == $_SESSION['user']['idUser']) { ?>
-                            <div class="text-center">
-                                <button class="linkModifSupp mb-3" href="<?= local ?>">Modifier</button>
-                            </div>
-                            <div class="text-center">
-                                <button class="linkModifSupp mb-3 pl-2" href="<?= local ?>">Supprimer</button>
-                            </div>
+                        <?php if($comment['statut_com'] == 1 ) { ?>
+                            <p class="text-justify textInfo">Le commentaire a été <span class="font-weight-bold">validé</span>.</p>
+                        <?php } if($comment['statut_com'] == 0 && $comment['statut_com'] != NULL) { ?>
+                            <p class="text-justify textInfo">Le commentaire a été <span class="font-weight-bold">refusé</span>.</p>
+                        <?php } if($comment['statut_com'] == NULL) { ?>
+                            <p class="text-justify textInfo">Le commentaire est en <span class="font-weight-bold">cours de validation</span>.</p>
                         <?php } ?>
                     </div>
                     <?php if(isset($_SESSION["user"]) && $_SESSION["user"]["role"] == 1 && $comment['statut_com'] == NULL) { ?>
@@ -94,20 +86,20 @@
                 <ul class="pagination">
                 <div class="col-md-3 offset-md-2">  
                     <li class="page-item <?php if($numPageComments == 1){ echo "disabled"; } ?>">
-                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/readArticle/<?=$article['article'][0]['id_art']?>/<?= $numPageComments - 1 ?>#listComments" class="page-link"><<</a>
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/validComment/<?=$article['article'][0]['id_art']?>/<?= $numPageComments - 1 ?>#listComments" class="page-link"><<</a>
                     </li>
                     </div>
                     <div class="col-md-2"> 
                     <?php for($page = 1; $page <= $pagesComments; $page++){ ?>
                         <li class="page-item <?php if($numPageComments != $page){ echo "disabled"; } ?>">
-                            <a class="font-weight-bold paginationLink" href="<?= local ?>articles/readArticle/<?=$article['article'][0]['id_art']?>/<?= $numPageComments?>#listComments" class="font-weight-bold link-page"><?= $page ?></a>
+                            <a class="font-weight-bold paginationLink" href="<?= local ?>articles/validComment/<?=$article['article'][0]['id_art']?>/<?= $numPageComments?>#listComments" class="font-weight-bold link-page"><?= $page ?></a>
                         </li>
                     <?php
                     } ?>
                     </div>
                     <div class="col-md-3"> 
                     <li class="page-item <?php if($numPageComments == $pagesComments OR $pagesComments < 1) { echo "disabled"; } ?>">
-                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/readArticle/<?=$article['article'][0]['id_art']?>/<?= $numPageComments + 1 ?>#listComments" class="page-link">>></a>
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/validComment/<?=$article['article'][0]['id_art']?>/<?= $numPageComments + 1 ?>#listComments" class="page-link">>></a>
                     </li>
                 </div>
                 </ul>
@@ -115,34 +107,3 @@
         </div>
     </div>
 </row>
-<?php if(isset($_SESSION["user"])) { ?>
-    <?php if($_SESSION["user"]["isActiveUser"] == 1 && $_SESSION["user"]["isActiveAdmin"] == 1 ) { ?>
-        <section class="container col-10" id="newComment">
-            <div class="container contNewComment">
-                <div class="row">
-                    <form class="col-12" action="" method="post">
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Commentaire</label>
-                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
-                        </div>
-                        <div class = "btnCenterMobile">
-                            <button type="submit" class="col-12 btn btnComment btn-primary mb-5">Envoyer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    <?php } else { ?>
-         <section class="container col-10">
-            <div class="col-12">
-                <h5 class="font-weight-bold text-center mb-3">Votre compte est actuellement désactivé pour plus d'informations rendez-vous dans dans la partie gestion de votre compte.</h5>
-            </div>
-        </section>
-    <?php } ?>
-<?php } else { ?>
-    <section class="container col-10">
-        <div class="col-12">
-            <h5 class="font-weight-bold text-center mb-3">Pour commenter l'article veuillez vous connecter ou vous inscrire sur le site.</h5>
-        </div>
-    </section>
-<?php } ?>

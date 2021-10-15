@@ -92,6 +92,43 @@ class Articles extends AbstractController {
     }
 
     /**
+     * This method displays an article for valid a comment
+     *
+     * @return void
+     */
+    public function validComment(){
+
+        //recover the fourth param in the URL for the id article
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        }
+        //recover the fourth param in the URL for the comment page
+        if(isset($_SESSION["commentPage"]) && !empty($_SESSION["commentPage"]))
+        {
+            $pageURL = (int) strip_tags($_SESSION['commentPage']);
+        }
+        //recover the datas of one article
+        $article = $this->articleManager->readArticle($idArt);
+
+        $commentsCount = $this->articleManager->countAllComments($idArt);
+        $nbComments = (int) $commentsCount['nbComments'];
+        $commentsParPage = 5;
+        $pagesComments = ceil($nbComments / $commentsParPage);
+        $firstComment = ($pageURL * $commentsParPage) - $commentsParPage;
+        
+        //recover the comments for one article
+        $comments = $this->articleManager->readAllComments($idArt, $firstComment, $commentsParPage);
+
+        $this->render('validComment', [
+            'article' => compact('article'),
+            'comments' => compact('comments'),
+            'pagesComments' => $pagesComments,
+            'numPageComments' => $pageURL,
+        ]);
+    }
+
+    /**
      * This method create an article
      *
      * @return void

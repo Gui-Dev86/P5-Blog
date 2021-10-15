@@ -82,14 +82,13 @@ class ArticleManager extends AbstractManager {
         $query->execute();
     }
 
-
     /**
-     * Read all comments per article
+     * Read validate comments per article
      *
      * @return void
      */
     public function readComments($idArt, $firstComment, $commentsParPage){
-        $sql = 'SELECT * FROM comments WHERE id_art = :id_art AND isActive_com = 1 ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $sql = 'SELECT * FROM comments WHERE id_art = :id_art AND statut_com = 1 ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
         $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
@@ -105,7 +104,37 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function countComments($idArt){
-        $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE id_art = :id_art AND isActive_com = 1';
+        $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE id_art = :id_art AND statut_com = 1';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
+        $query->execute();
+        $commentsCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $commentsCount;
+    }
+
+     /**
+     * Read all comments per article
+     *
+     * @return void
+     */
+    public function readAllComments($idArt, $firstComment, $commentsParPage){
+        $sql = 'SELECT * FROM comments WHERE id_art = :id_art ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
+        $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
+        $query->bindValue(':commentsParPage', $commentsParPage, PDO::PARAM_INT);
+        $query->execute();
+        $dataComments = $query->fetchAll();
+        return $dataComments;
+    }
+
+    /**
+     * Count all comments number in the article
+     *
+     * @return void
+     */
+    public function countAllComments($idArt){
+        $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE id_art = :id_art';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
         $query->execute();

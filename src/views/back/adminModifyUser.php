@@ -1,7 +1,7 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-10 my-4">
-            <a class="font-weight-bold retour-listMember" href="<?= local ?>adminManagement/adminListAllMembers">Page précédente</a>
+            <a class="font-weight-bold retour-listMember" href="<?= local ?>adminManagement/adminListAllMembers">< Page précédente</a>
         </div>
     </div>
 </div>
