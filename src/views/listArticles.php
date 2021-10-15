@@ -27,7 +27,7 @@
                                 </p>
                     
                                 <div class="text-center">
-                                    <a class="btn btn-primary btn-art font-weight-bold stretched-link mb-2" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>">Lire la suite</a>
+                                    <a class="btn btn-primary btn-art font-weight-bold stretched-link mb-2" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>/1">Lire la suite</a>
                                 </div>
                             </div>
                         </div>
@@ -60,10 +60,6 @@
                     </li>
                 </div>
                 </ul>
-                <?php 
-                    unset($_SESSION['pages']);
-                    unset($_SESSION['numPage']);
-                ?>
             </div>
         </div>
     </div>

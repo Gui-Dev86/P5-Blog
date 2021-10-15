@@ -23,12 +23,12 @@ if(isset($params[2])) {
         $_SESSION['paramURL'] = $params[2];
     }
 }
-//save the second parameter in the URL for the pagination
-/*if(isset($params[1])) {
-    if(is_numeric($params[1])) {
-        $_SESSION['paramPage'] = $params[1];
+//save the second parameter in the URL for the comments pagination
+if(isset($params[3])) {
+    if(is_numeric($params[3])) {
+        $_SESSION['commentPage'] = $params[3];
     }
-}*/
+}
 // Si au moins 1 paramètre existe
 if($params[0] != ""){
 

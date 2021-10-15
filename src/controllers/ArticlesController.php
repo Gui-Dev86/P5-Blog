@@ -61,13 +61,34 @@ class Articles extends AbstractController {
      */
     public function readArticle(){
 
-        $idArt = $_SESSION['paramURL'];
- 
+        //recover the fourth param in the URL for the id article
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        }
+        //recover the fourth param in the URL for the comment page
+        if(isset($_SESSION["commentPage"]) && !empty($_SESSION["commentPage"]))
+        {
+            $pageURL = (int) strip_tags($_SESSION['commentPage']);
+        }
         //recover the datas of one article
         $article = $this->articleManager->readArticle($idArt);
-        //destroy the paramURL session for the back link
+
+        $commentsCount = $this->articleManager->countComments($idArt);
+        $nbComments = (int) $commentsCount['nbComments'];
+        $commentsParPage = 5;
+        $pagesComments = ceil($nbComments / $commentsParPage);
+        $firstComment = ($pageURL * $commentsParPage) - $commentsParPage;
         
-        $this->render('article', compact('article'));
+        //recover the comments for one article
+        $comments = $this->articleManager->readComments($idArt, $firstComment, $commentsParPage);
+
+        $this->render('article', [
+            'article' => compact('article'),
+            'comments' => compact('comments'),
+            'pagesComments' => $pagesComments,
+            'numPageComments' => $pageURL,
+        ]);
     }
 
     /**

@@ -34,7 +34,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Conut the articles number
+     * Count the articles number
      *
      * @return void
      */
@@ -80,5 +80,36 @@ class ArticleManager extends AbstractManager {
         $query->bindValue('altImage_art',$article->getAltImage_art(), PDO::PARAM_STR);
         $query->bindValue('id_user',$article->getId_user(), PDO::PARAM_INT);
         $query->execute();
+    }
+
+
+    /**
+     * Read all comments per article
+     *
+     * @return void
+     */
+    public function readComments($idArt, $firstComment, $commentsParPage){
+        $sql = 'SELECT * FROM comments WHERE id_art = :id_art AND isActive_com = 1 ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
+        $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
+        $query->bindValue(':commentsParPage', $commentsParPage, PDO::PARAM_INT);
+        $query->execute();
+        $dataComments = $query->fetchAll();
+        return $dataComments;
+    }
+
+    /**
+     * Count the comments number in the article
+     *
+     * @return void
+     */
+    public function countComments($idArt){
+        $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE id_art = :id_art AND isActive_com = 1';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
+        $query->execute();
+        $commentsCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $commentsCount;
     }
 }
