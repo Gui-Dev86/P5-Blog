@@ -141,4 +141,37 @@ class ArticleManager extends AbstractManager {
         $commentsCount = $query->fetch(PDO::FETCH_ASSOC);
         return $commentsCount;
     }
+
+    /**
+     * Save new comment
+     *
+     * @return void
+     */
+    public function newComment(Comment $comment){
+        $sql = 'INSERT INTO comments (content_com,autor_com,date_com,dateUpdate_com,statut_com,isActive_com,id_art,id_user)
+            VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,NULL,1,:id_art,:id_user)';
+            
+            $query = $this->_connexion->prepare($sql);
+            $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
+            $query->bindValue('autor_com',$comment->getAutor_com(), PDO::PARAM_STR);
+            $query->bindValue('date_com',$comment->getDate_com(), PDO::PARAM_STR);
+            $query->bindValue('dateUpdate_com',$comment->getDateUpdate_com(), PDO::PARAM_STR);
+            $query->bindValue('id_art',$comment->getId_art(), PDO::PARAM_INT);
+            $query->bindValue('id_user',$comment->getId_user(), PDO::PARAM_INT);
+            $query->execute();
+        }
+
+    /**
+     * Read one comment
+     *
+     * @return void
+     */
+    public function readComment($idCom) {
+        $sql = 'SELECT * FROM comments where id_com = :id_com';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_com', $idCom, PDO::PARAM_INT);
+        $query->execute();
+        $dataComment = $query->fetchAll();
+        return $dataComment;
+    }
 }

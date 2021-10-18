@@ -29,6 +29,14 @@ if(isset($params[3])) {
         $_SESSION['commentPage'] = $params[3];
     }
 }
+
+//save the third parameter in the URL to recover the comment ID
+if(isset($params[4])) {
+    if(is_numeric($params[4])) {
+        $_SESSION['idCommentPage'] = $params[4];
+    }
+}
+
 // Si au moins 1 paramètre existe
 if($params[0] != ""){
 

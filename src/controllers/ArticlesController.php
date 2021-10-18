@@ -92,7 +92,7 @@ class Articles extends AbstractController {
     }
 
     /**
-     * This method displays an article for valid a comment
+     * This method displays the admin page to valid a comment
      *
      * @return void
      */
@@ -202,6 +202,85 @@ class Articles extends AbstractController {
         }
     }
 
+    /**
+     * This method create or modify a comment
+     *
+     * @return void
+     */
+    public function createModifyComment(){
+
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        }
+
+        if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage']))
+        {
+            $idCom = (int) strip_tags($_SESSION['idCommentPage']);
+        }
+
+        if(isset($_POST['formCreateComment'])) 
+        {
+            if(isset($_POST['commentContent']) AND !empty($_POST['commentContent']))
+            {
+            $dateComment = new DateTime();
+            $newComment = new Comment();
+            $newComment->setContent_com(htmlspecialchars($_POST['commentContent']));
+            $newComment->setAutor_com(htmlspecialchars($_SESSION['user']['login']));
+            $newComment->setDate_com($dateComment->format('Y-m-d H:i:s'));
+            $newComment->setDateUpdate_com($dateComment->format('Y-m-d H:i:s'));
+            $newComment->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
+            $newComment->setId_art(htmlspecialchars($idArt));
+            
+                if(isset($_SESSION['idCommentPage'])) 
+                {
+                    $this->articleManager-updateComment($newComment); 
+                    $_POST = [];
+                    $_SESSION['valide'] = "<br /><p class = font-weight-bold>*Votre modification a bien été prise en compte, elle sera soumise au plus vite à l'un des administrateurs<p>";
+                    return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                }
+                else
+                {
+                    $this->articleManager->newComment($newComment); 
+                    $_POST = [];
+                    $_SESSION['valide'] = "<br /><p class = font-weight-bold>*Votre commentaire a bien été pris en compte, il sera soumis au plus vite à l'un des administrateurs<p>";
+                    return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                }
+            }
+            else
+            { 
+                $_SESSION['error'] = "<br /><p class = font-weight-bold>**Vous n'avez pas saisi de commentaire<p>";
+                return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+            }
+        }
+            
+     }
+
+     /**
+     * This method display the comment to modify
+     *
+     * @return void
+     */
+    public function readModifyComment() {
+
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        }
+        
+        if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage']))
+        {
+            $idCom = (int) strip_tags($_SESSION['idCommentPage']);
+        }
+
+        $comment = $this->articleManager->readComment($idCom);
+        $_SESSION['comment'] = $comment;
+        return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
+    }
+
+
+
+    
     /**
      * This method modify an article
      *

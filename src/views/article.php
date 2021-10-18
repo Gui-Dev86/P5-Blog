@@ -36,7 +36,7 @@
                 <?php if($article['article'][0]['dateUpdate_art'] > $article['article'][0]['date_art']) { ?>
                     <p class="text-justify textInfo"><?= "Mis à jour le ". date('d-m-Y', strtotime($article['article'][0]['dateUpdate_art'])); 
                 } else { 
-                    echo "Créé le ".date('d-m-Y', strtotime($article['article'][0]['date_art'])); } ?> par <strong><?= $article['article'][0]['autor_art'] ?></strong><br />
+                    echo "Créé le ".date('d-m-Y', strtotime($article['article'][0]['date_art'])); } ?> par&nbsp<strong><?= $article['article'][0]['autor_art'] ?></strong><br />
             </div>
         </div>
     </div>
@@ -62,26 +62,23 @@
                     </div> 
                     <div class="row">
                         <?php if(isset($_SESSION['user']) && $comment['id_user'] == $_SESSION['user']['idUser']) { ?>
-                            <div class="text-center">
-                                <button class="linkModifSupp mb-3" href="<?= local ?>">Modifier</button>
-                            </div>
-                            <div class="text-center">
-                                <button class="linkModifSupp mb-3 pl-2" href="<?= local ?>">Supprimer</button>
-                            </div>
+                             <!--<form action="<?= local ?>articles/readModifyComment/" method="post">-->
+                                 <!--<div class="form-group">  -->
+                                    <div class="text-center">
+                                        <a href="<?= local ?>articles/readModifyComment/<?= $article['article'][0]['id_art'] ?>/<?= $numPageComments ?>/<?= $comment['id_com'] ?>">Modifier</a>
+                                        <!--<button type="submit" name="readModifyComment" class="linkModifSupp">Modifier</button>-->
+                                    </div>
+                                <!--</div>-->
+                             <!--</form>-->
+                            <form action="<?= local ?>articles/deleteComment/" method="post">
+                                <div class="form-group">
+                                    <div class="text-center">
+                                        <button type="submit" name="deleteComment" class="linkModifSupp pl-2">Supprimer</button>
+                                    </div>
+                                </div>
+                            </form>
                         <?php } ?>
                     </div>
-                    <?php if(isset($_SESSION["user"]) && $_SESSION["user"]["role"] == 1 && $comment['statut_com'] == NULL) { ?>
-                        <div class="container">
-                            <div class="row pt-2">
-                                <div class=" col-md-3 offset-md-3 text-center">
-                                    <a class="btn btn-primary btnComment mb-3" href="<?= local ?>">Valider le commentaire</a>
-                                </div>
-                                <div class=" col-md-3 text-center">
-                                    <a class="btn btn-warning btnRefuseComment mb-3" href="<?= local ?>">Refuser le commentaire</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?> 
                 </div>
             </div>
         </div>
@@ -120,15 +117,28 @@
         <section class="container col-10" id="newComment">
             <div class="container contNewComment">
                 <div class="row">
-                    <form class="col-12" action="" method="post">
-                        <div class="form-group">
+                    <form class="col-12" action="<?= local ?>articles/createModifyComment" method="post">
+                        <div class="form-group" id="ancreNewComment">
                             <label for="exampleFormControlTextarea1">Commentaire</label>
-                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                            <textarea class="form-control" id="comment" name="commentContent" rows="3"><?php if(isset($_SESSION['comment'])) { echo $_SESSION['comment'][0]['content_com']; unset($_SESSION['comment']); } ?></textarea>
                         </div>
                         <div class = "btnCenterMobile">
-                            <button type="submit" class="col-12 btn btnComment btn-primary mb-5">Envoyer</button>
+                            <button type="submit" name="formCreateComment" class="col-12 btn btnComment btn-primary mb-5">Envoyer</button>
                         </div>
                     </form>
+                    <?php
+                        if(isset($_SESSION['valide']))
+                        {
+                            echo $_SESSION['valide'];
+                            unset($_SESSION['valide']);
+                            unset($_SESSION['idCommentPage']);
+                        }
+                        if(isset($_SESSION['error']))
+                        {
+                            echo $_SESSION['error'];
+                            unset($_SESSION['error']);
+                        }
+                    ?>
                 </div>
             </div>
         </section>
