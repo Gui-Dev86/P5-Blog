@@ -24,72 +24,91 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!----- foreach comment in comments--->
+                    <?php foreach($users['users'] as $user) {?>
                         <tr>
-                            <td class="column1">Toto</td>
-                            <td class="column2">Michel</td>
-                            <td class="column3">DUPONT</td>
-                            <td class="column4">tata@ootlook.fr</td>
-                            <td class="column5">15/09/2021</td>
-                            <td class="column6">15/09/2021</td>
-                            <td class="column7">Admin</td>
-                            <td class="column8">Actif</td>
-                            <td class="column9 columnEnd"><a class="linkManagement" href="<?= local ?>adminManagement/adminModifyUser">Modifier</a></td>
+                            <td class="column1"><?= $user['login_user'] ?></td>
+                            <td class="column2"><?= $user['firstname_user'] ?></td>
+                            <td class="column3"><?= $user['lastname_user'] ?></td>
+                            <td class="column4"><?= $user['email_user'] ?></td>
+                            <td class="column5"><?= date('d-m-Y', strtotime($user['dateCreate_user'])); ?></td>
+                            <td class="column6"><?= date('d-m-Y', strtotime($user['dateUpdate_user'])); ?></td>
+                            <td class="column7"><?php if($user['role_user'] == 1) { echo "Admin"; } else { echo "Member"; }?></td>
+                            <td class="column8"><?php if($user['isActiveUser_user'] == 1 && $user['isActiveAdmin_user'] == 1) { echo "Actif"; } else { echo "Inactif"; } ?></td>
+                            <td class="column9 columnEnd"><a class="linkManagement" href="<?= local ?>adminManagement/adminModifyUser/<?= $user['id_user'] ?>">Modifier</a></td>
                         </tr>
-                        <!---endforeach--->
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
-            <!----- foreach article in articles--->
-            <div class="container tabMobile col-12 col-md-10">
+            <?php foreach($users['users'] as $user) {?>
+            <div class="container tabMobile col-12 col-md-10 mb-3">
                 <div class="row justify-content-center">
                     <div class="container col-12 col-md-8 offset-md-2">
                         <table class="panel">
                             <tr class="trCompte">
                                 <td>Login :</td>
-                                <td>Toto</td>
+                                <td><?= $user['login_user'] ?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Prénom:</td>
-                                <td>Michel</td>
+                                <td><?= $user['firstname_user'] ?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Nom:</td>
-                                <td>DUPONT</td>
+                                <td><?= $user['lastname_user'] ?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Email:</td>
-                                <td>tata@ootlook.fr</td>
+                                <td><?= $user['email_user'] ?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Inscription</td>
-                                <td>15/09/2021</td>
+                                <td><?= date('d-m-Y', strtotime($user['dateCreate_user'])); ?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Mise à jour</td>
-                                <td>15/09/2021</td>
+                                <td><?= date('d-m-Y', strtotime($user['dateUpdate_user'])); ?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Rôle</td>
-                                <td>Admin</td>
+                                <td><?php if($user['role_user'] == 1) { echo "Admin"; } else { echo "Member"; }?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Statut</td>
-                                <td>Actif</td>
+                                <td><?php if($user['isActiveUser_user'] == 1 && $user['isActiveAdmin_user'] == 1) { echo "Actif"; } else { echo "Inactif"; } ?></td>
                             </tr>
                             <tr class="trCompte">
                                 <td>Modifier</td>
-                                <td><a class="linkManagement" href="<?= local ?>adminManagement/adminModifyUser">Modifier</a></td>
+                                <td><a class="linkManagement" href="<?= local ?>adminManagement/adminModifyUser/<?= $user['id_user'] ?>">Modifier</a></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
-            <!---endforeach--->
+            <?php } ?>
             <div class="container col-12 my-2">
                 <div class="row">   
                     <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
-                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
+                        <ul class="pagination">
+                        <div class="col-md-3 offset-md-2">  
+                            <li class="page-item <?php if($numPage == 1){ echo "disabled"; } ?>">
+                                <a class="font-weight-bold paginationLink" href="<?= local ?>adminManagement/adminListAllMembers/<?= $numPage - 1 ?>" class="page-link"><<</a>
+                            </li>
+                            </div>
+                            <div class="col-md-2"> 
+                            <?php for($page = 1; $page <= $pages; $page++){ ?>
+                                <li class="page-item <?php if($numPage != $page){ echo "disabled"; } ?>">
+                                    <a class="font-weight-bold paginationLink" href="<?= local ?>adminManagement/adminListAllMembers/<?= $page ?>" class="font-weight-bold link-page"><?= $page ?></a>
+                                </li>
+                            <?php
+                            } ?>
+                            </div>
+                            <div class="col-md-3"> 
+                            <li class="page-item <?php if($numPage == $pages) { echo "disabled"; } ?>">
+                                <a class="font-weight-bold paginationLink" href="<?= local ?>adminManagement/adminListAllMembers/<?= $numPage + 1 ?>" class="page-link">>></a>
+                            </li>
+                        </div>
+                        </ul>
                     </div>
                 </div>
             </div>

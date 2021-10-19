@@ -1,7 +1,7 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-10 my-4">
-            <a class="font-weight-bold retour-listMember" href="<?= local ?>adminManagement/adminListAllMembers">< Page précédente</a>
+            <a class="font-weight-bold retour-listMember" href="<?= local ?>adminManagement/adminListAllMembers/1">< Page précédente</a>
         </div>
     </div>
 </div>
@@ -15,34 +15,59 @@
             </div>
         </div>
     </div>
-    <div class="container adminInfosUser py-5 col-12">
+    <div class="container adminInfosUser py-3 mb-3 col-12">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 offset-md-2 pb-3">
-                <h5>Rôle: <span class="font-italic">(user.role)</span></h5>
+                <h5>Login: <span class="font-italic font-weight-bold"><?= $user['user']['login_user']; ?></span></h5>
             </div>
         </div>
-        <div class="row justify-content-center pb-5">
-            <!---If compte==0--->
-            <button type="submit" class="btn btn-primary font-weight-bold btn-modifyUser">Passer en utilisateur</button>
-            <!---else--->
-    <!---    <button type="submit" class="btn btn-primary btn-modifyUserWarning">Passer en administrateur</button> --->
-            <!---endif--->   
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 offset-md-2 pb-3">
+                <h5>Rôle: <span class="font-italic font-weight-bold"><?php if($user['user']['role_user'] == 1) { echo "Admin"; ?></span></h5>
+            </div>
         </div>
+        <form method="post" action="<?= local ?>adminManagement/activeUser">
+            <div class="form-group row justify-content-center pb-5 ">
+                <button type="submit" name="adminDowngroundUser" class="btn btn-primary font-weight-bold btn-modifyUser">Passer en utilisateur</button>
+                <?php } else { echo "Member"; ?></span></h5>
+            </div>
+        </form>
+        </div>
+        <form method="post" action="<?= local ?>/adminManagement/activeAdmin">
+            <div class="form-group row justify-content-center pb-5 ">
+                <button type="submit" name="adminUpgradeUser" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Passer en administrateur</button>
+                <?php } ?> 
+            </div>
+        </form>
+        <?php if(isset($message)) {
+            echo $message;
+        } ?>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 offset-md-2 pb-3">
                 <h5>Etat du compte:
-                    <!---If compte==1--->
-                        <span class="font-weight-bold font-italic">Actif</span></h5>
-                     <!---else--->
-        <!---       <span> class="font-weight-bold font-italic mt-2">Inactif</span></h5>--->
+                    <span class="font-weight-bold font-italic"><?php if($user['user']['isActiveUser_user'] == 1 && $user['user']['isActiveAdmin_user'] == 1) { echo "Actif"; ?></span></h5>
             </div>
         </div>
+        <form method="post" action="<?= local ?>/adminManagement/desactiveCompte">
+            <div class="form-group row justify-content-center pb-5 ">
+                <button type="submit" name="desadminActiveCompte" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Désactiver</button>
+                <?php } elseif($user['user']['isActiveAdmin_user'] == 0) { echo "Inactif"; ?></span></h5>
+            </div>
+        </form>
+        </div>
+        <form method="post" action="<?= local ?>/adminManagement/activeCompte">
+            <div class="form-group row justify-content-center pb-5 ">
+                <button type="submit" name="adminActiveCompte" class="btn btn-primary font-weight-bold btn-modifyUser">Activer</button> 
+                <?php } elseif($user['isActiveUser_user'] == 0) { echo "Inactif"; ?></span></h5>
+            </div>
+        </form>
+    </div>
+    <div class="container col-12 col-md-10">
         <div class="row justify-content-center">
-            <!---If compte==1--->
-            <button type="submit" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Désactiver</button>
-            <!---else--->
-<!---       <button type="submit" class="btn btn-primary btn-modifyUser">Activer</button>--->
-            <!---endif--->   
+            <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                <h5 class="font-weight-bold text-center pt-3">Le compte a été désactivé par l'utilisateur.</h5>
+            </div>
         </div>
     </div>
+    <?php } ?>
 </section>

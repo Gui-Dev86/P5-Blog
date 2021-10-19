@@ -53,9 +53,11 @@
         <div class="row justify-content-center">
             <div class="container  col-12 col-md-8 offset-md-2 pb-5">
                 <h5 class="pb-3">Commentaires</h5>
-                <div class="btnCenterMobile">
-                    <a class="btn btn-default btn-primary font-weight-bold btn-userInfos" href="<?= local ?>userCompte/userListComment">Afficher vos commentaires</a>
-                </div>
+                <form method="post" action="<?= local ?>">
+                    <div class="form-group btnCenterMobile">                 
+                        <a class="btn btn-default btn-primary font-weight-bold btn-userInfos" href="<?= local ?>userCompte/userListComment">Afficher vos commentaires</a>                
+                    </div>
+                </form>
             </div>  
         </div>
     </div>

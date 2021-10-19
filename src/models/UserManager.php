@@ -19,6 +19,35 @@ class UserManager extends AbstractManager {
     }
 
     /**
+     * Read the informations of all users
+     *
+     */
+    public function readAllUsers($firstUser, $usersParPage)
+    {
+        $sql = 'SELECT * FROM users ORDER BY login_user ASC LIMIT :firstUser, :usersParPage';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':firstUser', $firstUser, PDO::PARAM_INT);
+        $query->bindValue(':usersParPage', $usersParPage, PDO::PARAM_INT);
+        $query->execute();
+        $dataUsers = $query->fetchAll();
+        return $dataUsers;
+    }
+
+    /**
+     * Read the informations for a user
+     *
+     */
+    public function readUser($idUser)
+    {
+        $sql = 'SELECT * FROM users WHERE id_user = :id_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_INT);
+        $query->execute();
+        $dataUser = $query->fetch(PDO::FETCH_ASSOC);
+        return $dataUser;
+    }
+
+    /**
      * Update the user's datas
      *
      */
@@ -37,12 +66,11 @@ class UserManager extends AbstractManager {
     } 
 
     /**
-     * Read the informations for a user
+     * Read the informations for a user to verify the password
      *
      */
-    public function readUser(User $user)
+    public function readUserLogin(User $user)
     {
-
         $sql = 'SELECT * FROM users WHERE login_user = :login_user';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
@@ -107,4 +135,43 @@ class UserManager extends AbstractManager {
         $data = $query->execute();
         return $data;
     }
+
+    /**
+     * Count the users number
+     *
+     * @return void
+     */
+    public function countAllUsers(){
+        $sql = 'SELECT COUNT(*) AS nbUsers FROM users';
+        $query = $this->_connexion->prepare($sql);
+        $query->execute();
+        $usersCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $usersCount;
+    }
+
+    /**
+    * Pass the user's statute in admin
+    *
+    */
+    public function upUserStatute($idUser)
+    {
+        $sql = 'UPDATE users SET role_user = 1 WHERE id_user = :id_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_INT);
+        $data = $query->execute();
+        return $data;
+    }
+
+    /**
+    * Pass the user's statute in user
+    *
+    */
+    public function downUserStatute($idUser)
+    {
+        $sql = 'UPDATE users SET role_user = 0 WHERE id_user = :id_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_INT);
+        $data = $query->execute();
+        return $data;
+    } 
 }

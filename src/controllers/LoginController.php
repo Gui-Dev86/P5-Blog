@@ -202,7 +202,7 @@ class Login extends AbstractController {
                 $password = $_POST["password"];
 
                 //recup the informations for the user
-                $dataUser = $this->loginManager->readUser($newUser);
+                $dataUser = $this->loginManager->readUserLogin($newUser);
                 $_POST = [];
                 //verify if the login and the password correspond
                 if(password_verify($password, $dataUser['password_user']))
