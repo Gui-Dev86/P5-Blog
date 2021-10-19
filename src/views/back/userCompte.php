@@ -65,7 +65,7 @@
                 <h5>Changement de mot de passe</h5>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="ancreChangerPass">
             <div class="container col-12 col-md-8 offset-md-2 pb-5">
                 <form method="post" action="<?= local ?>userCompte/userModifyPassword">
                     <div class="form-group">

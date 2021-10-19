@@ -40,6 +40,11 @@ class Comment extends AbstractManager {
     private $isActive_com;
 
     /**
+     * @var bool $isDeleted_com comment isDeleted
+     */
+    private $isDeleted_com;
+
+    /**
      * @var int $id_art comment id article
      */
     private $id_art;
@@ -198,6 +203,24 @@ class Comment extends AbstractManager {
     public function setIsActive_com($isActive_com)
     {
         $this->isActive_com = $isActive_com;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsDeleted_com()
+    {
+        return $this->isDeleted_com;
+    }
+
+    /**
+     * @param mixed $isDeleted_com
+     * @return Comment
+     */
+    public function setIsDeleted_com($isDeleted_com)
+    {
+        $this->isDeleted_com = $isDeleted_com;
         return $this;
     }
 

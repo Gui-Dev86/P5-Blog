@@ -61,22 +61,13 @@
                         par&nbsp<b><?= $comment['autor_com'] ?></b>.</p>
                     </div> 
                     <div class="row">
-                        <?php if(isset($_SESSION['user']) && $comment['id_user'] == $_SESSION['user']['idUser']) { ?>
-                             <!--<form action="<?= local ?>articles/readModifyComment/" method="post">-->
-                                 <!--<div class="form-group">  -->
-                                    <div class="text-center">
-                                        <a href="<?= local ?>articles/readModifyComment/<?= $article['article'][0]['id_art'] ?>/<?= $numPageComments ?>/<?= $comment['id_com'] ?>">Modifier</a>
-                                        <!--<button type="submit" name="readModifyComment" class="linkModifSupp">Modifier</button>-->
-                                    </div>
-                                <!--</div>-->
-                             <!--</form>-->
-                            <form action="<?= local ?>articles/deleteComment/" method="post">
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <button type="submit" name="deleteComment" class="linkModifSupp pl-2">Supprimer</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <?php if(isset($_SESSION['user']) && $comment['id_user'] == $_SESSION['user']['idUser']) { ?>                           
+                            <div class="text-center">
+                                <a class="linkDelUpdate" href="<?= local ?>articles/readModifyComment/<?= $article['article'][0]['id_art'] ?>/<?= $numPageComments ?>/<?= $comment['id_com'] ?>">Modifier</a>        
+                            </div>                              
+                             <div class="text-center ml-3">
+                                <a class="linkDelUpdate" href="<?= local ?>articles/deleteComment/<?= $article['article'][0]['id_art'] ?>/<?= $numPageComments ?>/<?= $comment['id_com'] ?>">Supprimer</a>
+                            </div>
                         <?php } ?>
                     </div>
                 </div>

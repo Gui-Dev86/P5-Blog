@@ -162,7 +162,7 @@ class UserCompte extends AbstractController{
                             $this->userManager->updatePassword($newPassUser);
                             $_POST = [];
                             $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Votre mot de passe a été modifié avec succès.<p>';
-                            header('Location: ' . local.'userCompte');
+                            header('Location: ' . local.'userCompte#ancreChangerPass');
                         }
                         else
                         {

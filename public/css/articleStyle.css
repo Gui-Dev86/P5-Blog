@@ -1,12 +1,4 @@
-.retour-listArticle {
-    color: #212529 !important;
-}
-
-.retour-listArticle:hover {
-    color: #007bff !important;
-}
-
-.sectionArticle {
+ .sectionArticle {
     border: 1px #515151 solid !important;
     border-radius: 5px;
 }
@@ -76,7 +68,7 @@ h4 {
     font-size: 15px;
 }
 
-.paginationLink, .articleActive {
+.paginationLink, .articleActive, .retour-listArticle, .linkDelUpdate {
     color: #212529 !important;
 }
 
@@ -84,7 +76,7 @@ h4 {
     font-size: 25px;
 }
 
-.paginationLink:hover, .articleActive:hover {
+.paginationLink:hover, .articleActive:hover, .retour-listArticle:hover, .linkDelUpdate:hover {
     color: #007bff !important;
 }
 

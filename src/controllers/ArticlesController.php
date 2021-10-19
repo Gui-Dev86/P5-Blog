@@ -231,20 +231,41 @@ class Articles extends AbstractController {
             $newComment->setDateUpdate_com($dateComment->format('Y-m-d H:i:s'));
             $newComment->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
             $newComment->setId_art(htmlspecialchars($idArt));
-            
-                if(isset($_SESSION['idCommentPage'])) 
+                //with the com ID in the url call function modif
+                if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage'])) 
                 {
-                    $this->articleManager-updateComment($newComment); 
-                    $_POST = [];
-                    $_SESSION['valide'] = "<br /><p class = font-weight-bold>*Votre modification a bien été prise en compte, elle sera soumise au plus vite à l'un des administrateurs<p>";
-                    return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                    
+                    if($_SESSION['user']['role'] == 0) {
+                        $this->articleManager->updateCommentUser($newComment, $idCom); 
+                        $_POST = [];
+                        unset($_SESSION['idCommentPage']);
+                        $_SESSION['valide'] = "<br /><p class = font-weight-bold>*Votre modification a bien été prise en compte, elle sera soumise au plus vite à l'un des administrateurs<p>";
+                        return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                    }
+                    else
+                    {
+                        $this->articleManager->updateCommentAdmin($newComment, $idCom); 
+                        $_POST = [];
+                        unset($_SESSION['idCommentPage']);
+                        return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                    }
                 }
-                else
+                //or create a new comment
+                elseif(!isset($_SESSION['idCommentPage']) && empty($_SESSION['idCommentPage'])) 
                 {
-                    $this->articleManager->newComment($newComment); 
-                    $_POST = [];
-                    $_SESSION['valide'] = "<br /><p class = font-weight-bold>*Votre commentaire a bien été pris en compte, il sera soumis au plus vite à l'un des administrateurs<p>";
-                    return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                    if($_SESSION['user']['role'] == 0) {
+                        $this->articleManager->newCommentUser($newComment); 
+                        $_POST = [];
+                        $_SESSION['valide'] = "<br /><p class = font-weight-bold>*Votre commentaire a bien été pris en compte, il sera soumis au plus vite à l'un des administrateurs<p>";
+                        return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                    }
+                    //for the admin the comment is immediatly validate
+                    else
+                    {
+                        $this->articleManager->newCommentAdmin($newComment); 
+                        $_POST = [];
+                        return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
+                    }
                 }
             }
             else
@@ -252,8 +273,7 @@ class Articles extends AbstractController {
                 $_SESSION['error'] = "<br /><p class = font-weight-bold>**Vous n'avez pas saisi de commentaire<p>";
                 return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1#listComments');
             }
-        }
-            
+        }  
      }
 
      /**
@@ -272,15 +292,34 @@ class Articles extends AbstractController {
         {
             $idCom = (int) strip_tags($_SESSION['idCommentPage']);
         }
-
+        
         $comment = $this->articleManager->readComment($idCom);
         $_SESSION['comment'] = $comment;
         return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
     }
+  
+    /**
+     * This method "delete" a comment, the comment is hide and always in the database
+     *
+     * @return void
+     */
+    public function deleteComment(){
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        }
+
+        if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage']))
+        {
+            $idCom = (int) strip_tags($_SESSION['idCommentPage']);
+        }
+
+        $comment = $this->articleManager->deleteComment($idCom);
+        unset($_SESSION['idCommentPage']);
+        return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
+    }
 
 
-
-    
     /**
      * This method modify an article
      *
