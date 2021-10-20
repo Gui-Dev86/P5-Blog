@@ -61,7 +61,7 @@ class adminManagement extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-        // On envoie les données à la vue index
+            // On envoie les données à la vue index
             $this->render('adminListAllComments');
         }
     }
@@ -168,7 +168,7 @@ class adminManagement extends AbstractController {
         }
         if(isset($_POST["adminDowngroundUser"]))
         {
-            if($paramURL == 1) 
+            if($paramURL == 1 && $_SESSION['user']['idUser'] != 1) 
             {
                 //recover the datas for one user
                 $user = $this->userManager->readUser($paramURL);
@@ -220,7 +220,8 @@ class adminManagement extends AbstractController {
             ]);
         }
     }
-/**
+
+    /**
      * This method desactive the user compte
      *
      * @return void
@@ -233,7 +234,7 @@ class adminManagement extends AbstractController {
         }
         if(isset($_POST["adminDesactiveCompte"]))
         {
-            if($paramURL == 1) 
+            if($paramURL == 1 && $_SESSION['user']['idUser'] != 1) 
             {
                 //recover the datas for one user
                 $user = $this->userManager->readUser($paramURL);

@@ -19,10 +19,10 @@ class LoginManager extends AbstractManager {
     }
 
     /**
-     * Read the informations for a user
+     * Read the informations to verify the user's password
      *
      */
-    public function readUser(User $user)
+    public function readUserLogin(User $user)
     {
 
         $sql = 'SELECT * FROM users WHERE login_user = :login_user';

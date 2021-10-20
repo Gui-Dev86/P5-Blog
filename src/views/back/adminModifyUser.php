@@ -50,7 +50,7 @@
         </div>
         <form method="post" action="<?= local ?>/adminManagement/desactiveCompte">
             <div class="form-group row justify-content-center pb-5 ">
-                <button type="submit" name="desadminActiveCompte" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Désactiver</button>
+                <button type="submit" name="adminDesactiveCompte" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Désactiver</button>
                 <?php } elseif($user['user']['isActiveAdmin_user'] == 0) { echo "Inactif"; ?></span></h5>
             </div>
         </form>
@@ -58,7 +58,7 @@
         <form method="post" action="<?= local ?>/adminManagement/activeCompte">
             <div class="form-group row justify-content-center pb-5 ">
                 <button type="submit" name="adminActiveCompte" class="btn btn-primary font-weight-bold btn-modifyUser">Activer</button> 
-                <?php } elseif($user['isActiveUser_user'] == 0) { echo "Inactif"; ?></span></h5>
+                <?php } elseif($user['user']['isActiveUser_user'] == 0) { echo "Inactif"; ?></span></h5>
             </div>
         </form>
     </div>

@@ -99,7 +99,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Count the comments number in the article
+     * Count the validate comments number in the article
      *
      * @return void
      */
@@ -112,6 +112,20 @@ class ArticleManager extends AbstractManager {
         return $commentsCount;
     }
 
+    /**
+     * Count the comments number of the user
+     *
+     * @return void
+     */
+    public function countCommentsUser($idUser){
+        $sql = 'SELECT COUNT(*) AS nbCommentUser FROM comments WHERE id_user = :id_user AND isDeleted_com = 0';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_user', $idUser, PDO::PARAM_INT);
+        $query->execute();
+        $userCommentsCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $userCommentsCount;
+    }
+
      /**
      * Read all comments per article
      *
@@ -121,6 +135,22 @@ class ArticleManager extends AbstractManager {
         $sql = 'SELECT * FROM comments WHERE id_art = :id_art ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
+        $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
+        $query->bindValue(':commentsParPage', $commentsParPage, PDO::PARAM_INT);
+        $query->execute();
+        $dataComments = $query->fetchAll();
+        return $dataComments;
+    }
+
+    /**
+     * Read all comments per user
+     *
+     * @return void
+     */
+    public function readUserComments($idUser, $firstComment, $commentsParPage){
+        $sql = 'SELECT * FROM comments WHERE id_user = :id_user ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_user', $idUser, PDO::PARAM_INT);
         $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
         $query->bindValue(':commentsParPage', $commentsParPage, PDO::PARAM_INT);
         $query->execute();

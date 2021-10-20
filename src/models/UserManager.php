@@ -66,20 +66,6 @@ class UserManager extends AbstractManager {
     } 
 
     /**
-     * Read the informations for a user to verify the password
-     *
-     */
-    public function readUserLogin(User $user)
-    {
-        $sql = 'SELECT * FROM users WHERE login_user = :login_user';
-        $query = $this->_connexion->prepare($sql);
-        $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
-        $query->execute();
-        $dataUser = $query->fetch(PDO::FETCH_ASSOC);
-        return $dataUser;
-    }
-
-    /**
      * Checks login and mail availables
      *
      */
@@ -150,7 +136,7 @@ class UserManager extends AbstractManager {
     }
 
     /**
-    * Pass the user's statute in admin
+    * Pass the user's role in admin
     *
     */
     public function upUserStatute($idUser)
@@ -163,7 +149,7 @@ class UserManager extends AbstractManager {
     }
 
     /**
-    * Pass the user's statute in user
+    * Pass the user's role in user
     *
     */
     public function downUserStatute($idUser)
@@ -173,5 +159,32 @@ class UserManager extends AbstractManager {
         $query->bindValue('id_user',$idUser, PDO::PARAM_INT);
         $data = $query->execute();
         return $data;
-    } 
+    }
+
+    /**
+    * Pass the user's statute in active
+    *
+    */
+    public function adminActiveCompte($idUser)
+    {
+        $sql = 'UPDATE users SET isActiveAdmin_user = 1 WHERE id_user = :id_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_INT);
+        $data = $query->execute();
+        return $data;
+    }
+
+    /**
+    * Pass the user's statute in inactive
+    *
+    */
+    public function adminDesactiveCompte($idUser)
+    {
+        $sql = 'UPDATE users SET isActiveAdmin_user = 0 WHERE id_user = :id_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_INT);
+        $data = $query->execute();
+        return $data;
+    }
+
 }

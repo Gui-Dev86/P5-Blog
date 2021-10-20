@@ -2,16 +2,22 @@
 
 namespace App\src\controllers;
 
+use App\src\models\LoginManager;
 use App\src\models\UserManager;
+use App\src\models\ArticleManager;
 use App\src\models\User;
 
 class UserCompte extends AbstractController{
 
     private $userManager;
+    private $loginManager;
+    private $articleManager;
 
     public function __construct()
     {
         $this->userManager = new UserManager();
+        $this->loginManager = new LoginManager();
+        $this->articleManager = new ArticleManager();
     }
 
     /**
@@ -54,8 +60,36 @@ class UserCompte extends AbstractController{
             header('Location: ' . local);
             exit;
         } else {
+            
+            if(isset($_SESSION["user"]) && !empty($_SESSION["user"]))
+            {
+                $idUser = $_SESSION['user']['idUser'];
+            }
+            //recover the third URL parameter number page
+            if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+            {
+                $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+            }
+            
+            //count the comments number in the database
+            $userCommentsCount = $this->articleManager->countCommentsUser($idUser);
+            $nbCommentsUser = (int) $userCommentsCount['nbCommentUser'];
+            //number of articles per page
+            $commentsParPage = 5;
+            //calculate the pages number
+            $pages = ceil($nbCommentsUser / $commentsParPage);
+            //calculate the first comment per page
+            $firstComment = ($paramURL * $commentsParPage) - $commentsParPage;
+            
+            //recover the datas of all comments in $comments
+            $comments = $this->articleManager->readUserComments($idUser, $firstComment, $commentsParPage);
+        
             // On envoie les données à la vue index
-            $this->render('userListComment');
+            $this->render('userListComment', [
+                'comments' => compact('comments'),
+                'pages' => $pages,
+                'numPage' => $paramURL,
+            ]);
         }
     }
 
@@ -149,7 +183,7 @@ class UserCompte extends AbstractController{
                 $oldPassword = $_POST["oldPassword"];
 
                 //recup the informations for the user
-                $dataUser = $this->userManager->readUser($newPassUser);
+                $dataUser = $this->loginManager->readUserLogin($newPassUser);
                 //verify the password length
                 $passwordLength = strlen($_POST['newPassword']);
                 if($passwordLength>=8)

@@ -19,13 +19,10 @@
                             <div class="cardTitre">
                                 <h5 class="card-title font-weight-bold"><?= $article['title_art'] ?></h5>
                                 <p class="card-text"><small class="text-muted"><?php if($article['dateUpdate_art'] > $article['date_art']) { ?>
-                                    
-                                    <td>
-                                        <?= "Mis à jour le ". date('d-m-Y', strtotime($article['dateUpdate_art'])); } else { echo "Créé le ".date('d-m-Y', strtotime($article['date_art'])); } ?> 
-                                        par <b><?= $article['autor_art'] ?></b>
-                                    </td></small>
+                                    <?= "Mis à jour le ". date('d-m-Y', strtotime($article['dateUpdate_art'])); } else { echo "Créé le ".date('d-m-Y', strtotime($article['date_art'])); } ?> 
+                                    par <b><?= $article['autor_art'] ?></b>
+                                    </small>
                                 </p>
-                    
                                 <div class="text-center">
                                     <a class="btn btn-primary btn-art font-weight-bold stretched-link mb-2" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>/1">Lire la suite</a>
                                 </div>

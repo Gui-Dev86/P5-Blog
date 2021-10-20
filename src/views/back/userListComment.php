@@ -15,30 +15,46 @@
             </div>
         </div>
     </div>
-    <div class="col-12">
-        <div class="container contListComment mb-3">
-
-            <!----- foreach comments in comment--->
+    <?php foreach($comments['comments'] as $comment) { ?>
+        <div class="col-12">
+            <div class="container contListComment mb-3">
+         
                 <div class="row">
-                    <p>comments.content</p>
+                    <p><?= $comment['content_com'] ?></p>
                 </div>
-                <div class="row">
-                <!----- if dateuptade is not null--->
-                <!---    <p class="commentInfos">A été créé le comments.date|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong>--->
-                    <!----- else --->
-                    <p class="commentInfos">A été modifié le comments.dateUpdate|date('d/m/Y \\à H:i:s') }} par <strong>comments.pseudo</strong>
-                    <!----- endif --->
-                    <a class="font-weight-bold displayComment" href="<?= local ?>articles/readArticle/2">Afficher le commentaire</a></p>
+                <div class="row"><?php if($comment['dateUpdate_com'] > $comment['date_com']) { 
+                    echo "Mis à jour le ". date('d-m-Y', strtotime($comment['dateUpdate_com'])); } else { echo "Créé le ".date('d-m-Y', strtotime($comment['date_com'])); } ?> 
+                    par&nbsp <b><?= $comment['autor_com'] ?></b>
+                    <a class="font-weight-bold displayComment" href="<?= local ?>articles/readArticle/<?= $comment['id_art'] ?>">Afficher le commentaire</a></p>
                 </div>
-            <!----- endfor --->
-
+           
+            </div>
         </div>
-    </div>
+    <?php } ?>
     <div class="container col-12 my-2">
         <div class="row">   
             <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
-                <a class="font-weight-bold paginationLink" href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
+                <ul class="pagination">
+                <div class="col-md-3 offset-md-2">  
+                    <li class="page-item <?php if($numPage == 1){ echo "disabled"; } ?>">
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>userCompte/userListComment/<?= $numPage - 1 ?>" class="page-link"><<</a>
+                    </li>
+                    </div>
+                    <div class="col-md-2"> 
+                    <?php for($page = 1; $page <= $pages; $page++){ ?>
+                        <li class="page-item <?php if($numPage != $page){ echo "disabled"; } ?>">
+                            <a class="font-weight-bold paginationLink" href="<?= local ?>userCompte/userListComment/<?= $page ?>" class="font-weight-bold link-page"><?= $page ?></a>
+                        </li>
+                    <?php
+                    } ?>
+                    </div>
+                    <div class="col-md-3"> 
+                    <li class="page-item <?php if($numPage == $pages) { echo "disabled"; } ?>">
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>userCompte/userListComment/<?= $numPage + 1 ?>" class="page-link">>></a>
+                    </li>
+                </div>
+                </ul>
             </div>
         </div>
-    </div> 
+    </div>
 </section>
