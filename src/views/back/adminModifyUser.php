@@ -23,23 +23,40 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 offset-md-2 pb-3">
-                <h5>Rôle: <span class="font-italic font-weight-bold"><?php if($user['user']['role_user'] == 1) { echo "Admin"; ?></span></h5>
+                <h5>Rôle: <span class="font-italic font-weight-bold"><?php if($user['user']['role_user'] == 1) { echo "Admin"; } else { echo "Member"; } ?></span></h5>
             </div>
         </div>
+        <?php if($user['user']['id_user'] == 1) { ?>
+            <div class="container col-12 col-md-10">
+                <div class="row justify-content-center">
+                    <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                        <h5 class="font-weight-bold text-center">Le compte principale ne peut pas être modifié.</h5>
+                    </div>
+                </div>
+            </div>
+            <?php } elseif($user['user']['id_user'] == $_SESSION['user']['idUser']) { ?>
+            <div class="container col-12 col-md-10">
+                <div class="row justify-content-center">
+                    <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                        <h5 class="font-weight-bold text-center">Vous ne pouvez pas modifier votre propre rôle.</h5>
+                    </div>
+                </div>
+            </div>
+        <?php } else { ?>
+        <?php if($user['user']['role_user'] == 1) { ?>
         <form method="post" action="<?= local ?>adminManagement/activeUser">
             <div class="form-group row justify-content-center pb-5 ">
                 <button type="submit" name="adminDowngroundUser" class="btn btn-primary font-weight-bold btn-modifyUser">Passer en utilisateur</button>
-                <?php } else { echo "Member"; ?></span></h5>
             </div>
         </form>
-        </div>
+        <?php } else { ?>
+        
         <form method="post" action="<?= local ?>/adminManagement/activeAdmin">
             <div class="form-group row justify-content-center pb-5 ">
                 <button type="submit" name="adminUpgradeUser" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Passer en administrateur</button>
-                <?php } ?> 
             </div>
         </form>
-        <?php if(isset($message)) {
+        <?php } } if(isset($message)) {
             echo $message;
         } ?>
         <div class="row justify-content-center">

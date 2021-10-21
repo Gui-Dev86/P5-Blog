@@ -142,27 +142,39 @@ class adminManagement extends AbstractController {
         }
         if(isset($_POST["adminUpgradeUser"]))
         {
-            //update the user statute
-            $this->userManager->upUserStatute($paramURL);
-            if($_SESSION['user']['idUser'] == $paramURL)
-            {   
-                $updateUser = new User();
-                $updateUser->setIsActiveAdmin_user(true);
-                $dataUser = $this->userManager->readUser($updateUser);
-                $this->createSession($dataUser);
+            if($paramURL == 1)
+            {
+                //recover the datas for one user
+                $user = $this->userManager->readUser($paramURL);
+
+                $message = '<br /><p class = "text-center font-weight-bold mb-5">Le rôle du compte administrateur principal ne peut pas être modifié.<p>';
+                $this->render('adminModifyUser', [
+                    'user' => compact('user'),
+                    'message' => $message,
+                ]);
             }
-            //recover the datas for one user
-            $user = $this->userManager->readUser($paramURL);
-            
-            // On envoie les données à la vue index
-            $this->render('adminModifyUser', [
-                'user' => compact('user'),
-            ]);
+            else
+            {                
+                $updateUser = new User();
+                $updateUser->setRole_user(0);
+                $dataUser = $this->userManager->readUser($paramURL);
+                $this->createSession($dataUser);
+                //Upgrade the user statute
+                $this->userManager->upUserStatute($paramURL);
+               
+                //recover the datas for one user
+                $user = $this->userManager->readUser($paramURL);
+                
+                // On envoie les données à la vue index
+                $this->render('adminModifyUser', [
+                    'user' => compact('user'),
+                ]);
+            }
         }
     }
 
     /**
-     * This method pass the user in user
+     * This method pass the admin in user
      *
      * @return void
      */
@@ -174,21 +186,26 @@ class adminManagement extends AbstractController {
         }
         if(isset($_POST["adminDowngroundUser"]))
         {
-            if($paramURL == 1 && $_SESSION['user']['idUser'] != 1) 
+            if($paramURL == 1) 
             {
                 //recover the datas for one user
                 $user = $this->userManager->readUser($paramURL);
 
-                $message = '<br /><p class = "text-center font-weight-bold mb-5">Le compte administrateur principal ne peut pas être modifié.<p>';
+                $message = '<br /><p class = "text-center font-weight-bold mb-5">Le rôle du compte administrateur principal ne peut pas être modifié.<p>';
                 $this->render('adminModifyUser', [
                     'user' => compact('user'),
                     'message' => $message,
                 ]);
             }
             else
-            {
+            {   
+                $updateUser = new User();
+                $updateUser->setRole_user(1);
+                $dataUser = $this->userManager->readUser($paramURL);
+                $this->createSession($dataUser);
                 //downgrade the user statute
                 $this->userManager->downUserStatute($paramURL);
+                ;
                 
                 //recover the datas for one user
                 $user = $this->userManager->readUser($paramURL);
@@ -214,16 +231,23 @@ class adminManagement extends AbstractController {
         }
         if(isset($_POST["adminActiveCompte"]))
         {
+            $updateUser = new User();
+            $updateUser->setIsActiveAdmin_user(0);
+            $dataUser = $this->userManager->readUser($paramURL);
+
+            $this->createSession($dataUser);
             //active the user compte
             $this->userManager->adminActiveCompte($paramURL);
-
+            
+            
             //recover the datas for one user
             $user = $this->userManager->readUser($paramURL);
-
+            
             // On envoie les données à la vue index
             $this->render('adminModifyUser', [
-            'user' => compact('user'),
+                'user' => compact('user'),
             ]);
+
         }
     }
 
@@ -253,6 +277,10 @@ class adminManagement extends AbstractController {
             }
             else
             {
+                $updateUser = new User();
+                $updateUser->setIsActiveAdmin_user(1);
+                $dataUser = $this->userManager->readUser($paramURL);
+                $this->createSession($dataUser);
                 //desactive the user compte
                 $this->userManager->adminDesactiveCompte($paramURL);
                 

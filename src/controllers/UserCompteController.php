@@ -110,7 +110,7 @@ class UserCompte extends AbstractController{
             $updateUser->setLogin_user(htmlspecialchars($_POST['newLogin']));
             $updateUser->setEmail_user(htmlspecialchars($_POST['newEmail']));
             $updateUser->setDateUpdate_user($date->format('Y-m-d H:i:s'));
-            var_dump($updateUser);
+            
             //Verify if the login and the email are available
             $loginMailAvailable = $this->userManager->loginMailAvailable($updateUser);
 
@@ -123,7 +123,8 @@ class UserCompte extends AbstractController{
                     {
                         $pseudoLength = strlen($_POST['newLogin']);
                         if($pseudoLength<=25)
-                        { $idUser = $_SESSION['user']['idUser'];
+                        {   
+                            $idUser = $_SESSION['user']['idUser'];
                             $this->userManager->updateUser($updateUser, $idUser); 
                         
                             $dataUser = $this->userManager->readUser($idUser);
@@ -237,33 +238,37 @@ class UserCompte extends AbstractController{
     }
 
     /**
-     * This method active the status user
+     * This method active the compte
      *
      */
     public function activeCompteUser() {
         $activeUser = new User();
         $activeUser->setLogin_user(htmlspecialchars($_SESSION['user']['login']));
         $activeUser->setIsActiveUser_user(htmlspecialchars($_SESSION['user']['isActiveUser']));
+        
+        $idUser = $_SESSION['user']['idUser'];
         $this->userManager->activeStatusUser($activeUser);
 
-        $datasUser = $this->userManager->readUser($activeUser);
+        $datasUser = $this->userManager->readUser($idUser);
         //update the user session to display the news datas
         $this->createSession($datasUser);
 
-        header('Location: ' . local.'userCompte');
+       header('Location: ' . local.'userCompte');
     }
 
     /**
-     * This method disable the status user
+     * This method disable the compte
      *
      */
     public function disableCompteUser() {
         $disableStatusUser = new User();
         $disableStatusUser->setLogin_user(htmlspecialchars($_SESSION['user']['login']));
         $disableStatusUser->setIsActiveUser_user(htmlspecialchars($_SESSION['user']['isActiveUser']));
+        
+        $idUser = $_SESSION['user']['idUser'];
         $this->userManager->disableStatusUser($disableStatusUser);
         
-        $datasUser = $this->userManager->readUser($disableStatusUser);
+        $datasUser = $this->userManager->readUser($idUser);
         //update the user session to display the news datas
         $this->createSession($datasUser);
 
