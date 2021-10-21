@@ -6,6 +6,7 @@ use App\src\models\LoginManager;
 use App\src\models\UserManager;
 use App\src\models\ArticleManager;
 use App\src\models\User;
+use DateTime;
 
 class UserCompte extends AbstractController{
 
@@ -101,12 +102,15 @@ class UserCompte extends AbstractController{
 
         if(isset($_POST['modifyDatas'])) 
         {
+            $date = new DateTime();
+
             $updateUser = new User();
             $updateUser->setFirstname_user(htmlspecialchars($_POST['newFirstname']));
             $updateUser->setLastname_user(htmlspecialchars($_POST['newLastname']));
             $updateUser->setLogin_user(htmlspecialchars($_POST['newLogin']));
             $updateUser->setEmail_user(htmlspecialchars($_POST['newEmail']));
-            
+            $updateUser->setDateUpdate_user($date->format('Y-m-d H:i:s'));
+            var_dump($updateUser);
             //Verify if the login and the email are available
             $loginMailAvailable = $this->userManager->loginMailAvailable($updateUser);
 
@@ -119,10 +123,10 @@ class UserCompte extends AbstractController{
                     {
                         $pseudoLength = strlen($_POST['newLogin']);
                         if($pseudoLength<=25)
-                        {
-                            $this->userManager->updateUser($updateUser); 
+                        { $idUser = $_SESSION['user']['idUser'];
+                            $this->userManager->updateUser($updateUser, $idUser); 
                         
-                            $dataUser = $this->userManager->readUser($updateUser);
+                            $dataUser = $this->userManager->readUser($idUser);
                             //update the user session to display the news datas
                             $this->createSession($dataUser);
                             $_POST = [];

@@ -144,7 +144,13 @@ class adminManagement extends AbstractController {
         {
             //update the user statute
             $this->userManager->upUserStatute($paramURL);
-            
+            if($_SESSION['user']['idUser'] == $paramURL)
+            {   
+                $updateUser = new User();
+                $updateUser->setIsActiveAdmin_user(true);
+                $dataUser = $this->userManager->readUser($updateUser);
+                $this->createSession($dataUser);
+            }
             //recover the datas for one user
             $user = $this->userManager->readUser($paramURL);
             

@@ -51,16 +51,17 @@ class UserManager extends AbstractManager {
      * Update the user's datas
      *
      */
-    public function updateUser(User $user)
+    public function updateUser(User $user, $idUser)
     {
-        $sql = 'UPDATE users SET firstname_user = :firstname_user, lastname_user = :lastname_user, login_user = :login_user, email_user = :email_user
+        $sql = 'UPDATE users SET firstname_user = :firstname_user, lastname_user = :lastname_user, login_user = :login_user, email_user = :email_user, dateUpdate_user = :dateUpdate_user
         WHERE id_user = :id_user';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('firstname_user',$user->getFirstname_user(), PDO::PARAM_STR);
         $query->bindValue('lastname_user',$user->getLastname_user(), PDO::PARAM_STR);
         $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
         $query->bindValue('email_user',$user->getEmail_user(), PDO::PARAM_STR);
-        $query->bindValue('id_user',$user->getId_user(), PDO::PARAM_INT);
+        $query->bindValue('dateUpdate_user',$user->getDateUpdate_user(), PDO::PARAM_STR);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_INT);
         $data = $query->execute();
         return $data;
     } 

@@ -7,7 +7,7 @@
                 </h4>
             </div>
         </div>
-    </div>
+    </div><?php var_dump($_SESSION['user']) ?>
     <div class="container col-12 col-md-10">
         <div class="row justify-content-center">
             <div class="container col-12 col-md-8 offset-md-2">
