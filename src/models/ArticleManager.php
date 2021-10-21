@@ -143,6 +143,21 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
+     * Read all comments per article for the admin list
+     *
+     * @return void
+     */
+    public function readAllCommentsAdmin($firstComment, $commentsParPage){
+        $sql = 'SELECT articles.id_art, title_art, id_com, content_com, autor_com, date_com, dateUpdate_com, statut_com, isDeleted_com FROM comments, articles WHERE comments.id_art = articles.id_art ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
+        $query->bindValue(':commentsParPage', $commentsParPage, PDO::PARAM_INT);
+        $query->execute();
+        $dataComments = $query->fetchAll();
+        return $dataComments;
+    }
+
+    /**
      * Read all comments per user
      *
      * @return void
@@ -173,13 +188,26 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
+     * Count all comments number for the admin list
+     *
+     * @return void
+     */
+    public function countAllCommentsAdmin(){
+        $sql = 'SELECT COUNT(*) AS nbCommentsAdmin FROM comments';
+        $query = $this->_connexion->prepare($sql);
+        $query->execute();
+        $commentsCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $commentsCount;
+    }
+
+    /**
      * Save new comment for user
      *
      * @return void
      */
     public function newCommentUser(Comment $comment) {
-        $sql = 'INSERT INTO comments (content_com,autor_com,date_com,dateUpdate_com,statut_com,isActive_com,isDeleted_com,id_art,id_user)
-        VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,NULL,1,0,:id_art,:id_user)';
+        $sql = 'INSERT INTO comments (content_com,autor_com,date_com,dateUpdate_com,statut_com,isDeleted_com,id_art,id_user)
+        VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,NULL,0,:id_art,:id_user)';
         
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
@@ -197,8 +225,8 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function newCommentAdmin(Comment $comment) {
-        $sql = 'INSERT INTO comments (content_com,autor_com,date_com,dateUpdate_com,statut_com,isActive_com,isDeleted_com,id_art,id_user)
-        VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,1,0,0,:id_art,:id_user)';
+        $sql = 'INSERT INTO comments (content_com,autor_com,date_com,dateUpdate_com,statut_com,isDeleted_com,id_art,id_user)
+        VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,1,0,:id_art,:id_user)';
         
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
@@ -230,7 +258,7 @@ class ArticleManager extends AbstractManager {
      */
     public function updateCommentUser(Comment $comment, $idCom)
     {
-        $sql = 'UPDATE comments SET content_com = :content_com, dateUpdate_com = :dateUpdate_com, statut_com = NULL, isActive_com = 1 WHERE id_com = :id_com';
+        $sql = 'UPDATE comments SET content_com = :content_com, dateUpdate_com = :dateUpdate_com, statut_com = NULL WHERE id_com = :id_com';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
         $query->bindValue('dateUpdate_com',$comment->getDateUpdate_com(), PDO::PARAM_STR);
@@ -266,4 +294,18 @@ class ArticleManager extends AbstractManager {
         $data = $query->execute();    
         return $data;
     }
+
+    /**
+     *Validate a comment
+     *
+     */
+    public function adminValidateComment($idCom)
+    {
+        $sql = 'UPDATE comments SET statut_com = 1 WHERE id_com = :id_com';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_com', $idCom, PDO::PARAM_INT);
+        $data = $query->execute();    
+        return $data;
+    }
+
 }

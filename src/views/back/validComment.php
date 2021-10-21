@@ -1,7 +1,7 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-10 my-4">
-            <a class="font-weight-bold retour-listArticle" href="<?= local ?>adminManagement/adminListAllComments">< Page précédente</a>
+            <a class="font-weight-bold retour-listArticle" href="<?= local ?>adminManagement/adminListAllComments/1">< Page précédente</a>
         </div>
     </div>
 </div>
@@ -66,10 +66,10 @@
                         <div class="container">
                             <div class="row pt-2">
                                 <div class=" col-md-3 offset-md-3 text-center">
-                                    <a class="btn btn-primary btnComment mb-3" href="<?= local ?>">Valider le commentaire</a>
+                                    <a class="btn btn-primary btnComment mb-3" href="<?= local ?>adminManagement/validateComment/<?= $comment['id_com'] ?>">Valider le commentaire</a>
                                 </div>
                                 <div class=" col-md-3 text-center">
-                                    <a class="btn btn-warning btnRefuseComment mb-3" href="<?= local ?>">Refuser le commentaire</a>
+                                    <a class="btn btn-warning btnRefuseComment mb-3" href="<?= local ?>articles/refuseComment/<?= $comment['id_com'] ?>">Refuser le commentaire</a>
                                 </div>
                             </div>
                         </div>

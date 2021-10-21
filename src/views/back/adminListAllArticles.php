@@ -44,7 +44,7 @@
                 </table>
             </div>
             <!----- foreach article in articles--->
-            <div class="container tabMobile col-12 col-md-10">
+            <div class="container tabMobile col-12 col-md-10 mb-3">
                 <div class="row justify-content-center">
                     <div class="container col-12 col-md-8 offset-md-2">
                         <table class="panel">

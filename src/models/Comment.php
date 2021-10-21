@@ -35,11 +35,6 @@ class Comment extends AbstractManager {
     private $statut_com;
 
     /**
-     * @var bool $isActive_com comment isActive
-     */
-    private $isActive_com;
-
-    /**
      * @var bool $isDeleted_com comment isDeleted
      */
     private $isDeleted_com;
@@ -185,24 +180,6 @@ class Comment extends AbstractManager {
     public function setStatut_com($statut_com)
     {
         $this->statut_com = $statut_com;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIsActive_com()
-    {
-        return $this->isActive_com;
-    }
-
-    /**
-     * @param mixed $isActive_com
-     * @return Comment
-     */
-    public function setIsActive_com($isActive_com)
-    {
-        $this->isActive_com = $isActive_com;
         return $this;
     }
 

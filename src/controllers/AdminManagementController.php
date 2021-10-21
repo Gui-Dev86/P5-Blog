@@ -61,8 +61,31 @@ class adminManagement extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
+            //recover the third URL parameter number page
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+        
+        //count the comments number in the database
+        $commentsCount = $this->articleManager->countAllCommentsAdmin();
+        $nbCommentsAdmin = (int) $commentsCount['nbCommentsAdmin'];
+        //number of articles per page
+        $commentsParPage = 5;
+        //calculate the pages number
+        $pages = ceil($nbCommentsAdmin / $commentsParPage);
+        //calculate the first comment per page
+        $firstComment = ($paramURL * $commentsParPage) - $commentsParPage;
+        
+        //recover the datas of all comments in $comments
+        $comments = $this->articleManager->readAllCommentsAdmin($firstComment, $commentsParPage);
+        
             // On envoie les données à la vue index
-            $this->render('adminListAllComments');
+            $this->render('adminListAllComments', [
+                'comments' => compact('comments'),
+                'pages' => $pages,
+                'numPage' => $paramURL,
+            ]);
         }
     }
 
@@ -293,6 +316,25 @@ class adminManagement extends AbstractController {
                 ]);
             }
         }
+    }
+
+    /**
+     * This method validate the comment
+     *
+     * @return void
+     */
+    public function validateComment(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminValidateComment($paramURL);
+        
+        // On envoie les données à la vue index
+        $this->render('adminListAllComments');
+
     }
 
 }
