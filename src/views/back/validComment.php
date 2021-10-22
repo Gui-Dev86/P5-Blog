@@ -41,7 +41,10 @@
         </div>
     </div>
     <?php foreach($comments['comments'] as $comment) { ?>
-        <div class="container mb-4 contComment">
+        <div class="container mb-4 contComment <?php if(isset($_SESSION["idCommentPage"]) && !empty($_SESSION["idCommentPage"]))
+        {
+            $idCom = (int) strip_tags($_SESSION["idCommentPage"]);
+        } if($idCom == $comment['id_com']) { echo "backroundValidate"; } ?>">
             <div class="col-12 pt-3">
                 <div class="container">
                     <div class="row">

@@ -11,7 +11,7 @@
     </div>
     <div class="container contArticle col-12 py-3">
         <div class="row">
-            <?php foreach($articles['articles'] as $article) { if($article['isActive_art'] == 1) { ?>
+            <?php foreach($articles['articles'] as $article) { ?>
                 <div class="col-12 contArticle col-md-4 pr-5-md5 mb-3">
                     <div class="card-block">
                         <img class="card-img-top" src="<?= local."public/img/upload/".$article['image_art'] ?>" alt="<?= $article['altImage_art'] ?>">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-            <?php } } ?>
+            <?php } ?>
         </div>
     </div>
     

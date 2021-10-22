@@ -46,8 +46,31 @@ class adminManagement extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-        // On envoie les données à la vue index
-            $this->render('adminListAllArticles');
+            //recover the third URL parameter number page
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+        
+        //count the articles number in the database
+        $articlesCount = $this->articleManager->countAllArticles();
+        $nbArticlesAdmin = (int) $articlesCount['nbArticles'];
+        //number of articles per page
+        $articlesParPage = 5;
+        //calculate the pages number
+        $pages = ceil($nbArticlesAdmin / $articlesParPage);
+        //calculate the first article per page
+        $firstArticle = ($paramURL * $articlesParPage) - $articlesParPage;
+        
+        //recover the datas of all articles in $articles
+        $articles = $this->articleManager->readAllArticles($firstArticle, $articlesParPage);
+        
+            // On envoie les données à la vue index
+            $this->render('adminListAllArticles', [
+                'articles' => compact('articles'),
+                'pages' => $pages,
+                'numPage' => $paramURL,
+            ]);
         }
     }
 

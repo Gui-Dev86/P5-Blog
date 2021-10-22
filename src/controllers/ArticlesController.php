@@ -373,7 +373,15 @@ class Articles extends AbstractController {
         return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
     }
 
+    /**
+     * This method desactive an article
+     *
+     * @return void
+     */
+    public function desactiveArticle(){}
 
+
+    
     /**
      * This method modify an article
      *

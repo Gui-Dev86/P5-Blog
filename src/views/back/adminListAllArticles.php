@@ -29,66 +29,92 @@
                         </tr>
                     </thead>
                     <tbody>
-                         <!----- foreach article in articles--->
-                        <tr>
-                            <td class="column1">Blablabla</td>
-                            <td class="column3">Toto</td>
-                            <td class="column4">15/09/2021</td>
-                            <td class="column5">---</td>
-                            <td class="column6">Oui</td>
-                            <td class="column7"><a class="linkManagement" href="<?= local ?>articles/readArticle/1">Afficher</a></td>
-                            <td class="column8 columnEnd"><a class="linkManagement" href="<?= local ?>articles/modifyArticle">Modifier</a></td>
-                        </tr>
-                        <!---endforeach--->
+                        <?php foreach($articles['articles'] as $article) {?>
+                            <tr>
+                                <td class="column1"><?= substr($article['title_art'], 0, 30) ?>...</td>
+                                <td class="column3"><?= $article['autor_art'] ?></td>
+                                <td class="column4"><?= date('d-m-Y', strtotime($article['date_art'])) ?></td>
+                                <td class="column5"><?php if($article['date_art'] != $article['dateUpdate_art']) { echo  date('d-m-Y', strtotime($article['dateUpdate_art'])); } else { echo "---"; }?></td>
+                                <?php if($article['isActive_art'] == 1) { ?>
+                                    <td class="column6"><a class="linkManagement" href="<?= local ?>articles/desactiveArticle/<?= $article['id_art'] ?>">Oui</a></td>
+                                <?php } else { ?>
+                                    <td><a class="linkManagement" href="<?= local ?>articles/activeArticle/<?= $article['id_art'] ?>">Non</a></td>
+                                <?php } ?>
+                                <td class="column7"><a class="linkManagement" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>">Afficher</a></td>
+                                <td class="column8 columnEnd"><a class="linkManagement" href="<?= local ?>articles/modifyArticle/<?= $article['id_art'] ?>">Modifier</a></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
-            <!----- foreach article in articles--->
-            <div class="container tabMobile col-12 col-md-10 mb-3">
-                <div class="row justify-content-center">
-                    <div class="container col-12 col-md-8 offset-md-2">
-                        <table class="panel">
-                            <tr class="trCompte">
-                                <td>Titre :</td>
-                                <td>Blablabla</td>
-                            </tr>
-                            <tr class="trCompte">
-                                <td>Auteur:</td>
-                                <td>Toto</td>
-                            </tr>
-                            <tr class="trCompte">
-                                <td>Création</td>
-                                <td>15/09/2021</td>
-                            </tr>
-                            <tr class="trCompte">
-                                <td>Mise à jour</td>
-                                <td>---</td>
-                            </tr>
-                            <tr class="trCompte">
-                                <td>Visible</td>
-                                <td>Oui</td>
-                            </tr>
-                            <tr class="trCompte">
-                                <td>Visualiser</td>
-                                <td><a class="linkManagement" href="<?= local ?>articles/readArticle/1">Afficher</a></td>
-                            </tr>
-                            <tr class="trCompte">
-                                <td>Modifier</td>
-                                <td><a class="linkManagement" href="<?= local ?>articles/modifyArticle">Modifier</a></td>
-                            </tr>
-                        </table>
-                        
+            <?php foreach($articles['articles'] as $article) {?>
+                <div class="container tabMobile col-12 col-md-10 mb-3">
+                    <div class="row justify-content-center">
+                        <div class="container col-12 col-md-8 offset-md-2">
+                            <table class="panel">
+                                <tr class="trCompte">
+                                    <td>Titre :</td>
+                                    <td><?= substr($article['title_art'], 0, 30) ?>...</td>
+                                </tr>
+                                <tr class="trCompte">
+                                    <td>Auteur:</td>
+                                    <td><?= $article['autor_art'] ?></td>
+                                </tr>
+                                <tr class="trCompte">
+                                    <td>Création</td>
+                                    <td><?= date('d-m-Y', strtotime($article['date_art'])) ?></td>
+                                </tr>
+                                <tr class="trCompte">
+                                    <td>Mise à jour</td>
+                                    <td><?php if($article['date_art'] != $article['dateUpdate_art']) { echo  date('d-m-Y', strtotime($article['dateUpdate_art'])); } else { echo "---"; }?></td>
+                                </tr>
+                                <tr class="trCompte">
+                                    <td>Visible</td>
+                                    <?php if($article['isActive_art'] == 1) { ?>
+                                            <td><a class="linkManagement" href="<?= local ?>articles/desactiveArticle/<?= $article['id_art'] ?>">Oui</a></td>
+                                    <?php } else { ?>
+                                            <td><a class="linkManagement" href="<?= local ?>articles/activeArticle/<?= $article['id_art'] ?>">Non</a></td>
+                                    <?php } ?>
+                                </tr>
+                                <tr class="trCompte">
+                                    <td>Visualiser</td>
+                                    <td><a class="linkManagement" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>">Afficher</a></td>
+                                </tr>
+                                <tr class="trCompte">
+                                    <td>Modifier</td>
+                                    <td><a class="linkManagement" href="<?= local ?>articles/modifyArticle/<?= $article['id_art'] ?>">Modifier</a></td>
+                                </tr>
+                            </table>             
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!---endforeach--->
+            <?php } ?>
             <div class="container col-12 my-2">
                 <div class="row">   
                     <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
-                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles" class="font-weight-bold link-page">1</a>
+                        <ul class="pagination">
+                        <div class="col-md-3 offset-md-2">  
+                            <li class="page-item <?php if($numPage == 1){ echo "disabled"; } ?>">
+                                <a class="font-weight-bold paginationLink" href="<?= local ?>adminManagement/adminListAllArticles/<?= $numPage - 1 ?>" class="page-link"><<</a>
+                            </li>
+                            </div>
+                            <div class="col-md-2"> 
+                            <?php for($page = 1; $page <= $pages; $page++){ ?>
+                                <li class="page-item <?php if($numPage != $page){ echo "disabled"; } ?>">
+                                    <a class="font-weight-bold paginationLink" href="<?= local ?>adminManagement/adminListAllArticles/<?= $page ?>" class="font-weight-bold link-page"><?= $page ?></a>
+                                </li>
+                            <?php
+                            } ?>
+                            </div>
+                            <div class="col-md-3"> 
+                            <li class="page-item <?php if($numPage == $pages) { echo "disabled"; } ?>">
+                                <a class="font-weight-bold paginationLink" href="<?= local ?>adminManagement/adminListAllArticles/<?= $numPage + 1 ?>" class="page-link">>></a>
+                            </li>
+                        </div>
+                        </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </section>
