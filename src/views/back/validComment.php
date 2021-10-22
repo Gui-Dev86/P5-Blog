@@ -64,12 +64,12 @@
                     </div>
                     <?php if(isset($_SESSION["user"]) && $_SESSION["user"]["role"] == 1 && $comment['statut_com'] == NULL) { ?>
                         <div class="container">
-                            <div class="row pt-2">
-                                <div class=" col-md-3 offset-md-3 text-center">
-                                    <a class="btn btn-primary btnComment mb-3" href="<?= local ?>adminManagement/validateComment/<?= $comment['id_com'] ?>">Valider le commentaire</a>
+                            <div class="row pt-2 pb-3">
+                                <div class="col-md-3 offset-md-3 text-center">
+                                    <a class="linkValidateComment" href="<?= local ?>articles/validateComment/<?= $comment['id_com'] ?>">Valider le commentaire</a>
                                 </div>
-                                <div class=" col-md-3 text-center">
-                                    <a class="btn btn-warning btnRefuseComment mb-3" href="<?= local ?>articles/refuseComment/<?= $comment['id_com'] ?>">Refuser le commentaire</a>
+                                <div class="col-md-3 text-center">
+                                    <a class="linkRefuseComment" href="<?= local ?>articles/refuseComment/<?= $comment['id_com'] ?>">Refuser le commentaire</a>
                                 </div>
                             </div>
                         </div>
@@ -86,20 +86,20 @@
                 <ul class="pagination">
                 <div class="col-md-3 offset-md-2">  
                     <li class="page-item <?php if($numPageComments == 1){ echo "disabled"; } ?>">
-                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/validComment/<?=$article['article'][0]['id_art']?>/<?= $numPageComments - 1 ?>#listComments" class="page-link"><<</a>
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/articleListComments/<?=$article['article'][0]['id_art']?>/<?= $numPageComments - 1 ?>#listComments" class="page-link"><<</a>
                     </li>
                     </div>
                     <div class="col-md-2"> 
                     <?php for($page = 1; $page <= $pagesComments; $page++){ ?>
                         <li class="page-item <?php if($numPageComments != $page){ echo "disabled"; } ?>">
-                            <a class="font-weight-bold paginationLink" href="<?= local ?>articles/validComment/<?=$article['article'][0]['id_art']?>/<?= $numPageComments?>#listComments" class="font-weight-bold link-page"><?= $page ?></a>
+                            <a class="font-weight-bold paginationLink" href="<?= local ?>articles/articleListComments/<?=$article['article'][0]['id_art']?>/<?= $numPageComments?>#listComments" class="font-weight-bold link-page"><?= $page ?></a>
                         </li>
                     <?php
                     } ?>
                     </div>
                     <div class="col-md-3"> 
                     <li class="page-item <?php if($numPageComments == $pagesComments OR $pagesComments < 1) { echo "disabled"; } ?>">
-                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/validComment/<?=$article['article'][0]['id_art']?>/<?= $numPageComments + 1 ?>#listComments" class="page-link">>></a>
+                        <a class="font-weight-bold paginationLink" href="<?= local ?>articles/articleListComments/<?=$article['article'][0]['id_art']?>/<?= $numPageComments + 1 ?>#listComments" class="page-link">>></a>
                     </li>
                 </div>
                 </ul>

@@ -318,23 +318,4 @@ class adminManagement extends AbstractController {
         }
     }
 
-    /**
-     * This method validate the comment
-     *
-     * @return void
-     */
-    public function validateComment(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
-       
-        $this->articleManager->adminValidateComment($paramURL);
-        
-        // On envoie les données à la vue index
-        $this->render('adminListAllComments');
-
-    }
-
 }

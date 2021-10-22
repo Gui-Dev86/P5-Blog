@@ -92,11 +92,11 @@ class Articles extends AbstractController {
     }
 
     /**
-     * This method displays the admin page to valid a comment
-     *
-     * @return void
-     */
-    public function validComment(){
+    * This method displays the admin page to valid a comment
+    *
+    * @return void
+    */
+    public function articleListComments(){
 
         //recover the fourth param in the URL for the id article
         if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
@@ -129,10 +129,64 @@ class Articles extends AbstractController {
     }
 
     /**
-     * This method create an article
-     *
-     * @return void
-     */
+    * This method validate the comment
+    *
+    * @return void
+    */
+    public function validateComment(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminValidateComment($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
+    }
+
+    /**
+    * This method refuse the comment
+    *
+    * @return void
+    */
+    public function refuseComment(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminRefuseComment($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
+    }
+
+    /**
+    * This method initialise the comment to change the validate/refuse
+    *
+    * @return void
+    */
+    public function initialiseComment(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminInitialiseComment($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
+    }
+
+    /**
+    * This method create an article
+    *
+    * @return void
+    */
     public function createArticle(){
         if($this->isLogged() == false) {
             header('Location: ' . local);

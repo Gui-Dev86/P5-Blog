@@ -132,7 +132,7 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function readAllComments($idArt, $firstComment, $commentsParPage){
-        $sql = 'SELECT * FROM comments WHERE id_art = :id_art ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $sql = 'SELECT * FROM comments WHERE id_art = :id_art AND isDeleted_com = 0 ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
         $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
@@ -148,7 +148,7 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function readAllCommentsAdmin($firstComment, $commentsParPage){
-        $sql = 'SELECT articles.id_art, title_art, id_com, content_com, autor_com, date_com, dateUpdate_com, statut_com, isDeleted_com FROM comments, articles WHERE comments.id_art = articles.id_art ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $sql = 'SELECT articles.id_art, title_art, id_com, content_com, autor_com, date_com, dateUpdate_com, statut_com, isDeleted_com FROM comments, articles WHERE comments.id_art = articles.id_art AND isDeleted_com = 0 ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
         $query->bindValue(':commentsParPage', $commentsParPage, PDO::PARAM_INT);
@@ -179,7 +179,7 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function countAllComments($idArt){
-        $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE id_art = :id_art';
+        $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE id_art = :id_art AND isDeleted_com = 0';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
         $query->execute();
@@ -193,7 +193,7 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function countAllCommentsAdmin(){
-        $sql = 'SELECT COUNT(*) AS nbCommentsAdmin FROM comments';
+        $sql = 'SELECT COUNT(*) AS nbCommentsAdmin FROM comments WHERE isDeleted_com = 0';
         $query = $this->_connexion->prepare($sql);
         $query->execute();
         $commentsCount = $query->fetch(PDO::FETCH_ASSOC);
@@ -302,6 +302,32 @@ class ArticleManager extends AbstractManager {
     public function adminValidateComment($idCom)
     {
         $sql = 'UPDATE comments SET statut_com = 1 WHERE id_com = :id_com';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_com', $idCom, PDO::PARAM_INT);
+        $data = $query->execute();    
+        return $data;
+    }
+
+    /**
+     *Refuse a comment
+     *
+     */
+    public function adminRefuseComment($idCom)
+    {
+        $sql = 'UPDATE comments SET statut_com = 0 WHERE id_com = :id_com';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_com', $idCom, PDO::PARAM_INT);
+        $data = $query->execute();    
+        return $data;
+    }
+
+    /**
+     *Initialise a comment to restart the comment management
+     *
+     */
+    public function adminInitialiseComment($idCom)
+    {
+        $sql = 'UPDATE comments SET statut_com = NULL WHERE id_com = :id_com';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':id_com', $idCom, PDO::PARAM_INT);
         $data = $query->execute();    
