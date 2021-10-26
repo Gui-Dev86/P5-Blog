@@ -27,7 +27,7 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Adresse email :</td>
-                        <td><?php print_r(htmlspecialchars($_SESSION['user']['email'])); ?></td>
+                        <td><?= htmlspecialchars($_SESSION['user']['email']); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Date de création du compte : </td>
