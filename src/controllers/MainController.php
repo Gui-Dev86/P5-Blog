@@ -52,12 +52,12 @@ class Main extends AbstractController{
                     
                         //SMTP Configuration and prepare the mail
                         $mail->isSMTP();
-                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->Host       = smtp;
                         $mail->SMTPAuth   = true;
                         $mail->Username   = email;
                         $mail->Password   = passwordEmail;
                         $mail->SMTPSecure = "tls";
-                        $mail->Port       = 587;
+                        $mail->Port       = port;
                         $mail->Charset = "utf-8";
                         $mail->addAddress(email);
                         $mail->setFrom($emailUser);

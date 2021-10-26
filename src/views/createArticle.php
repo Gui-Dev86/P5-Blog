@@ -34,10 +34,11 @@
             </div>
             <div class="form-group">
                 <label for="uploadfile">Image</label>
-                <input class="mb-3" type="file"
+                <input type="file"
                     id="uploadfile" name="uploadfile"
                     accept="image/png, image/jpeg">
             </div>
+            <p class = "font-weight-bold font-italic mb-3">**Attention à bien sélectionner une image au format png ou jpeg.</p>
             <div class="form-group">
                 <label for="altImage">Description de l'image</label>
                 <input type="text" class="form-control" id="altImage" name="altImage">

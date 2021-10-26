@@ -16,42 +16,47 @@
         </div>
     </div>
     <div class="container">
-        <form action="index.php?page=article&method=createArticle" method="post">
+        <form action="<?= local ?>articles/modifyArticleContent/<?= $article['article'][0]['id_art'] ?>" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="title">Titre</label>
-                <input type="text" class="form-control"  id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title" value="<?= $article['article'][0]['title_art'] ?>">
             </div>
 
             <div class="form-group">
                 <label for="chapo">Extrait</label>
-                <input type="text" class="form-control" id="chapo" name="chapo">
+                <input type="text" class="form-control" id="chapo" name="chapo" value="<?= $article['article'][0]['chapo_art'] ?>">
             </div>
 
             <div class="form-group">
                 <label for="content">Contenu</label>
-                <textarea type="text" class="form-control" rows="10" id="content" name="content"></textarea>
+                <textarea type="text" class="form-control" rows="10" id="content" name="content"><?= $article['article'][0]['content_art'] ?></textarea>
+            </div>   
+            <div class="mb-3">
+                <img class="imgModify" src="<?= local."public/img/upload/".$article['article'][0]['image_art'] ?>" alt="<?= $article['article'][0]['altImage_art']; ?>">
             </div>
-            <label for="imgArt">Image</label>
-            <input type="file"
-                id="imgFileArt" name="imgFileArt"
-                accept="image/png, image/jpeg">
+            <div class="form-group">
+                <label for="uploadfile">Image</label>
+                <input type="file"
+                    id="uploadfile" name="uploadfile"
+                    accept="image/png, image/jpeg">
+            </div>
+            <p class = "font-weight-bold font-italic mb-3">**Attention à bien sélectionner une image au format png ou jpeg.</p>
+            <div class="form-group">
+                <label for="altImage">Description de l'image</label>
+                <input type="text" class="form-control" id="altImage" name="altImage" value="<?= $article['article'][0]['altImage_art'] ?>">
+            </div>
             <div class = "btnCenterModifyArticle">
-                <button type="submit" class="btn btn-primary font-weight-bold btn-modifyArt mt-4">Modifier</button>
+                <button type="submit" name="formModifyArticle" class="btn btn-primary font-weight-bold btn-modifyArt my-4">Modifier</button>
             </div>
         </form>
-        <?php if($article[0]["isActive_art"] == 1) { ?>
-            <form method="post" action="<?= local ?>admin/desactiveArticle">
-                <div class = "mb-3 btnCenterDisplayArticle">
-                    <button type="submit" name="hideArticle" class="btn btn-primary font-weight-bold btn-modifyArt">Dissimuler l'article</button>
-                </div>
-            </form>
-        <?php } else { ?>
-            <form method="post" action="<?= local ?>admin/activeArticle">
-                <div class = "mb-3 btnCenterDisplayArticle">
-                    <button type="submit" name="viewArticle" class="btn btn-primary font-weight-bold btn-modifyArt">Afficher l'article</button>
-                </div>
-            </form>
-        <?php } ?>
+        <?php if(isset($_SESSION['valide'])) {
+            echo $_SESSION['valide'];
+            unset($_SESSION['valide']);
+        } ?>
+        <?php if(isset($_SESSION['error'])) {
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+        } ?>
     </div>
 </section>

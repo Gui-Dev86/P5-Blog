@@ -19,7 +19,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Read all articles
+     * Read all active articles for the page article
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Count the articles number
+     * Count the active articles number for the pagination in the page article
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class ArticleManager extends AbstractManager {
     }
     
     /**
-     * Read all articles
+     * Read one article for open a page with a single article
      *
      * @return void
      */
@@ -58,6 +58,34 @@ class ArticleManager extends AbstractManager {
         $query->execute();
         $dataArticles = $query->fetchAll();
         return $dataArticles;
+    }
+
+     /**
+     * Read all articles visible or not for the page admin article
+     *
+     * @return void
+     */
+    public function readAllArticlesAdmin($firstArticle, $articlesParPage){
+        $sql = 'SELECT * FROM articles ORDER BY dateUpdate_art DESC LIMIT :firstArticle, :articlesParPage';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':firstArticle', $firstArticle, PDO::PARAM_INT);
+        $query->bindValue(':articlesParPage', $articlesParPage, PDO::PARAM_INT);
+        $query->execute();
+        $dataArticles = $query->fetchAll();
+        return $dataArticles;
+    }
+
+     /**
+     * Count the active articles number, visible or not for the pagination in the page article admin
+     *
+     * @return void
+     */
+    public function countAllArticlesAdmin(){
+        $sql = 'SELECT COUNT(*) AS nbArticles FROM articles';
+        $query = $this->_connexion->prepare($sql);
+        $query->execute();
+        $articlesCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $articlesCount;
     }
 
     /**
@@ -99,7 +127,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Count the validate comments number in the article
+     * Count the validate comments number in the article for the pagination
      *
      * @return void
      */
@@ -113,7 +141,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Count the comments number of the user
+     * Count the comments number of an user, validate and not validate for the pagination in the user options
      *
      * @return void
      */
@@ -127,7 +155,7 @@ class ArticleManager extends AbstractManager {
     }
 
      /**
-     * Read all comments per article
+     * Read all comments per article validate or not for the validate comments page
      *
      * @return void
      */
@@ -143,7 +171,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Read all comments per article for the admin list
+     * Read all comments and article title for the admin list
      *
      * @return void
      */
@@ -158,7 +186,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     * Read all comments per user
+     * Read all comments per user for the comment list in the user options
      *
      * @return void
      */
@@ -268,7 +296,7 @@ class ArticleManager extends AbstractManager {
     }
 
     /**
-     *Admin modify his own comment
+     *Admin modify his own comment it is immediatly validate
      *
      */
     public function updateCommentAdmin(Comment $comment, $idCom)
@@ -334,4 +362,49 @@ class ArticleManager extends AbstractManager {
         return $data;
     }
 
+    /**
+     *Show the article
+     *
+     */
+    public function adminShowArticle($idArt)
+    {
+        $sql = 'UPDATE articles SET isActive_art = 1 WHERE id_art = :id_art';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
+        $data = $query->execute();    
+        return $data;
+    }
+
+    /**
+     *Hide the article
+     *
+     */
+    public function adminHideArticle($idArt)
+    {
+        $sql = 'UPDATE articles SET isActive_art = 0 WHERE id_art = :id_art';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue(':id_art', $idArt, PDO::PARAM_INT);
+        $data = $query->execute();    
+        return $data;
+    }
+
+    /**
+     *Modify an article
+     *
+     */
+    public function updateArticle($article, $idArt) 
+    {
+        $sql = 'UPDATE articles SET title_art = :title_art, chapo_art = :chapo_art, content_art = :content_art, dateUpdate_art = :dateUpdate_art, image_art = :image_art,
+        altImage_art = :altImage_art WHERE id_art = :id_art';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('title_art',$article->getTitle_art(), PDO::PARAM_STR);
+        $query->bindValue('chapo_art',$article->getChapo_art(), PDO::PARAM_STR);
+        $query->bindValue('content_art',$article->getContent_art(), PDO::PARAM_STR);
+        $query->bindValue('dateUpdate_art',$article->getDateUpdate_art(), PDO::PARAM_STR);
+        $query->bindValue('image_art',$article->getImage_art(), PDO::PARAM_STR);
+        $query->bindValue('altImage_art',$article->getAltImage_art(), PDO::PARAM_STR);
+        $query->bindValue('id_art',$idArt, PDO::PARAM_INT);
+        $data = $query->execute();    
+        return $data;
+    }
 }

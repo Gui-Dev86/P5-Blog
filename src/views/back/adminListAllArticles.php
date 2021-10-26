@@ -36,11 +36,11 @@
                                 <td class="column4"><?= date('d-m-Y', strtotime($article['date_art'])) ?></td>
                                 <td class="column5"><?php if($article['date_art'] != $article['dateUpdate_art']) { echo  date('d-m-Y', strtotime($article['dateUpdate_art'])); } else { echo "---"; }?></td>
                                 <?php if($article['isActive_art'] == 1) { ?>
-                                    <td class="column6"><a class="linkManagement" href="<?= local ?>articles/desactiveArticle/<?= $article['id_art'] ?>">Oui</a></td>
+                                    <td class="column6"><a class="linkManagement" href="<?= local ?>adminManagement/desactiveArticle/<?= $article['id_art'] ?>">Oui</a></td>
                                 <?php } else { ?>
-                                    <td><a class="linkManagement" href="<?= local ?>articles/activeArticle/<?= $article['id_art'] ?>">Non</a></td>
+                                    <td><a class="linkManagement" href="<?= local ?>adminManagement/activeArticle/<?= $article['id_art'] ?>">Non</a></td>
                                 <?php } ?>
-                                <td class="column7"><a class="linkManagement" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>">Afficher</a></td>
+                                <td class="column7"><a class="linkManagement" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>/1">Afficher</a></td>
                                 <td class="column8 columnEnd"><a class="linkManagement" href="<?= local ?>articles/modifyArticle/<?= $article['id_art'] ?>">Modifier</a></td>
                             </tr>
                         <?php } ?>
@@ -71,14 +71,14 @@
                                 <tr class="trCompte">
                                     <td>Visible</td>
                                     <?php if($article['isActive_art'] == 1) { ?>
-                                            <td><a class="linkManagement" href="<?= local ?>articles/desactiveArticle/<?= $article['id_art'] ?>">Oui</a></td>
+                                            <td><a class="linkManagement" href="<?= local ?>adminManagement/desactiveArticle/<?= $article['id_art'] ?>">Oui</a></td>
                                     <?php } else { ?>
-                                            <td><a class="linkManagement" href="<?= local ?>articles/activeArticle/<?= $article['id_art'] ?>">Non</a></td>
+                                            <td><a class="linkManagement" href="<?= local ?>adminManagement/activeArticle/<?= $article['id_art'] ?>">Non</a></td>
                                     <?php } ?>
                                 </tr>
                                 <tr class="trCompte">
                                     <td>Visualiser</td>
-                                    <td><a class="linkManagement" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>">Afficher</a></td>
+                                    <td><a class="linkManagement" href="<?= local ?>articles/readArticle/<?= $article['id_art'] ?>/1">Afficher</a></td>
                                 </tr>
                                 <tr class="trCompte">
                                     <td>Modifier</td>

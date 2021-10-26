@@ -69,10 +69,10 @@
                         <div class="container">
                             <div class="row pt-2 pb-3">
                                 <div class="col-md-3 offset-md-3 text-center">
-                                    <a class="linkValidateComment" href="<?= local ?>articles/validateComment/<?= $comment['id_com'] ?>">Valider le commentaire</a>
+                                    <a class="linkValidateComment font-weight-bold" href="<?= local ?>adminManagement/validateComment/<?= $comment['id_com'] ?>">Valider le commentaire</a>
                                 </div>
                                 <div class="col-md-3 text-center">
-                                    <a class="linkRefuseComment" href="<?= local ?>articles/refuseComment/<?= $comment['id_com'] ?>">Refuser le commentaire</a>
+                                    <a class="linkRefuseComment font-weight-bold" href="<?= local ?>adminManagement/refuseComment/<?= $comment['id_com'] ?>">Refuser le commentaire</a>
                                 </div>
                             </div>
                         </div>

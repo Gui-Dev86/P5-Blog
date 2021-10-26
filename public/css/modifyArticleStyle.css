@@ -34,6 +34,12 @@ h3 {
     text-align: center;
 }
 
+.imgModify {
+    width: 50%;
+}
+.disabled {
+    display: none !important;
+}
 @media (max-width: 768px) {
     
     h3 {

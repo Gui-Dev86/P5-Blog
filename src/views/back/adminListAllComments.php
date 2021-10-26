@@ -29,8 +29,8 @@
                             <td class="column4"><?= date('d-m-Y', strtotime($comment['date_com'])); ?></td>
                             <td class="column5"><?php if($comment['date_com'] != $comment['dateUpdate_com']) {echo date('d-m-Y', strtotime($comment['dateUpdate_com'])); } else { echo "---"; }?></td>
                             <td class="column6 <?php if($comment['statut_com'] == NULL) { ?> statutEnCours <?php } ?>"><?php if($comment['statut_com'] == 1) { echo "Validé"; } elseif($comment['statut_com'] == NULL) { echo "En cours"; } else { echo "Refusé"; } ?></td>
-                            <td class="column7"><a class="linkManagement" href="<?= local ?>articles/articleListComments/<?= $comment['id_art'] ?>/1/<?= $comment['id_com'] ?>">Afficher</a></td>
-                            <td class="column8 columnEnd"><a class="linkManagement" href="<?= local ?>articles/initialiseComment/<?= $comment['id_com'] ?>">Réinitialiser</a></td>
+                            <td class="column7"><a class="linkManagement" href="<?= local ?>adminManagement/articleListComments/<?= $comment['id_art'] ?>/1/<?= $comment['id_com'] ?>">Afficher</a></td>
+                            <td class="column8 columnEnd"><a class="linkManagement" href="<?= local ?>adminManagement/initialiseComment/<?= $comment['id_com'] ?>">Réinitialiser</a></td>
                         </tr>
                         <?php } ?>
                     </tbody>
@@ -63,11 +63,11 @@
                                 </tr>
                                 <tr class="trCompte">
                                     <td>Visualiser</td>
-                                    <td><a class="linkManagement" href="<?= local ?>articles/readArticle/<?= $comment['id_art'] ?>">Afficher</a></td>
+                                    <td><a class="linkManagement" href="<?= local ?>adminManagement/articleListComments/<?= $comment['id_art'] ?>/1/<?= $comment['id_com'] ?>">Afficher</a></td>
                                 </tr>
                                 <tr class="trCompte">
                                     <td>Modifier statut</td>
-                                    <td><a class="linkManagement" href="<?= local ?>articles/initialiseComment/<?= $comment['id_com'] ?>">Réinitialiser</a></td>
+                                    <td><a class="linkManagement" href="<?= local ?>adminManagement/initialiseComment/<?= $comment['id_com'] ?>">Réinitialiser</a></td>
                                 </tr>
                             </table>
                         </div>

@@ -238,7 +238,7 @@ class UserCompte extends AbstractController{
     }
 
     /**
-     * This method active the compte
+     * This method active the compte by the user
      *
      */
     public function activeCompteUser() {
@@ -257,7 +257,7 @@ class UserCompte extends AbstractController{
     }
 
     /**
-     * This method disable the compte
+     * This method disable the compte by the user
      *
      */
     public function disableCompteUser() {

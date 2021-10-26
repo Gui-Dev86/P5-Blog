@@ -18,6 +18,7 @@ class Articles extends AbstractController {
     {
         $this->userManager = new UserManager();
         $this->articleManager = new ArticleManager();
+    
     }
 
     /**
@@ -27,12 +28,7 @@ class Articles extends AbstractController {
      */
     public function pageArticles() {
 
-        //recover the third URL parameter number page or id article
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
-        
+        $params = explode('/', $_GET['p']);
         //count the articles number in the database
         $articlesCount = $this->articleManager->countAllArticles();
         $nbArticles = (int) $articlesCount['nbArticles'];
@@ -41,7 +37,7 @@ class Articles extends AbstractController {
         //calculate the pages number
         $pages = ceil($nbArticles / $articlesParPage);
         //calculate the first article per page
-        $firstArticle = ($paramURL * $articlesParPage) - $articlesParPage;
+        $firstArticle = ($params[2] * $articlesParPage) - $articlesParPage;
         
         //recover the datas of all articles in $articles
         $articles = $this->articleManager->readAllArticles($firstArticle, $articlesParPage);
@@ -50,7 +46,7 @@ class Articles extends AbstractController {
         $this->render('listArticles', [
             'articles' => compact('articles'),
             'pages' => $pages,
-            'numPage' => $paramURL,
+            'numPage' => $params[2],
         ]);
     }
 
@@ -60,17 +56,13 @@ class Articles extends AbstractController {
      * @return void
      */
     public function readArticle(){
-
-        //recover the fourth param in the URL for the id article
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $idArt = (int) strip_tags($_SESSION["paramURL"]);
-        }
+        
+        $params = explode('/', $_GET['p']);
+        //recover the third param in the URL for the id article
+        $idArt = $params[2];
         //recover the fourth param in the URL for the comment page
-        if(isset($_SESSION["commentPage"]) && !empty($_SESSION["commentPage"]))
-        {
-            $pageURL = (int) strip_tags($_SESSION['commentPage']);
-        }
+        $pageURL = $params[3];
+        
         //recover the datas of one article
         $article = $this->articleManager->readArticle($idArt);
 
@@ -89,97 +81,6 @@ class Articles extends AbstractController {
             'pagesComments' => $pagesComments,
             'numPageComments' => $pageURL,
         ]);
-    }
-
-    /**
-    * This method displays the admin page to valid a comment
-    *
-    * @return void
-    */
-    public function articleListComments(){
-
-        //recover the fourth param in the URL for the id article
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $idArt = (int) strip_tags($_SESSION["paramURL"]);
-        }
-        //recover the fourth param in the URL for the comment page
-        if(isset($_SESSION["commentPage"]) && !empty($_SESSION["commentPage"]))
-        {
-            $pageURL = (int) strip_tags($_SESSION['commentPage']);
-        }
-        //recover the datas of one article
-        $article = $this->articleManager->readArticle($idArt);
-
-        $commentsCount = $this->articleManager->countAllComments($idArt);
-        $nbComments = (int) $commentsCount['nbComments'];
-        $commentsParPage = 5;
-        $pagesComments = ceil($nbComments / $commentsParPage);
-        $firstComment = ($pageURL * $commentsParPage) - $commentsParPage;
-        
-        //recover the comments for one article
-        $comments = $this->articleManager->readAllComments($idArt, $firstComment, $commentsParPage);
-
-        $this->render('validComment', [
-            'article' => compact('article'),
-            'comments' => compact('comments'),
-            'pagesComments' => $pagesComments,
-            'numPageComments' => $pageURL,
-        ]);
-    }
-
-    /**
-    * This method validate the comment
-    *
-    * @return void
-    */
-    public function validateComment(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
-       
-        $this->articleManager->adminValidateComment($paramURL);
-        
-        // On envoie les données à la vue index
-        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
-    }
-
-    /**
-    * This method refuse the comment
-    *
-    * @return void
-    */
-    public function refuseComment(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
-       
-        $this->articleManager->adminRefuseComment($paramURL);
-        
-        // On envoie les données à la vue index
-        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
-    }
-
-    /**
-    * This method initialise the comment to change the validate/refuse
-    *
-    * @return void
-    */
-    public function initialiseComment(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
-       
-        $this->articleManager->adminInitialiseComment($paramURL);
-        
-        // On envoie les données à la vue index
-        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
     }
 
     /**
@@ -220,9 +121,19 @@ class Articles extends AbstractController {
                         $altImageLength = strlen($_POST['altImage']);
                         if($altImageLength<=25)
                         {
-                            $this->articleManager->newArticle($newArticle); 
-                            $_POST = [];
-                            return header('Location: ' . local . 'articles/pageArticles/1');
+                            if($_FILES["uploadfile"]["name"] != "")
+                            {
+                                $this->articleManager->newArticle($newArticle); 
+                                $_POST = [];
+                                return header('Location: ' . local . 'articles/pageArticles/1');
+                            }
+                            else
+                            {
+                                $error = "<br /><p class = font-weight-bold>*Vous n'avez pas sélectionné d'image<p>";
+                                return $this->render('createArticle', [
+                                    'error' => $error,
+                                ]);
+                            }
                         }
                         else
                         {
@@ -263,10 +174,9 @@ class Articles extends AbstractController {
      */
     public function createModifyComment(){
 
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $idArt = (int) strip_tags($_SESSION["paramURL"]);
-        }
+        $params = explode('/', $_GET['p']);
+        //recover the third param in the URL for the id article
+        $idArt = $params[2];
 
         if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage']))
         {
@@ -337,15 +247,11 @@ class Articles extends AbstractController {
      */
     public function readModifyComment() {
 
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $idArt = (int) strip_tags($_SESSION["paramURL"]);
-        }
-        
-        if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage']))
-        {
-            $idCom = (int) strip_tags($_SESSION['idCommentPage']);
-        }
+        $params = explode('/', $_GET['p']);
+        //recover the third param in the URL for the id article
+        $idArt = $params[2];
+       
+        $idCom = $params[4];
         
         $comment = $this->articleManager->readComment($idCom);
         $_SESSION['comment'] = $comment;
@@ -372,18 +278,9 @@ class Articles extends AbstractController {
         unset($_SESSION['idCommentPage']);
         return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
     }
-
-    /**
-     * This method desactive an article
-     *
-     * @return void
-     */
-    public function desactiveArticle(){}
-
-
     
     /**
-     * This method modify an article
+     * This method display the page to modify an article
      *
      * @return void
      */
@@ -392,7 +289,90 @@ class Articles extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-            $this->render('modifyArticle');
+            //recover the fourth param in the URL for the id article
+            if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+            {
+                $idArt = (int) strip_tags($_SESSION["paramURL"]);
+            }
+            //recover the datas of one article
+            $article = $this->articleManager->readArticle($idArt);
+            $this->render('modifyArticle', [
+                'article' => compact('article'),
+            ]);
+        }
+    }
+
+    /**
+     * This method modify the article content
+     *
+     * @return void
+     */
+    public function modifyArticleContent(){
+        
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        }
+        
+        if(isset($_POST['formModifyArticle'])) 
+        {   
+            $date = new DateTime();
+            $filename = $_FILES["uploadfile"]["name"];
+            $tempname = $_FILES["uploadfile"]["tmp_name"];
+            $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
+            if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
+           
+            //recover the datas of one article
+            $article = $this->articleManager->readArticle($idArt);
+
+            $date = new DateTime();
+            $newArticle = new Article();
+            $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
+            $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
+            $newArticle->setContent_art(htmlspecialchars($_POST['content']));
+            if($filename != "") {
+                $newArticle->setImage_art(htmlspecialchars($filename));
+            }
+            else
+            {
+                $newArticle->setImage_art(htmlspecialchars($article[0]['image_art']));
+            }
+            $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
+            $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
+
+            if(isset($_POST['title']) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
+            AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
+            {
+                $titleLength = strlen($_POST['title']);
+                if($titleLength<=255)
+                {
+                    $altImageLength = strlen($_POST['altImage']);
+                    if($altImageLength<=25)
+                    {
+                        $this->articleManager->updateArticle($newArticle, $idArt); 
+                        $_POST = [];
+                        $_SESSION['valide'] = "<br /><p class = font-weight-bold>*Votre modification a bien été prise en compte<p>";
+                        return header('Location: ' . local . 'articles/modifyArticle/'.$idArt.''); 
+                    }
+                    else
+                    {
+                        $_SESSION['error'] = "<br /><p class = font-weight-bold>*Votre description d'image ne doit pas dépasser 25 caractères<p>";
+                        return header('Location: ' . local . 'articles/modifyArticle/'.$idArt.'');
+                    }
+                }
+                else
+                {
+                    $_SESSION['error'] = "<br /><p class = font-weight-bold>*Votre titre ne doit pas dépasser 255 caractères<p>";
+                    return header('Location: ' . local . 'articles/modifyArticle/'.$idArt.'');
+                }         
+            }
+            else
+            {
+            
+            $_SESSION['error'] = "<br /><p class = font-weight-bold>*Tous les champs n'ont pas été remplis<p>";
+            return header('Location: ' . local . 'articles/modifyArticle/'.$idArt.'');
+        
+            }
         }
     }
     

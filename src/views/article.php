@@ -108,7 +108,7 @@
         <section class="container col-10" id="newComment">
             <div class="container contNewComment">
                 <div class="row">
-                    <form class="col-12" action="<?= local ?>articles/createModifyComment" method="post">
+                    <form class="col-12" action="<?= local ?>articles/createModifyComment/<?=$article['article'][0]['id_art']?>" method="post">
                         <div class="form-group" id="ancreNewComment">
                             <label for="exampleFormControlTextarea1">Commentaire</label>
                             <textarea class="form-control" id="comment" name="commentContent" rows="3"><?php if(isset($_SESSION['comment'])) { echo $_SESSION['comment'][0]['content_com']; unset($_SESSION['comment']); } ?></textarea>

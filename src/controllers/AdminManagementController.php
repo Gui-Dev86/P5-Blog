@@ -53,7 +53,7 @@ class adminManagement extends AbstractController {
         }
         
         //count the articles number in the database
-        $articlesCount = $this->articleManager->countAllArticles();
+        $articlesCount = $this->articleManager->countAllArticlesAdmin();
         $nbArticlesAdmin = (int) $articlesCount['nbArticles'];
         //number of articles per page
         $articlesParPage = 5;
@@ -63,7 +63,7 @@ class adminManagement extends AbstractController {
         $firstArticle = ($paramURL * $articlesParPage) - $articlesParPage;
         
         //recover the datas of all articles in $articles
-        $articles = $this->articleManager->readAllArticles($firstArticle, $articlesParPage);
+        $articles = $this->articleManager->readAllArticlesAdmin($firstArticle, $articlesParPage);
         
             // On envoie les données à la vue index
             $this->render('adminListAllArticles', [
@@ -175,6 +175,43 @@ class adminManagement extends AbstractController {
         }
     }
 
+/**
+    * This method displays the admin page to valid a comment
+    *
+    * @return void
+    */
+    public function articleListComments(){
+
+        //recover the fourth param in the URL for the id article
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        }
+        //recover the fourth param in the URL for the comment page
+        if(isset($_SESSION["commentPage"]) && !empty($_SESSION["commentPage"]))
+        {
+            $pageURL = (int) strip_tags($_SESSION['commentPage']);
+        }
+        //recover the datas of one article
+        $article = $this->articleManager->readArticle($idArt);
+
+        $commentsCount = $this->articleManager->countAllComments($idArt);
+        $nbComments = (int) $commentsCount['nbComments'];
+        $commentsParPage = 5;
+        $pagesComments = ceil($nbComments / $commentsParPage);
+        $firstComment = ($pageURL * $commentsParPage) - $commentsParPage;
+        
+        //recover the comments for one article
+        $comments = $this->articleManager->readAllComments($idArt, $firstComment, $commentsParPage);
+
+        $this->render('validComment', [
+            'article' => compact('article'),
+            'comments' => compact('comments'),
+            'pagesComments' => $pagesComments,
+            'numPageComments' => $pageURL,
+        ]);
+    }
+
     /**
      * This method pass the user in admin
      *
@@ -201,10 +238,6 @@ class adminManagement extends AbstractController {
             }
             else
             {                
-                $updateUser = new User();
-                $updateUser->setRole_user(0);
-                $dataUser = $this->userManager->readUser($paramURL);
-                $this->createSession($dataUser);
                 //Upgrade the user statute
                 $this->userManager->upUserStatute($paramURL);
                
@@ -245,10 +278,6 @@ class adminManagement extends AbstractController {
             }
             else
             {   
-                $updateUser = new User();
-                $updateUser->setRole_user(1);
-                $dataUser = $this->userManager->readUser($paramURL);
-                $this->createSession($dataUser);
                 //downgrade the user statute
                 $this->userManager->downUserStatute($paramURL);
                 ;
@@ -277,11 +306,6 @@ class adminManagement extends AbstractController {
         }
         if(isset($_POST["adminActiveCompte"]))
         {
-            $updateUser = new User();
-            $updateUser->setIsActiveAdmin_user(0);
-            $dataUser = $this->userManager->readUser($paramURL);
-
-            $this->createSession($dataUser);
             //active the user compte
             $this->userManager->adminActiveCompte($paramURL);
             
@@ -323,10 +347,6 @@ class adminManagement extends AbstractController {
             }
             else
             {
-                $updateUser = new User();
-                $updateUser->setIsActiveAdmin_user(1);
-                $dataUser = $this->userManager->readUser($paramURL);
-                $this->createSession($dataUser);
                 //desactive the user compte
                 $this->userManager->adminDesactiveCompte($paramURL);
                 
@@ -341,4 +361,94 @@ class adminManagement extends AbstractController {
         }
     }
 
+    /**
+    * This method validate the comment
+    *
+    * @return void
+    */
+    public function validateComment(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminValidateComment($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
+    }
+
+    /**
+    * This method refuse the comment
+    *
+    * @return void
+    */
+    public function refuseComment(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminRefuseComment($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
+    }
+
+    /**
+    * This method initialise the comment to change the validate/refuse
+    *
+    * @return void
+    */
+    public function initialiseComment(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminInitialiseComment($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
+    }
+
+    /**
+     * This method active an article
+     *
+     * @return void
+     */
+    public function activeArticle(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminShowArticle($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllArticles/1');
+    }
+
+    /**
+     * This method desactive an article
+     *
+     * @return void
+     */
+    public function desactiveArticle(){
+        //recover the third URL parameter user id
+        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
+        {
+            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        }
+       
+        $this->articleManager->adminHideArticle($paramURL);
+        
+        // On envoie les données à la vue index
+        return header('Location: ' . local . 'adminManagement/adminListAllArticles/1');
+    }
+    
 }
