@@ -19,27 +19,27 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Prénom :</td>
-                        <td><?= ucfirst($_SESSION['user']['firstname']); ?></td>
+                        <td><?php  print_r(htmlspecialchars(ucfirst($_SESSION['user']['firstname']))); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Nom :</td>
-                        <td><?= ucfirst($_SESSION['user']['lastname']); ?></td>
+                        <td><?php print_r(htmlspecialchars(ucfirst($_SESSION['user']['lastname']))); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Adresse email :</td>
-                        <td><?= $_SESSION['user']['email']; ?></td>
+                        <td><?php print_r(htmlspecialchars($_SESSION['user']['email'])); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Date de création du compte : </td>
-                        <td><?php $dateCreate = $_SESSION['user']['dateRegister']; echo date('d-m-Y', strtotime($dateCreate));?></td>
+                        <td><?php $dateCreate = $_SESSION['user']['dateRegister']; print_r(htmlspecialchars(date('d-m-Y', strtotime($dateCreate))));?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Dernière mise à jour du compte : </td>
-                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; echo date('d-m-Y', strtotime($dateUpdate));?></td>
+                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; print_r(htmlspecialchars(date('d-m-Y', strtotime($dateUpdate))));?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Rôle : </td>
-                        <td><?php if($_SESSION["user"]["role"] == 1) { echo "Admin"; } else {echo "Member"; } ?></td>
+                        <td><?php if($_SESSION["user"]["role"] == 1) { print_r("Admin"); } else { print_r("Member"); } ?></td>
                     </tr>
                 </table>
                 
@@ -89,12 +89,12 @@
                 <?php
                     if(isset($_SESSION['valide']))
                     {
-                        echo $_SESSION['valide'];
+                        print_r($_SESSION['valide']);
                         unset($_SESSION["valide"]);
                     } 
                     if(isset($error))
                     {
-                        echo $error;
+                        print_r($error);
                     }
                 ?>
             </div>
