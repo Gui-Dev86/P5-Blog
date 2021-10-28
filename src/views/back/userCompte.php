@@ -19,7 +19,7 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Prénom :</td>
-                        <td><?php  $firstname = htmlspecialchars(ucfirst($_SESSION['user']['firstname'])); echo $firstname ?></td>
+                        <td><?= htmlspecialchars(ucfirst($_SESSION['user']['firstname'])); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Nom :</td>
