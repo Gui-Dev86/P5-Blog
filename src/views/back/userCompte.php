@@ -19,23 +19,23 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Prénom :</td>
-                        <td><?php  print_r(htmlspecialchars(ucfirst($_SESSION['user']['firstname']))); ?></td>
+                        <td><?php  $firstname = htmlspecialchars(ucfirst($_SESSION['user']['firstname'])); echo $mail ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Nom :</td>
-                        <td><?php print_r(htmlspecialchars(ucfirst($_SESSION['user']['lastname']))); ?></td>
+                        <td><?php $lastname = htmlspecialchars(ucfirst($_SESSION['user']['lastname'])); echo $mail ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Adresse email :</td>
-                        <td><?= htmlspecialchars($_SESSION['user']['email']); ?></td>
+                        <td><?php $mail = htmlspecialchars($_SESSION['user']['email']); echo $mail ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Date de création du compte : </td>
-                        <td><?php $dateCreate = $_SESSION['user']['dateRegister']; print_r(htmlspecialchars(date('d-m-Y', strtotime($dateCreate))));?></td>
+                        <td><?php $dateCreate = $_SESSION['user']['dateRegister']; $dateCreateUser = htmlspecialchars(date('d-m-Y', strtotime($dateCreate))); echo $dateCreateUser ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Dernière mise à jour du compte : </td>
-                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; print_r(htmlspecialchars(date('d-m-Y', strtotime($dateUpdate))));?></td>
+                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; $dateUpdateUser = htmlspecialchars(date('d-m-Y', strtotime($dateUpdate))); echo $$dateUpdateUser ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Rôle : </td>
