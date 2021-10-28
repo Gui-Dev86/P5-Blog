@@ -15,7 +15,7 @@
                 <table class="panel">
                     <tr class="trCompte">
                         <td>Pseudo :</td>
-                        <td><?= $_SESSION['user']['login']; ?></td>
+                        <td><?= htmlspecialchars(ucfirst($_SESSION['user']['login'])); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Prénom :</td>
@@ -23,19 +23,19 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Nom :</td>
-                        <td><?php $lastname = htmlspecialchars(ucfirst($_SESSION['user']['lastname'])); echo $lastname ?></td>
+                        <td><?= htmlspecialchars(ucfirst($_SESSION['user']['lastname'])); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Adresse email :</td>
-                        <td><?php $mail = htmlspecialchars($_SESSION['user']['email']); echo $mail ?></td>
+                        <td><?= htmlspecialchars($_SESSION['user']['email']); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Date de création du compte : </td>
-                        <td><?php $dateCreate = $_SESSION['user']['dateRegister']; $dateCreateUser = htmlspecialchars(date('d-m-Y', strtotime($dateCreate))); echo $dateCreateUser ?></td>
+                        <td><?= htmlspecialchars(date('d-m-Y', strtotime($_SESSION['user']['dateRegister']))); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Dernière mise à jour du compte : </td>
-                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; $dateUpdateUser = htmlspecialchars(date('d-m-Y', strtotime($dateUpdate))); echo $dateUpdateUser ?></td>
+                        <td><?= htmlspecialchars(date('d-m-Y', strtotime($_SESSION['user']['dateUpdate']))); ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Rôle : </td>
