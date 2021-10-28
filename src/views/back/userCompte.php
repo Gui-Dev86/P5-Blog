@@ -19,11 +19,11 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Prénom :</td>
-                        <td><?php  $firstname = htmlspecialchars(ucfirst($_SESSION['user']['firstname'])); echo $mail ?></td>
+                        <td><?php  $firstname = htmlspecialchars(ucfirst($_SESSION['user']['firstname'])); echo $firstname ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Nom :</td>
-                        <td><?php $lastname = htmlspecialchars(ucfirst($_SESSION['user']['lastname'])); echo $mail ?></td>
+                        <td><?php $lastname = htmlspecialchars(ucfirst($_SESSION['user']['lastname'])); echo $lastname ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Adresse email :</td>
@@ -35,7 +35,7 @@
                     </tr>
                     <tr class="trCompte">
                         <td>Dernière mise à jour du compte : </td>
-                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; $dateUpdateUser = htmlspecialchars(date('d-m-Y', strtotime($dateUpdate))); echo $$dateUpdateUser ?></td>
+                        <td><?php $dateUpdate = $_SESSION['user']['dateRegister']; $dateUpdateUser = htmlspecialchars(date('d-m-Y', strtotime($dateUpdate))); echo $dateUpdateUser ?></td>
                     </tr>
                     <tr class="trCompte">
                         <td>Rôle : </td>
