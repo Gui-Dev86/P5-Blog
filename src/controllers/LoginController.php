@@ -203,7 +203,6 @@ class Login extends AbstractController {
             if(!empty($_POST['login']) AND !empty($_POST['password']) AND 
             isset($_POST['login']) AND isset($_POST['password']))
             {        
-                $login = $_POST["login"];
                 $password = $_POST["password"];
 
                 //recup the informations for the user
@@ -269,7 +268,7 @@ class Login extends AbstractController {
                         $token = substr(str_shuffle($stringToken), 0,20);
     
                         $newUser->setTokenNewPass_user(htmlspecialchars($token));
-                        $insertToken = $this->loginManager->insertToken($newUser);
+                        $this->loginManager->insertToken($newUser);
 
                         $linkResetMail = ''.local.'login/newPassword/'.$token.'';
 

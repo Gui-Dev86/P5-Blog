@@ -35,9 +35,7 @@ class Main extends AbstractController{
             {    
                 if(filter_var($_POST["emailUser"], FILTER_VALIDATE_EMAIL))
                 {
-                    $lastname = htmlspecialchars($_POST['lastname']); 
-                    $firstname = htmlspecialchars($_POST['firstname']); 
-                    $emailUser = htmlspecialchars($_POST['emailUser']);
+                    $emailUser = htmlspecialchars($_POST['emailUser'], FILTER_VALIDATE_EMAIL);
                     $message = htmlspecialchars($_POST['message']);
 
                     try {
@@ -67,27 +65,32 @@ class Main extends AbstractController{
                         $mail->send();
                         $_POST = [];
 
-                        $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Votre message a bien été envoyé, 
-                        nous répondrons dans les plus bref délais.<p>';
+                        $valide = 'Votre message a bien été envoyé, nous répondrons dans les plus bref délais.';
                     
-                        return header('Location: ' . local.'' );
+                        return $this->render('home', [
+                            'valide' => $valide,
+                        ]);
                         
                         
                     } catch (Exception $e) 
                     {
-                        $_SESSION['error'] = "<p class='haut'>Message non envoyé. Veuillez recommencer</p>";
+                        $error = "Message non envoyé. Veuillez recommencer";
                     }
                 }
                 else
                 { 
-                    $_SESSION['error'] = "<br /><p class = font-weight-bold>*Votre adresse mail n'est pas valide<p>";
-                    return header('Location: ' . local );
+                    $error = "*Votre adresse mail n'est pas valide";
+                    return $this->render('home', [
+                        'error' => $error,
+                    ]);
                 }
             }
             else
             {
-               $_SESSION['error'] = "<br /><p class = font-weight-bold>*Veuillez remplir tous les champs<p>";
-                return header('Location: ' . local );
+               $error = "*Veuillez remplir tous les champs";
+               return $this->render('home', [
+                'error' => $error,
+            ]);
             }
             
         }

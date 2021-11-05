@@ -33,7 +33,10 @@ abstract class AbstractController {
      */
     public function __construct()
     {
-      
+        $this->session = filter_var_array($_SESSION);
+        if (isset($this->session['user'])) {
+            $this->user = $this->session['user'];
+        }
     }
 
     /**
@@ -51,8 +54,12 @@ abstract class AbstractController {
             'cache' => false, // __DIR__ . /tmp',
             'debug' => true,] 
         );
-        if(isset($_SESSION['user'])) {
-            $this->twig->addGlobal("session", $_SESSION['user']);
+        $this->session = filter_var_array($_SESSION);
+        if (isset($this->session['user'])) {
+            $this->user = $this->session['user'];
+        }
+        if(isset($this->user)) {
+            $this->twig->addGlobal("session", $this->user);
         }
         //define the constant to recover the good css file
         define('view', $view);
@@ -144,4 +151,11 @@ abstract class AbstractController {
         $this->user[$var] = $data;
     }
 
+     /**
+     * @return mixed
+     */
+    public function getUserArray()
+    {
+        return $this->user;
+    }
 }

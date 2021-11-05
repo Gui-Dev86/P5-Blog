@@ -68,18 +68,12 @@
                     </div>
                 </div>
             </form>
-            <?php
-                if(isset($_SESSION['valide']))
-                {
-                    echo $_SESSION['valide'];
-                    unset($_SESSION["valide"]);
-                } 
-                if(isset($_SESSION['error']))
-                {
-                    echo $_SESSION['error'];
-                    unset($_SESSION["error"]);
-                }
-            ?>
+            {% if valide is defined %}
+                <br /><p style="color: blue;" class = "font-weight-bold">{{ valide }}</p>
+            {% endif %}
+            {% if error is defined %}
+                <br /><p class = "font-weight-bold">{{ error }}</p>
+            {% endif %}
         </div>
     </div>
 </div>

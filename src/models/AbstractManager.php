@@ -5,8 +5,6 @@ namespace App\src\models;
 use PDO;
 
 abstract class AbstractManager {
-    
-    private static $pdo = null;
 
     // Propriété qui contiendra l'instance de la connexion
     protected $_connexion;

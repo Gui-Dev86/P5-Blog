@@ -16,7 +16,7 @@ class Articles extends AbstractController {
     
     private $userManager;
     private $articleManager;
-    private $twig;
+    
     public function __construct()
     {
         $this->userManager = new UserManager();
@@ -105,7 +105,6 @@ class Articles extends AbstractController {
                 $date = new DateTime();
                 if(isset($_FILES["uploadfile"]["name"]) && !empty($_FILES["uploadfile"]["name"])) {
                     $filename = $_FILES["uploadfile"]["name"];
-                    $tempname = $_FILES["uploadfile"]["tmp_name"];
                     $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
                     if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
                 }
@@ -118,7 +117,9 @@ class Articles extends AbstractController {
                     $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
                     $newArticle->setContent_art(htmlspecialchars($_POST['content']));
                     $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
-                    $newArticle->setImage_art(htmlspecialchars($filename));
+                    if(isset($_FILES["uploadfile"]["name"]) && !empty($_FILES["uploadfile"]["name"])) {
+                        $newArticle->setImage_art(htmlspecialchars($filename));
+                    }
                     $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
                     $newArticle->setDate_art($date->format('Y-m-d H:i:s'));
                     $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
@@ -130,7 +131,7 @@ class Articles extends AbstractController {
                         $altImageLength = strlen($_POST['altImage']);
                         if($altImageLength<=25)
                         {
-                            if($_FILES["uploadfile"]["name"] != "")
+                            if(isset($_FILES["uploadfile"]["name"]) && !empty($_FILES["uploadfile"]["name"])) 
                             {
                                 $this->articleManager->newArticle($newArticle); 
                                 $_POST = [];
@@ -138,31 +139,43 @@ class Articles extends AbstractController {
                             }
                             else
                             {
-                                $error = "<br /><p class = font-weight-bold>*Vous n'avez pas sélectionné d'image<p>";
+                                $error = "*Vous n'avez pas sélectionné d'image";
                                 return $this->render('createArticle', [
+                                    'title' => $_POST['title'],
+                                    'chapo' => $_POST['chapo'],
+                                    'content' => $_POST['content'],
+                                    'altImage' => $_POST['altImage'],
                                     'error' => $error,
                                 ]);
                             }
                         }
                         else
                         {
-                            $error = "<br /><p class = font-weight-bold>*Votre description d'image ne doit pas dépasser 25 caractères<p>";
+                            $error = "*Votre description d'image ne doit pas dépasser 25 caractères";
                             return $this->render('createArticle', [
+                                'title' => $_POST['title'],
+                                'chapo' => $_POST['chapo'],
+                                'content' => $_POST['content'],
+                                'altImage' => $_POST['altImage'],
                                 'error' => $error,
                             ]);
                         }
                     }
                     else
                     {
-                        $error = "<br /><p class = font-weight-bold>*Votre titre ne doit pas dépasser 255 caractères<p>";
+                        $error = "*Votre titre ne doit pas dépasser 255 caractères";
                         return $this->render('createArticle', [
+                            'title' => $_POST['title'],
+                            'chapo' => $_POST['chapo'],
+                            'content' => $_POST['content'],
+                            'altImage' => $_POST['altImage'],
                             'error' => $error,
                         ]);
                     }
                 }
                 else
                 {
-                    $error = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
+                    $error = "**Tous les champs doivent être saisis";
                     return $this->render('createArticle', [
                         'title' => $_POST['title'],
                         'chapo' => $_POST['chapo'],
@@ -357,7 +370,7 @@ class Articles extends AbstractController {
             $idCom = (int) strip_tags($_SESSION['idCommentPage']);
         }
 
-        $comment = $this->articleManager->deleteComment($idCom);
+        $this->articleManager->deleteComment($idCom);
         unset($_SESSION['idCommentPage']);
         return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
     }
@@ -402,13 +415,12 @@ class Articles extends AbstractController {
             $date = new DateTime();
             if(isset($_FILES["uploadfile"]["name"]) && !empty($_FILES["uploadfile"]["name"])) {
                 $filename = $_FILES["uploadfile"]["name"];
-                $tempname = $_FILES["uploadfile"]["tmp_name"];
                 $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
             
             if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
             }
             //recover the datas of one article
-            $article = $this->articleManager->readArticle($idArt);
+            $this->articleManager->readArticle($idArt);
 
             $date = new DateTime();
             $newArticle = new Article();

@@ -50,11 +50,6 @@ class User extends AbstractManager {
     private $dateUpdate_user;
 
     /**
-     * @var bool $statut_user
-     */
-    private $statut_user;
-
-    /**
      * @var bool $isActiveUser_user
      */
     private $isActiveUser_user;
@@ -154,7 +149,7 @@ class User extends AbstractManager {
         return $this;
     }
 
-/**
+    /**
      * @return mixed
      */
     public function getEmail_user()
