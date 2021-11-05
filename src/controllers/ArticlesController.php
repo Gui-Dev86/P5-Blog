@@ -360,9 +360,10 @@ class Articles extends AbstractController {
      * @return void
      */
     public function deleteComment(){
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            $idArt = $params[2];
+            $idCom = $params[4];
         }
 
         if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage']))
@@ -371,7 +372,6 @@ class Articles extends AbstractController {
         }
 
         $this->articleManager->deleteComment($idCom);
-        unset($_SESSION['idCommentPage']);
         return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
     }
     
@@ -405,9 +405,10 @@ class Articles extends AbstractController {
      */
     public function modifyArticleContent(){
         
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $idArt = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter user id
+            $idArt = $params[2];
         }
         
         if(isset($_POST['formModifyArticle'])) 
@@ -420,7 +421,7 @@ class Articles extends AbstractController {
             if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
             }
             //recover the datas of one article
-            $this->articleManager->readArticle($idArt);
+            $article = $this->articleManager->readArticle($idArt);
 
             $date = new DateTime();
             $newArticle = new Article();

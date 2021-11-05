@@ -60,14 +60,14 @@
             {% endif %}
             {% if user.id_user != session.idUser %}
                 {% if user.role_user == 1 %}
-                <form method="post" action="{{ constant('local') }}adminManagement/activeUser">
+                <form method="post" action="{{ constant('local') }}adminManagement/activeUser/{{ idUser }}">
                     <div class="form-group row justify-content-center pb-5 ">
                         <button type="submit" name="adminDowngroundUser" class="btn btn-primary font-weight-bold btn-modifyUser">Passer en utilisateur</button>
                     </div>
                 </form>
                 {% else %}
                 
-                <form method="post" action="{{ constant('local') }}adminManagement/activeAdmin">
+                <form method="post" action="{{ constant('local') }}adminManagement/activeAdmin/{{ idUser }}">
                     <div class="form-group row justify-content-center pb-5 ">
                         <button type="submit" name="adminUpgradeUser" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Passer en administrateur</button>
                     </div>
@@ -83,14 +83,14 @@
                         <span class="font-weight-bold font-italic">{% if user.isActiveUser_user == 1 and user.isActiveAdmin_user == 1 %} {{ "Actif" }}</span></h5>
                 </div>
             </div>
-            <form method="post" action="{{ constant('local') }}adminManagement/desactiveCompte">
+            <form method="post" action="{{ constant('local') }}adminManagement/desactiveCompte/{{ idUser }}">
                 <div class="form-group row justify-content-center pb-5 ">
                     <button type="submit" name="adminDesactiveCompte" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Désactiver</button>
                     {% elseif user.isActiveAdmin_user == 0 %} {{ "Inactif" }}</span></h5>
                 </div>
             </form>
             </div>
-            <form method="post" action="{{ constant('local') }}adminManagement/activeCompte">
+            <form method="post" action="{{ constant('local') }}adminManagement/activeCompte/{{ idUser }}">
                 <div class="form-group row justify-content-center pb-5 ">
                     <button type="submit" name="adminActiveCompte" class="btn btn-primary font-weight-bold btn-modifyUser">Activer</button> 
                     {% elseif user.isActiveUser_user == 0 %} {{ "Inactif" }}</span></h5>

@@ -31,13 +31,6 @@ abstract class AbstractController {
     /**
      * SessionController constructor.
      */
-    public function __construct()
-    {
-        $this->session = filter_var_array($_SESSION);
-        if (isset($this->session['user'])) {
-            $this->user = $this->session['user'];
-        }
-    }
 
     /**
      * Afficher une vue

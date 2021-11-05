@@ -46,11 +46,11 @@ class adminManagement extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-            //recover the third URL parameter number page
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+                //recover the third URL parameter number page
+                $paramURL = $params[2];
+            }
         
             //count the articles number in the database
             $articlesCount = $this->articleManager->countAllArticlesAdmin();
@@ -83,11 +83,11 @@ class adminManagement extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-            //recover the third URL parameter number page
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+                //recover the third URL parameter number page
+                $paramURL = $params[2];
+            }
         
         //count the comments number in the database
         $commentsCount = $this->articleManager->countAllCommentsAdmin();
@@ -121,11 +121,11 @@ class adminManagement extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-        //recover the third URL parameter number page
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+                //recover the third URL parameter number page
+                $paramURL = $params[2];
+            }
         
         //count the members number in the database
         $usersCount = $this->userManager->countAllUsers();
@@ -159,16 +159,17 @@ class adminManagement extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
-        }
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+                //recover the third URL parameter user id
+                $idUser = $params[2];
+            }
         //recover the datas for one user
-        $user = $this->userManager->readUser($paramURL);
+        $user = $this->userManager->readUser($idUser);
         
         // On envoie les données à la vue index
         $this->render('adminModifyUser', [
+            'idUser' => $idUser,
             'user' => $user,
         ]);
         }
@@ -181,22 +182,16 @@ class adminManagement extends AbstractController {
     */
     public function articleListComments(){
 
-        //recover the fourth param in the URL for the id article
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $idArt = (int) strip_tags($_SESSION["paramURL"]);
-        }
-        //recover the fourth param in the URL for the comment page
-        if(isset($_SESSION["commentPage"]) && !empty($_SESSION["commentPage"]))
-        {
-            $pageURL = (int) strip_tags($_SESSION['commentPage']);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third param in the URL for the id article
+            $idArt = $params[2];
+            //recover the fourth param in the URL for the comment page
+            $pageURL = $params[3];
+            //recover the fifth param in the URL for the id comment
+            $idCom = $params[4];
         }
 
-        //recover the fifth param in the URL for the id comment
-        if(isset($_SESSION["idCommentPage"]) && !empty($_SESSION["idCommentPage"]))
-        {
-            $idCom = (int) strip_tags($_SESSION['idCommentPage']);
-        }
         //recover the datas of one article
         $article = $this->articleManager->readArticle($idArt);
 
@@ -224,34 +219,35 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function activeAdmin(){ 
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter user id
+            $idUser = $params[2];
         }
         if(isset($_POST["adminUpgradeUser"]))
         {
-            if($paramURL == 1)
+            if($idUser == 1)
             {
                 //recover the datas for one user
-                $user = $this->userManager->readUser($paramURL);
+                $user = $this->userManager->readUser($idUser);
 
                 $message = 'Le rôle du compte administrateur principal ne peut pas être modifié.';
                 $this->render('adminModifyUser', [
-                    'user' => $user,
                     'message' => $message,
                 ]);
             }
             else
             {                
                 //Upgrade the user statute
-                $this->userManager->upUserStatute($paramURL);
+                $this->userManager->upUserStatute($idUser);
                
                 //recover the datas for one user
-                $user = $this->userManager->readUser($paramURL);
+                $user = $this->userManager->readUser($idUser);
                 
                 // On envoie les données à la vue index
                 $this->render('adminModifyUser', [
+                    'idUser' => $idUser,
                     'user' => $user,
                 ]);
             }
@@ -263,18 +259,19 @@ class adminManagement extends AbstractController {
      *
      * @return void
      */
-    public function activeUser(){ 
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+    public function activeUser(){
+
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter user id
+            $idUser = $params[2];
         }
         if(isset($_POST["adminDowngroundUser"]))
         {
-            if($paramURL == 1) 
+            if($idUser == 1) 
             {
                 //recover the datas for one user
-                $user = $this->userManager->readUser($paramURL);
+                $user = $this->userManager->readUser($idUser);
 
                 $message = 'Le rôle du compte administrateur principal ne peut pas être modifié.';
                 $this->render('adminModifyUser', [
@@ -285,14 +282,15 @@ class adminManagement extends AbstractController {
             else
             {   
                 //downgrade the user statute
-                $this->userManager->downUserStatute($paramURL);
+                $this->userManager->downUserStatute($idUser);
                 ;
                 
                 //recover the datas for one user
-                $user = $this->userManager->readUser($paramURL);
+                $user = $this->userManager->readUser($idUser);
                 
                 // On envoie les données à la vue index
                 $this->render('adminModifyUser', [
+                    'idUser' => $idUser,
                     'user' => $user,
                 ]);
             }
@@ -305,22 +303,23 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function activeCompte(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter user id
+            $idUser = $params[2];
         }
         if(isset($_POST["adminActiveCompte"]))
         {
             //active the user compte
-            $this->userManager->adminActiveCompte($paramURL);
+            $this->userManager->adminActiveCompte($idUser);
             
             
             //recover the datas for one user
-            $user = $this->userManager->readUser($paramURL);
+            $user = $this->userManager->readUser($idUser);
             
             // On envoie les données à la vue index
             $this->render('adminModifyUser', [
+                'idUser' => $idUser,
                 'user' => $user,
             ]);
 
@@ -333,17 +332,17 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function desactiveCompte(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter user id
+            $idUser = $params[2];
         }
         if(isset($_POST["adminDesactiveCompte"]))
         {
-            if($paramURL == 1 && $_SESSION['user']['idUser'] != 1) 
+            if($idUser == 1 && $_SESSION['user']['idUser'] != 1) 
             {
                 //recover the datas for one user
-                $user = $this->userManager->readUser($paramURL);
+                $user = $this->userManager->readUser($idUser);
 
                 $message = 'Le compte administrateur principal ne peut pas être modifié.';
                 $this->render('adminModifyUser', [
@@ -354,13 +353,14 @@ class adminManagement extends AbstractController {
             else
             {
                 //desactive the user compte
-                $this->userManager->adminDesactiveCompte($paramURL);
+                $this->userManager->adminDesactiveCompte($idUser);
                 
                 //recover the datas for one user
-                $user = $this->userManager->readUser($paramURL);
+                $user = $this->userManager->readUser($idUser);
                 
                 // On envoie les données à la vue index
                 $this->render('adminModifyUser', [
+                    'idUser' => $idUser,
                     'user' => $user,
                 ]);
             }
@@ -373,13 +373,13 @@ class adminManagement extends AbstractController {
     * @return void
     */
     public function validateComment(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter com id
+            $idCom = $params[2];
         }
        
-        $this->articleManager->adminValidateComment($paramURL);
+        $this->articleManager->adminValidateComment($idCom);
         
         // On envoie les données à la vue index
         return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
@@ -391,13 +391,13 @@ class adminManagement extends AbstractController {
     * @return void
     */
     public function refuseComment(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter com id
+            $idCom = $params[2];
         }
        
-        $this->articleManager->adminRefuseComment($paramURL);
+        $this->articleManager->adminRefuseComment($idCom);
         
         // On envoie les données à la vue index
         return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
@@ -409,13 +409,13 @@ class adminManagement extends AbstractController {
     * @return void
     */
     public function initialiseComment(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter com id
+            $idCom = $params[2];
         }
        
-        $this->articleManager->adminInitialiseComment($paramURL);
+        $this->articleManager->adminInitialiseComment($idCom);
         
         // On envoie les données à la vue index
         return header('Location: ' . local . 'adminManagement/adminListAllComments/1');
@@ -427,13 +427,13 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function activeArticle(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter art id
+            $idArt = $params[2];
         }
        
-        $this->articleManager->adminShowArticle($paramURL);
+        $this->articleManager->adminShowArticle($idArt);
         
         // On envoie les données à la vue index
         return header('Location: ' . local . 'adminManagement/adminListAllArticles/1');
@@ -445,13 +445,13 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function desactiveArticle(){
-        //recover the third URL parameter user id
-        if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-        {
-            $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third URL parameter art id
+            $idArt = $params[2];
         }
        
-        $this->articleManager->adminHideArticle($paramURL);
+        $this->articleManager->adminHideArticle($idArt);
         
         // On envoie les données à la vue index
         return header('Location: ' . local . 'adminManagement/adminListAllArticles/1');

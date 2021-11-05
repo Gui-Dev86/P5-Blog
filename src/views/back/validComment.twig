@@ -97,19 +97,19 @@
                     <ul class="pagination">
                         <div class="col-md-3 offset-md-2">  
                             <li class="page-item {% if numPage == 1 %} {{ "disabled" }} {% endif %}">
-                                <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage - 1 }}#listComments" class="page-link"><<</a>
+                                <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage - 1 }}/{{ idCom }}#listComments" class="page-link"><<</a>
                             </li>
                         </div>
                         <div class="col-md-2"> 
                             {% for page in 1..pages %}
                                 <li class="page-item {% if numPage !=  page %} {{ "disabled" }} {% endif %}">
-                                    <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage }}/#listComments" class="font-weight-bold link-page">{{ page }}</a>
+                                    <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage }}/{{ idCom }}#listComments" class="font-weight-bold link-page">{{ page }}</a>
                                 </li>
                             {% endfor %}
                         </div>
                         <div class="col-md-3"> 
                             <li class="page-item {% if numPage == pages %} {{ "disabled" }} {% endif %}">
-                                <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage + 1 }}/" class="page-link">>></a>
+                                <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage + 1 }}/{{ idCom }}#listComments" class="page-link">>></a>
                             </li>
                         </div>
                     </ul>
