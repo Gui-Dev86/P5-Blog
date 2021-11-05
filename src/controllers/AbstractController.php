@@ -3,12 +3,20 @@
 namespace App\src\controllers;
 
 use App\vendor\Exception;
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Twig\Extension\DebugExtension;
+use Twig\Loader\FilesystemLoader;
 
 abstract class AbstractController {
 
     const ADMIN = 'Administrateur';
 
     const USER = 'Utilisateur';
+
+    private $twig;
 
     /**
      * @var mixed
@@ -25,35 +33,40 @@ abstract class AbstractController {
      */
     public function __construct()
     {
-   
+      
     }
 
     /**
      * Afficher une vue
      *
-     * @param string $fichier
+     * @param string $view
      * @param array $data
      * @return void
      */
-    public function render(string $fichier, array $data = []){
-        extract($data);
-
-        // On démarre le buffer de sortie
-        ob_start();
-
-        // On génère la vue
-        if( file_exists( 'src/views/'.$fichier.'.php' ) ) {
-            require_once(ROOT.'src/views/'.$fichier.'.php');
-        } else {
-            require_once(ROOT.'src/views/back/'.$fichier.'.php');
+    public function render(string $view, array $data = [])
+    {
+        $loader = new FilesystemLoader('src/views');
+        $this->twig = new Environment(
+            $loader, [
+            'cache' => false, // __DIR__ . /tmp',
+            'debug' => true,] 
+        );
+        if(isset($_SESSION['user'])) {
+            $this->twig->addGlobal("session", $_SESSION['user']);
         }
-
-        // On stocke le contenu dans $content
-        $content = ob_get_clean();
-
-        // On fabrique le "template"
-        require_once(ROOT.'src/views/layout/base.php');
+        //define the constant to recover the good css file
+        define('view', $view);
         
+        try {
+            if( file_exists( 'src/views/front/'.$view.'.twig' ) ) {
+                echo $this->twig->render('front/'. $view . '.twig', $data);
+            } else {
+                echo $this->twig->render('back/'. $view . '.twig', $data);
+            }
+        } catch (LoaderError $e) {
+        } catch (RuntimeError $e) {
+        } catch (SyntaxError $e) {
+        }  
     }
 
     /**
@@ -79,6 +92,8 @@ abstract class AbstractController {
         return $_SESSION['user'];
     }
     
+    
+
     /**
      * @return bool
      */

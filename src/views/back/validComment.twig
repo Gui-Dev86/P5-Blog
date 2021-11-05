@@ -1,0 +1,121 @@
+{% extends 'base.twig' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+{% if article.0 is defined %}
+    <div class="container col-10">
+        <div class="row">
+            <div class="col-10 my-4">
+                <a class="font-weight-bold retour-listArticle" href="{{ constant('local') }}adminManagement/adminListAllComments/1">< Page précédente</a>
+            </div>
+        </div>
+    </div>
+    <section class="container sectionArticle col-10 mb-5" id="{{ article.0.id_art }}">
+        <div class="container contArticle col-12">
+            <div class="row">
+                <div class="col-12 mt-3 mb-4 containerDashed text-center">
+                    <h4 class="font-weight-bold">
+                        <span class="ion-minus"></span>{{ article.0.title_art }}<span class="ion-minus"></span>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="container">
+                <div class="row">
+                    <p class="text-justify font-weight-bold">{{ article.0.chapo_art }}</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <p class="text-justify">{{ article.0.content_art }}</p>
+                </div>
+                <div class="row mb-3" id="listComments">
+                    {% if article.0.dateUpdate_art >  article.0.date_art %}
+                        <p class="text-justify textInfo">Mis à jour le {{ article.0.dateUpdate_art | date('d-m-Y') }} 
+                    {% else %} 
+                        Créé le {{ article.0.date_art | date('d-m-Y') }}
+                        par <strong>{{ article.0.autor_art }}</strong><br />
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container col-10" id="comment">
+        <div class="container">
+            <div class="row">
+                <h4>Commentaires</h4>
+            </div>
+        </div>
+        {% for comment in comments %}
+            <div class="container mb-4 contComment {% if idCom == comment.id_com %}
+            {{ "backroundValidate" }} {% endif %}">
+                <div class="col-12 pt-3">
+                    <div class="container">
+                        <div class="row">
+                            <p class="text-justify">{{ comment.content_com }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="text-justify textInfo">
+                            {% if comment.dateUpdate_com > comment.date_com %}
+                                Mis à jour le {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} Créé le {{  comment.date_com | date('d-m-Y') }}
+                            {% endif %}
+                            par <b>{{ comment.autor_com }}</b><br />
+                        </div>
+                        <div class="row">
+                            {% if comment.statut_com == 1 %}
+                                <p class="text-justify textInfo">Le commentaire a été <span class="font-weight-bold">validé</span>.</p>
+                            {% elseif comment.statut_com == 0 and comment.statut_com != NULL %}
+                                <p class="text-justify textInfo">Le commentaire a été <span class="font-weight-bold">refusé</span>.</p>
+                            {% elseif comment.statut_com == NULL %}
+                                <p class="text-justify textInfo">Le commentaire est en <span class="font-weight-bold">cours de validation</span>.</p>
+                            {% endif %}
+                        </div>
+                        {% if session is defined and session.role == 1 and comment.statut_com == NULL %}
+                            <div class="container">
+                                <div class="row pt-2 pb-3">
+                                    <div class="col-md-3 offset-md-3 text-center">
+                                        <a class="linkValidateComment font-weight-bold" href="{{ constant('local') }}adminManagement/validateComment/{{ comment.id_com }}">Valider le commentaire</a>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <a class="linkRefuseComment font-weight-bold" href="{{ constant('local') }}adminManagement/refuseComment/{{ comment.id_com }}">Refuser le commentaire</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+    <row>
+        <div class="container col-12 my-2">
+            <div class="row">   
+                <div class="col-8 offset-2 col-md-4 offset-md-4 text-center">
+                    <ul class="pagination">
+                        <div class="col-md-3 offset-md-2">  
+                            <li class="page-item {% if numPage == 1 %} {{ "disabled" }} {% endif %}">
+                                <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage - 1 }}#listComments" class="page-link"><<</a>
+                            </li>
+                        </div>
+                        <div class="col-md-2"> 
+                            {% for page in 1..pages %}
+                                <li class="page-item {% if numPage !=  page %} {{ "disabled" }} {% endif %}">
+                                    <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage }}/#listComments" class="font-weight-bold link-page">{{ page }}</a>
+                                </li>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-3"> 
+                            <li class="page-item {% if numPage == pages %} {{ "disabled" }} {% endif %}">
+                                <a class="font-weight-bold paginationLink" href="{{ constant('local') }}adminManagement/articleListComments/{{ article.0.id_art }}/{{ numPage + 1 }}/" class="page-link">>></a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </row>
+{% endif %}
+{% endblock %}

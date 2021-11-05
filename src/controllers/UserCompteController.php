@@ -87,7 +87,7 @@ class UserCompte extends AbstractController{
         
             // On envoie les données à la vue index
             $this->render('userListComment', [
-                'comments' => compact('comments'),
+                'comments' => $comments,
                 'pages' => $pages,
                 'numPage' => $paramURL,
             ]);
@@ -110,14 +110,17 @@ class UserCompte extends AbstractController{
             $updateUser->setLogin_user(htmlspecialchars($_POST['newLogin']));
             $updateUser->setEmail_user(htmlspecialchars($_POST['newEmail']));
             $updateUser->setDateUpdate_user($date->format('Y-m-d H:i:s'));
+
+            $idUser = $_SESSION['user']['idUser'];
             
             //Verify if the login and the email are available
-            $loginMailAvailable = $this->userManager->loginMailAvailable($updateUser);
+            $loginAvailable = $this->userManager->loginAvailable($updateUser, $idUser);
+            $mailAvailable = $this->userManager->mailAvailable($updateUser, $idUser);
 
             if(!empty($_POST['newLogin']) AND !empty($_POST['newFirstname']) AND !empty($_POST['newLastname']) 
             AND !empty($_POST['newEmail']))
             {
-                if($loginMailAvailable['nbLoginMail'] === '0')
+                if($loginAvailable['nbLogin'] === '0' AND $mailAvailable['nbMail'] === '0')
                 {
                     if(filter_var($_POST['newEmail'], FILTER_VALIDATE_EMAIL))
                     {
@@ -131,20 +134,19 @@ class UserCompte extends AbstractController{
                             //update the user session to display the news datas
                             $this->createSession($dataUser);
                             $_POST = [];
-
                             header('Location: ' . local.'userCompte');
                         }
                         else
                         {
-                            $error = "<br /><p class = font-weight-bold>*Votre pseudo ne doit pas dépasser 25 caractères<p>";
+                            $error = "*Votre pseudo ne doit pas dépasser 25 caractères";
                             return $this->render('userFormModifCompte', [
-                            'error' => $error,
+                                'error' => $error,
                             ]);
                         }
                     }
                     else
                     {
-                        $error = "<br /><p class = font-weight-bold>*Votre adresse mail n'est pas valide<p>";
+                        $error = "*Votre adresse mail n'est pas valide";
                             return $this->render('userFormModifCompte', [
                                 'error' => $error,
                             ]);
@@ -152,15 +154,15 @@ class UserCompte extends AbstractController{
                 }
                 else
                 {
-                    $error = "<br /><p class = font-weight-bold>*L'adresse email ou le pseudo saisi est déjà utilisé<p>";
-                            return $this->render('userFormModifCompte', [
-                                'error' => $error,
-                            ]);
+                    $error = "*L'adresse email ou le pseudo saisi est déjà utilisé";
+                    return $this->render('userFormModifCompte', [
+                        'error' => $error,
+                    ]);
                 }
             }
             else
             {
-                $error = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
+                $error = "**Tous les champs doivent être saisis";
                 return $this->render('userFormModifCompte', [
                     'error' => $error,
                 ]);
@@ -200,12 +202,14 @@ class UserCompte extends AbstractController{
                         {
                             $this->userManager->updatePassword($newPassUser);
                             $_POST = [];
-                            $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Votre mot de passe a été modifié avec succès.<p>';
-                            header('Location: ' . local.'userCompte#ancreChangerPass');
+                            $valide = 'Votre mot de passe a été modifié avec succès.';
+                            return $this->render('userCompte', [
+                                'valide' => $valide,
+                            ]);
                         }
                         else
                         {
-                            $error = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
+                            $error = "*Vos mots de passes de correspondent pas";
                             return $this->render('userCompte', [
                                 'error' => $error,
                             ]);
@@ -213,7 +217,7 @@ class UserCompte extends AbstractController{
                     }
                     else
                     {
-                        $error = "<br /><p class = font-weight-bold>*Votre mot de passe est incorrect<p>";
+                        $error = "*Votre mot de passe est incorrect";
                         return $this->render('userCompte', [
                             'error' => $error,
                         ]);
@@ -221,7 +225,7 @@ class UserCompte extends AbstractController{
                 }
                 else
                 {
-                    $error = "<br /><p class = font-weight-bold>*Votre mot de passe doit faire au moins 8 caractères<p>";
+                    $error = "*Votre mot de passe doit faire au moins 8 caractères";
                     return $this->render('userCompte', [
                     'error' => $error,
                     ]);
@@ -229,7 +233,7 @@ class UserCompte extends AbstractController{
             }
             else
             {
-                $error = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
+                $error = "**Tous les champs doivent être saisis";
                 return $this->render('userCompte', [
                     'error' => $error,
                 ]);

@@ -49,12 +49,7 @@ class Login extends AbstractController {
      * @return void
      */
     public function registrationConfirm(){
-        if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
-        } else {
-            $this->render('registrationConfirm');
-        }
+        $this->render('registrationConfirm');
     }
 
     /**
@@ -124,47 +119,57 @@ class Login extends AbstractController {
                                     }
                                     else
                                     {
-                                        $error = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
+                                        $error = "*Vos mots de passes de correspondent pas";
                                         return $this->render('registerView', [
-                                        'error' => $error,
+                                            'error' => $error,
+                                            'firstname_user' => $_POST['firstname_user'],
+                                            'lastname_user' => $_POST['lastname_user'],
                                         ]);
                                     }
                                 }
                                 else
                                 {
-                                    $error = "<br /><p class = font-weight-bold>*Votre mot de passe doit faire au moins 8 caractères<p>";
+                                    $error = "*Votre mot de passe doit faire au moins 8 caractères";
                                     return $this->render('registerView', [
-                                    'error' => $error,
+                                        'error' => $error,
+                                        'firstname_user' => $_POST['firstname_user'],
+                                        'lastname_user' => $_POST['lastname_user'],
                                     ]);
                                 }
                             }
                             else
                             {
-                                $error = "<br /><p class = font-weight-bold>*Votre adresse mail n'est pas valide<p>";
+                                $error = "*Votre adresse mail n'est pas valide";
                                 return $this->render('registerView', [
-                                'error' => $error,
+                                    'error' => $error,
+                                    'firstname_user' => $_POST['firstname_user'],
+                                    'lastname_user' => $_POST['lastname_user'],
                                 ]);
                             }
                         }
                         else
                         {
-                            $error = "<br /><p class = font-weight-bold>*Votre pseudo ne doit pas dépasser 25 caractères<p>";
+                            $error = "*Votre pseudo ne doit pas dépasser 25 caractères";
                             return $this->render('registerView', [
                                 'error' => $error,
+                                'firstname_user' => $_POST['firstname_user'],
+                                'lastname_user' => $_POST['lastname_user'],
                             ]);
                         }
                     }
                     else
                     {
-                        $error = "<br /><p class = font-weight-bold>*L'adresse email ou le pseudo saisi est déjà utilisé<p>";
-                            return $this->render('registerView', [
-                                'error' => $error,
-                            ]);
+                        $error = "*L'adresse email ou le pseudo saisi est déjà utilisé";
+                        return $this->render('registerView', [
+                            'error' => $error,
+                            'firstname_user' => $_POST['firstname_user'],
+                            'lastname_user' => $_POST['lastname_user'],
+                        ]);
                     }
                 }
                 else
                 {
-                    $error = "<br /><p class = font-weight-bold>*L'adresse email ou le pseudo saisi est déjà utilisé<p>";
+                    $error = "*L'adresse email ou le pseudo saisi est déjà utilisé";
                         return $this->render('registerView', [
                             'error' => $error,
                         ]);
@@ -172,7 +177,7 @@ class Login extends AbstractController {
             } 
             else 
             {
-                $error = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
+                $error = "**Tous les champs doivent être saisis";
                 return $this->render('registerView', [
                     'firstname_user' => $_POST['firstname_user'],
                     'lastname_user' => $_POST['lastname_user'],
@@ -208,14 +213,14 @@ class Login extends AbstractController {
                 if(password_verify($password, $dataUser['password_user']))
                 {   
                     $this->createSession($dataUser);
-                    header('Location: ' . local);
+                    return $this->render('home');
                 }
                 else
                 {
-                $error = "<br /><p class = font-weight-bold>*Votre identifiant ou mot de passe est incorrect<p>";
-                return $this->render('login', [
-                    'error' => $error,
-                ]);
+                    $error = "*Votre identifiant ou mot de passe est incorrect";
+                    return $this->render('login', [
+                        'error' => $error,
+                    ]);
                 }
             }
             else
@@ -294,14 +299,16 @@ class Login extends AbstractController {
                         $mail->send();
                         $_POST = [];
 
-                        $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Un mail a été acheminé. 
-                        Veuillez regarder dans votre boîte mail et suivre les instructions à l\'intérieur du mail.<p>';
+                        $valide = 'Un mail a été acheminé. 
+                        Veuillez regarder dans votre boîte mail et suivre les instructions à l\'intérieur du mail.';
                    
-                        return header('Location: ' . local . 'login/recupPassword');
+                        return $this->render('recupPassword', [
+                            'valide' => $valide,
+                        ]);
                     }
                     else
                     {
-                        $error = "<br /><p class = font-weight-bold>*L'adresse email saisie n'est pas enregistrée<p>";
+                        $error = "*L'adresse email saisie n'est pas enregistrée";
                         return $this->render('recupPassword', [
                             'error' => $error,
                         ]);
@@ -309,7 +316,7 @@ class Login extends AbstractController {
                 
                 } catch (Exception $e) 
                 {
-                    $error = "<p class='haut'>Message non envoyé. Veuillez recommencer</p>";
+                    $error = "Message non envoyé. Veuillez recommencer";
                 }
             }
             else
@@ -346,26 +353,33 @@ class Login extends AbstractController {
                     //change the password and pass to NULL the token
                     $this->loginManager->newPass($newUser);
 
-                    $_SESSION['valide'] = '<br /><p style="color: blue;" class = font-weight-bold>Votre mot de passe a été modifié avec succès.<p>';
-
-                    header('Location: ' . local.'login/newPassword');
+                    $valide = "Votre mot de passe a été modifié avec succès";
+                    return $this->render('newPassword', [
+                        'valide' => $valide,
+                    ]);
                 }
                 else
                 {
-                    $_SESSION['error'] = "<br /><p class = font-weight-bold>*Vos mots de passes de correspondent pas<p>";
-                    header('Location: ' . local.'login/newPassword/'.$token.'');
+                    $error = "*Vos mots de passes de correspondent pas";
+                    return $this->render('newPassword', [
+                        'error' => $error,
+                    ]);
                 }
             }
             else
             {
-                $_SESSION['error'] = "<br /><p class = font-weight-bold>*Votre mot de passe doit faire au moins 8 caractères<p>";
-                header('Location: ' . local.'login/newPassword/'.$token.'');
+                $error = "*Votre mot de passe doit faire au moins 8 caractères";
+                return $this->render('newPassword', [
+                    'error' => $error,
+                ]);
             }
         }
         else
         {
-            $_SESSION['error'] = "<br /><p class = font-weight-bold>**Tous les champs doivent être saisis<p>";
-            header('Location: ' . local.'login/newPassword/'.$token.'');
+            $error = "**Tous les champs doivent être saisis";
+            return $this->render('newPassword', [
+                'error' => $error,
+            ]);
         }
     }
 }

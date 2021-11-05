@@ -52,22 +52,21 @@ class adminManagement extends AbstractController {
             $paramURL = (int) strip_tags($_SESSION["paramURL"]);
         }
         
-        //count the articles number in the database
-        $articlesCount = $this->articleManager->countAllArticlesAdmin();
-        $nbArticlesAdmin = (int) $articlesCount['nbArticles'];
-        //number of articles per page
-        $articlesParPage = 5;
-        //calculate the pages number
-        $pages = ceil($nbArticlesAdmin / $articlesParPage);
-        //calculate the first article per page
-        $firstArticle = ($paramURL * $articlesParPage) - $articlesParPage;
-        
-        //recover the datas of all articles in $articles
-        $articles = $this->articleManager->readAllArticlesAdmin($firstArticle, $articlesParPage);
-        
+            //count the articles number in the database
+            $articlesCount = $this->articleManager->countAllArticlesAdmin();
+            $nbArticlesAdmin = (int) $articlesCount['nbArticles'];
+            //number of articles per page
+            $articlesParPage = 5;
+            //calculate the pages number
+            $pages = ceil($nbArticlesAdmin / $articlesParPage);
+            //calculate the first article per page
+            $firstArticle = ($paramURL * $articlesParPage) - $articlesParPage;
+            
+            //recover the datas of all articles in $articles
+            $articles = $this->articleManager->readAllArticlesAdmin($firstArticle, $articlesParPage);
             // On envoie les données à la vue index
             $this->render('adminListAllArticles', [
-                'articles' => compact('articles'),
+                'articles' => $articles,
                 'pages' => $pages,
                 'numPage' => $paramURL,
             ]);
@@ -105,7 +104,7 @@ class adminManagement extends AbstractController {
         
             // On envoie les données à la vue index
             $this->render('adminListAllComments', [
-                'comments' => compact('comments'),
+                'comments' => $comments,
                 'pages' => $pages,
                 'numPage' => $paramURL,
             ]);
@@ -143,7 +142,7 @@ class adminManagement extends AbstractController {
         
             // On envoie les données à la vue index
             $this->render('adminListAllMembers', [
-                'users' => compact('users'),
+                'users' => $users,
                 'pages' => $pages,
                 'numPage' => $paramURL,
             ]);
@@ -170,7 +169,7 @@ class adminManagement extends AbstractController {
         
         // On envoie les données à la vue index
         $this->render('adminModifyUser', [
-            'user' => compact('user'),
+            'user' => $user,
         ]);
         }
     }
@@ -192,6 +191,12 @@ class adminManagement extends AbstractController {
         {
             $pageURL = (int) strip_tags($_SESSION['commentPage']);
         }
+
+        //recover the fifth param in the URL for the id comment
+        if(isset($_SESSION["idCommentPage"]) && !empty($_SESSION["idCommentPage"]))
+        {
+            $idCom = (int) strip_tags($_SESSION['idCommentPage']);
+        }
         //recover the datas of one article
         $article = $this->articleManager->readArticle($idArt);
 
@@ -205,10 +210,11 @@ class adminManagement extends AbstractController {
         $comments = $this->articleManager->readAllComments($idArt, $firstComment, $commentsParPage);
 
         $this->render('validComment', [
-            'article' => compact('article'),
-            'comments' => compact('comments'),
-            'pagesComments' => $pagesComments,
-            'numPageComments' => $pageURL,
+            'idCom' => $idCom,
+            'article' => $article,
+            'comments' => $comments,
+            'pages' => $pagesComments,
+            'numPage' => $pageURL,
         ]);
     }
 
@@ -230,9 +236,9 @@ class adminManagement extends AbstractController {
                 //recover the datas for one user
                 $user = $this->userManager->readUser($paramURL);
 
-                $message = '<br /><p class = "text-center font-weight-bold mb-5">Le rôle du compte administrateur principal ne peut pas être modifié.<p>';
+                $message = 'Le rôle du compte administrateur principal ne peut pas être modifié.';
                 $this->render('adminModifyUser', [
-                    'user' => compact('user'),
+                    'user' => $user,
                     'message' => $message,
                 ]);
             }
@@ -246,7 +252,7 @@ class adminManagement extends AbstractController {
                 
                 // On envoie les données à la vue index
                 $this->render('adminModifyUser', [
-                    'user' => compact('user'),
+                    'user' => $user,
                 ]);
             }
         }
@@ -270,9 +276,9 @@ class adminManagement extends AbstractController {
                 //recover the datas for one user
                 $user = $this->userManager->readUser($paramURL);
 
-                $message = '<br /><p class = "text-center font-weight-bold mb-5">Le rôle du compte administrateur principal ne peut pas être modifié.<p>';
+                $message = 'Le rôle du compte administrateur principal ne peut pas être modifié.';
                 $this->render('adminModifyUser', [
-                    'user' => compact('user'),
+                    'user' => $user,
                     'message' => $message,
                 ]);
             }
@@ -287,7 +293,7 @@ class adminManagement extends AbstractController {
                 
                 // On envoie les données à la vue index
                 $this->render('adminModifyUser', [
-                    'user' => compact('user'),
+                    'user' => $user,
                 ]);
             }
         }
@@ -315,7 +321,7 @@ class adminManagement extends AbstractController {
             
             // On envoie les données à la vue index
             $this->render('adminModifyUser', [
-                'user' => compact('user'),
+                'user' => $user,
             ]);
 
         }
@@ -339,9 +345,9 @@ class adminManagement extends AbstractController {
                 //recover the datas for one user
                 $user = $this->userManager->readUser($paramURL);
 
-                $message = '<br /><p class = "text-center font-weight-bold mb-5">Le compte administrateur principal ne peut pas être modifié.<p>';
+                $message = 'Le compte administrateur principal ne peut pas être modifié.';
                 $this->render('adminModifyUser', [
-                    'user' => compact('user'),
+                    'user' => $user,
                     'message' => $message,
                 ]);
             }
@@ -355,7 +361,7 @@ class adminManagement extends AbstractController {
                 
                 // On envoie les données à la vue index
                 $this->render('adminModifyUser', [
-                    'user' => compact('user'),
+                    'user' => $user,
                 ]);
             }
         }

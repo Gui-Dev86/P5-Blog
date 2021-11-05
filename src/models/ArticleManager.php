@@ -66,7 +66,8 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function readAllArticlesAdmin($firstArticle, $articlesParPage){
-        $sql = 'SELECT * FROM articles ORDER BY dateUpdate_art DESC LIMIT :firstArticle, :articlesParPage';
+        $sql = 'SELECT SUBSTR(title_art, 1, 30) AS title_art, autor_art, date_art, dateUpdate_art, isActive_art, id_art 
+        FROM articles ORDER BY dateUpdate_art DESC LIMIT :firstArticle, :articlesParPage';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':firstArticle', $firstArticle, PDO::PARAM_INT);
         $query->bindValue(':articlesParPage', $articlesParPage, PDO::PARAM_INT);
@@ -176,7 +177,7 @@ class ArticleManager extends AbstractManager {
      * @return void
      */
     public function readAllCommentsAdmin($firstComment, $commentsParPage){
-        $sql = 'SELECT articles.id_art, title_art, id_com, content_com, autor_com, date_com, dateUpdate_com, statut_com, isDeleted_com FROM comments, articles WHERE comments.id_art = articles.id_art AND isDeleted_com = 0 ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
+        $sql = 'SELECT articles.id_art, SUBSTR(title_art, 1, 30) AS title_art, id_com, content_com, autor_com, date_com, dateUpdate_com, statut_com, isDeleted_com FROM comments, articles WHERE comments.id_art = articles.id_art AND isDeleted_com = 0 ORDER BY dateUpdate_com DESC LIMIT :firstComment, :commentsParPage';
         $query = $this->_connexion->prepare($sql);
         $query->bindValue(':firstComment', $firstComment, PDO::PARAM_INT);
         $query->bindValue(':commentsParPage', $commentsParPage, PDO::PARAM_INT);
@@ -255,7 +256,6 @@ class ArticleManager extends AbstractManager {
     public function newCommentAdmin(Comment $comment) {
         $sql = 'INSERT INTO comments (content_com,autor_com,date_com,dateUpdate_com,statut_com,isDeleted_com,id_art,id_user)
         VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,1,0,:id_art,:id_user)';
-        
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
         $query->bindValue('autor_com',$comment->getAutor_com(), PDO::PARAM_STR);

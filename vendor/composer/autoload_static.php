@@ -6,7 +6,21 @@ namespace Composer\Autoload;
 
 class ComposerStaticInite5af0865626fff00809823f5acd03a80
 {
+    public static $files = array (
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
+        ),
         'P' => 
         array (
             'PHPMailer\\PHPMailer\\' => 20,
@@ -18,6 +32,18 @@ class ComposerStaticInite5af0865626fff00809823f5acd03a80
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
@@ -25,6 +51,16 @@ class ComposerStaticInite5af0865626fff00809823f5acd03a80
         'Consistence\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
         ),
     );
 
@@ -44,11 +80,6 @@ class ComposerStaticInite5af0865626fff00809823f5acd03a80
         'App\\src\\models\\User' => __DIR__ . '/../..' . '/src/models/User.php',
         'App\\src\\models\\UserManager' => __DIR__ . '/../..' . '/src/models/UserManager.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
-        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
-        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
-        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
-        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -56,6 +87,7 @@ class ComposerStaticInite5af0865626fff00809823f5acd03a80
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite5af0865626fff00809823f5acd03a80::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite5af0865626fff00809823f5acd03a80::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInite5af0865626fff00809823f5acd03a80::$prefixesPsr0;
             $loader->classMap = ComposerStaticInite5af0865626fff00809823f5acd03a80::$classMap;
 
         }, null, ClassLoader::class);

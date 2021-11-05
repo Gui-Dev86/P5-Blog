@@ -1,0 +1,111 @@
+{% extends 'base.twig' %}
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container col-10">
+    <div class="row">
+        <div class="col-10 my-4">
+            <a class="font-weight-bold retour-listMember" href="{{ constant('local') }}adminManagement/adminListAllMembers/1">< Page précédente</a>
+        </div>
+    </div>
+</div>
+<section class="container col-10" id="modifyUser">
+    <div class="container col-12">
+        <div class="row">
+            <div class="col-12 col-10 mb-5 containerDashed text-center">
+                <h4 class="font-weight-bold">
+                    <span class="ion-minus"></span>MODIFIER LES INFORMATIONS<span class="ion-minus"></span>
+                </h4>
+            </div>
+        </div>
+    </div>
+    {% if user.id_user == 1 and session.idUser != 1 %}
+        <div class="container col-12 col-md-10">
+            <div class="row justify-content-center">
+                <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                    <h5 class="font-weight-bold text-center pt-3">Vous n'avez pas accès au compte administrateur principal</h5>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container adminInfosUser py-3 mb-3 col-12">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 offset-md-2 pb-3">
+                    <h5>Login: <span class="font-italic font-weight-bold">{{ user.login_user }}</span></h5>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 offset-md-2 pb-3">
+                    <h5>Rôle: <span class="font-italic font-weight-bold">{% if user.role_user == 1 %} {{ "Admin" }} {% else %} {{ "Member" }} {% endif %}</span></h5>
+                </div>
+            </div>
+            {% if user.id_user == 1 %}
+                <div class="container col-12 col-md-10">
+                    <div class="row justify-content-center">
+                        <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                            <h5 class="font-weight-bold text-center">Le compte principale ne peut pas être modifié.</h5>
+                        </div>
+                    </div>
+                </div>
+                {% elseif user.id_user == session.idUser %}
+                <div class="container col-12 col-md-10">
+                    <div class="row justify-content-center">
+                        <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                            <h5 class="font-weight-bold text-center">Vous ne pouvez pas modifier votre propre rôle.</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if user.id_user != session.idUser %}
+                {% if user.role_user == 1 %}
+                <form method="post" action="{{ constant('local') }}adminManagement/activeUser">
+                    <div class="form-group row justify-content-center pb-5 ">
+                        <button type="submit" name="adminDowngroundUser" class="btn btn-primary font-weight-bold btn-modifyUser">Passer en utilisateur</button>
+                    </div>
+                </form>
+                {% else %}
+                
+                <form method="post" action="{{ constant('local') }}adminManagement/activeAdmin">
+                    <div class="form-group row justify-content-center pb-5 ">
+                        <button type="submit" name="adminUpgradeUser" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Passer en administrateur</button>
+                    </div>
+                </form>
+                {% endif %}
+            {% endif %}
+            {% if valide is defined %}
+                <br /><p style="color: blue;" class = font-weight-bold>{{ valide }}</p>
+            {% endif %}
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 offset-md-2 pb-3">
+                    <h5>Etat du compte:
+                        <span class="font-weight-bold font-italic">{% if user.isActiveUser_user == 1 and user.isActiveAdmin_user == 1 %} {{ "Actif" }}</span></h5>
+                </div>
+            </div>
+            <form method="post" action="{{ constant('local') }}adminManagement/desactiveCompte">
+                <div class="form-group row justify-content-center pb-5 ">
+                    <button type="submit" name="adminDesactiveCompte" class="btn btn-primary font-weight-bold btn-modifyUserWarning">Désactiver</button>
+                    {% elseif user.isActiveAdmin_user == 0 %} {{ "Inactif" }}</span></h5>
+                </div>
+            </form>
+            </div>
+            <form method="post" action="{{ constant('local') }}adminManagement/activeCompte">
+                <div class="form-group row justify-content-center pb-5 ">
+                    <button type="submit" name="adminActiveCompte" class="btn btn-primary font-weight-bold btn-modifyUser">Activer</button> 
+                    {% elseif user.isActiveUser_user == 0 %} {{ "Inactif" }}</span></h5>
+                </div>
+            </form>
+        </div>
+        <div class="container col-12 col-md-10">
+            <div class="row justify-content-center">
+                <div class="container col-12 col-md-8 offset-md-2 pb-3">
+                    <h5 class="font-weight-bold text-center pt-3">Le compte a été désactivé par l'utilisateur.</h5>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+</section>
+
+{% endblock %}

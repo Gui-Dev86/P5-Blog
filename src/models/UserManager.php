@@ -67,21 +67,35 @@ class UserManager extends AbstractManager {
     } 
 
     /**
-     * Checks login and mail availables
+     * Checks login available to modify
      *
      */
-    public function loginMailAvailable(User $user)
+    public function loginAvailable(User $user, $idUser)
     {
-        $sql = 'SELECT COUNT(*) AS nbLoginMail FROM users WHERE id_user != :id_user AND (login_user = :login_user OR email_user = :email_user)';
+        $sql = 'SELECT COUNT(*) AS nbLogin FROM users WHERE id_user != :id_user AND login_user = :login_user';
         $query = $this->_connexion->prepare($sql);
-        $query->bindValue('id_user',$user->getId_user(), PDO::PARAM_STR);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_STR);
         $query->bindValue('login_user',$user->getLogin_user(), PDO::PARAM_STR);
-        $query->bindValue('email_user',$user->getEmail_user(), PDO::PARAM_STR);
         $query->execute();
         $dataCount = $query->fetch(PDO::FETCH_ASSOC);
         return $dataCount;
     }
 
+    /**
+     * Checks mail available to modify
+     *
+     */
+    public function mailAvailable(User $user, $idUser)
+    {
+        $sql = 'SELECT COUNT(*) AS nbMail FROM users WHERE id_user != :id_user AND email_user = :email_user';
+        $query = $this->_connexion->prepare($sql);
+        $query->bindValue('id_user',$idUser, PDO::PARAM_STR);
+        $query->bindValue('email_user',$user->getEmail_user(), PDO::PARAM_STR);
+        $query->execute();
+        $dataCount = $query->fetch(PDO::FETCH_ASSOC);
+        return $dataCount;
+    }
+    
     /**
      * Update the user's password
      *

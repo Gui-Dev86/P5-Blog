@@ -23,14 +23,14 @@ if(isset($params[2])) {
         $_SESSION['paramURL'] = $params[2];
     }
 }
-//save the second parameter in the URL for the comments pagination
+//save the fourth parameter in the URL for the comments pagination
 if(isset($params[3])) {
     if(is_numeric($params[3])) {
         $_SESSION['commentPage'] = $params[3];
     }
 }
 
-//save the third parameter in the URL to recover the comment ID
+//save the fifth parameter in the URL to recover the comment ID
 if(isset($params[4])) {
     if($params[4] !="") {
         $_SESSION['idCommentPage'] = $params[4];
@@ -57,8 +57,6 @@ if($params[0] != ""){
         unset($params[0]);
         unset($params[1]);
         call_user_func_array([$controller,$action], $params);
-        // On appelle la méthode
-        $controller->$action();
         
     }else{
         // On envoie le code réponse 404
