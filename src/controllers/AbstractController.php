@@ -58,10 +58,10 @@ abstract class AbstractController {
         define('view', $view);
         
         try {
-            if( file_exists( 'src/views/front/'.$view.'.twig' ) ) {
-                echo $this->twig->render('front/'. $view . '.twig', $data);
+            if( file_exists('src/views/front/'.$view.'.twig')) {
+                print_r($this->twig->render('front/'. $view . '.twig', $data));
             } else {
-                echo $this->twig->render('back/'. $view . '.twig', $data);
+                print_r($this->twig->render('back/'. $view . '.twig', $data));
             }
         } catch (LoaderError $e) {
         } catch (RuntimeError $e) {

@@ -29,8 +29,9 @@ class Articles extends AbstractController {
      * @return void
      */
     public function pageArticles() {
-
-        $params = explode('/', $_GET['p']);
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+        }
         //count the articles number in the database
         $articlesCount = $this->articleManager->countAllArticles();
         $nbArticles = (int) $articlesCount['nbArticles'];
@@ -58,13 +59,13 @@ class Articles extends AbstractController {
      * @return void
      */
     public function readArticle(){
-        
-        $params = explode('/', $_GET['p']);
-        //recover the third param in the URL for the id article
-        $idArt = $params[2];
-        //recover the fourth param in the URL for the comment page
-        $pageURL = $params[3];
-        
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third param in the URL for the id article
+            $idArt = $params[2];
+            //recover the fourth param in the URL for the comment page
+            $pageURL = $params[3];
+        }
         //recover the datas of one article
         $article = $this->articleManager->readArticle($idArt);
 
@@ -102,25 +103,27 @@ class Articles extends AbstractController {
             if(isset($_POST['formCreateArticle'])) 
             {
                 $date = new DateTime();
-                $filename = $_FILES["uploadfile"]["name"];
-                $tempname = $_FILES["uploadfile"]["tmp_name"];
-                $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
-                if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
-
-                $newArticle = new Article();
-                $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
-                $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
-                $newArticle->setContent_art(htmlspecialchars($_POST['content']));
-                $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
-                $newArticle->setImage_art(htmlspecialchars($filename));
-                $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
-                $newArticle->setDate_art($date->format('Y-m-d H:i:s'));
-                $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
-                $newArticle->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
+                if(isset($_FILES["uploadfile"]["name"]) && !empty($_FILES["uploadfile"]["name"])) {
+                    $filename = $_FILES["uploadfile"]["name"];
+                    $tempname = $_FILES["uploadfile"]["tmp_name"];
+                    $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
+                    if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
+                }
 
                 if(isset($_POST['title']) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
                 AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
                 {
+                    $newArticle = new Article();
+                    $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
+                    $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
+                    $newArticle->setContent_art(htmlspecialchars($_POST['content']));
+                    $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
+                    $newArticle->setImage_art(htmlspecialchars($filename));
+                    $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
+                    $newArticle->setDate_art($date->format('Y-m-d H:i:s'));
+                    $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
+                    $newArticle->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
+
                     $titleLength = strlen($_POST['title']);
                     if($titleLength<=255)
                     {
@@ -183,8 +186,9 @@ class Articles extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-            
-            $params = explode('/', $_GET['p']);
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+            }
             //recover the third param in the URL for the id article
             $idArt = $params[2];
             
@@ -205,7 +209,9 @@ class Articles extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-            $params = explode('/', $_GET['p']);
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+            }
             //recover the third param in the URL for the id article
             $idArt = $params[2];
 
@@ -259,8 +265,9 @@ class Articles extends AbstractController {
             header('Location: ' . local);
             exit;
         } else {
-            
-            $params = explode('/', $_GET['p']);
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+            }
             //recover the third param in the URL for the id article
             $idArt = $params[2];
         
@@ -281,12 +288,13 @@ class Articles extends AbstractController {
      * @return void
      */
     public function modifyComment() {
-
-        $params = explode('/', $_GET['p']);
-        //recover the third param in the URL for the id article
-        $idArt = $params[2];
-        //recover the fifth param in the URL for the id comment
-        $idCom = $params[4];
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+            $params = explode('/', $_GET['p']);
+            //recover the third param in the URL for the id article
+            $idArt = $params[2];
+            //recover the fifth param in the URL for the id comment
+            $idCom = $params[4];
+        }
 
         if(isset($_POST['formModifyComment'])) 
         {
@@ -392,11 +400,13 @@ class Articles extends AbstractController {
         if(isset($_POST['formModifyArticle'])) 
         {   
             $date = new DateTime();
-            $filename = $_FILES["uploadfile"]["name"];
-            $tempname = $_FILES["uploadfile"]["tmp_name"];
-            $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
+            if(isset($_FILES["uploadfile"]["name"]) && !empty($_FILES["uploadfile"]["name"])) {
+                $filename = $_FILES["uploadfile"]["name"];
+                $tempname = $_FILES["uploadfile"]["tmp_name"];
+                $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
+            
             if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
-           
+            }
             //recover the datas of one article
             $article = $this->articleManager->readArticle($idArt);
 
@@ -405,7 +415,7 @@ class Articles extends AbstractController {
             $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
             $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
             $newArticle->setContent_art(htmlspecialchars($_POST['content']));
-            if($filename != "") {
+            if(isset($filename)) {
                 $newArticle->setImage_art(htmlspecialchars($filename));
             }
             else
