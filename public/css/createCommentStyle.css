@@ -1,32 +1,28 @@
-h3 {
-    font-size: 2rem !important;
-}
-
 .containerDashed {
-    border-bottom: 5px dashed #292929;
+  border-bottom: 5px dashed #292929;
 }
 
 .btn-createCom {
-    color: #212529;
-    width: 174px;
-    border-radius: 3px;
-    background: #007bff;
-    background: -webkit-linear-gradient(top, #40bbff, #007bff);
-    background: -o-linear-gradient(top, #40bbff, #007bff);
-    background: -moz-linear-gradient(top, #40bbff, #007bff);
-    background: -webkit-gradient(top, #40bbff, #007bff);
-    background: -ms-linear-gradient(top, #40bbff, #007bff);
-    border: 1px SOLID #0084af;
+  color: #212529;
+  width: 174px;
+  border-radius: 3px;
+  background: #007bff;
+  background: -webkit-linear-gradient(top, #40bbff, #007bff);
+  background: -o-linear-gradient(top, #40bbff, #007bff);
+  background: -moz-linear-gradient(top, #40bbff, #007bff);
+  background: -webkit-gradient(top, #40bbff, #007bff);
+  background: -ms-linear-gradient(top, #40bbff, #007bff);
+  border: 1px SOLID #0084af;
 }
 
 .btn-createCom:hover{
-    opacity: 0.75 !important;
+  opacity: 0.75;
 }
 
 .retour-article {
-    color: #212529 !important;
+  color: #212529;
 }
 
 .retour-article:hover {
-    color: #007bff !important;
+  color: #007bff;
 }

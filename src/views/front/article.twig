@@ -20,14 +20,14 @@
             <div class="container contArticle col-12">
                 <div class="row">
                     <div class="col-12 mt-3 mb-4 containerDashed text-center">
-                        <h4 class="font-weight-bold">
+                        <h3 class="font-weight-bold">
                             <span class="ion-minus"></span>{{ article.0.title_art }}<span class="ion-minus"></span>
-                        </h4>
+                        </h3>
                     </div>
                 </div>
             </div>
             <div class="col-12">
-                <div class="container contImgMobile">
+                <div class="container">
                     <div class="row">
                         <div class="col-12 mb-3 text-center">
                             <img class="img-art" src="{{ constant('local') }}public/img/upload/{{ article.0.image_art }}" alt="{{ article.0.altImage_art }}">
@@ -122,11 +122,11 @@
         {% if session is defined %}
             {% if session.isActiveUser == 1 and session.isActiveAdmin == 1 %}
                 <section class="container col-10">
-                    <div class="container contNewComment">
+                    <div class="container">
                         <div class="row">
                             <form class="col-12" action="{{ constant('local') }}articles/createComment/{{ article.0.id_art }}/1" method="post">
                                 <div class = "text-center">
-                                    <button type="submit" name="formCreateComment" class="col-12 btn btnComment btn-primary mb-5">Ajouter un commentaire</button>
+                                    <button type="submit" name="formCreateComment" class="btn btnComment mb-5">Ajouter un commentaire</button>
                                 </div>
                             </form>
                         </div>

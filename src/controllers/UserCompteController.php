@@ -64,9 +64,10 @@ class UserCompte extends AbstractController{
                 $idUser = $_SESSION['user']['idUser'];
             }
             //recover the third URL parameter number page
-            if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-            {
-                $paramURL = (int) strip_tags($_SESSION["paramURL"]);
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+                //recover the third URL parameter article id
+                $paramURL = $params[2];
             }
             
             //count the comments number in the database

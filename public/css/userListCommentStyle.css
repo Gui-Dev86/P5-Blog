@@ -1,60 +1,39 @@
-.retour-compteUser {
-    color: #212529 !important;
-}
-
-.retour-compteUser:hover {
-    color: #007bff !important;
-}
-
-h4 {
-    font-size: 2rem !important;
-}
-
 .containerDashed {
-    border-bottom: 5px dashed #292929;
+  border-bottom: 5px dashed #292929;
 }
 
 .contListComment {
-    padding: 1rem 2rem 0 2rem !important;
-    background-color: #E7E7E7 !important;
-    border-radius: 5px;
+  padding: 1rem 2rem 0 2rem ;
+  background-color: #E7E7E7;
+  border-radius: 5px;
 }
 
 .commentInfos {
-    font-size: 15px !important;
+  font-size: 15px;
 }
 
 .displayComment {
-    padding-left: 10px !important;
+  padding-left: 10px;
 }
 
-.paginationLink, .displayComment {
-    color: #212529 !important;
-}
+.retour-compteUser,
+.paginationLink,
+.displayComment { color: #212529; }
 
 .paginationLink {
-    font-size: 25px;
+  font-size: 25px;
 }
 
-.paginationLink:hover, .displayComment:hover {
-    color: #007bff !important;
-}
+.paginationLink:hover,
+.retour-compteUser:hover,
+.displayComment:hover { color: #007bff ; }
 
 .disabled {
-    display: none !important;
+  display: none;
 }
 
 @media (max-width: 768px) {
-
-    h4 {
-        font-size: 1.5rem !important;
-    }
-
-    .commentInfos {
-        font-size: 13px !important;
-    }
-
-    .displayComment {
-        padding-left: 2px !important;
-    }
+  .commentInfos { font-size: 13px; }
+  
+  .displayComment { padding-left: 2px; }
 }

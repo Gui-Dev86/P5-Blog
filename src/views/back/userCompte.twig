@@ -9,9 +9,9 @@
     <div class="container col-12">
         <div class="row">
             <div class="col-12 mt-3 mb-4 containerDashed text-center">
-                <h4 class="font-weight-bold">
+                <h3 class="font-weight-bold">
                     <span class="ion-minus"></span>COMPTE<span class="ion-minus"></span>
-                </h4>
+                </h3>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                 
             </div>
             <div class="container btnCenterMobile col-12 col-md-8 offset-md-2 pt-3 pb-5">
-                <a class="btn btn-default btn-primary font-weight-bold btn-userInfos" href="{{ constant('local') }}userCompte/userFormModifCompte">Modifier vos informations</a>
+                <a class="btn btn-default font-weight-bold btn-userInfos" href="{{ constant('local') }}userCompte/userFormModifCompte">Modifier vos informations</a>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
                 <h5 class="pb-3">Commentaires</h5>
                 <form method="post" action="{{ constant('local') }}userCompte/userListComment/1">
                     <div class="form-group btnCenterMobile">                 
-                        <button type="submit" class="btn btn-default btn-primary font-weight-bold btn-userInfos" name="formListComments">Afficher vos commentaires</button>                
+                        <button type="submit" class="btn btn-default font-weight-bold btn-userInfos" name="formListComments">Afficher vos commentaires</button>                
                     </div>
                 </form>
             </div>  
@@ -90,7 +90,7 @@
                         <input type="password" name="newPasswordConfirm" class="form-control" id="newPasswordConfirm" placeholder="Confirmez votre nouveau mot de passe">
                     </div>
                     <div class="btnCenterMobile">
-                        <button type="submit" name = "formModifyPassword" class="btn btn-primary font-weight-bold btn-userInfos">Changer</button>
+                        <button type="submit" name = "formModifyPassword" class="btn font-weight-bold btn-userInfos">Changer</button>
                     </div>
                 </form>
                 {% if valide is defined %}
@@ -122,11 +122,11 @@
 
                 {% if session.isActiveUser == 1 and session.isActiveAdmin == 1 %}
                     <form method="post" action="{{ constant('local') }}userCompte/disableCompteUser">
-                        <button type="submit" name="disableCompte" class="btn btn-primary font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
+                        <button type="submit" name="disableCompte" class="btn font-weight-bold btn-inactiveUserWarning ml-3">Désactiver</button>
                     </form>
                 {% else %}
                         <form method="post" action="{{ constant('local') }}userCompte/activeCompteUser">
-                            <button type="submit" name="activeCompte" class="btn btn-primary ml-5 font-weight-bold btn-userInfos">Activer</button>
+                            <button type="submit" name="activeCompte" class="btn ml-5 font-weight-bold btn-userInfos">Activer</button>
                         </form>
                 {% endif %}
             </div>

@@ -371,10 +371,10 @@ class Articles extends AbstractController {
         if($this->isLogged() == false) {
             $this->render('home');
         } else {
-            //recover the fourth param in the URL for the id article
-            if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
-            {
-                $idArt = (int) strip_tags($_SESSION["paramURL"]);
+            if(isset($_GET['p']) && !empty($_GET['p'])) {
+                $params = explode('/', $_GET['p']);
+                //recover the third URL parameter article id
+                $idArt = $params[2];
             }
             //recover the datas of one article
             $article = $this->articleManager->readArticle($idArt);
@@ -393,7 +393,7 @@ class Articles extends AbstractController {
         
         if(isset($_GET['p']) && !empty($_GET['p'])) {
             $params = explode('/', $_GET['p']);
-            //recover the third URL parameter user id
+            //recover the third URL parameter article id
             $idArt = $params[2];
         }
         

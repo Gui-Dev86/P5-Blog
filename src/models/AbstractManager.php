@@ -9,10 +9,6 @@ abstract class AbstractManager {
     // Propriété qui contiendra l'instance de la connexion
     protected $_connexion;
 
-    // Propriétés permettant de personnaliser les requêtes
-    public $table;
-    public $id;
-
     /**
      * Fonction d'initialisation de la base de données
      *
@@ -20,7 +16,7 @@ abstract class AbstractManager {
      */
     public function getConnection(){
         
-        require_once(ROOT."config/database.php");
+        require_once ROOT."config/database.php";
         
         // On supprime la connexion précédente
         $this->_connexion = null;
@@ -30,7 +26,7 @@ abstract class AbstractManager {
             $this->_connexion = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
             $this->_connexion->exec("SET NAMES UTF8");
         } catch(PDOException $exception) {
-            echo "Erreur de connexion : " . $exception->getMessage();
+            print_r("Erreur de connexion : " . $exception->getMessage());
         }
     }   
 }

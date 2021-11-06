@@ -1,22 +1,19 @@
- .btnManagement {
-    margin: auto;
-    width: 75%;
-    margin-top: 6rem;
-    border: none;
- }
+.btnManagement {
+  margin: auto;
+  width: 75%;
+  margin-top: 6rem;
+  border: none;
+}
 
 .linkManagement {
-    color: #212529;
+  color: #212529;
 }
 
 .linkManagement:hover {
-    color: #007bff;
+  color: #007bff;
 }
 
 @media (max-width: 768px) {
     
-    .card {
-        margin: auto;
-        margin-top: 0;
-    }
+  .card { margin: auto; margin-top: 0; }
 }

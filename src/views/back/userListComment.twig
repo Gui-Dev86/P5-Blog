@@ -16,27 +16,29 @@
     <div class="container col-12">
         <div class="row">
             <div class="col-12 mb-4 containerDashed text-center">
-                <h4 class="font-weight-bold">
+                <h3 class="font-weight-bold">
                     <span class="ion-minus"></span>COMMENTAIRES<span class="ion-minus"></span>
-                </h4>
+                </h3>
             </div>
         </div>
     </div>
     {% for comment in comments %}
         <div class="col-12">
-            <div class="container contListComment mb-3">
+            <div class="container contListComment pt-2 px-4 mb-3">
          
                 <div class="row">
                     <p>{{ comment.content_com }} </p>
                 </div>
                 <div class="row">
-                    {% if comment.dateUpdate_com >  comment.date_com %}
+                    {% if comment.dateUpdate_com > comment.date_com %}
                             Mis à jour le  {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} Créé le {{ comment.date_com | date('d-m-Y') }} 
                     {% endif %}
                     par&nbsp<b>{{ comment.autor_com }}</b>
-                    <a class="font-weight-bold displayComment" href="{{ constant('local') }}articles/readArticle/{{ comment.id_art }}/1">Afficher le commentaire</a></p>
+                    <a class="font-weight-bold displayComment" href="{{ constant('local') }}articles/readArticle/{{ comment.id_art }}/1">Afficher l'article</a></p>
                 </div>
-           
+                <div class="row">
+                    <p><span class="font-weight-bold">Statut:</span>{% if comment.statut_com == 1 %} {{ "Validé" }} {% elseif comment.statut_com == NULL %} {{ "En cours de validation" }} {% else %} {{ "Refusé" }} {% endif %}</p>
+                </div>
             </div>
         </div>
     {% endfor %}

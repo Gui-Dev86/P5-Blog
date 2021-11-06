@@ -1,67 +1,60 @@
 .homeBackground {
-	background: no-repeat top center url("../img/keyboard.jpg");
-	background-size: cover;
-	height: 46rem;
+  background: no-repeat top center url("../img/keyboard.jpg");
+  background-size: cover;
+  height: 46rem;
 }
 
 .logoDevContenu {
-    width: 16rem !important;
+  width: 16rem;
 }
 
-h1 {
-	font-size: 3rem !important;
-	margin-top: 15rem !important;
-	color: #fff;
-	animation: reveal 7s linear forwards;
+.titleBlog {
+  font-size: 3rem;
+  margin-top: 15rem;
+  color: #fff;
+  animation: reveal 7s linear forwards;
 }
 
 @keyframes reveal {
-	0% {opacity:0;}
-	25% {opacity:0.25;}
-	50% {opacity:0.5;}
-	75% {opacity:0.75;}
-	100% {opacity:1;}
+  0% {opacity:0;}
+  25% {opacity:0.25;}
+  50% {opacity:0.5;}
+  75% {opacity:0.75;}
+  100% {opacity:1;}
 }
 
 .aPropos {
-	font-size: 2.5rem;
+  font-size: 2.5rem;
 }
 
 .btnHome {
-	color: #212529;
-    width: 174px;
-    border-radius: 3px;
-    background: #007bff;
-    background: -webkit-linear-gradient(top, #40bbff, #007bff);
-    background: -o-linear-gradient(top, #40bbff, #007bff);
-    background: -moz-linear-gradient(top, #40bbff, #007bff);
-    background: -webkit-gradient(top, #40bbff, #007bff);
-    background: -ms-linear-gradient(top, #40bbff, #007bff);
-    border: 1px SOLID #0084af;
+  color: #212529;
+  width: 174px;
+  border-radius: 3px;
+  background: #007bff;
+  background: -webkit-linear-gradient(top, #40bbff, #007bff);
+  background: -o-linear-gradient(top, #40bbff, #007bff);
+  background: -moz-linear-gradient(top, #40bbff, #007bff);
+  background: -webkit-gradient(top, #40bbff, #007bff);
+  background: -ms-linear-gradient(top, #40bbff, #007bff);
+  border: 1px SOLID #0084af;
 }
 
 .btnHome:hover{
-    opacity: 0.75 !important;
+  opacity: 0.75;
 }
 
 .containerDashed {
-	border-bottom: 5px dashed #292929;
+  border-bottom: 5px dashed #292929;
 }
 
 .contactTitre {
-	margin-top: 2rem;
-	font-size: 1.5rem;
+  margin-top: 2rem;
+  font-size: 1.5rem;
 }
 
 @media (max-width: 768px) {
+  .homeBackground { height: 35rem; }
 
-	.homeBackground {
-		height: 35rem !important;
-	}
-
-	h1 {
-		font-size: 2.5rem !important;
-		margin-top: 9rem !important;
-	}
-
+  .titleBlog { font-size: 2.5rem; margin-top: 9rem; }
 }

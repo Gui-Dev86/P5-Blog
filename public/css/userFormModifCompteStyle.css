@@ -1,43 +1,32 @@
 .retour-compteUser {
-    color: #212529 !important;
+  color: #212529;
 }
 
 .retour-compteUser:hover {
-    color: #007bff !important;
-}
-
-h4 {
-    font-size: 2rem !important;
+  color: #007bff;
 }
 
 .containerDashed {
-    border-bottom: 5px dashed #292929;
+  border-bottom: 5px dashed #292929;
 }
 
 .btnModifInfos {
-    color: #212529;
-    width: 200px;
-    border-radius: 3px;
-    background: #007bff;
-    background: -webkit-linear-gradient(top, #40bbff, #007bff);
-    background: -o-linear-gradient(top, #40bbff, #007bff);
-    background: -moz-linear-gradient(top, #40bbff, #007bff);
-    background: -webkit-gradient(top, #40bbff, #007bff);
-    background: -ms-linear-gradient(top, #40bbff, #007bff);
-    border: 1px SOLID #0084af;
+  color: #212529;
+  width: 200px;
+  border-radius: 3px;
+  background: #007bff;
+  background: -webkit-linear-gradient(top, #40bbff, #007bff);
+  background: -o-linear-gradient(top, #40bbff, #007bff);
+  background: -moz-linear-gradient(top, #40bbff, #007bff);
+  background: -webkit-gradient(top, #40bbff, #007bff);
+  background: -ms-linear-gradient(top, #40bbff, #007bff);
+  border: 1px SOLID #0084af;
 }
 
 .btnModifInfos:hover {
-    opacity: 0.75 !important;
+    opacity: 0.75;
 }
 
 @media (max-width: 768px) {
-
-    h4 {
-        font-size: 1rem !important;
-    }
-
-    .btnCenterMobile {
-        text-align: center;
-    }
+  .btnCenterMobile { text-align: center; }
 }
