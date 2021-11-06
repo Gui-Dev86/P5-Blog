@@ -52,11 +52,7 @@
 }
 
 @media (max-width: 768px) {
-  .tabLargeScreen {
-    display: none;
-  }
-  .tabMobile {
-    display: block;
-  }
+  .tabLargeScreen { display: none; }
 
+  .tabMobile { display: block; }
 }
