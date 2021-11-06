@@ -37,27 +37,29 @@ h4 {
 }
 
 .btnComment {
-    color: #212529 !important;
-    width: 200px !important;
+    color: #212529;
+    width: 200px;
     border-radius: 3px;
-    background: #007bff !important;
-    background: -webkit-linear-gradient(top, #40BBFF, #007bff) !important;
-    background: -o-linear-gradient(top, #40BBFF, #007bff) !important;
-    background: -moz-linear-gradient(top, #40BBFF, #007bff) !important;
-    background: linear-gradient(to bottom, #40BBFF, #007bff) !important;
-    border: 1px SOLID #0084AF !important;
+    background: #007bff;
+    background: -webkit-linear-gradient(top, #40bbff, #007bff);
+    background: -o-linear-gradient(top, #40bbff, #007bff);
+    background: -moz-linear-gradient(top, #40bbff, #007bff);
+    background: -webkit-gradient(top, #40bbff, #007bff);
+    background: -ms-linear-gradient(top, #40bbff, #007bff);
+    border: 1px SOLID #0084af;
 }
 
 .btnRefuseComment {
-    color: #212529 !important;
-    width: 200px !important;
+    color: #212529;
+    width: 200px;
     border-radius: 3px;
-    background: #FFCC66 !important;
-    background: -webkit-linear-gradient(top, #F7E47E, #FFCC66) !important;
-    background: -o-linear-gradient(top, #F7E47E, #FFCC66) !important;
-    background: -moz-linear-gradient(top, #F7E47E, #FFCC66) !important;
-    background: linear-gradient(to bottom, #F7E47E, #FFCC66) !important;
-    border: 1px SOLID #DFAC46 !important;
+    background: #ffcc66;
+    background: -webkit-linear-gradient(top, #f7e47e, #ffcc66);
+    background: -o-linear-gradient(top, #f7e47e, #ffcc66);
+    background: -moz-linear-gradient(top, #f7e47e, #ffcc66);
+    background: -webkit-gradient(top, #f7e47e, #ffcc66);
+    background: -ms-linear-gradient(top, #f7e47e, #ffcc66);
+    border: 1px SOLID #dfac46;
 }
 
 .btnComment:hover , .btnRefuseComment:hover {
