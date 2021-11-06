@@ -15,5 +15,8 @@
 
 @media (max-width: 768px) {
     
-  .card { margin: auto; margin-top: 0; }
+  .card {
+    margin: auto;
+    margin-top: 0;
+  }
 }

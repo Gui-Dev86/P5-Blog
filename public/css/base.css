@@ -135,9 +135,16 @@ footer {
 @media (max-width: 768px) {
   .logo-nom { display: none; }
 
-  .navbarMenu { flex-wrap: wrap; justify-content: space-between; padding: 0.5rem 1rem; }
+  .navbarMenu {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
 
-  .nav-link { text-align: left; color: #212529; }
+  .nav-link {
+    text-align: left;
+    color: #212529;
+  }
 
   .nav-item { background-color: #fff; }
 

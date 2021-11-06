@@ -56,5 +56,8 @@
 @media (max-width: 768px) {
   .homeBackground { height: 35rem; }
 
-  .titleBlog { font-size: 2.5rem; margin-top: 9rem; }
+  .titleBlog {
+    font-size: 2.5rem;
+    margin-top: 9rem;
+  }
 }

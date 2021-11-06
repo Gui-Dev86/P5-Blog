@@ -3,8 +3,8 @@
 }
 
 .contListComment {
-  padding: 1rem 2rem 0 2rem ;
-  background-color: #E7E7E7;
+  padding: 1rem 2rem 0 2rem;
+  background-color: #e7e7e7;
   border-radius: 5px;
 }
 
@@ -26,7 +26,7 @@
 
 .paginationLink:hover,
 .retour-compteUser:hover,
-.displayComment:hover { color: #007bff ; }
+.displayComment:hover { color: #007bff; }
 
 .disabled {
   display: none;
@@ -34,6 +34,6 @@
 
 @media (max-width: 768px) {
   .commentInfos { font-size: 13px; }
-  
+
   .displayComment { padding-left: 2px; }
 }

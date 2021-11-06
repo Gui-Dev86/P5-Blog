@@ -35,7 +35,7 @@ a {
 }
 
 a:focus {
-	outline: none !important;
+	outline: none;
 }
 
 a:hover {
@@ -48,7 +48,7 @@ h2,
 h3,
 h4,
 h5,
-h6 {margin: 0px;}
+h6 { margin: 0px; }
 
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
@@ -88,9 +88,6 @@ table {
 table * {
   position: relative;
 }
-
-table td,
-table th { text-align: center !important; }
 
 table thead tr {
   height: 60px;
@@ -176,10 +173,12 @@ th, td {
 
   .columnEndMember,
   .columnEndArticle { padding-right: 20px; }
-  
+
   tbody tr { font-size: 14px; }
 }
-
 @media (max-width: 576px) {
-  .container-table100 { padding-left: 15px; padding-right: 15px; }
+  .container-table100 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

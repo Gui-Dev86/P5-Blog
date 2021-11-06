@@ -15,12 +15,12 @@
   border: 1px SOLID #0084af;
 }
 
-.btn-createArt:hover{
+.btn-createArt:hover {
   opacity: 0.75;
 }
 
 .retour-listArticle {
-  color: #212529 ;
+  color: #212529;
 }
 
 .retour-listArticle:hover {
