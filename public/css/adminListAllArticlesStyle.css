@@ -23,17 +23,16 @@
   opacity: 0.75;
 }
 
-.paginationLink, .linkManagement, .retour-listArticles {
-  color: #212529;
-}
+.paginationLink,
+.linkManagement,
+.retour-listArticles { color: #212529; }
 
 .paginationLink {
   font-size: 25px;
 }
 
-.paginationLink:hover, .retour-listArticles:hover {
-  color: #fff;
-}
+.paginationLink:hover,
+.retour-listArticles:hover { color: #fff; }
 
 .linkManagement:hover {
   color: #007bff;
@@ -53,13 +52,11 @@
 }
 
 @media (max-width: 768px) {
-
   .tabLargeScreen {
     display: none;
-  }       
-
+  }
   .tabMobile {
     display: block;
   }
-     
-}           
+
+}
