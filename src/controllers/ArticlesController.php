@@ -2,9 +2,7 @@
 
 namespace App\src\controllers;
 
-use App\src\models\UserManager;
 use App\src\models\ArticleManager;
-use App\src\models\User;
 use App\src\models\Article;
 use App\src\models\Comment;
 use Twig\Environment;
@@ -14,12 +12,10 @@ use DateTime;
 
 class Articles extends AbstractController {
     
-    private $userManager;
     private $articleManager;
     
     public function __construct()
     {
-        $this->userManager = new UserManager();
         $this->articleManager = new ArticleManager();
     }
 

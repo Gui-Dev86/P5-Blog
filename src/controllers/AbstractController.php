@@ -54,6 +54,7 @@ abstract class AbstractController {
         if(isset($this->user)) {
             $this->twig->addGlobal("session", $this->user);
         }
+        $this->get = filter_input_array(INPUT_GET);
         //define the constant to recover the good css file
         define('view', $view);
         
@@ -91,8 +92,6 @@ abstract class AbstractController {
         $_SESSION['user'] = $this->session['user'];
         return $_SESSION['user'];
     }
-    
-    
 
     /**
      * @return bool
