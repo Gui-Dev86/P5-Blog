@@ -1,22 +1,22 @@
 .tabLargeScreen {
-    display: block;
+  display: block;
 }
 
 .tabMobile {
-    display: none;
+  display: none;
 }
 
 .btn-newArt {
-    color: #212529;
-    width: 200px;
-    border-radius: 3px;
-    background: #007bff;
-    background: -webkit-linear-gradient(top, #40bbff, #007bff);
-    background: -o-linear-gradient(top, #40bbff, #007bff);
-    background: -moz-linear-gradient(top, #40bbff, #007bff);
-    background: -webkit-gradient(top, #40bbff, #007bff);
-    background: -ms-linear-gradient(top, #40bbff, #007bff);
-    border: 1px SOLID #0084af;
+  color: #212529;
+  width: 200px;
+  border-radius: 3px;
+  background: #007bff;
+  background: -webkit-linear-gradient(top, #40bbff, #007bff);
+  background: -o-linear-gradient(top, #40bbff, #007bff);
+  background: -moz-linear-gradient(top, #40bbff, #007bff);
+  background: -webkit-gradient(top, #40bbff, #007bff);
+  background: -ms-linear-gradient(top, #40bbff, #007bff);
+  border: 1px SOLID #0084af;
 }
 
 .btn-newArt:hover {
