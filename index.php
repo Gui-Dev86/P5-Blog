@@ -5,7 +5,7 @@ use App\src\controllers\Main;
 if(!isset($_SESSION)) {
     session_start();
 }
-if(isset($_SERVER['SCRIPT_FILENAME'])) 
+if(isset($_SERVER['SCRIPT_FILENAME']) && !empty($_SERVER['SCRIPT_FILENAME'])) 
 {
     // On génère une constante contenant le chemin vers la racine publique du projet
     define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
