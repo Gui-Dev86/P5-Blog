@@ -92,7 +92,7 @@ class Articles extends AbstractController {
     * @return void
     */
     public function createArticle(){
-        if($this->isLogged() == false) {
+        if($this->isLogged() == false AND $this->isAdmin() == false) {
             $this->render('home');
         } else {
             if(isset($_POST['formCreateArticle'])) 
@@ -108,7 +108,7 @@ class Articles extends AbstractController {
                 AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
                 {
                     $newArticle = new Article();
-                    $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
+                    $newArticle->setTitle_art(htmlspecialchars(filter_input(INPUT_POST, 'title')));
                     $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
                     $newArticle->setContent_art(htmlspecialchars($_POST['content']));
                     $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
