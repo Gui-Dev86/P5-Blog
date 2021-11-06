@@ -103,12 +103,12 @@ class Articles extends AbstractController {
                     $folder = "C:/wamp64/www/P5_Blog/public/img/upload/".$filename;
                     if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
                 }
-
-                if(isset($_POST['title']) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
-                AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
+                $title = filter_input(INPUT_POST, 'title');
+                if(isset($title) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
+                AND !empty($title) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
                 {
                     $newArticle = new Article();
-                    $newArticle->setTitle_art(htmlspecialchars(filter_input(INPUT_POST, 'title')));
+                    $newArticle->setTitle_art(htmlspecialchars($title));
                     $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
                     $newArticle->setContent_art(htmlspecialchars($_POST['content']));
                     $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
