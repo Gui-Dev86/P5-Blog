@@ -10,9 +10,9 @@
     <div class="container col-12">
         <div class="row">
             <div class="col-12 col-10 mt-3 mb-5 containerDashed text-center">
-                <h4 class="font-weight-bold">
+                <h3 class="font-weight-bold">
                     <span class="ion-minus"></span>ARTICLES<span class="ion-minus"></span>
-                </h4>
+                </h3>
             </div>
         </div>
     </div>
@@ -23,8 +23,8 @@
             
                 <div class="col-12 contArticle col-md-4 pr-5-md5 mb-3">
                     <div class="card-block">
-                        <img class="card-img-top" src="{{ constant('local') }}public/img/upload/{{ article.image_art }}" alt="{{ article.altImage_art }}">
-                        <div class="card-body">
+                        <img class="card-img-top rounded-top" src="{{ constant('local') }}public/img/upload/{{ article.image_art }}" alt="{{ article.altImage_art }}">
+                        <div class="card-body pt-1 px-2">
                             <div class="cardTitre">
                                 <h5 class="card-title font-weight-bold">{{ article.title_art }}</h5>
                                 <p class="card-text"><small class="text-muted">
@@ -35,7 +35,7 @@
                                     </small>
                                 </p>
                                 <div class="text-center">
-                                    <a class="btn btn-primary btn-art font-weight-bold stretched-link mb-2" href="{{ constant('local') }}articles/readArticle/{{ article.id_art }}/1">Lire la suite</a>
+                                    <a class="btn btn-art font-weight-bold stretched-link mb-2 mx-3" href="{{ constant('local') }}articles/readArticle/{{ article.id_art }}/1">Lire la suite</a>
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@
 }
 
 .paginationLink, .linkManagement, .retour-listMembers {
-    color: #212529 !important;
+    color: #212529;
 }
 
 .paginationLink {
@@ -15,11 +15,11 @@
 }
 
 .paginationLink:hover, .retour-listMembers:hover {
-    color: #fff !important;
+    color: #fff;
 }
 
 .linkManagement:hover {
-    color: #007bff !important;
+    color: #007bff;
 }
 
 .fondAdmin {
@@ -31,7 +31,7 @@
 }
 
 .disabled {
-    display: none !important;
+    display: none;
 }
 
 @media (max-width: 768px) {

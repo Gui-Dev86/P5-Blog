@@ -28,8 +28,7 @@ class adminManagement extends AbstractController {
      */
     public function index(){
         if($this->isLogged() == false OR $this->isAdmin() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
         // On envoie les données à la vue index
             $this->render('adminManagement');
@@ -43,8 +42,7 @@ class adminManagement extends AbstractController {
      */
     public function adminListAllArticles(){
         if($this->isLogged() == false OR $this->isAdmin() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
@@ -80,8 +78,7 @@ class adminManagement extends AbstractController {
      */
     public function adminListAllComments(){
         if($this->isLogged() == false OR $this->isAdmin() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
@@ -118,8 +115,7 @@ class adminManagement extends AbstractController {
      */
     public function adminListAllMembers(){
         if($this->isLogged() == false OR $this->isAdmin() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
@@ -156,8 +152,7 @@ class adminManagement extends AbstractController {
      */
     public function adminModifyUser(){
         if($this->isLogged() == false OR $this->isAdmin() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);

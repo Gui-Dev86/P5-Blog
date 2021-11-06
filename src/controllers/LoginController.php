@@ -9,10 +9,10 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 use DateTime;
 
-require (ROOT."vendor/phpmailer/phpmailer/src/Exception.php");
-require (ROOT."vendor/phpmailer/phpmailer/src/PHPMailer.php");
-require (ROOT."vendor/phpmailer/phpmailer/src/SMTP.php");
-require (ROOT."env.php");
+require ROOT."vendor/phpmailer/phpmailer/src/Exception.php";
+require ROOT."vendor/phpmailer/phpmailer/src/PHPMailer.php";
+require ROOT."vendor/phpmailer/phpmailer/src/SMTP.php";
+require ROOT."env.php";
 
 class Login extends AbstractController {
     

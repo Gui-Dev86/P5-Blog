@@ -28,8 +28,7 @@ class UserCompte extends AbstractController{
      */
     public function index(){
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             // On envoie les données à la vue index
             $this->render('userCompte');
@@ -43,8 +42,7 @@ class UserCompte extends AbstractController{
      */
     public function userFormModifCompte(){
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             // On envoie les données à la vue index
             $this->render('userFormModifCompte');
@@ -58,8 +56,7 @@ class UserCompte extends AbstractController{
      */
     public function userListComment(){
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             
             if(isset($_SESSION["user"]) && !empty($_SESSION["user"]))

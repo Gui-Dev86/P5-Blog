@@ -97,8 +97,7 @@ class Articles extends AbstractController {
     */
     public function createArticle(){
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_POST['formCreateArticle'])) 
             {
@@ -196,8 +195,7 @@ class Articles extends AbstractController {
      */
     public function createComment() {
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
@@ -219,8 +217,7 @@ class Articles extends AbstractController {
      */
     public function addComment(){
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
@@ -275,8 +272,7 @@ class Articles extends AbstractController {
      */
     public function readModifyComment() {
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
@@ -366,11 +362,6 @@ class Articles extends AbstractController {
             $idCom = $params[4];
         }
 
-        if(isset($_SESSION['idCommentPage']) && !empty($_SESSION['idCommentPage']))
-        {
-            $idCom = (int) strip_tags($_SESSION['idCommentPage']);
-        }
-
         $this->articleManager->deleteComment($idCom);
         return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
     }
@@ -382,8 +373,7 @@ class Articles extends AbstractController {
      */
     public function modifyArticle(){
         if($this->isLogged() == false) {
-            header('Location: ' . local);
-            exit;
+            $this->render('home');
         } else {
             //recover the fourth param in the URL for the id article
             if(isset($_SESSION["paramURL"]) && !empty($_SESSION["paramURL"]))
