@@ -1,4 +1,6 @@
 {
+    "dir": "auto",
+    "lang": "FR",
     "name": "Blog d'un développeur web",
     "short_name": "Blog Dév",
     "background_color": "white",
