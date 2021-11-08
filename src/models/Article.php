@@ -7,57 +7,57 @@ class Article extends AbstractManager {
     /**
      * @var int $art_id art ID
      */
-    private $id_art;
+    private $idArt;
 
      /**
      * @var string $art_title art title
      */
-    private $title_art;
+    private $titleArt;
 
      /**
      * @var string $art_chapo art chapo
      */
-    private $chapo_art;
+    private $chapoArt;
 
      /**
      * @var string $art_content art content
      */
-    private $content_art;
+    private $contentArt;
 
      /**
      * @var string $art_autor art autor
      */
-    private $autor_art;
+    private $autorArt;
 
      /**
      * @var string $art_date art date
      */
-    private $date_art;
+    private $dateArt;
 
      /**
      * @var string $art_dateUpdate art dateUpdate
      */
-    private $dateUpdate_art;
+    private $dateUpdateArt;
 
      /**
      * @var string $art_image art image
      */
-    private $image_art;
+    private $imageArt;
 
     /**
      * @var string $art_altImage art altImage
      */
-    private $altImage_art;
+    private $altImageArt;
 
      /**
      * @var bool $art_isActive art isActive
      */
-    private $isActive_art;
+    private $isActiveArt;
 
      /**
      * @var int $user_id art ID user
      */
-    private $id_user;
+    private $idUser;
 
     public function __construct($datas = [])
     {
@@ -90,16 +90,16 @@ class Article extends AbstractManager {
      */
     public function getId_art()
     {
-        return $this->id_art;
+        return $this->idArt;
     }
 
     /**
      * @param mixed $id_art
      * @return Article
      */
-    public function setId_art($id_art)
+    public function setId_art($idArt)
     {
-        $this->id_art = $id_art;
+        $this->idArt = $idArt;
         return $this;
     }
 
@@ -108,16 +108,16 @@ class Article extends AbstractManager {
      */
     public function getTitle_art()
     {
-        return $this->title_art;
+        return $this->titleArt;
     }
 
     /**
      * @param mixed $title_art
      * @return Article
      */
-    public function setTitle_art($title_art)
+    public function setTitle_art($titleArt)
     {
-        $this->title_art = $title_art;
+        $this->titleArt = $titleArt;
         return $this;
     }
 
@@ -126,16 +126,16 @@ class Article extends AbstractManager {
      */
     public function getChapo_art()
     {
-        return $this->chapo_art;
+        return $this->chapoArt;
     }
 
     /**
      * @param mixed $chapo_art
      * @return Article
      */
-    public function setChapo_art($chapo_art)
+    public function setChapo_art($chapoArt)
     {
-        $this->chapo_art = $chapo_art;
+        $this->chapoArt = $chapoArt;
         return $this;
     }
 
@@ -144,16 +144,16 @@ class Article extends AbstractManager {
      */
     public function getContent_art()
     {
-        return $this->content_art;
+        return $this->contentArt;
     }
 
     /**
      * @param mixed $content_art
      * @return Article
      */
-    public function setContent_art($content_art)
+    public function setContent_art($contentArt)
     {
-        $this->content_art = $content_art;
+        $this->contentArt = $contentArt;
         return $this;
     }
 
@@ -162,16 +162,16 @@ class Article extends AbstractManager {
      */
     public function getAutor_art()
     {
-        return $this->autor_art;
+        return $this->autorArt;
     }
 
     /**
      * @param mixed $autor_art
      * @return Article
      */
-    public function setAutor_art($autor_art)
+    public function setAutor_art($autorArt)
     {
-        $this->autor_art = $autor_art;
+        $this->autorArt = $autorArt;
         return $this;
     }
 
@@ -180,16 +180,16 @@ class Article extends AbstractManager {
      */
     public function getDate_art()
     {
-        return $this->date_art;
+        return $this->dateArt;
     }
 
     /**
      * @param mixed $date_art
      * @return Article
      */
-    public function setDate_art($date_art)
+    public function setDate_art($dateArt)
     {
-        $this->date_art = $date_art;
+        $this->dateArt = $dateArt;
         return $this;
     }
 
@@ -198,16 +198,16 @@ class Article extends AbstractManager {
      */
     public function getDateUpdate_art()
     {
-        return $this->dateUpdate_art;
+        return $this->dateUpdateArt;
     }
 
     /**
      * @param mixed $dateUpdate_art
      * @return Article
      */
-    public function setDateUpdate_art($dateUpdate_art)
+    public function setDateUpdate_art($dateUpdateArt)
     {
-        $this->dateUpdate_art = $dateUpdate_art;
+        $this->dateUpdateArt = $dateUpdateArt;
         return $this;
     }
 
@@ -216,16 +216,16 @@ class Article extends AbstractManager {
      */
     public function getImage_art()
     {
-        return $this->image_art;
+        return $this->imageArt;
     }
 
     /**
      * @param mixed $image_art
      * @return Article
      */
-    public function setImage_art($image_art)
+    public function setImage_art($imageArt)
     {
-        $this->image_art = $image_art;
+        $this->imageArt = $imageArt;
         return $this;
     }
     
@@ -234,16 +234,16 @@ class Article extends AbstractManager {
      */
     public function getAltImage_art()
     {
-        return $this->altImage_art;
+        return $this->altImageArt;
     }
 
     /**
      * @param mixed $altImage_art
      * @return Article
      */
-    public function setaltImage_art($altImage_art)
+    public function setaltImage_art($altImageArt)
     {
-        $this->altImage_art = $altImage_art;
+        $this->altImageArt = $altImageArt;
         return $this;
     }
     
@@ -252,16 +252,16 @@ class Article extends AbstractManager {
      */
     public function getIsActive_art()
     {
-        return $this->isActive_art;
+        return $this->isActiveArt;
     }
 
     /**
      * @param mixed $isActive_art
      * @return Article
      */
-    public function setIsActive_art($isActive_art)
+    public function setIsActive_art($isActiveArt)
     {
-        $this->isActive_art = $isActive_art;
+        $this->isActiveArt = $isActiveArt;
         return $this;
     }
     
@@ -270,16 +270,16 @@ class Article extends AbstractManager {
      */
     public function getId_user()
     {
-        return $this->id_user;
+        return $this->idAser;
     }
 
     /**
      * @param mixed $id_user
      * @return Article
      */
-    public function setId_user($id_user)
+    public function setId_user($idUser)
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
         return $this;
     }
 }

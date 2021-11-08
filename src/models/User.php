@@ -7,67 +7,67 @@ class User extends AbstractManager {
     /**
      * @var int $user_id user ID
      */
-    private $id_user;
+    private $idUser;
 
     /**
      * @var string $lasname_user
      */
-    private $lastname_user;
+    private $lastnameUser;
 
     /**
      * @var string $firstname_user
      */
-    private $firstname_user;
+    private $firstnameUser;
 
     /**
      * @var string $mail_user
      */
-    private $email_user;
+    private $emailUser;
 
     /**
      * @var string $login_user
      */
-    private $login_user;
+    private $loginUser;
 
     /**
      * @var string $password_user
      */
-    private $password_user;
+    private $passwordUser;
 
     /**
      * @var bool $role_user
      */
-    private $role_user;
+    private $roleUser;
 
     /**
      * @var string $dateCreate_user;
      */
-    private $dateCreate_user;
+    private $dateCreateUser;
 
     /**
      * @var string $dateUpdate_user;
      */
-    private $dateUpdate_user;
+    private $dateUpdateUser;
 
     /**
      * @var bool $isActiveUser_user
      */
-    private $isActiveUser_user;
+    private $isActiveUserUser;
 
     /**
      * @var bool $isActiveAdmin_user
      */
-    private $isActiveAdmin_user;
+    private $isActiveAdminUser;
 
     /**
      * @var string $tokeneNewPass_user;
      */
-    private $tokenNewPass_user;
+    private $tokenNewPassUser;
 
     /**
      * @var string $dateNewPass_user;
      */
-    private $dateNewPass_user;
+    private $dateNewPassUser;
 
     public function __construct($datas = [])
     {
@@ -100,16 +100,16 @@ class User extends AbstractManager {
      */
     public function getId_user()
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
     /**
      * @param mixed $id_user
      * @return User
      */
-    public function setId_user($id_user)
+    public function setId_user($idUser)
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
         return $this;
     }
 
@@ -118,16 +118,16 @@ class User extends AbstractManager {
      */
     public function getLastname_user()
     {
-        return $this->lastname_user;
+        return $this->lastnameUser;
     }
 
     /**
      * @param mixed $lastname_user
      * @return User
      */
-    public function setLastname_user($lastname_user)
+    public function setLastname_user($lastnameUser)
     {
-        $this->lastname_user = $lastname_user;
+        $this->lastnameUser = $lastnameUser;
         return $this;
     }
 
@@ -136,16 +136,16 @@ class User extends AbstractManager {
      */
     public function getFirstname_user()
     {
-        return $this->firstname_user;
+        return $this->firstnameUser;
     }
 
     /**
      * @param mixed $firstname_user
      * @return User
      */
-    public function setFirstname_user($firstname_user)
+    public function setFirstname_user($firstnameUser)
     {
-        $this->firstname_user = $firstname_user;
+        $this->firstnameUser = $firstnameUser;
         return $this;
     }
 
@@ -154,16 +154,16 @@ class User extends AbstractManager {
      */
     public function getEmail_user()
     {
-        return $this->email_user;
+        return $this->emailUser;
     }
 
     /**
      * @param mixed $email_user
      * @return User
      */
-    public function setEmail_user($email_user)
+    public function setEmail_user($emailUser)
     {
-        $this->email_user = $email_user;
+        $this->emailUser = $emailUser;
         return $this;
     }
 
@@ -172,16 +172,16 @@ class User extends AbstractManager {
      */
     public function getLogin_user()
     {
-        return $this->login_user;
+        return $this->loginUser;
     }
 
     /**
      * @param mixed $login_user
      * @return User
      */
-    public function setLogin_user($login_user)
+    public function setLogin_user($loginUser)
     {
-        $this->login_user = $login_user;
+        $this->loginUser = $loginUser;
         return $this;
     }
 
@@ -190,16 +190,16 @@ class User extends AbstractManager {
      */
     public function getPassword_user()
     {
-        return $this->password_user;
+        return $this->passwordUser;
     }
 
     /**
      * @param mixed $password_user
      * @return User
      */
-    public function setPassword_user($password_user)
+    public function setPassword_user($passwordUser)
     {
-        $this->password_user = $password_user;
+        $this->passwordUser = $passwordUser;
         return $this;
     }
 
@@ -208,16 +208,16 @@ class User extends AbstractManager {
      */
     public function getRole_user()
     {
-        return $this->role_user;
+        return $this->roleUser;
     }
 
     /**
      * @param bool $role_user
      * @return User
      */
-    public function setRole_user(bool $role_user)
+    public function setRole_user(bool $roleUser)
     {
-        $this->role_user = $role_user;
+        $this->roleUser = $roleUser;
         return $this;
     }
 
@@ -226,16 +226,16 @@ class User extends AbstractManager {
      */
     public function getDateCreate_user()
     {
-        return $this->dateCreate_user;
+        return $this->dateCreateUser;
     }
 
     /**
      * @param string $dateCreate_user
      * @return User
      */
-    public function setDateCreate_user(string $dateCreate_user)
+    public function setDateCreate_user(string $dateCreateUser)
     {
-        $this->dateCreate_user = $dateCreate_user;
+        $this->dateCreateUser = $dateCreateUser;
         return $this;
     }
 
@@ -244,16 +244,16 @@ class User extends AbstractManager {
      */
     public function getDateUpdate_user()
     {
-        return $this->dateUpdate_user;
+        return $this->dateUpdateUser;
     }
 
     /**
      * @param string $dateUpdate_user
      * @return User
      */
-    public function setDateUpdate_user(string $dateUpdate_user)
+    public function setDateUpdate_user(string $dateUpdateUser)
     {
-        $this->dateUpdate_user = $dateUpdate_user;
+        $this->dateUpdateUser = $dateUpdateUser;
         return $this;
     }
 
@@ -262,16 +262,16 @@ class User extends AbstractManager {
      */
     public function getIsActiveUser_user()
     {
-        return $this->isActiveUser_user;
+        return $this->isActiveUserUser;
     }
 
     /**
      * @param bool $isActiveUser_user
      * @return User
      */
-    public function setIsActiveUser_user(bool $isActiveUser_user)
+    public function setIsActiveUser_user(bool $isActiveUserUser)
     {
-        $this->isActiveUser_user = $isActiveUser_user;
+        $this->isActiveUserUser = $isActiveUserUser;
         return $this;
     }
 
@@ -280,16 +280,16 @@ class User extends AbstractManager {
      */
     public function getIsActiveAdmin_user()
     {
-        return $this->isActiveAdmin_user;
+        return $this->isActiveAdminUser;
     }
 
     /**
      * @param bool $isActiveAdmin_user
      * @return User
      */
-    public function setIsActiveAdmin_user(bool $isActiveAdmin_user)
+    public function setIsActiveAdmin_user(bool $isActiveAdminUser)
     {
-        $this->isActiveAdmin_user = $isActiveAdmin_user;
+        $this->isActiveAdminUser = $isActiveAdminUser;
         return $this;
     }
 
@@ -298,16 +298,16 @@ class User extends AbstractManager {
      */
     public function getTokenNewPass_user()
     {
-        return $this->tokenNewPass_user;
+        return $this->tokenNewPassUser;
     }
 
     /**
      * @param string $tokenNewPass_user
      * @return User
      */
-    public function setTokenNewPass_user(string $tokenNewPass_user)
+    public function setTokenNewPass_user(string $tokenNewPassUser)
     {
-        $this->tokenNewPass_user = $tokenNewPass_user;
+        $this->tokenNewPassUser = $tokenNewPassUser;
         return $this;
     }
 
@@ -316,16 +316,16 @@ class User extends AbstractManager {
      */
     public function getDateNewPass_user()
     {
-        return $this->dateNewPass_user;
+        return $this->dateNewPassUser;
     }
 
     /**
      * @param string $dateNewPass_user
      * @return User
      */
-    public function setDateNewPass_user(string $dateNewPass_user)
+    public function setDateNewPass_user(string $dateNewPassUser)
     {
-        $this->dateNewPass_user = $dateNewPass_user;
+        $this->dateNewPassUser = $dateNewPassUser;
         return $this;
     }
 }

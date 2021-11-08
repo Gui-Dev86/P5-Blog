@@ -7,47 +7,47 @@ class Comment extends AbstractManager {
     /**
      * @var int $com_id comment ID
      */
-    private $id_com;
+    private $idCom;
 
     /**
      * @var string $content_com comment content
      */
-    private $content_com;
+    private $contentCom;
 
     /**
      * @var string $autor_com comment autor
      */
-    private $autor_com;
+    private $autorCom;
 
     /**
      * @var string $date_com comment date
      */
-    private $date_com;
+    private $dateCom;
 
     /**
      * @var string $dateUpdate_com comment dateUpdate
      */
-    private $dateUpdate_com;
+    private $dateUpdateCom;
 
     /**
      * @var bool $statut_com comment statut
      */
-    private $statut_com;
+    private $statutCom;
 
     /**
      * @var bool $isDeleted_com comment isDeleted
      */
-    private $isDeleted_com;
+    private $isDeletedCom;
 
     /**
      * @var int $id_art comment id article
      */
-    private $id_art;
+    private $idArt;
 
     /**
      * @var int id_user comment id user
      */
-    private $id_user;
+    private $idUser;
 
     public function __construct($datas = [])
     {
@@ -80,16 +80,16 @@ class Comment extends AbstractManager {
      */
     public function getId_com()
     {
-        return $this->id_com;
+        return $this->idCom;
     }
 
     /**
      * @param mixed $id_com
      * @return Comment
      */
-    public function setId_com($id_com)
+    public function setId_com($idCom)
     {
-        $this->id_com = $id_com;
+        $this->idCom = $idCom;
         return $this;
     }
 
@@ -98,16 +98,16 @@ class Comment extends AbstractManager {
      */
     public function getContent_com()
     {
-        return $this->content_com;
+        return $this->contentCom;
     }
 
     /**
      * @param mixed $content_com
      * @return Comment
      */
-    public function setContent_com($content_com)
+    public function setContent_com($contentCom)
     {
-        $this->content_com = $content_com;
+        $this->contentCom = $contentCom;
         return $this;
     }
 
@@ -116,16 +116,16 @@ class Comment extends AbstractManager {
      */
     public function getAutor_com()
     {
-        return $this->autor_com;
+        return $this->autorCom;
     }
 
     /**
      * @param mixed $autor_com
      * @return Comment
      */
-    public function setAutor_com($autor_com)
+    public function setAutor_com($autorCom)
     {
-        $this->autor_com = $autor_com;
+        $this->autorCom = $autorCom;
         return $this;
     }
 
@@ -134,16 +134,16 @@ class Comment extends AbstractManager {
      */
     public function getDate_com()
     {
-        return $this->date_com;
+        return $this->dateCom;
     }
 
     /**
      * @param mixed $date_com
      * @return Comment
      */
-    public function setDate_com($date_com)
+    public function setDate_com($dateCom)
     {
-        $this->date_com = $date_com;
+        $this->dateCom = $dateCom;
         return $this;
     }
 
@@ -152,16 +152,16 @@ class Comment extends AbstractManager {
      */
     public function getDateUpdate_com()
     {
-        return $this->dateUpdate_com;
+        return $this->dateUpdateCom;
     }
 
     /**
      * @param mixed $dateUpdate_com
      * @return Comment
      */
-    public function setDateUpdate_com($dateUpdate_com)
+    public function setDateUpdate_com($dateUpdateCom)
     {
-        $this->dateUpdate_com = $dateUpdate_com;
+        $this->dateUpdateCom = $dateUpdateCom;
         return $this;
     }
 
@@ -170,16 +170,16 @@ class Comment extends AbstractManager {
      */
     public function getStatut_com()
     {
-        return $this->statut_com;
+        return $this->statutCom;
     }
 
     /**
      * @param mixed $statut_com
      * @return Comment
      */
-    public function setStatut_com($statut_com)
+    public function setStatut_com($statutCom)
     {
-        $this->statut_com = $statut_com;
+        $this->statutCom = $statutCom;
         return $this;
     }
 
@@ -188,16 +188,16 @@ class Comment extends AbstractManager {
      */
     public function getIsDeleted_com()
     {
-        return $this->isDeleted_com;
+        return $this->isDeletedCom;
     }
 
     /**
      * @param mixed $isDeleted_com
      * @return Comment
      */
-    public function setIsDeleted_com($isDeleted_com)
+    public function setIsDeleted_com($isDeletedCom)
     {
-        $this->isDeleted_com = $isDeleted_com;
+        $this->isDeletedCom = $isDeletedCom;
         return $this;
     }
 
@@ -206,16 +206,16 @@ class Comment extends AbstractManager {
      */
     public function getId_art()
     {
-        return $this->id_art;
+        return $this->idArt;
     }
 
     /**
      * @param mixed $id_art
      * @return Comment
      */
-    public function setId_art($id_art)
+    public function setId_art($idArt)
     {
-        $this->id_art = $id_art;
+        $this->idArt = $idArt;
         return $this;
     }
 
@@ -224,16 +224,16 @@ class Comment extends AbstractManager {
      */
     public function getId_user()
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
     /**
      * @param mixed $id_user
      * @return Comment
      */
-    public function setId_user($id_user)
+    public function setId_user($idUser)
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
         return $this;
     }
 }
