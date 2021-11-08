@@ -28,9 +28,6 @@ abstract class AbstractController {
      */
     private $user;
 
-    /**
-     * SessionController constructor.
-     */
 
     /**
      * Afficher une vue
@@ -54,20 +51,16 @@ abstract class AbstractController {
         if(isset($this->user)) {
             $this->twig->addGlobal("session", $this->user);
         }
-        $this->get = filter_input_array(INPUT_GET);
+        ;
         //define the constant to recover the good css file
         define('view', $view);
         
-        try {
             if( file_exists('src/views/front/'.$view.'.twig')) {
-                print_r($this->twig->render('front/'. $view . '.twig', $data));
+                echo $this->twig->render('front/'. $view . '.twig', $data);
             } else {
-                print_r($this->twig->render('back/'. $view . '.twig', $data));
+                echo $this->twig->render('back/'. $view . '.twig', $data);
             }
-        } catch (LoaderError $e) {
-        } catch (RuntimeError $e) {
-        } catch (SyntaxError $e) {
-        }  
+       
     }
 
     /**

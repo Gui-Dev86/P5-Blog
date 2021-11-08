@@ -46,7 +46,7 @@ if(isset($_GET['p']) && !empty($_GET['p'])){
     }else{
         // On envoie le code réponse 404
         http_response_code(404);
-        print_r("La page recherchée n'existe pas");
+        echo "La page recherchée n'existe pas";
     }
 }else{
     // Ici aucun paramètre n'est défini

@@ -104,7 +104,7 @@ class Articles extends AbstractController {
                     if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
                 }
                 $title = filter_input(INPUT_POST, 'title');
-                if(isset($title) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
+                if(isset($title) AND isset($_POST['chapo']) AND isset($_POST['content']) AND isset($_POST['altImage']) 
                 AND !empty($title) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
                 {
                     $newArticle = new Article();
@@ -408,25 +408,26 @@ class Articles extends AbstractController {
             }
             //recover the datas of one article
             $article = $this->articleManager->readArticle($idArt);
-
-            $date = new DateTime();
-            $newArticle = new Article();
-            $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
-            $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
-            $newArticle->setContent_art(htmlspecialchars($_POST['content']));
-            if(isset($filename)) {
-                $newArticle->setImage_art(htmlspecialchars($filename));
-            }
-            else
-            {
-                $newArticle->setImage_art(htmlspecialchars($article[0]['image_art']));
-            }
-            $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
-            $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
-
+            
             if(isset($_POST['title']) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
             AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
             {
+
+                $date = new DateTime();
+                $newArticle = new Article();
+                $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
+                $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
+                $newArticle->setContent_art(htmlspecialchars($_POST['content']));
+                if(isset($filename)) {
+                    $newArticle->setImage_art(htmlspecialchars($filename));
+                }
+                else
+                {
+                    $newArticle->setImage_art(htmlspecialchars($article[0]['image_art']));
+                }
+                $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
+                $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
+                
                 $titleLength = strlen($_POST['title']);
                 if($titleLength<=255)
                 {

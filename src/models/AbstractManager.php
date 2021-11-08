@@ -3,6 +3,7 @@
 namespace App\src\models;
 
 use PDO;
+use PDO\PDOException;
 
 abstract class AbstractManager {
 
