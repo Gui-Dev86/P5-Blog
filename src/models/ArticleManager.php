@@ -237,7 +237,6 @@ class ArticleManager extends AbstractManager {
     public function newCommentUser(Comment $comment) {
         $sql = 'INSERT INTO comments (content_com,autor_com,date_com,dateUpdate_com,statut_com,isDeleted_com,id_art,id_user)
         VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,NULL,0,:id_art,:id_user)';
-        
         $query = $this->_connexion->prepare($sql);
         $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
         $query->bindValue('autor_com',$comment->getAutor_com(), PDO::PARAM_STR);

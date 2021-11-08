@@ -27,7 +27,7 @@ abstract class AbstractManager {
             $this->_connexion = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
             $this->_connexion->exec("SET NAMES UTF8");
         } catch(PDOException $exception) {
-            print_r("Erreur de connexion : " . $exception->getMessage());
+            echo "Erreur de connexion : " . $exception->getMessage();
         }
     }   
 }
