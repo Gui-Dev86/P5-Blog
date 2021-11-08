@@ -98,7 +98,7 @@ class User extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getId_user()
+    public function getIdUser()
     {
         return $this->idUser;
     }
@@ -107,7 +107,7 @@ class User extends AbstractManager {
      * @param mixed $id_user
      * @return User
      */
-    public function setId_user($idUser)
+    public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
         return $this;
@@ -116,7 +116,7 @@ class User extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getLastname_user()
+    public function getLastnameUser()
     {
         return $this->lastnameUser;
     }
@@ -125,7 +125,7 @@ class User extends AbstractManager {
      * @param mixed $lastname_user
      * @return User
      */
-    public function setLastname_user($lastnameUser)
+    public function setLastnameUser($lastnameUser)
     {
         $this->lastnameUser = $lastnameUser;
         return $this;
@@ -134,7 +134,7 @@ class User extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getFirstname_user()
+    public function getFirstnameUser()
     {
         return $this->firstnameUser;
     }
@@ -143,7 +143,7 @@ class User extends AbstractManager {
      * @param mixed $firstname_user
      * @return User
      */
-    public function setFirstname_user($firstnameUser)
+    public function setFirstnameUser($firstnameUser)
     {
         $this->firstnameUser = $firstnameUser;
         return $this;
@@ -152,7 +152,7 @@ class User extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getEmail_user()
+    public function getEmailUser()
     {
         return $this->emailUser;
     }
@@ -161,7 +161,7 @@ class User extends AbstractManager {
      * @param mixed $email_user
      * @return User
      */
-    public function setEmail_user($emailUser)
+    public function setEmailUser($emailUser)
     {
         $this->emailUser = $emailUser;
         return $this;
@@ -170,7 +170,7 @@ class User extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getLogin_user()
+    public function getLoginUser()
     {
         return $this->loginUser;
     }
@@ -179,7 +179,7 @@ class User extends AbstractManager {
      * @param mixed $login_user
      * @return User
      */
-    public function setLogin_user($loginUser)
+    public function setLoginUser($loginUser)
     {
         $this->loginUser = $loginUser;
         return $this;
@@ -188,7 +188,7 @@ class User extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getPassword_user()
+    public function getPasswordUser()
     {
         return $this->passwordUser;
     }
@@ -197,7 +197,7 @@ class User extends AbstractManager {
      * @param mixed $password_user
      * @return User
      */
-    public function setPassword_user($passwordUser)
+    public function setPasswordUser($passwordUser)
     {
         $this->passwordUser = $passwordUser;
         return $this;
@@ -206,7 +206,7 @@ class User extends AbstractManager {
     /**
      * @return bool
      */
-    public function getRole_user()
+    public function getRoleUser()
     {
         return $this->roleUser;
     }
@@ -215,7 +215,7 @@ class User extends AbstractManager {
      * @param bool $role_user
      * @return User
      */
-    public function setRole_user(bool $roleUser)
+    public function setRoleUser(bool $roleUser)
     {
         $this->roleUser = $roleUser;
         return $this;
@@ -224,7 +224,7 @@ class User extends AbstractManager {
     /**
      * @return bool
      */
-    public function getDateCreate_user()
+    public function getDateCreateUser()
     {
         return $this->dateCreateUser;
     }
@@ -233,7 +233,7 @@ class User extends AbstractManager {
      * @param string $dateCreate_user
      * @return User
      */
-    public function setDateCreate_user(string $dateCreateUser)
+    public function setDateCreateUser(string $dateCreateUser)
     {
         $this->dateCreateUser = $dateCreateUser;
         return $this;
@@ -242,7 +242,7 @@ class User extends AbstractManager {
     /**
      * @return string
      */
-    public function getDateUpdate_user()
+    public function getDateUpdateUser()
     {
         return $this->dateUpdateUser;
     }
@@ -251,7 +251,7 @@ class User extends AbstractManager {
      * @param string $dateUpdate_user
      * @return User
      */
-    public function setDateUpdate_user(string $dateUpdateUser)
+    public function setDateUpdateUser(string $dateUpdateUser)
     {
         $this->dateUpdateUser = $dateUpdateUser;
         return $this;
@@ -260,7 +260,7 @@ class User extends AbstractManager {
     /**
      * @return bool
      */
-    public function getIsActiveUser_user()
+    public function getIsActiveUserUser()
     {
         return $this->isActiveUserUser;
     }
@@ -269,7 +269,7 @@ class User extends AbstractManager {
      * @param bool $isActiveUser_user
      * @return User
      */
-    public function setIsActiveUser_user(bool $isActiveUserUser)
+    public function setIsActiveUserUser(bool $isActiveUserUser)
     {
         $this->isActiveUserUser = $isActiveUserUser;
         return $this;
@@ -278,7 +278,7 @@ class User extends AbstractManager {
     /**
      * @return bool
      */
-    public function getIsActiveAdmin_user()
+    public function getIsActiveAdminUser()
     {
         return $this->isActiveAdminUser;
     }
@@ -287,7 +287,7 @@ class User extends AbstractManager {
      * @param bool $isActiveAdmin_user
      * @return User
      */
-    public function setIsActiveAdmin_user(bool $isActiveAdminUser)
+    public function setIsActiveAdminUser(bool $isActiveAdminUser)
     {
         $this->isActiveAdminUser = $isActiveAdminUser;
         return $this;
@@ -296,7 +296,7 @@ class User extends AbstractManager {
      /**
      * @return string
      */
-    public function getTokenNewPass_user()
+    public function getTokenNewPassUser()
     {
         return $this->tokenNewPassUser;
     }
@@ -305,7 +305,7 @@ class User extends AbstractManager {
      * @param string $tokenNewPass_user
      * @return User
      */
-    public function setTokenNewPass_user(string $tokenNewPassUser)
+    public function setTokenNewPassUser(string $tokenNewPassUser)
     {
         $this->tokenNewPassUser = $tokenNewPassUser;
         return $this;
@@ -314,7 +314,7 @@ class User extends AbstractManager {
     /**
      * @return string
      */
-    public function getDateNewPass_user()
+    public function getDateNewPassUser()
     {
         return $this->dateNewPassUser;
     }
@@ -323,7 +323,7 @@ class User extends AbstractManager {
      * @param string $dateNewPass_user
      * @return User
      */
-    public function setDateNewPass_user(string $dateNewPassUser)
+    public function setDateNewPassUser(string $dateNewPassUser)
     {
         $this->dateNewPassUser = $dateNewPassUser;
         return $this;

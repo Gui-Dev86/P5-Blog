@@ -108,17 +108,17 @@ class Articles extends AbstractController {
                 && !empty($title) && !empty($_POST['chapo']) && !empty($_POST['content']) && !empty($_POST['altImage']))
                 {
                     $newArticle = new Article();
-                    $newArticle->setTitle_art(htmlspecialchars($title));
-                    $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
-                    $newArticle->setContent_art(htmlspecialchars($_POST['content']));
-                    $newArticle->setAutor_art(htmlspecialchars($_SESSION['user']['login']));
+                    $newArticle->setTitleArt(htmlspecialchars($title));
+                    $newArticle->setChapoArt(htmlspecialchars($_POST['chapo']));
+                    $newArticle->setContentArt(htmlspecialchars($_POST['content']));
+                    $newArticle->setAutorArt(htmlspecialchars($_SESSION['user']['login']));
                     if(isset($_FILES["uploadfile"]["name"]) && !empty($_FILES["uploadfile"]["name"])) {
-                        $newArticle->setImage_art(htmlspecialchars($filename));
+                        $newArticle->setImageArt(htmlspecialchars($filename));
                     }
-                    $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
-                    $newArticle->setDate_art($date->format('Y-m-d H:i:s'));
-                    $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
-                    $newArticle->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
+                    $newArticle->setAltImageArt(htmlspecialchars($_POST['altImage']));
+                    $newArticle->setDateArt($date->format('Y-m-d H:i:s'));
+                    $newArticle->setDateUpdateArt($date->format('Y-m-d H:i:s'));
+                    $newArticle->setIdUser(htmlspecialchars($_SESSION['user']['idUser']));
 
                     $titleLength = strlen($_POST['title']);
                     if($titleLength<=255)
@@ -227,12 +227,12 @@ class Articles extends AbstractController {
                 {
                     $dateComment = new DateTime();
                     $newComment = new Comment();
-                    $newComment->setContent_com(htmlspecialchars($_POST['commentContent']));
-                    $newComment->setAutor_com(htmlspecialchars($_SESSION['user']['login']));
-                    $newComment->setDate_com($dateComment->format('Y-m-d H:i:s'));
-                    $newComment->setDateUpdate_com($dateComment->format('Y-m-d H:i:s'));
-                    $newComment->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
-                    $newComment->setId_art(htmlspecialchars($idArt));
+                    $newComment->setContentCom(htmlspecialchars($_POST['commentContent']));
+                    $newComment->setAutorCom(htmlspecialchars($_SESSION['user']['login']));
+                    $newComment->setDateCom($dateComment->format('Y-m-d H:i:s'));
+                    $newComment->setDateUpdateCom($dateComment->format('Y-m-d H:i:s'));
+                    $newComment->setIdUser(htmlspecialchars($_SESSION['user']['idUser']));
+                    $newComment->setIdArt(htmlspecialchars($idArt));
                         
                     $this->articleManager->newComment($newComment, $_SESSION['user']['role']); 
                     $_POST = [];
@@ -298,12 +298,12 @@ class Articles extends AbstractController {
                 
                 $dateComment = new DateTime();
                 $newComment = new Comment();
-                $newComment->setContent_com(htmlspecialchars($_POST['commentContent']));
-                $newComment->setAutor_com(htmlspecialchars($_SESSION['user']['login']));
-                $newComment->setDate_com($dateComment->format('Y-m-d H:i:s'));
-                $newComment->setDateUpdate_com($dateComment->format('Y-m-d H:i:s'));
-                $newComment->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
-                $newComment->setId_art(htmlspecialchars($idArt));
+                $newComment->setContentCom(htmlspecialchars($_POST['commentContent']));
+                $newComment->setAutorCom(htmlspecialchars($_SESSION['user']['login']));
+                $newComment->setDateCom($dateComment->format('Y-m-d H:i:s'));
+                $newComment->setDateUpdateCom($dateComment->format('Y-m-d H:i:s'));
+                $newComment->setIdUser(htmlspecialchars($_SESSION['user']['idUser']));
+                $newComment->setIdArt(htmlspecialchars($idArt));
                 
                 if($_SESSION['user']['role'] == 0) {
                     $this->articleManager->updateCommentUser($newComment, $idCom); 
@@ -405,18 +405,18 @@ class Articles extends AbstractController {
 
                 $date = new DateTime();
                 $newArticle = new Article();
-                $newArticle->setTitle_art(htmlspecialchars($_POST['title']));
-                $newArticle->setChapo_art(htmlspecialchars($_POST['chapo']));
-                $newArticle->setContent_art(htmlspecialchars($_POST['content']));
+                $newArticle->setTitleArt(htmlspecialchars($_POST['title']));
+                $newArticle->setChapoArt(htmlspecialchars($_POST['chapo']));
+                $newArticle->setContentArt(htmlspecialchars($_POST['content']));
                 if(isset($filename)) {
-                    $newArticle->setImage_art(htmlspecialchars($filename));
+                    $newArticle->setImageArt(htmlspecialchars($filename));
                 }
                 else
                 {
-                    $newArticle->setImage_art(htmlspecialchars($article[0]['image_art']));
+                    $newArticle->setImageArt(htmlspecialchars($article[0]['image_art']));
                 }
-                $newArticle->setAltImage_art(htmlspecialchars($_POST['altImage']));
-                $newArticle->setDateUpdate_art($date->format('Y-m-d H:i:s'));
+                $newArticle->setAltImageArt(htmlspecialchars($_POST['altImage']));
+                $newArticle->setDateUpdateArt($date->format('Y-m-d H:i:s'));
                 
                 $titleLength = strlen($_POST['title']);
                 if($titleLength<=255)

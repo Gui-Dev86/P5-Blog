@@ -78,7 +78,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getId_com()
+    public function getIdCom()
     {
         return $this->idCom;
     }
@@ -87,7 +87,7 @@ class Comment extends AbstractManager {
      * @param mixed $id_com
      * @return Comment
      */
-    public function setId_com($idCom)
+    public function setIdCom($idCom)
     {
         $this->idCom = $idCom;
         return $this;
@@ -96,7 +96,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getContent_com()
+    public function getContentCom()
     {
         return $this->contentCom;
     }
@@ -105,7 +105,7 @@ class Comment extends AbstractManager {
      * @param mixed $content_com
      * @return Comment
      */
-    public function setContent_com($contentCom)
+    public function setContentCom($contentCom)
     {
         $this->contentCom = $contentCom;
         return $this;
@@ -114,7 +114,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getAutor_com()
+    public function getAutorCom()
     {
         return $this->autorCom;
     }
@@ -123,7 +123,7 @@ class Comment extends AbstractManager {
      * @param mixed $autor_com
      * @return Comment
      */
-    public function setAutor_com($autorCom)
+    public function setAutorCom($autorCom)
     {
         $this->autorCom = $autorCom;
         return $this;
@@ -132,7 +132,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getDate_com()
+    public function getDateCom()
     {
         return $this->dateCom;
     }
@@ -141,7 +141,7 @@ class Comment extends AbstractManager {
      * @param mixed $date_com
      * @return Comment
      */
-    public function setDate_com($dateCom)
+    public function setDateCom($dateCom)
     {
         $this->dateCom = $dateCom;
         return $this;
@@ -150,7 +150,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getDateUpdate_com()
+    public function getDateUpdateCom()
     {
         return $this->dateUpdateCom;
     }
@@ -159,7 +159,7 @@ class Comment extends AbstractManager {
      * @param mixed $dateUpdate_com
      * @return Comment
      */
-    public function setDateUpdate_com($dateUpdateCom)
+    public function setDateUpdateCom($dateUpdateCom)
     {
         $this->dateUpdateCom = $dateUpdateCom;
         return $this;
@@ -168,7 +168,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getStatut_com()
+    public function getStatutCom()
     {
         return $this->statutCom;
     }
@@ -177,7 +177,7 @@ class Comment extends AbstractManager {
      * @param mixed $statut_com
      * @return Comment
      */
-    public function setStatut_com($statutCom)
+    public function setStatutCom($statutCom)
     {
         $this->statutCom = $statutCom;
         return $this;
@@ -186,7 +186,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getIsDeleted_com()
+    public function getIsDeletedCom()
     {
         return $this->isDeletedCom;
     }
@@ -195,7 +195,7 @@ class Comment extends AbstractManager {
      * @param mixed $isDeleted_com
      * @return Comment
      */
-    public function setIsDeleted_com($isDeletedCom)
+    public function setIsDeletedCom($isDeletedCom)
     {
         $this->isDeletedCom = $isDeletedCom;
         return $this;
@@ -204,7 +204,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getId_art()
+    public function getIdArt()
     {
         return $this->idArt;
     }
@@ -213,7 +213,7 @@ class Comment extends AbstractManager {
      * @param mixed $id_art
      * @return Comment
      */
-    public function setId_art($idArt)
+    public function setIdArt($idArt)
     {
         $this->idArt = $idArt;
         return $this;
@@ -222,7 +222,7 @@ class Comment extends AbstractManager {
     /**
      * @return mixed
      */
-    public function getId_user()
+    public function getIdUser()
     {
         return $this->idUser;
     }
@@ -231,7 +231,7 @@ class Comment extends AbstractManager {
      * @param mixed $id_user
      * @return Comment
      */
-    public function setId_user($idUser)
+    public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
         return $this;

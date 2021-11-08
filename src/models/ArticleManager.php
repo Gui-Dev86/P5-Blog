@@ -99,15 +99,15 @@ class ArticleManager extends AbstractManager {
         VALUES (:title_art,:chapo_art,:content_art,:autor_art,:date_art,:dateUpdate_art,:image_art,:altImage_art,1,:id_user)';
         
         $query = $this->_connexion->prepare($sql);
-        $query->bindValue('title_art',$article->getTitle_art(), PDO::PARAM_STR);
-        $query->bindValue('chapo_art',$article->getChapo_art(), PDO::PARAM_STR);
-        $query->bindValue('content_art',$article->getContent_art(), PDO::PARAM_STR);
-        $query->bindValue('autor_art',$article->getAutor_art(), PDO::PARAM_STR);
-        $query->bindValue('date_art',$article->getDate_art(), PDO::PARAM_STR);
-        $query->bindValue('dateUpdate_art',$article->getDateUpdate_art(), PDO::PARAM_STR);
-        $query->bindValue('image_art',$article->getImage_art(), PDO::PARAM_STR);
-        $query->bindValue('altImage_art',$article->getAltImage_art(), PDO::PARAM_STR);
-        $query->bindValue('id_user',$article->getId_user(), PDO::PARAM_INT);
+        $query->bindValue('title_art',$article->getTitleArt(), PDO::PARAM_STR);
+        $query->bindValue('chapo_art',$article->getChapoArt(), PDO::PARAM_STR);
+        $query->bindValue('content_art',$article->getContentArt(), PDO::PARAM_STR);
+        $query->bindValue('autor_art',$article->getAutorArt(), PDO::PARAM_STR);
+        $query->bindValue('date_art',$article->getDateArt(), PDO::PARAM_STR);
+        $query->bindValue('dateUpdate_art',$article->getDateUpdateArt(), PDO::PARAM_STR);
+        $query->bindValue('image_art',$article->getImageArt(), PDO::PARAM_STR);
+        $query->bindValue('altImage_art',$article->getAltImageArt(), PDO::PARAM_STR);
+        $query->bindValue('id_user',$article->getIdUser(), PDO::PARAM_INT);
         $query->execute();
     }
 
@@ -244,12 +244,12 @@ class ArticleManager extends AbstractManager {
             VALUES (:content_com,:autor_com,:date_com,:dateUpdate_com,1,0,:id_art,:id_user)';
         }
         $query = $this->_connexion->prepare($sql);
-        $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
-        $query->bindValue('autor_com',$comment->getAutor_com(), PDO::PARAM_STR);
-        $query->bindValue('date_com',$comment->getDate_com(), PDO::PARAM_STR);
-        $query->bindValue('dateUpdate_com',$comment->getDateUpdate_com(), PDO::PARAM_STR);
-        $query->bindValue('id_art',$comment->getId_art(), PDO::PARAM_INT);
-        $query->bindValue('id_user',$comment->getId_user(), PDO::PARAM_INT);
+        $query->bindValue('content_com',$comment->getContentCom(), PDO::PARAM_STR);
+        $query->bindValue('autor_com',$comment->getAutorCom(), PDO::PARAM_STR);
+        $query->bindValue('date_com',$comment->getDateCom(), PDO::PARAM_STR);
+        $query->bindValue('dateUpdate_com',$comment->getDateUpdateCom(), PDO::PARAM_STR);
+        $query->bindValue('id_art',$comment->getIdArt(), PDO::PARAM_INT);
+        $query->bindValue('id_user',$comment->getIdUser(), PDO::PARAM_INT);
         $query->execute();
     }
 
@@ -275,8 +275,8 @@ class ArticleManager extends AbstractManager {
     {
         $sql = 'UPDATE comments SET content_com = :content_com, dateUpdate_com = :dateUpdate_com, statut_com = NULL WHERE id_com = :id_com';
         $query = $this->_connexion->prepare($sql);
-        $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
-        $query->bindValue('dateUpdate_com',$comment->getDateUpdate_com(), PDO::PARAM_STR);
+        $query->bindValue('content_com',$comment->getContentCom(), PDO::PARAM_STR);
+        $query->bindValue('dateUpdate_com',$comment->getDateUpdateCom(), PDO::PARAM_STR);
         $query->bindValue(':id_com', $idCom, PDO::PARAM_INT);
         $data = $query->execute();    
         return $data;
@@ -290,8 +290,8 @@ class ArticleManager extends AbstractManager {
     {
         $sql = 'UPDATE comments SET content_com = :content_com, dateUpdate_com = :dateUpdate_com WHERE id_com = :id_com';
         $query = $this->_connexion->prepare($sql);
-        $query->bindValue('content_com',$comment->getContent_com(), PDO::PARAM_STR);
-        $query->bindValue('dateUpdate_com',$comment->getDateUpdate_com(), PDO::PARAM_STR);
+        $query->bindValue('content_com',$comment->getContentCom(), PDO::PARAM_STR);
+        $query->bindValue('dateUpdate_com',$comment->getDateUpdateCom(), PDO::PARAM_STR);
         $query->bindValue(':id_com', $idCom, PDO::PARAM_INT);
         $data = $query->execute();    
         return $data;
@@ -384,12 +384,12 @@ class ArticleManager extends AbstractManager {
         $sql = 'UPDATE articles SET title_art = :title_art, chapo_art = :chapo_art, content_art = :content_art, dateUpdate_art = :dateUpdate_art, image_art = :image_art,
         altImage_art = :altImage_art WHERE id_art = :id_art';
         $query = $this->_connexion->prepare($sql);
-        $query->bindValue('title_art',$article->getTitle_art(), PDO::PARAM_STR);
-        $query->bindValue('chapo_art',$article->getChapo_art(), PDO::PARAM_STR);
-        $query->bindValue('content_art',$article->getContent_art(), PDO::PARAM_STR);
-        $query->bindValue('dateUpdate_art',$article->getDateUpdate_art(), PDO::PARAM_STR);
-        $query->bindValue('image_art',$article->getImage_art(), PDO::PARAM_STR);
-        $query->bindValue('altImage_art',$article->getAltImage_art(), PDO::PARAM_STR);
+        $query->bindValue('title_art',$article->getTitleArt(), PDO::PARAM_STR);
+        $query->bindValue('chapo_art',$article->getChapoArt(), PDO::PARAM_STR);
+        $query->bindValue('content_art',$article->getContentArt(), PDO::PARAM_STR);
+        $query->bindValue('dateUpdate_art',$article->getDateUpdateArt(), PDO::PARAM_STR);
+        $query->bindValue('image_art',$article->getImageArt(), PDO::PARAM_STR);
+        $query->bindValue('altImage_art',$article->getAltImageArt(), PDO::PARAM_STR);
         $query->bindValue('id_art',$idArt, PDO::PARAM_INT);
         $data = $query->execute();    
         return $data;

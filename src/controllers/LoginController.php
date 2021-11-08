@@ -84,13 +84,13 @@ class Login extends AbstractController {
             $hashedpassword = password_hash($_POST['password_user'], PASSWORD_BCRYPT);
 
             $newUser = new User();
-            $newUser->setFirstname_user(htmlspecialchars($_POST['firstname_user']));
-            $newUser->setLastname_user(strtoupper(htmlspecialchars($_POST['lastname_user'])));
-            $newUser->setLogin_user(htmlspecialchars($_POST['login_user']));
-            $newUser->setPassword_user($hashedpassword);
-            $newUser->setEmail_user(htmlspecialchars($_POST['email_user']));
-            $newUser->setDateCreate_user($date->format('Y-m-d H:i:s'));
-            $newUser->setDateUpdate_user($date->format('Y-m-d H:i:s'));
+            $newUser->setFirstnameUser(htmlspecialchars($_POST['firstname_user']));
+            $newUser->setLastnameUser(strtoupper(htmlspecialchars($_POST['lastname_user'])));
+            $newUser->setLoginUser(htmlspecialchars($_POST['login_user']));
+            $newUser->setPasswordUser($hashedpassword);
+            $newUser->setEmailUser(htmlspecialchars($_POST['email_user']));
+            $newUser->setDateCreateUser($date->format('Y-m-d H:i:s'));
+            $newUser->setDateUpdateUser($date->format('Y-m-d H:i:s'));
             
            //Verify if the login and the email are available
             $loginAvailable = $this->loginManager->loginAvailable($newUser);
@@ -199,7 +199,7 @@ class Login extends AbstractController {
         if(isset($_POST["formLogin"]))
         {
             $newUser = new User();
-            $newUser->setLogin_user(htmlspecialchars($_POST['login']));
+            $newUser->setLoginUser(htmlspecialchars($_POST['login']));
             if(!empty($_POST['login']) && !empty($_POST['password']) && 
             isset($_POST['login']) && isset($_POST['password']))
             {        
@@ -254,7 +254,7 @@ class Login extends AbstractController {
                 try {
                
                 $newUser = new User();
-                $newUser->setEmail_user(htmlspecialchars($_POST['email_user']));
+                $newUser->setEmailUser(htmlspecialchars($_POST['email_user']));
                 //verify if the mail is in the database
                 $emailDatabase = $this->loginManager->emailAvailable($newUser);
                 $_POST = [];
@@ -265,7 +265,7 @@ class Login extends AbstractController {
                         $stringToken = implode('',array_merge(range('A','Z'), range('a','z'), range('0','9')));
                         $token = substr(str_shuffle($stringToken), 0,20);
     
-                        $newUser->setTokenNewPass_user(htmlspecialchars($token));
+                        $newUser->setTokenNewPassUser(htmlspecialchars($token));
                         $this->loginManager->insertToken($newUser);
 
                         $linkResetMail = ''.local.'login/newPassword/'.$token.'';
@@ -343,10 +343,10 @@ class Login extends AbstractController {
                     $newHashedpassword = password_hash($_POST['newPassword_user'], PASSWORD_BCRYPT);
                     $date = new DateTime();
                     $newUser = new User();
-                    $newUser->setPassword_user($newHashedpassword);
+                    $newUser->setPasswordUser($newHashedpassword);
                     //save the date
-                    $newUser->setDateNewPass_user($date->format('Y-m-d H:i:s'));
-                    $newUser->setTokenNewPass_user(htmlspecialchars($token));
+                    $newUser->setDateNewPassUser($date->format('Y-m-d H:i:s'));
+                    $newUser->setTokenNewPassUser(htmlspecialchars($token));
                     //change the password and pass to NULL the token
                     $this->loginManager->newPass($newUser);
 

@@ -103,11 +103,11 @@ class UserCompte extends AbstractController{
             $date = new DateTime();
 
             $updateUser = new User();
-            $updateUser->setFirstname_user(htmlspecialchars($_POST['newFirstname']));
-            $updateUser->setLastname_user(htmlspecialchars($_POST['newLastname']));
-            $updateUser->setLogin_user(htmlspecialchars($_POST['newLogin']));
-            $updateUser->setEmail_user(htmlspecialchars($_POST['newEmail']));
-            $updateUser->setDateUpdate_user($date->format('Y-m-d H:i:s'));
+            $updateUser->setFirstnameUser(htmlspecialchars($_POST['newFirstname']));
+            $updateUser->setLastnameUser(htmlspecialchars($_POST['newLastname']));
+            $updateUser->setLoginUser(htmlspecialchars($_POST['newLogin']));
+            $updateUser->setEmailUser(htmlspecialchars($_POST['newEmail']));
+            $updateUser->setDateUpdateUser($date->format('Y-m-d H:i:s'));
 
             $idUser = $_SESSION['user']['idUser'];
             
@@ -178,8 +178,8 @@ class UserCompte extends AbstractController{
         {
             $hashedpassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
             $newPassUser = new User();
-            $newPassUser->setLogin_user(htmlspecialchars($_SESSION['user']['login']));
-            $newPassUser->setPassword_user($hashedpassword);
+            $newPassUser->setLoginUser(htmlspecialchars($_SESSION['user']['login']));
+            $newPassUser->setPasswordUser($hashedpassword);
 
             if(!empty($_POST['oldPassword']) && !empty($_POST['newPassword']) && !empty($_POST['newPasswordConfirm']) &&
             isset($_POST['oldPassword']) && isset($_POST['newPassword']) && isset($_POST['newPasswordConfirm']))
@@ -245,8 +245,8 @@ class UserCompte extends AbstractController{
      */
     public function activeCompteUser() {
         $activeUser = new User();
-        $activeUser->setLogin_user(htmlspecialchars($_SESSION['user']['login']));
-        $activeUser->setIsActiveUser_user(htmlspecialchars($_SESSION['user']['isActiveUser']));
+        $activeUser->setLoginUser(htmlspecialchars($_SESSION['user']['login']));
+        $activeUser->setIsActiveUserUser(htmlspecialchars($_SESSION['user']['isActiveUser']));
         
         $idUser = $_SESSION['user']['idUser'];
         $this->userManager->activeStatusUser($activeUser);
@@ -264,8 +264,8 @@ class UserCompte extends AbstractController{
      */
     public function disableCompteUser() {
         $disableStatusUser = new User();
-        $disableStatusUser->setLogin_user(htmlspecialchars($_SESSION['user']['login']));
-        $disableStatusUser->setIsActiveUser_user(htmlspecialchars($_SESSION['user']['isActiveUser']));
+        $disableStatusUser->setLoginUser(htmlspecialchars($_SESSION['user']['login']));
+        $disableStatusUser->setIsActiveUserUser(htmlspecialchars($_SESSION['user']['isActiveUser']));
         
         $idUser = $_SESSION['user']['idUser'];
         $this->userManager->disableStatusUser($disableStatusUser);
