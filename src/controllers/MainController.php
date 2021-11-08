@@ -31,7 +31,7 @@ class Main extends AbstractController{
         {
             $mail = new PHPMailer(true);
 
-            if(!empty($_POST["lastname"]) AND !empty($_POST["firstname"]) AND !empty($_POST["emailUser"]) AND !empty($_POST["message"]))
+            if(!empty($_POST["lastname"]) && !empty($_POST["firstname"]) && !empty($_POST["emailUser"]) && !empty($_POST["message"]))
             {    
                 if(filter_var($_POST["emailUser"], FILTER_VALIDATE_EMAIL))
                 {

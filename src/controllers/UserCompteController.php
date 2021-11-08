@@ -115,10 +115,10 @@ class UserCompte extends AbstractController{
             $loginAvailable = $this->userManager->loginAvailable($updateUser, $idUser);
             $mailAvailable = $this->userManager->mailAvailable($updateUser, $idUser);
 
-            if(!empty($_POST['newLogin']) AND !empty($_POST['newFirstname']) AND !empty($_POST['newLastname']) 
-            AND !empty($_POST['newEmail']))
+            if(!empty($_POST['newLogin']) && !empty($_POST['newFirstname']) && !empty($_POST['newLastname']) 
+            && !empty($_POST['newEmail']))
             {
-                if($loginAvailable['nbLogin'] === '0' AND $mailAvailable['nbMail'] === '0')
+                if($loginAvailable['nbLogin'] === '0' && $mailAvailable['nbMail'] === '0')
                 {
                     if(filter_var($_POST['newEmail'], FILTER_VALIDATE_EMAIL))
                     {
@@ -181,8 +181,8 @@ class UserCompte extends AbstractController{
             $newPassUser->setLogin_user(htmlspecialchars($_SESSION['user']['login']));
             $newPassUser->setPassword_user($hashedpassword);
 
-            if(!empty($_POST['oldPassword']) AND !empty($_POST['newPassword']) AND !empty($_POST['newPasswordConfirm']) AND
-            isset($_POST['oldPassword']) AND isset($_POST['newPassword']) AND isset($_POST['newPasswordConfirm']))
+            if(!empty($_POST['oldPassword']) && !empty($_POST['newPassword']) && !empty($_POST['newPasswordConfirm']) &&
+            isset($_POST['oldPassword']) && isset($_POST['newPassword']) && isset($_POST['newPasswordConfirm']))
             {     
             
                 $oldPassword = $_POST["oldPassword"];

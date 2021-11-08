@@ -27,7 +27,7 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function index(){
-        if($this->isLogged() == false OR $this->isAdmin() == false) {
+        if($this->isLogged() == false || $this->isAdmin() == false) {
             $this->render('home');
         } else {
         // On envoie les données à la vue index
@@ -41,7 +41,7 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminListAllArticles(){
-        if($this->isLogged() == false OR $this->isAdmin() == false) {
+        if($this->isLogged() == false || $this->isAdmin() == false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
@@ -77,7 +77,7 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminListAllComments(){
-        if($this->isLogged() == false OR $this->isAdmin() == false) {
+        if($this->isLogged() == false || $this->isAdmin() == false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
@@ -114,7 +114,7 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminListAllMembers(){
-        if($this->isLogged() == false OR $this->isAdmin() == false) {
+        if($this->isLogged() == false || $this->isAdmin() == false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
@@ -151,7 +151,7 @@ class adminManagement extends AbstractController {
      * @return void
      */
     public function adminModifyUser(){
-        if($this->isLogged() == false OR $this->isAdmin() == false) {
+        if($this->isLogged() == false || $this->isAdmin() == false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {

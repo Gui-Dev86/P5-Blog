@@ -96,8 +96,8 @@ class Login extends AbstractController {
             $loginAvailable = $this->loginManager->loginAvailable($newUser);
             $emailAvailable = $this->loginManager->emailAvailable($newUser);
 
-            if(!empty($_POST['firstname_user']) AND !empty($_POST['lastname_user']) AND !empty($_POST['login_user']) 
-            AND !empty($_POST['password_user']) AND !empty($_POST['confirmPassword_user']) AND !empty($_POST['email_user']))
+            if(!empty($_POST['firstname_user']) && !empty($_POST['lastname_user']) && !empty($_POST['login_user']) 
+            && !empty($_POST['password_user']) && !empty($_POST['confirmPassword_user']) && !empty($_POST['email_user']))
             {
                 if($loginAvailable['nbLogin'] === '0')
                 {
@@ -200,8 +200,8 @@ class Login extends AbstractController {
         {
             $newUser = new User();
             $newUser->setLogin_user(htmlspecialchars($_POST['login']));
-            if(!empty($_POST['login']) AND !empty($_POST['password']) AND 
-            isset($_POST['login']) AND isset($_POST['password']))
+            if(!empty($_POST['login']) && !empty($_POST['password']) && 
+            isset($_POST['login']) && isset($_POST['password']))
             {        
                 $password = $_POST["password"];
 
@@ -334,8 +334,8 @@ class Login extends AbstractController {
         //recover the token in the session
         $token = $_SESSION["paramURL"];
 
-        if(!empty($_POST['newPassword_user']) AND !empty($_POST['confirmNewPassword_user']) AND 
-            isset($_POST['newPassword_user']) AND isset($_POST['confirmNewPassword_user']))
+        if(!empty($_POST['newPassword_user']) && !empty($_POST['confirmNewPassword_user']) && 
+            isset($_POST['newPassword_user']) && isset($_POST['confirmNewPassword_user']))
         {
             $passwordLength = strlen($_POST['newPassword_user']);
             if($passwordLength>=8)

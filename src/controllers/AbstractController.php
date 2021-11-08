@@ -107,7 +107,7 @@ abstract class AbstractController {
     {
         if($this->isLogged())
         {
-            if (isset($_SESSION['user']['role']) AND $_SESSION['user']['role'] == 1) {
+            if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 1) {
                 return true;
             }
             else

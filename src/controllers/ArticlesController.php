@@ -92,7 +92,7 @@ class Articles extends AbstractController {
     * @return void
     */
     public function createArticle(){
-        if($this->isLogged() == false AND $this->isAdmin() == false) {
+        if($this->isLogged() == false && $this->isAdmin() == false) {
             $this->render('home');
         } else {
             if(isset($_POST['formCreateArticle'])) 
@@ -104,8 +104,8 @@ class Articles extends AbstractController {
                     if(move_uploaded_file($_FILES["uploadfile"]["tmp_name"],$folder));
                 }
                 $title = filter_input(INPUT_POST, 'title');
-                if(isset($title) AND isset($_POST['chapo']) AND isset($_POST['content']) AND isset($_POST['altImage']) 
-                AND !empty($title) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
+                if(isset($title) && isset($_POST['chapo']) && isset($_POST['content']) && isset($_POST['altImage']) 
+                && !empty($title) && !empty($_POST['chapo']) && !empty($_POST['content']) && !empty($_POST['altImage']))
                 {
                     $newArticle = new Article();
                     $newArticle->setTitle_art(htmlspecialchars($title));
@@ -293,7 +293,7 @@ class Articles extends AbstractController {
 
         if(isset($_POST['formModifyComment'])) 
         {
-            if(isset($_POST['commentContent']) AND !empty($_POST['commentContent']))
+            if(isset($_POST['commentContent']) && !empty($_POST['commentContent']))
             {
                 
                 $dateComment = new DateTime();
@@ -399,8 +399,8 @@ class Articles extends AbstractController {
             //recover the datas of one article
             $article = $this->articleManager->readArticle($idArt);
             
-            if(isset($_POST['title']) AND isset($_POST['chapo']) AND isset($_POST['content'])AND isset($_POST['altImage']) 
-            AND !empty($_POST['title']) AND !empty($_POST['chapo']) AND !empty($_POST['content']) AND !empty($_POST['altImage']))
+            if(isset($_POST['title']) && isset($_POST['chapo']) && isset($_POST['content']) && isset($_POST['altImage']) 
+            && !empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['content']) && !empty($_POST['altImage']))
             {
 
                 $date = new DateTime();
