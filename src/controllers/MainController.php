@@ -39,7 +39,7 @@ class Main extends AbstractController{
                     $message = htmlspecialchars($_POST['message']);
 
                     try {
-                        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                        
                         $mail->SMTPOptions = array(
                             'ssl' => array(
                                 'verify_peer' => false,

@@ -253,8 +253,6 @@ class Login extends AbstractController {
                 $mailUser = $_POST['email_user']; 
                 try {
                
-                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-               
                 $newUser = new User();
                 $newUser->setEmail_user(htmlspecialchars($_POST['email_user']));
                 //verify if the mail is in the database
