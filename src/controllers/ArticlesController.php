@@ -225,35 +225,25 @@ class Articles extends AbstractController {
             {
                 if(!empty($_POST['commentContent']))
                 {
-                    
-                $dateComment = new DateTime();
-                $newComment = new Comment();
-                $newComment->setContent_com(htmlspecialchars($_POST['commentContent']));
-                $newComment->setAutor_com(htmlspecialchars($_SESSION['user']['login']));
-                $newComment->setDate_com($dateComment->format('Y-m-d H:i:s'));
-                $newComment->setDateUpdate_com($dateComment->format('Y-m-d H:i:s'));
-                $newComment->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
-                $newComment->setId_art(htmlspecialchars($idArt));
-                    
-                    if($_SESSION['user']['role'] == 0) {
-                        $this->articleManager->newCommentUser($newComment); 
-                        $_POST = [];
-                        define('valide', $valide);
-                        return header('Location: ' . local . 'articles/createComment/'.$idArt.'/1');
-                    }
-                    //for the admin the comment is immediatly validate
-                    else
-                    {
-                        $this->articleManager->newCommentAdmin($newComment); 
-                        $_POST = [];
-                        define('valide', $valide);
-                        return header('Location: ' . local . 'articles/createComment/'.$idArt.'/1');
-                    }
+                    $dateComment = new DateTime();
+                    $newComment = new Comment();
+                    $newComment->setContent_com(htmlspecialchars($_POST['commentContent']));
+                    $newComment->setAutor_com(htmlspecialchars($_SESSION['user']['login']));
+                    $newComment->setDate_com($dateComment->format('Y-m-d H:i:s'));
+                    $newComment->setDateUpdate_com($dateComment->format('Y-m-d H:i:s'));
+                    $newComment->setId_user(htmlspecialchars($_SESSION['user']['idUser']));
+                    $newComment->setId_art(htmlspecialchars($idArt));
+                        
+                    $this->articleManager->newComment($newComment, $_SESSION['user']['role']); 
+                    $_POST = [];
+                    define('valide', $valide);
+                    return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1'); 
                 }
                 else
                 { 
                     $error = "**Vous n'avez pas saisi de commentaire";
                     $this->render('createComment', [
+                        'idArt' => $idArt,
                         'error' => $error,
                     ]);
                 }
