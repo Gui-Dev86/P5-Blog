@@ -10,7 +10,7 @@ use App\src\models\Comment;
 
 use DateTime;
 
-class adminManagement extends AbstractController {
+class AdminManagement extends AbstractController {
 
     private $userManager;
     private $articleManager;

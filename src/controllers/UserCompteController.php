@@ -27,7 +27,7 @@ class UserCompte extends AbstractController{
      * @return void
      */
     public function index(){
-        if($this->isLogged() == false) {
+        if($this->isLogged() === false) {
             $this->render('home');
         } else {
             // On envoie les données à la vue index
@@ -41,7 +41,7 @@ class UserCompte extends AbstractController{
      * @return void
      */
     public function userFormModifCompte(){
-        if($this->isLogged() == false) {
+        if($this->isLogged() === false) {
             $this->render('home');
         } else {
             // On envoie les données à la vue index
@@ -55,7 +55,7 @@ class UserCompte extends AbstractController{
      * @return void
      */
     public function userListComment(){
-        if($this->isLogged() == false) {
+        if($this->isLogged() === false) {
             $this->render('home');
         } else {
             

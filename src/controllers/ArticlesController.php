@@ -92,7 +92,7 @@ class Articles extends AbstractController {
     * @return void
     */
     public function createArticle(){
-        if($this->isLogged() == false && $this->isAdmin() == false) {
+        if($this->isLogged() === false && $this->isAdmin() === false) {
             $this->render('home');
         } else {
             if(isset($_POST['formCreateArticle'])) 
@@ -190,7 +190,7 @@ class Articles extends AbstractController {
      * @return void
      */
     public function createComment() {
-        if($this->isLogged() == false) {
+        if($this->isLogged() === false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
@@ -212,7 +212,7 @@ class Articles extends AbstractController {
      * @return void
      */
     public function addComment(){
-        if($this->isLogged() == false) {
+        if($this->isLogged() === false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
@@ -257,7 +257,7 @@ class Articles extends AbstractController {
      * @return void
      */
     public function readModifyComment() {
-        if($this->isLogged() == false) {
+        if($this->isLogged() === false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
@@ -358,7 +358,7 @@ class Articles extends AbstractController {
      * @return void
      */
     public function modifyArticle(){
-        if($this->isLogged() == false) {
+        if($this->isLogged() === false) {
             $this->render('home');
         } else {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
