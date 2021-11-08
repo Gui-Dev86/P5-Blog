@@ -461,6 +461,5 @@ class Articles extends AbstractController {
                 ]);
             }
         }
-    }
-    
+    }  
 }

@@ -109,6 +109,5 @@ class LoginManager extends AbstractManager {
         $query->bindValue('tokenNewPass_user',$user->getTokenNewPassUser(), PDO::PARAM_STR);
         $data = $query->execute();
         return $data;
-    }
-    
+    } 
 }

@@ -451,5 +451,4 @@ class AdminManagement extends AbstractController {
         // On envoie les données à la vue index
         return header('Location: ' . local . 'adminManagement/adminListAllArticles/1');
     }
-    
 }

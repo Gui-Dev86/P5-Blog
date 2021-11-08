@@ -13,5 +13,4 @@ class MentionsLegales extends AbstractController{
     
         $this->render('mentionsLegales');
     }
-
 }

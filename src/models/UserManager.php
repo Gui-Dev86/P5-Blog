@@ -201,5 +201,4 @@ class UserManager extends AbstractManager {
         $data = $query->execute();
         return $data;
     }
-
 }
