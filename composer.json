@@ -1,7 +1,7 @@
 {
-"name": "kindertheo/p5",
+  "name": "p5gui/blogdev",
   "version": "0.1.0",
-  "description": "Projet 5 de la formation Développeur Symfony OpenClassrooms - Création d'un blog",
+  "description": "Projet 5 - Formation Développeur Symfony OpenClassrooms - Création d'un blog",
   "keywords": [
     "web",
     "php",
