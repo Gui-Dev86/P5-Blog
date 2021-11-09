@@ -100,29 +100,30 @@ class UserCompte extends AbstractController{
 
         if(isset($_POST['modifyDatas'])) 
         {
-            $date = new DateTime();
-
-            $updateUser = new User();
-            $updateUser->setFirstnameUser(htmlspecialchars($_POST['newFirstname']));
-            $updateUser->setLastnameUser(htmlspecialchars($_POST['newLastname']));
-            $updateUser->setLoginUser(htmlspecialchars($_POST['newLogin']));
-            $updateUser->setEmailUser(htmlspecialchars($_POST['newEmail']));
-            $updateUser->setDateUpdateUser($date->format('Y-m-d H:i:s'));
-
-            $idUser = $_SESSION['user']['idUser'];
-            
-            //Verify if the login and the email are available
-            $loginAvailable = $this->userManager->loginAvailable($updateUser, $idUser);
-            $mailAvailable = $this->userManager->mailAvailable($updateUser, $idUser);
-
-            if(!empty($_POST['newLogin']) && !empty($_POST['newFirstname']) && !empty($_POST['newLastname']) 
+            if(isset($_POST['newLogin']) && isset($_POST['newFirstname']) && isset($_POST['newLastname']) 
+            && isset($_POST['newEmail']) && !empty($_POST['newLogin']) && !empty($_POST['newFirstname']) && !empty($_POST['newLastname']) 
             && !empty($_POST['newEmail']))
             {
+                $date = new DateTime();
+
+                $updateUser = new User();
+                $updateUser->setFirstnameUser(htmlspecialchars($_POST['newFirstname']));
+                $updateUser->setLastnameUser(htmlspecialchars($_POST['newLastname']));
+                $updateUser->setLoginUser(htmlspecialchars($_POST['newLogin']));
+                $updateUser->setEmailUser(htmlspecialchars($_POST['newEmail']));
+                $updateUser->setDateUpdateUser($date->format('Y-m-d H:i:s'));
+
+                $idUser = $_SESSION['user']['idUser'];
+                
+                //Verify if the login and the email are available
+                $loginAvailable = $this->userManager->loginAvailable($updateUser, $idUser);
+                $mailAvailable = $this->userManager->mailAvailable($updateUser, $idUser);
+
                 if($loginAvailable['nbLogin'] === '0' && $mailAvailable['nbMail'] === '0')
                 {
                     if(filter_var($_POST['newEmail'], FILTER_VALIDATE_EMAIL))
                     {
-                        $pseudoLength = strlen($_POST['newLogin']);
+                        $pseudoLength = htmlspecialchars(strlen($_POST['newLogin']));
                         if($pseudoLength<=25)
                         {   
                             $idUser = $_SESSION['user']['idUser'];

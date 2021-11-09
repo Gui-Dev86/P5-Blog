@@ -19,29 +19,29 @@
                 <table>
                     <thead>
                         <tr class="table100-head">
-                            <th class="column1">Login</th>
-                            <th class="column2">Prénom</th>
-                            <th class="column3">Nom</th>
-                            <th class="column4">Email</th>
-                            <th class="column5">Inscription</th>
-                            <th class="column6">Mise à jour</th>
-                            <th class="column7">Rôle</th>
-                            <th class="column8">Statut</th>
-                            <th class="column9 columnEnd">Modifier</th>
+                            <th class="column1 text-center">Login</th>
+                            <th class="column2 text-center">Prénom</th>
+                            <th class="column3 text-center">Nom</th>
+                            <th class="column4 text-center">Email</th>
+                            <th class="column5 text-center">Inscription</th>
+                            <th class="column6 text-center">Mise à jour</th>
+                            <th class="column7 text-center">Rôle</th>
+                            <th class="column8 text-center">Statut</th>
+                            <th class="column9 columnEnd text-center">Modifier</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for user in users %}
                         <tr>
-                            <td class="column1">{{ user.login_user }}</td>
-                            <td class="column2">{{ user.firstname_user }}</td>
-                            <td class="column3">{{ user.lastname_user }}</td>
-                            <td class="column4">{{ user.email_user }}</td>
-                            <td class="column5">{{ user.dateCreate_user | date('d-m-Y') }}</td>
-                            <td class="column6">{% if user.dateCreate_user != user.dateUpdate_user %} {{ user.dateUpdate_user | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
-                            <td class="column7">{% if user.role_user == 1 %} {{ "Admin" }} {% else %} {{ "Member" }} {% endif %}</td>
-                            <td class="column8">{% if user.isActiveUser_user == 1 and user.isActiveAdmin_user == 1 %} {{ "Actif" }} {% else %} {{ "Inactif" }} {% endif %}</td>
-                            <td class="column9 columnEnd"><a class="linkManagement" href="{{ constant('local') }}adminManagement/adminModifyUser/{{ user.id_user }}">Modifier</a></td>
+                            <td class="column1 text-center">{{ user.login_user }}</td>
+                            <td class="column2 text-center">{{ user.firstname_user }}</td>
+                            <td class="column3 text-center">{{ user.lastname_user }}</td>
+                            <td class="column4 text-center">{{ user.email_user }}</td>
+                            <td class="column5 text-center">{{ user.dateCreate_user | date('d-m-Y') }}</td>
+                            <td class="column6 text-center">{% if user.dateCreate_user != user.dateUpdate_user %} {{ user.dateUpdate_user | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
+                            <td class="column7 text-center">{% if user.role_user == 1 %} {{ "Admin" }} {% else %} {{ "Member" }} {% endif %}</td>
+                            <td class="column8 text-center">{% if user.isActiveUser_user == 1 and user.isActiveAdmin_user == 1 %} {{ "Actif" }} {% else %} {{ "Inactif" }} {% endif %}</td>
+                            <td class="column9 columnEnd text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/adminModifyUser/{{ user.id_user }}">Modifier</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -53,40 +53,40 @@
                     <div class="container col-12 col-md-8 offset-md-2">
                         <table class="panel">
                             <tr class="trCompte">
-                                <td>Login :</td>
-                                <td>{{ user.login_user }}</td>
+                                <td class="text-center">Login :</td>
+                                <td class="text-center">{{ user.login_user }}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Prénom:</td>
-                                <td>{{ user.firstname_user }}</td>
+                                <td class="text-center">Prénom:</td>
+                                <td class="text-center">{{ user.firstname_user }}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Nom:</td>
-                                <td>{{ user.lastname_user }}</td>
+                                <td class="text-center">Nom:</td>
+                                <td class="text-center">{{ user.lastname_user }}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Email:</td>
-                                <td>{{ user.email_user }}</td>
+                                <td class="text-center">Email:</td>
+                                <td class="text-center">{{ user.email_user }}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Inscription</td>
-                                <td>{{ user.dateCreate_user | date('d-m-Y') }}</td>
+                                <td class="text-center">Inscription</td>
+                                <td class="text-center">{{ user.dateCreate_user | date('d-m-Y') }}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Mise à jour</td>
-                                <td>{% if user.dateCreate_user != user.dateUpdate_user %} {{ user.dateUpdate_user | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
+                                <td class="text-center">Mise à jour</td>
+                                <td class="text-center">{% if user.dateCreate_user != user.dateUpdate_user %} {{ user.dateUpdate_user | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Rôle</td>
-                                <td>{% if user.role_user == 1 %} {{ "Admin" }} {% else %} {{ "Member" }} {% endif %}</td>
+                                <td class="text-center">Rôle</td>
+                                <td class="text-center">{% if user.role_user == 1 %} {{ "Admin" }} {% else %} {{ "Member" }} {% endif %}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Statut</td>
-                                <td>{% if user.isActiveUser_user == 1 and user.isActiveAdmin_user == 1 %} {{ "Actif" }} {% else %} {{ "Inactif" }} {% endif %}</td>
+                                <td class="text-center">Statut</td>
+                                <td class="text-center">{% if user.isActiveUser_user == 1 and user.isActiveAdmin_user == 1 %} {{ "Actif" }} {% else %} {{ "Inactif" }} {% endif %}</td>
                             </tr>
                             <tr class="trCompte">
-                                <td>Modifier</td>
-                                <td><a class="linkManagement" href="{{ constant('local') }}adminManagement/adminModifyUser/{{ user.id_user }}">Modifier</a></td>
+                                <td class="text-center">Modifier</td>
+                                <td class="text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/adminModifyUser/{{ user.id_user }}">Modifier</a></td>
                             </tr>
                         </table>
                     </div>

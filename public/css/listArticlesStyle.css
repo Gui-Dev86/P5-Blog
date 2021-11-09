@@ -5,7 +5,7 @@ h5 {
 
 .card-body {
   background-color: #e7e7e7;
-  border: 1px #6c757d solid ;
+  border: 1px #6c757d solid;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -40,18 +40,17 @@ h5 {
   color: #000;
 }
 
-.cardTitre:hover, .paginationLink:hover {
-  color: #007bff;
-}
+.cardTitre:hover,
+.paginationLink:hover { color: #007bff; }
 
 .card-text {
   font-size: 1.25rem;
 }
 
 .fondArticles {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
+  position: fixed;
+  top: 0;
+  left: 0;
   min-width: 100%;
   min-height: 100%;
   background: no-repeat top center url("../img/sackcloth.jpg");

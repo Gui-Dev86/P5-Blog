@@ -34,9 +34,8 @@
   border: 1px SOLID #dfac46;
 }
 
-.btn-modifyUser:hover , .btn-modifyUserWarning:hover {
-    opacity: 0.75;
-}
+.btn-modifyUser:hover,
+.btn-modifyUserWarning:hover { opacity: 0.75; }
 
 .retour-listMember {
     color: #212529;

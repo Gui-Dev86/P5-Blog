@@ -19,25 +19,25 @@
                 <table>
                     <thead>
                         <tr class="table100-head">
-                            <th class="column1">Article</th>
-                            <th class="column3">Auteur</th>
-                            <th class="column4">Création</th>
-                            <th class="column5">Mise à jour</th>
-                            <th class="column6">Statut</th>
-                            <th class="column7">Visualiser</th>
-                            <th class="column8 columnEnd">Modifier statut</th>
+                            <th class="column1 text-center">Article</th>
+                            <th class="column3 text-center">Auteur</th>
+                            <th class="column4 text-center">Création</th>
+                            <th class="column5 text-center">Mise à jour</th>
+                            <th class="column6 text-center">Statut</th>
+                            <th class="column7 text-center">Visualiser</th>
+                            <th class="column8 columnEnd text-center">Modifier statut</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for comment in comments %}
                         <tr>
-                            <td class="column1">{{ comment.title_art }}...</td>
-                            <td class="column3">{{ comment.autor_com }}</td>
-                            <td class="column4">{{ comment.date_com | date('d-m-Y') }}</td>
-                            <td class="column5">{% if comment.date_com != comment.dateUpdate_com %} {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
-                            <td class="column6 {% if comment.statut_com == NULL %} {{ "statutEnCours" }} {% endif %}">{% if comment.statut_com == 1 %} {{ "Validé" }} {% elseif comment.statut_com == NULL %} {{ "En cours" }} {% else %} {{ "Refusé" }} {% endif %}</td>
-                            <td class="column7"><a class="linkManagement" href="{{ constant('local') }}adminManagement/articleListComments/{{ comment.id_art }}/1/{{ comment.id_com }}">Afficher</a></td>
-                            <td class="column8 columnEnd"><a class="linkManagement" href="{{ constant('local') }}adminManagement/initialiseComment/{{ comment.id_com }}">Réinitialiser</a></td>
+                            <td class="column1 text-center">{{ comment.title_art }}...</td>
+                            <td class="column3 text-center">{{ comment.autor_com }}</td>
+                            <td class="column4 text-center">{{ comment.date_com | date('d-m-Y') }}</td>
+                            <td class="column5 text-center">{% if comment.date_com != comment.dateUpdate_com %} {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
+                            <td class="column6 text-center {% if comment.statut_com == NULL %} {{ "statutEnCours" }} {% endif %}">{% if comment.statut_com == 1 %} {{ "Validé" }} {% elseif comment.statut_com == NULL %} {{ "En cours" }} {% else %} {{ "Refusé" }} {% endif %}</td>
+                            <td class="column7 text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/articleListComments/{{ comment.id_art }}/1/{{ comment.id_com }}">Afficher</a></td>
+                            <td class="column8 columnEnd text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/initialiseComment/{{ comment.id_com }}">Réinitialiser</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -49,32 +49,32 @@
                         <div class="container col-12 col-md-8 offset-md-2">
                             <table class="panel">
                                 <tr class="trCompte">
-                                    <td>Article :</td>
-                                    <td>{{ comment.title_art }}...</td>
+                                    <td class="text-center">Article :</td>
+                                    <td class="text-center">{{ comment.title_art }}...</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Auteur:</td>
-                                    <td>{{ comment.autor_com }}</td>
+                                    <td class="text-center">Auteur:</td>
+                                    <td class="text-center">{{ comment.autor_com }}</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Création</td>
-                                    <td>{{ article.date_com | date('d-m-Y') }}</td>
+                                    <td class="text-center">Création</td>
+                                    <td class="text-center">{{ article.date_com | date('d-m-Y') }}</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Mise à jour</td>
-                                    <td>{% if comment.date_com != comment.dateUpdate_com %} {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
+                                    <td class="text-center">Mise à jour</td>
+                                    <td class="text-center">{% if comment.date_com != comment.dateUpdate_com %} {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Statut</td>
-                                    <td {% if comment.statut_com == NULL %} {{ "class='statutEnCours'" }} {% endif %}>{% if comment.statut_com == 1 %} {{ "Validé" }} {% elseif comment.statut_com == NULL %} {{ "En cours" }} {% else %} {{ "Refusé" }} {% endif %}</td>
+                                    <td class="text-center">Statut</td>
+                                    <td class="text-center {% if comment.statut_com == NULL %} {{ "statutEnCours" }} {% endif %}">{% if comment.statut_com == 1 %} {{ "Validé" }} {% elseif comment.statut_com == NULL %} {{ "En cours" }} {% else %} {{ "Refusé" }} {% endif %}</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Visualiser</td>
-                                    <td><a class="linkManagement" href="{{ constant('local') }}adminManagement/articleListComments/{{ comment.id_art }}/1/{{ comment.id_com }}">Afficher</a></td>
+                                    <td class="text-center">Visualiser</td>
+                                    <td class="text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/articleListComments/{{ comment.id_art }}/1/{{ comment.id_com }}">Afficher</a></td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Modifier statut</td>
-                                    <td><a class="linkManagement" href="{{ constant('local') }}adminManagement/initialiseComment/{{ comment.id_com }}">Réinitialiser</a></td>
+                                    <td class="text-center">Modifier statut</td>
+                                    <td class="text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/initialiseComment/{{ comment.id_com }}">Réinitialiser</a></td>
                                 </tr>
                             </table>
                         </div>

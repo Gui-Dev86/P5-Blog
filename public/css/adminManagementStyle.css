@@ -13,6 +13,10 @@
   color: #007bff;
 }
 
+.heightNav {
+  height: 0px;
+}
+
 @media (max-width: 768px) {
   .card {
     margin: auto;

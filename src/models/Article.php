@@ -178,7 +178,7 @@ class Article extends AbstractManager {
       /**
      * @return mixed
      */
-    public function getDatArt()
+    public function getDateArt()
     {
         return $this->dateArt;
     }
@@ -270,7 +270,7 @@ class Article extends AbstractManager {
      */
     public function getIdUser()
     {
-        return $this->idAser;
+        return $this->idUser;
     }
 
     /**

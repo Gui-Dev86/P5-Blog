@@ -136,10 +136,10 @@ class Articles extends AbstractController {
                             {
                                 $error = "*Vous n'avez pas sélectionné d'image";
                                 return $this->render('createArticle', [
-                                    'title' => $_POST['title'],
-                                    'chapo' => $_POST['chapo'],
-                                    'content' => $_POST['content'],
-                                    'altImage' => $_POST['altImage'],
+                                    'title' => htmlspecialchars($_POST['title']),
+                                    'chapo' => htmlspecialchars($_POST['chapo']),
+                                    'content' => htmlspecialchars($_POST['content']),
+                                    'altImage' => htmlspecialchars($_POST['altImage']),
                                     'error' => $error,
                                 ]);
                             }
@@ -148,10 +148,10 @@ class Articles extends AbstractController {
                         {
                             $error = "*Votre description d'image ne doit pas dépasser 25 caractères";
                             return $this->render('createArticle', [
-                                'title' => $_POST['title'],
-                                'chapo' => $_POST['chapo'],
-                                'content' => $_POST['content'],
-                                'altImage' => $_POST['altImage'],
+                                'title' => htmlspecialchars($_POST['title']),
+                                'chapo' => htmlspecialchars($_POST['chapo']),
+                                'content' => htmlspecialchars($_POST['content']),
+                                'altImage' => htmlspecialchars($_POST['altImage']),
                                 'error' => $error,
                             ]);
                         }
@@ -160,10 +160,10 @@ class Articles extends AbstractController {
                     {
                         $error = "*Votre titre ne doit pas dépasser 255 caractères";
                         return $this->render('createArticle', [
-                            'title' => $_POST['title'],
-                            'chapo' => $_POST['chapo'],
-                            'content' => $_POST['content'],
-                            'altImage' => $_POST['altImage'],
+                            'title' => htmlspecialchars($_POST['title']),
+                            'chapo' => htmlspecialchars($_POST['chapo']),
+                            'content' => htmlspecialchars($_POST['content']),
+                            'altImage' => htmlspecialchars($_POST['altImage']),
                             'error' => $error,
                         ]);
                     }
@@ -172,10 +172,10 @@ class Articles extends AbstractController {
                 {
                     $error = "**Tous les champs doivent être saisis";
                     return $this->render('createArticle', [
-                        'title' => $_POST['title'],
-                        'chapo' => $_POST['chapo'],
-                        'content' => $_POST['content'],
-                        'altImage' => $_POST['altImage'],
+                        'title' => htmlspecialchars($_POST['title']),
+                        'chapo' => htmlspecialchars($_POST['chapo']),
+                        'content' => htmlspecialchars($_POST['content']),
+                        'altImage' => htmlspecialchars($_POST['altImage']),
                         'error' => $error,
                     ]);
                 }
@@ -236,7 +236,6 @@ class Articles extends AbstractController {
                         
                     $this->articleManager->newComment($newComment, $_SESSION['user']['role']); 
                     $_POST = [];
-                    $valide = "*Attention avant toute publication les commentaires postés par un utilisateur seront soumis à l'un des administrateurs";
                     return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1'); 
                 }
                 else

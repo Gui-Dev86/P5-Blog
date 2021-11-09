@@ -6,7 +6,6 @@ body {
   margin: 0;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr;
 }
 
 .navbarMenu {
@@ -22,7 +21,7 @@ body {
 }
 
 .navbar-nav {
-  border: #292929 1px solid ;
+  border: #292929 1px solid;
   margin-right: 75px;
 }
 
@@ -54,7 +53,7 @@ body {
 }
 
 .dropdown-nav:hover {
-  background-color: #B1B4B7 !important;
+  background-color: #b1b4b7 !important;
 }
 
 .no-member {
@@ -110,7 +109,7 @@ body {
   color: #007bff;
 }
 
-/*-----footer-----*/
+/* -----footer----- */
 
 footer {
   height: 50px;

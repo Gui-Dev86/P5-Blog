@@ -21,32 +21,32 @@
                 <h5 class="pb-3">Informations du compte</h5>
                 <table class="panel">
                     <tr class="trCompte">
-                        <td>Pseudo :</td>
-                        <td>{{ session.login }}</td>
+                        <td class="text-center">Pseudo :</td>
+                        <td class="text-center">{{ session.login }}</td>
                     </tr>
                     <tr class="trCompte">
-                        <td>Prénom :</td>
-                        <td>{{ session.firstname }}</td>
+                        <td class="text-center">Prénom :</td>
+                        <td class="text-center">{{ session.firstname }}</td>
                     </tr>
                     <tr class="trCompte">
-                        <td>Nom :</td>
-                        <td>{{ session.lastname }}</td>
+                        <td class="text-center">Nom :</td>
+                        <td class="text-center">{{ session.lastname }}</td>
                     </tr>
                     <tr class="trCompte">
-                        <td>Adresse email :</td>
-                        <td>{{ session.email }}</td>
+                        <td class="text-center">Adresse email :</td>
+                        <td class="text-center">{{ session.email }}</td>
                     </tr>
                     <tr class="trCompte">
-                        <td>Date de création du compte : </td>
-                        <td>{{ session.dateRegister | date('d-m-Y') }}</td>
+                        <td class="text-center">Date de création du compte : </td>
+                        <td class="text-center">{{ session.dateRegister | date('d-m-Y') }}</td>
                     </tr>
                     <tr class="trCompte">
-                        <td>Dernière mise à jour du compte : </td>
-                        <td>{{ session.dateUpdate | date('d-m-Y') }}</td>
+                        <td class="text-center">Dernière mise à jour du compte : </td>
+                        <td class="text-center">{{ session.dateUpdate | date('d-m-Y') }}</td>
                     </tr>
                     <tr class="trCompte">
-                        <td>Rôle : </td>
-                        <td>{% if session.role == 1 %} {{ "Admin" }} {% else %} {{ "Member" }} {% endif %}</td>
+                        <td class="text-center">Rôle : </td>
+                        <td class="text-center">{% if session.role == 1 %} {{ "Admin" }} {% else %} {{ "Member" }} {% endif %}</td>
                     </tr>
                 </table>
                 

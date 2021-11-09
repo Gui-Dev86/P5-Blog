@@ -79,31 +79,28 @@ class Login extends AbstractController {
 
         if(isset($_POST['formRegistration'])) 
         {
-            $date = new DateTime();
-            
-            $hashedpassword = password_hash($_POST['password_user'], PASSWORD_BCRYPT);
-
-            $newUser = new User();
-            $newUser->setFirstnameUser(htmlspecialchars($_POST['firstname_user']));
-            $newUser->setLastnameUser(strtoupper(htmlspecialchars($_POST['lastname_user'])));
-            $newUser->setLoginUser(htmlspecialchars($_POST['login_user']));
-            $newUser->setPasswordUser($hashedpassword);
-            $newUser->setEmailUser(htmlspecialchars($_POST['email_user']));
-            $newUser->setDateCreateUser($date->format('Y-m-d H:i:s'));
-            $newUser->setDateUpdateUser($date->format('Y-m-d H:i:s'));
-            
-           //Verify if the login and the email are available
-            $loginAvailable = $this->loginManager->loginAvailable($newUser);
-            $emailAvailable = $this->loginManager->emailAvailable($newUser);
-
             if(!empty($_POST['firstname_user']) && !empty($_POST['lastname_user']) && !empty($_POST['login_user']) 
             && !empty($_POST['password_user']) && !empty($_POST['confirmPassword_user']) && !empty($_POST['email_user']))
             {
+                $hashedpassword = password_hash($_POST['password_user'], PASSWORD_BCRYPT);
+                $date = new DateTime();
+                $newUser = new User();
+                $newUser->setFirstnameUser(htmlspecialchars($_POST['firstname_user']));
+                $newUser->setLastnameUser(strtoupper(htmlspecialchars($_POST['lastname_user'])));
+                $newUser->setLoginUser(htmlspecialchars($_POST['login_user']));
+                $newUser->setPasswordUser($hashedpassword);
+                $newUser->setEmailUser(htmlspecialchars($_POST['email_user']));
+                $newUser->setDateCreateUser($date->format('Y-m-d H:i:s'));
+                $newUser->setDateUpdateUser($date->format('Y-m-d H:i:s'));
+                //Verify if the login and the email are available
+                $loginAvailable = $this->loginManager->loginAvailable($newUser);
+                $emailAvailable = $this->loginManager->emailAvailable($newUser);
+
                 if($loginAvailable['nbLogin'] === '0')
                 {
                     if($emailAvailable['nbEmail'] === '0')
                     {
-                        $pseudoLength = strlen($_POST['login_user']);
+                        $pseudoLength = htmlspecialchars(strlen($_POST['login_user']));
                         if($pseudoLength<=25)
                         {
                             if(filter_var($_POST['email_user'], FILTER_VALIDATE_EMAIL))
@@ -122,8 +119,8 @@ class Login extends AbstractController {
                                         $error = "*Vos mots de passes de correspondent pas";
                                         return $this->render('registerView', [
                                             'error' => $error,
-                                            'firstname_user' => $_POST['firstname_user'],
-                                            'lastname_user' => $_POST['lastname_user'],
+                                            'firstname_user' => htmlspecialchars($_POST['firstname_user']),
+                                            'lastname_user' => htmlspecialchars($_POST['lastname_user']),
                                         ]);
                                     }
                                 }
@@ -132,8 +129,8 @@ class Login extends AbstractController {
                                     $error = "*Votre mot de passe doit faire au moins 8 caractères";
                                     return $this->render('registerView', [
                                         'error' => $error,
-                                        'firstname_user' => $_POST['firstname_user'],
-                                        'lastname_user' => $_POST['lastname_user'],
+                                        'firstname_user' => htmlspecialchars($_POST['firstname_user']),
+                                        'lastname_user' => htmlspecialchars($_POST['lastname_user']),
                                     ]);
                                 }
                             }
@@ -142,8 +139,8 @@ class Login extends AbstractController {
                                 $error = "*Votre adresse mail n'est pas valide";
                                 return $this->render('registerView', [
                                     'error' => $error,
-                                    'firstname_user' => $_POST['firstname_user'],
-                                    'lastname_user' => $_POST['lastname_user'],
+                                    'firstname_user' => htmlspecialchars($_POST['firstname_user']),
+                                    'lastname_user' => htmlspecialchars($_POST['lastname_user']),
                                 ]);
                             }
                         }
@@ -152,8 +149,8 @@ class Login extends AbstractController {
                             $error = "*Votre pseudo ne doit pas dépasser 25 caractères";
                             return $this->render('registerView', [
                                 'error' => $error,
-                                'firstname_user' => $_POST['firstname_user'],
-                                'lastname_user' => $_POST['lastname_user'],
+                                'firstname_user' => htmlspecialchars($_POST['firstname_user']),
+                                'lastname_user' => htmlspecialchars($_POST['lastname_user']),
                             ]);
                         }
                     }
@@ -162,8 +159,8 @@ class Login extends AbstractController {
                         $error = "*L'adresse email ou le pseudo saisi est déjà utilisé";
                         return $this->render('registerView', [
                             'error' => $error,
-                            'firstname_user' => $_POST['firstname_user'],
-                            'lastname_user' => $_POST['lastname_user'],
+                            'firstname_user' => htmlspecialchars($_POST['firstname_user']),
+                            'lastname_user' => htmlspecialchars($_POST['lastname_user']),
                         ]);
                     }
                 }
@@ -200,8 +197,7 @@ class Login extends AbstractController {
         {
             $newUser = new User();
             $newUser->setLoginUser(htmlspecialchars($_POST['login']));
-            if(!empty($_POST['login']) && !empty($_POST['password']) && 
-            isset($_POST['login']) && isset($_POST['password']))
+            if(isset($_POST['login']) && isset($_POST['password']) && !empty($_POST['login']) && !empty($_POST['password']))
             {        
                 $password = $_POST["password"];
 
@@ -248,7 +244,7 @@ class Login extends AbstractController {
 
         if(isset($_POST["formRecoverPassword"]))
         {   
-            if(!empty($_POST['email_user']))
+            if(isset($_POST["email_user"]) && !empty($_POST['email_user']))
             {
                 $mailUser = $_POST['email_user']; 
                 try {

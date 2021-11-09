@@ -26,29 +26,29 @@
                 <table>
                     <thead>
                         <tr class="table100-head">
-                            <th class="column1">Titre</th>
-                            <th class="column3">Auteur</th>
-                            <th class="column4">Création</th>
-                            <th class="column5">Mise à jour</th>
-                            <th class="column6">Visible</th>
-                            <th class="column7">Visualiser</th>
-                            <th class="column8 columnEnd">Modifier</th>
+                            <th class="column1 text-center">Titre</th>
+                            <th class="column3 text-center">Auteur</th>
+                            <th class="column4 text-center">Création</th>
+                            <th class="column5 text-center">Mise à jour</th>
+                            <th class="column6 text-center">Visible</th>
+                            <th class="column7 text-center">Visualiser</th>
+                            <th class="column8 columnEnd text-center">Modifier</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for article in articles %}
                             <tr>
-                                <td class="column1">{{ article.title_art }}...</td>
-                                <td class="column3">{{ article.autor_art }}</td>
-                                <td class="column4">{{ article.date_art | date('d-m-Y') }}</td>
-                                <td class="column5">{% if article.date_art != article.dateUpdate_art %} {{ article.dateUpdate_art | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
+                                <td class="column1 text-center">{{ article.title_art }}...</td>
+                                <td class="column3 text-center">{{ article.autor_art }}</td>
+                                <td class="column4 text-center">{{ article.date_art | date('d-m-Y') }}</td>
+                                <td class="column5 text-center">{% if article.date_art != article.dateUpdate_art %} {{ article.dateUpdate_art | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
                                 {% if article.isActive_art == 1 %}
-                                    <td class="column6"><a class="linkManagement" href="{{ constant('local') }}adminManagement/desactiveArticle/{{ article.id_art }}">Oui</a></td>
+                                    <td class="column6 text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/desactiveArticle/{{ article.id_art }}">Oui</a></td>
                                 {% else %}
-                                    <td><a class="linkManagement" href="{{ constant('local') }}adminManagement/activeArticle/{{ article.id_art }}">Non</a></td>
+                                    <td class="column6 text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/activeArticle/{{ article.id_art }}">Non</a></td>
                                 {% endif %}
-                                <td class="column7"><a class="linkManagement" href="{{ constant('local') }}articles/readArticle/{{ article.id_art }}/1">Afficher</a></td>
-                                <td class="column8 columnEnd"><a class="linkManagement" href="{{ constant('local') }}articles/modifyArticle/{{ article.id_art }}">Modifier</a></td>
+                                <td class="column7 text-center"><a class="linkManagement" href="{{ constant('local') }}articles/readArticle/{{ article.id_art }}/1">Afficher</a></td>
+                                <td class="column8 columnEnd text-center"><a class="linkManagement" href="{{ constant('local') }}articles/modifyArticle/{{ article.id_art }}">Modifier</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -60,36 +60,36 @@
                         <div class="container col-12 col-md-8 offset-md-2">
                             <table class="panel">
                                 <tr class="trCompte">
-                                    <td>Titre :</td>
-                                    <td>{{ article.title_art }}...</td>
+                                    <td class="text-center">Titre :</td>
+                                    <td class="text-center">{{ article.title_art }}...</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Auteur:</td>
-                                    <td>{{ article.autor_art }}</td>
+                                    <td class="text-center">Auteur:</td>
+                                    <td class="text-center">{{ article.autor_art }}</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Création</td>
-                                    <td>{{ article.date_art | date('d-m-Y') }}</td>
+                                    <td class="text-center">Création</td>
+                                    <td class="text-center">{{ article.date_art | date('d-m-Y') }}</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Mise à jour</td>
-                                    <td>{% if article.date_art != article.dateUpdate_art %} {{ article.dateUpdate_art | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
+                                    <td class="text-center">Mise à jour</td>
+                                    <td class="text-center">{% if article.date_art != article.dateUpdate_art %} {{ article.dateUpdate_art | date('d-m-Y') }} {% else %} {{ "---" }} {% endif %}</td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Visible</td>
+                                    <td class="text-center">Visible</td>
                                      {% if article.isActive_art == 1 %}
-                                            <td><a class="linkManagement" href="{{ constant('local') }}adminManagement/desactiveArticle/{{ article.id_art }}">Oui</a></td>
+                                            <td class="text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/desactiveArticle/{{ article.id_art }}">Oui</a></td>
                                      {% else %}
-                                            <td><a class="linkManagement" href="{{ constant('local') }}adminManagement/activeArticle/{{ article.id_art }}">Non</a></td>
+                                            <td class="text-center"><a class="linkManagement" href="{{ constant('local') }}adminManagement/activeArticle/{{ article.id_art }}">Non</a></td>
                                     {% endif %}
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Visualiser</td>
-                                    <td><a class="linkManagement" href="{{ constant('local') }}articles/readArticle/{{ article.id_art }}/1">Afficher</a></td>
+                                    <td class="text-center">Visualiser</td>
+                                    <td class="text-center"><a class="linkManagement" href="{{ constant('local') }}articles/readArticle/{{ article.id_art }}/1">Afficher</a></td>
                                 </tr>
                                 <tr class="trCompte">
-                                    <td>Modifier</td>
-                                    <td><a class="linkManagement" href="{{ constant('local') }}articles/modifyArticle/{{ article.id_art }}">Modifier</a></td>
+                                    <td class="text-center">Modifier</td>
+                                    <td class="text-center"><a class="linkManagement" href="{{ constant('local') }}articles/modifyArticle/{{ article.id_art }}">Modifier</a></td>
                                 </tr>
                             </table>             
                         </div>
