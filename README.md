@@ -1,7 +1,7 @@
 OpenclassRooms - Formation PHP/Symfony
 Projet 5 - Création d'un blog PHP
-https://insight.symfony.com/projects/62a955b9-9df4-4814-9990-6724217cc844/big.svg
-[![SymfonyInsight](https://insight.symfony.com/projects/62a955b9-9df4-4814-9990-6724217cc844/big.svg)](https://insight.symfony.com/projects/62a955b9-9df4-4814-9990-6724217cc844)
+
+[![SymfonyInsight](https://insight.symfony.com/projects/37040ac3-bba9-43a8-967f-eba30d8cff74/big.svg)](https://insight.symfony.com/projects/37040ac3-bba9-43a8-967f-eba30d8cff74)
 
 Prérequis
 Php et Composer doivent être installés sur votre serveur afin de pouvoir utiliser le blog.
