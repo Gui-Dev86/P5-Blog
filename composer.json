@@ -1,8 +1,16 @@
 {
+"name": "kindertheo/p5",
+  "version": "0.1.0",
+  "description": "Projet 5 de la formation Développeur Symfony OpenClassrooms - Création d'un blog",
+  "keywords": [
+    "web",
+    "php",
+    "mvc",
+    "POO",
+    "application"
+  ],
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "stable",
-    "prefer-stable": true,
     
     "autoload": {
         "psr-4": { "Consistence\\": [ "src" ] },
