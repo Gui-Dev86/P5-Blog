@@ -15,7 +15,7 @@ body {
   height: 80px;
   width: 100%;
   padding: 1rem 0.5rem 0.5rem 0.5rem;
-  background-color:#292929;
+  background-color: #292929;
   position: fixed;
   left: 0;
   z-index: 10;
@@ -102,7 +102,7 @@ body {
   border: 1px SOLID #0084af;
 }
 
-.login-btn:hover{
+.login-btn:hover {
   opacity: 0.75;
 }
 

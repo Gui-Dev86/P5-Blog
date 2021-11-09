@@ -126,7 +126,6 @@ abstract class AbstractController {
         return $this->user[$var];
     }
 
-
     /**
      * @param string $var
      * @param $data

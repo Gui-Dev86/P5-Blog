@@ -1,4 +1,9 @@
 {
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    
     "autoload": {
         "psr-4": { "Consistence\\": [ "src" ] },
 		"classmap": [ "src" ]

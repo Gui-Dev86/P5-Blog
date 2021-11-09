@@ -199,7 +199,7 @@ class Articles extends AbstractController {
             //recover the third param in the URL for the id article
             $idArt = $params[2];
             
-            $article = $this->articleManager->readArticle($idArt);
+            $this->articleManager->readArticle($idArt);
             $this->render('createComment', [
                 'idArt' => $idArt,
             ]);
@@ -236,7 +236,7 @@ class Articles extends AbstractController {
                         
                     $this->articleManager->newComment($newComment, $_SESSION['user']['role']); 
                     $_POST = [];
-                    define('valide', $valide);
+                    $valide = "*Attention avant toute publication les commentaires postés par un utilisateur seront soumis à l'un des administrateurs";
                     return header('Location: ' . local . 'articles/readArticle/'.$idArt.'/1'); 
                 }
                 else

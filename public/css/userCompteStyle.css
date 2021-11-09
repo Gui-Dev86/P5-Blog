@@ -19,12 +19,12 @@
   color: #212529;
   width: 235px;
   border-radius: 3px;
-  background: #ffcc66;
-  background: -webkit-linear-gradient(top, #f7e47e, #ffcc66);
-  background: -o-linear-gradient(top, #f7e47e, #ffcc66);
-  background: -moz-linear-gradient(top, #f7e47e, #ffcc66);
-  background: -webkit-gradient(top, #f7e47e, #ffcc66);
-  background: -ms-linear-gradient(top, #f7e47e, #ffcc66);
+  background: #fc6;
+  background: -webkit-linear-gradient(top, #f7e47e, #fc6);
+  background: -o-linear-gradient(top, #f7e47e, #fc6);
+  background: -moz-linear-gradient(top, #f7e47e, #fc6);
+  background: -webkit-gradient(top, #f7e47e, #fc6);
+  background: -ms-linear-gradient(top, #f7e47e, #fc6);
   border: 1px SOLID #dfac46;
 }
 
