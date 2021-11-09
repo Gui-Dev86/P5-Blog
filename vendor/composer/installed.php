@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'type' => 'library',
+        'pretty_version' => '0.1.0',
+        'version' => '0.1.0.0',
+        'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '128accfac43a77eeb188127cce6636cb95122f71',
-        'name' => '__root__',
+        'reference' => NULL,
+        'name' => 'kindertheo/p5',
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'type' => 'library',
+        'kindertheo/p5' => array(
+            'pretty_version' => '0.1.0',
+            'version' => '0.1.0.0',
+            'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '128accfac43a77eeb188127cce6636cb95122f71',
+            'reference' => NULL,
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
