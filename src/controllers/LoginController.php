@@ -345,12 +345,11 @@ class Login extends AbstractController {
                     if(isset($token) && !empty($token)) {
                         $newUser->setTokenNewPassUser(htmlspecialchars($token));
                     }
-                    var_dump($token);
                     //change the password and pass to NULL the token
                     $this->loginManager->newPass($newUser);
 
                     unset($_SESSION['token']);
-                    
+
                     $valide = "Votre mot de passe a été modifié avec succès";
                     return $this->render('newPassword', [
                         'valide' => $valide,
