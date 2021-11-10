@@ -9,9 +9,6 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 use DateTime;
 
-require ROOT."vendor/phpmailer/phpmailer/src/Exception.php";
-require ROOT."vendor/phpmailer/phpmailer/src/PHPMailer.php";
-require ROOT."vendor/phpmailer/phpmailer/src/SMTP.php";
 require ROOT."env.php";
 
 class Login extends AbstractController {
@@ -265,6 +262,7 @@ class Login extends AbstractController {
                         $this->loginManager->insertToken($newUser);
 
                         $linkResetMail = ''.local.'login/newPassword/'.$token.'';
+                        $_SESSION['token'] = $token;
 
                         $mail->SMTPOptions = array(
                             'ssl' => array(
@@ -325,11 +323,13 @@ class Login extends AbstractController {
      */
     public function userNewPassword()
     {   
-        //recover the token in the session
-        $token = $_SESSION["paramURL"];
-
-        if(!empty($_POST['newPassword_user']) && !empty($_POST['confirmNewPassword_user']) && 
-            isset($_POST['newPassword_user']) && isset($_POST['confirmNewPassword_user']))
+        if(isset($_SESSION['token']) && !empty($_SESSION['token'])) {
+            //recover the token in the session
+            $token = $_SESSION['token'];
+        }
+        
+        if(isset($_POST['newPassword_user']) && isset($_POST['confirmNewPassword_user']) && 
+        !empty($_POST['newPassword_user']) && !empty($_POST['confirmNewPassword_user']))
         {
             $passwordLength = strlen($_POST['newPassword_user']);
             if($passwordLength>=8)
@@ -342,10 +342,15 @@ class Login extends AbstractController {
                     $newUser->setPasswordUser($newHashedpassword);
                     //save the date
                     $newUser->setDateNewPassUser($date->format('Y-m-d H:i:s'));
-                    $newUser->setTokenNewPassUser(htmlspecialchars($token));
+                    if(isset($token) && !empty($token)) {
+                        $newUser->setTokenNewPassUser(htmlspecialchars($token));
+                    }
+                    var_dump($token);
                     //change the password and pass to NULL the token
                     $this->loginManager->newPass($newUser);
 
+                    unset($_SESSION['token']);
+                    
                     $valide = "Votre mot de passe a été modifié avec succès";
                     return $this->render('newPassword', [
                         'valide' => $valide,

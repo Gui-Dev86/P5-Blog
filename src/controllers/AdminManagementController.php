@@ -341,6 +341,7 @@ class AdminManagement extends AbstractController {
 
                 $message = 'Le compte administrateur principal ne peut pas être modifié.';
                 $this->render('adminModifyUser', [
+                    'idUser' => $idUser,
                     'user' => $user,
                     'message' => $message,
                 ]);

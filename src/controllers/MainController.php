@@ -6,9 +6,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require ROOT."vendor/phpmailer/phpmailer/src/Exception.php";
-require ROOT."vendor/phpmailer/phpmailer/src/PHPMailer.php";
-require ROOT."vendor/phpmailer/phpmailer/src/SMTP.php";
 require ROOT."env.php";
 
 class Main extends AbstractController{

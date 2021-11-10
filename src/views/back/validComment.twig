@@ -60,7 +60,7 @@
                         <div class="row">
                             <p class="text-justify textInfo">
                             {% if comment.dateUpdate_com > comment.date_com %}
-                                Mis à jour le {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} Créé le {{  comment.date_com | date('d-m-Y') }}
+                                Mis à jour le {{ comment.dateUpdate_com | date('d-m-Y') }} {% else %} Créé le {{ comment.date_com | date('d-m-Y') }}
                             {% endif %}
                             par <b>{{ comment.autor_com }}</b><br />
                         </div>
