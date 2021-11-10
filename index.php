@@ -23,8 +23,8 @@ if(isset($_GET['p']) && !empty($_GET['p']))
 }
 
 // Si au moins 1 paramètre existe
-if(isset($_GET['p']) && !empty($_GET['p'])){
-
+if(isset($_GET['p']) && !empty($_GET['p']))
+{
     // On sauvegarde le 1er paramètre dans $controller en mettant sa 1ère lettre en majuscule
     $controller = ucfirst($params[0]);
 
@@ -41,14 +41,17 @@ if(isset($_GET['p']) && !empty($_GET['p'])){
     if(method_exists($controller, $action)){
         unset($params[0]);
         unset($params[1]);
-        call_user_func_array([$controller,$action], $params);
-        
-    }else{
+        call_user_func_array([$controller,$action], $params);   
+    }
+    else
+    {
         // On envoie le code réponse 404
         http_response_code(404);
         echo "La page recherchée n'existe pas";
     }
-}else{
+}
+else
+{
     // Ici aucun paramètre n'est défini
     // On appelle le contrôleur par défaut
     require_once ROOT.'src/controllers/MainController.php';

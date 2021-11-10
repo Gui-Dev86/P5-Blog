@@ -24,8 +24,10 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function pageArticles() {
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function pageArticles()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
         }
         //count the articles number in the database
@@ -54,8 +56,10 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function readArticle(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function readArticle()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third param in the URL for the id article
             $idArt = $params[2];
@@ -91,10 +95,14 @@ class Articles extends AbstractController {
     *
     * @return void
     */
-    public function createArticle(){
-        if($this->isLogged() === false && $this->isAdmin() === false) {
+    public function createArticle()
+    {
+        if($this->isLogged() === false && $this->isAdmin() === false)
+        {
             $this->render('home');
-        } else {
+        }
+        else
+        {
             if(isset($_POST['formCreateArticle'])) 
             {
                 $date = new DateTime();
@@ -189,11 +197,16 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function createComment() {
-        if($this->isLogged() === false) {
+    public function createComment()
+    {
+        if($this->isLogged() === false)
+        {
             $this->render('home');
-        } else {
-            if(isset($_GET['p']) && !empty($_GET['p'])) {
+        }
+        else
+        {
+            if(isset($_GET['p']) && !empty($_GET['p']))
+            {
                 $params = explode('/', $_GET['p']);
             }
             //recover the third param in the URL for the id article
@@ -211,11 +224,16 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function addComment(){
-        if($this->isLogged() === false) {
+    public function addComment()
+    {
+        if($this->isLogged() === false)
+        {
             $this->render('home');
-        } else {
-            if(isset($_GET['p']) && !empty($_GET['p'])) {
+        }
+        else
+        {
+            if(isset($_GET['p']) && !empty($_GET['p']))
+            {
                 $params = explode('/', $_GET['p']);
             }
             //recover the third param in the URL for the id article
@@ -255,10 +273,14 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function readModifyComment() {
-        if($this->isLogged() === false) {
+    public function readModifyComment()
+    {
+        if($this->isLogged() === false)
+        {
             $this->render('home');
-        } else {
+        }
+        else
+        {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
             }
@@ -281,15 +303,16 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function modifyComment() {
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function modifyComment()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third param in the URL for the id article
             $idArt = $params[2];
             //recover the fifth param in the URL for the id comment
             $idCom = $params[4];
         }
-
         if(isset($_POST['formModifyComment'])) 
         {
             if(isset($_POST['commentContent']) && !empty($_POST['commentContent']))
@@ -340,26 +363,31 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function deleteComment(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function deleteComment()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             $idArt = $params[2];
             $idCom = $params[4];
         }
-
         $this->articleManager->deleteComment($idCom);
         return header('Location: ' . local . 'articles/readArticle/'.$idArt. '/1/' .$idCom.'#ancreNewComment');
     }
-    
+
     /**
      * This method display the page to modify an article
      *
      * @return void
      */
-    public function modifyArticle(){
-        if($this->isLogged() === false) {
+    public function modifyArticle()
+    {
+        if($this->isLogged() === false)
+        {
             $this->render('home');
-        } else {
+        }
+        else
+        {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
                 //recover the third URL parameter article id
@@ -378,9 +406,10 @@ class Articles extends AbstractController {
      *
      * @return void
      */
-    public function modifyArticleContent(){
-        
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function modifyArticleContent()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter article id
             $idArt = $params[2];

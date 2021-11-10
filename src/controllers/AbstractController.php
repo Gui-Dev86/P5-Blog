@@ -45,19 +45,23 @@ abstract class AbstractController {
             'debug' => true,] 
         );
         $this->session = filter_var_array($_SESSION);
-        if (isset($this->session['user'])) {
+        if (isset($this->session['user']))
+        {
             $this->user = $this->session['user'];
         }
-        if(isset($this->user)) {
+        if(isset($this->user))
+        {
             $this->twig->addGlobal("session", $this->user);
         }
-        ;
         //define the constant to recover the good css file
         define('view', $view);
         
-            if( file_exists('src/views/front/'.$view.'.twig')) {
+            if( file_exists('src/views/front/'.$view.'.twig'))
+            {
                 echo $this->twig->render('front/'. $view . '.twig', $data);
-            } else {
+            }
+            else
+            {
                 echo $this->twig->render('back/'. $view . '.twig', $data);
             }
        

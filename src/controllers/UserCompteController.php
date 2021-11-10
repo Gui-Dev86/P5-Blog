@@ -26,10 +26,14 @@ class UserCompte extends AbstractController{
      *
      * @return void
      */
-    public function index(){
-        if($this->isLogged() === false) {
+    public function index()
+    {
+        if($this->isLogged() === false)
+        {
             $this->render('home');
-        } else {
+        }
+        else
+        {
             // On envoie les données à la vue index
             $this->render('userCompte');
         }
@@ -54,11 +58,14 @@ class UserCompte extends AbstractController{
      *
      * @return void
      */
-    public function userListComment(){
-        if($this->isLogged() === false) {
+    public function userListComment()
+    {
+        if($this->isLogged() === false)
+        {
             $this->render('home');
-        } else {
-            
+        }
+        else
+        {
             if(isset($_SESSION["user"]) && !empty($_SESSION["user"]))
             {
                 $idUser = $_SESSION['user']['idUser'];
@@ -96,8 +103,8 @@ class UserCompte extends AbstractController{
      * This method modify the data's user
      *
      */
-    public function userModifyDatas(){
-
+    public function userModifyDatas()
+    {
         if(isset($_POST['modifyDatas'])) 
         {
             if(isset($_POST['newLogin']) && isset($_POST['newFirstname']) && isset($_POST['newLastname']) 
@@ -244,7 +251,8 @@ class UserCompte extends AbstractController{
      * This method active the compte by the user
      *
      */
-    public function activeCompteUser() {
+    public function activeCompteUser()
+    {
         $activeUser = new User();
         $activeUser->setLoginUser(htmlspecialchars($_SESSION['user']['login']));
         $activeUser->setIsActiveUserUser(htmlspecialchars($_SESSION['user']['isActiveUser']));
@@ -263,7 +271,8 @@ class UserCompte extends AbstractController{
      * This method disable the compte by the user
      *
      */
-    public function disableCompteUser() {
+    public function disableCompteUser()
+    {
         $disableStatusUser = new User();
         $disableStatusUser->setLoginUser(htmlspecialchars($_SESSION['user']['login']));
         $disableStatusUser->setIsActiveUserUser(htmlspecialchars($_SESSION['user']['isActiveUser']));

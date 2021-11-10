@@ -9,8 +9,8 @@ class MentionsLegales extends AbstractController{
      *
      * @return void
      */
-    public function index(){
-    
+    public function index()
+    {
         $this->render('mentionsLegales');
     }
 }

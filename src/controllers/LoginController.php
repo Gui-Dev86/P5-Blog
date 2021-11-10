@@ -72,8 +72,8 @@ class Login extends AbstractController {
      *
      * @return void
      */
-    public function registerUser(){
-
+    public function registerUser()
+    {
         if(isset($_POST['formRegistration'])) 
         {
             if(!empty($_POST['firstname_user']) && !empty($_POST['lastname_user']) && !empty($_POST['login_user']) 
@@ -189,7 +189,6 @@ class Login extends AbstractController {
      */
     public function loginUser()
     {   
-
         if(isset($_POST["formLogin"]))
         {
             $newUser = new User();
@@ -323,7 +322,8 @@ class Login extends AbstractController {
      */
     public function userNewPassword()
     {   
-        if(isset($_SESSION['token']) && !empty($_SESSION['token'])) {
+        if(isset($_SESSION['token']) && !empty($_SESSION['token']))
+        {
             //recover the token in the session
             $token = $_SESSION['token'];
         }

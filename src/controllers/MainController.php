@@ -14,7 +14,8 @@ class Main extends AbstractController{
     * Display the home page
     *
     */
-    public function home(){
+    public function home()
+    {
         $this->render('home');
     }
 

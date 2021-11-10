@@ -26,11 +26,15 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function index(){
-        if($this->isLogged() === false || $this->isAdmin() === false) {
+    public function index()
+    {
+        if($this->isLogged() === false || $this->isAdmin() === false)
+        {
             $this->render('home');
-        } else {
-        // On envoie les données à la vue index
+        }
+        else
+        {
+            // On envoie les données à la vue index
             $this->render('adminManagement');
         }
     }
@@ -40,16 +44,19 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function adminListAllArticles(){
-        if($this->isLogged() === false || $this->isAdmin() === false) {
+    public function adminListAllArticles()
+    {
+        if($this->isLogged() === false || $this->isAdmin() === false)
+        {
             $this->render('home');
-        } else {
+        }
+        else
+        {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
                 //recover the third URL parameter number page
                 $paramURL = $params[2];
             }
-        
             //count the articles number in the database
             $articlesCount = $this->articleManager->countAllArticlesAdmin();
             $nbArticlesAdmin = (int) $articlesCount['nbArticles'];
@@ -76,28 +83,31 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function adminListAllComments(){
-        if($this->isLogged() === false || $this->isAdmin() === false) {
+    public function adminListAllComments()
+    {
+        if($this->isLogged() === false || $this->isAdmin() === false)
+        {
             $this->render('home');
-        } else {
+        }
+        else
+        {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
                 //recover the third URL parameter number page
                 $paramURL = $params[2];
             }
-        
-        //count the comments number in the database
-        $commentsCount = $this->articleManager->countAllCommentsAdmin();
-        $nbCommentsAdmin = (int) $commentsCount['nbCommentsAdmin'];
-        //number of articles per page
-        $commentsParPage = 5;
-        //calculate the pages number
-        $pages = ceil($nbCommentsAdmin / $commentsParPage);
-        //calculate the first comment per page
-        $firstComment = ($paramURL * $commentsParPage) - $commentsParPage;
-        
-        //recover the datas of all comments in $comments
-        $comments = $this->articleManager->readAllCommentsAdmin($firstComment, $commentsParPage);
+            //count the comments number in the database
+            $commentsCount = $this->articleManager->countAllCommentsAdmin();
+            $nbCommentsAdmin = (int) $commentsCount['nbCommentsAdmin'];
+            //number of articles per page
+            $commentsParPage = 5;
+            //calculate the pages number
+            $pages = ceil($nbCommentsAdmin / $commentsParPage);
+            //calculate the first comment per page
+            $firstComment = ($paramURL * $commentsParPage) - $commentsParPage;
+            
+            //recover the datas of all comments in $comments
+            $comments = $this->articleManager->readAllCommentsAdmin($firstComment, $commentsParPage);
         
             // On envoie les données à la vue index
             $this->render('adminListAllComments', [
@@ -113,28 +123,31 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function adminListAllMembers(){
-        if($this->isLogged() === false || $this->isAdmin() === false) {
+    public function adminListAllMembers()
+    {
+        if($this->isLogged() === false || $this->isAdmin() === false)
+        {
             $this->render('home');
-        } else {
+        }
+        else
+        {
             if(isset($_GET['p']) && !empty($_GET['p'])) {
                 $params = explode('/', $_GET['p']);
                 //recover the third URL parameter number page
                 $paramURL = $params[2];
             }
-        
-        //count the members number in the database
-        $usersCount = $this->userManager->countAllUsers();
-        $nbUsers = (int) $usersCount['nbUsers'];
-        //number of articles per page
-        $usersParPage = 5;
-        //calculate the pages number
-        $pages = ceil($nbUsers / $usersParPage);
-        //calculate the first user per page
-        $firstUser = ($paramURL * $usersParPage) - $usersParPage;
-        
-        //recover the datas of all users in $users
-        $users = $this->userManager->readAllUsers($firstUser, $usersParPage);
+            //count the members number in the database
+            $usersCount = $this->userManager->countAllUsers();
+            $nbUsers = (int) $usersCount['nbUsers'];
+            //number of articles per page
+            $usersParPage = 5;
+            //calculate the pages number
+            $pages = ceil($nbUsers / $usersParPage);
+            //calculate the first user per page
+            $firstUser = ($paramURL * $usersParPage) - $usersParPage;
+            
+            //recover the datas of all users in $users
+            $users = $this->userManager->readAllUsers($firstUser, $usersParPage);
         
             // On envoie les données à la vue index
             $this->render('adminListAllMembers', [
@@ -150,11 +163,16 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function adminModifyUser(){
-        if($this->isLogged() === false || $this->isAdmin() === false) {
+    public function adminModifyUser()
+    {
+        if($this->isLogged() === false || $this->isAdmin() === false)
+        {
             $this->render('home');
-        } else {
-            if(isset($_GET['p']) && !empty($_GET['p'])) {
+        }
+        else
+        {
+            if(isset($_GET['p']) && !empty($_GET['p']))
+            {
                 $params = explode('/', $_GET['p']);
                 //recover the third URL parameter user id
                 $idUser = $params[2];
@@ -175,9 +193,10 @@ class AdminManagement extends AbstractController {
     *
     * @return void
     */
-    public function articleListComments(){
-
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function articleListComments()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third param in the URL for the id article
             $idArt = $params[2];
@@ -213,9 +232,10 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function activeAdmin(){ 
-        
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function activeAdmin()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter user id
             $idUser = $params[2];
@@ -254,9 +274,10 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function activeUser(){
+    public function activeUser()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p'])){
 
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter user id
             $idUser = $params[2];
@@ -297,8 +318,10 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function activeCompte(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function activeCompte()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter user id
             $idUser = $params[2];
@@ -326,8 +349,10 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function desactiveCompte(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function desactiveCompte()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter user id
             $idUser = $params[2];
@@ -368,8 +393,10 @@ class AdminManagement extends AbstractController {
     *
     * @return void
     */
-    public function validateComment(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function validateComment()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter com id
             $idCom = $params[2];
@@ -386,8 +413,10 @@ class AdminManagement extends AbstractController {
     *
     * @return void
     */
-    public function refuseComment(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function refuseComment()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter com id
             $idCom = $params[2];
@@ -404,8 +433,10 @@ class AdminManagement extends AbstractController {
     *
     * @return void
     */
-    public function initialiseComment(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function initialiseComment()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter com id
             $idCom = $params[2];
@@ -422,8 +453,10 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function activeArticle(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function activeArticle()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter art id
             $idArt = $params[2];
@@ -440,8 +473,10 @@ class AdminManagement extends AbstractController {
      *
      * @return void
      */
-    public function desactiveArticle(){
-        if(isset($_GET['p']) && !empty($_GET['p'])) {
+    public function desactiveArticle()
+    {
+        if(isset($_GET['p']) && !empty($_GET['p']))
+        {
             $params = explode('/', $_GET['p']);
             //recover the third URL parameter art id
             $idArt = $params[2];
