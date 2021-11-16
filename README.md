@@ -5,13 +5,14 @@ Projet 5 - Création d'un blog PHP
 
 Prérequis
 Php et Composer doivent être installés sur votre serveur afin de pouvoir utiliser le blog.
+Disposer d'un server local en cours d'exécution.
 
 Installation
-- Cloner le Repositary sur votre serveur.
+- Cloner le Repositary sur votre serveur et une fois dans le dossier du projet utiliser la commande composer install afin d'installer les dépendances du projet.
 
 - Créer une base de données sur votre SGBD et importer le fichier blogdev.sql se trouvant à la racine du projet. En plus de créer la base de données il intègrera de nombreuses fausses données, comptes admin, utilisateurs, articles et commentaires. 
 
-- Afin d'accéder à cette base de données remplir le fichier App/Config/database.php avec les accès à votre BDD.
+- Afin d'accéder à cette base de données remplir le fichier Config/database.php avec les accès à votre BDD.
 
 <?php
 
@@ -25,7 +26,14 @@ define('DB_OPTIONS', array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO
 
 ?>
 
-- Pour que vous puissiez profiter de l'utilisation du formulaire de contact et de la récupération de mot de passe, veuillez remplir le fichier App/mail.php avec les accès à votre compte email, le protocole smtp ainsi que le port utilisé. Ces informations sont trouvables chez votre hébergeur. Puis renommer le fichier en env.php. En fonction du smtp utilisé il peut nécessiter quelques modifications au niveau de celui-ci. Si c'est le cas vous trouverez de nombreux tutoriels.
+- Dans le fichier index.php à la ligne 13 
+
+define('local', 'http://localhost/P5_Blog/');
+
+Il vous faudra remplacer l'URL par celle que vous utiliserez.
+
+- Pour terminer et afin de que vous puissiez profiter de l'utilisation du formulaire de contact et de la récupération de mot de passe, veuillez remplir le fichier mail.php avec les accès à votre compte email, le protocole smtp ainsi que le port utilisé. Ces informations sont trouvables chez votre hébergeur.
+Puis renommer le fichier en env.php. En fonction du smtp utilisé il peut nécessiter quelques modifications au niveau de celui-ci. Si c'est le cas vous trouverez de nombreux tutoriels.
 
 <?php
     define('email', 'your adress');
